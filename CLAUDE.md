@@ -24,7 +24,7 @@ Una **web estática**. No hace falta servidor, base de datos ni inicio de sesió
 
 ## Punto de partida: qué hay en el diseño
 
-Los archivos exportados de Claude Design son artboards con extensión `.dc.html`. Cada página existe en versión escritorio y versión móvil:
+Todo el diseño está en la carpeta **`diseno/`** del repositorio. Lee primero `diseno/LEEME-DISENO.md`. Los archivos exportados de Claude Design son artboards con extensión `.dc.html`. Cada página existe en versión escritorio y versión móvil:
 
 | Página | Escritorio | Móvil |
 |---|---|---|
@@ -46,7 +46,7 @@ Además:
 1. Proponer la estructura del proyecto y la tecnología (ver arriba) y esperar el visto bueno.
 2. **Unificar escritorio y móvil en una sola página adaptable** por cada página de la web. Hoy son archivos separados, pero el marcado es casi idéntico. Los artboards de escritorio tienen algunos **estilos en línea** que no existen en los de móvil (por ejemplo, un tamaño de fuente fijo en el título de «Trabajo seleccionado»). Pásalos a CSS o descártalos si están de más. Usa el marcado móvil como base, más limpia, y comprueba después que a 1440 px el resultado coincide con el artboard de escritorio.
 3. Sustituir los enlaces entre artboards (`*.dc.html`) por rutas normales de la web.
-4. Las imágenes del diseño pesan unos 7 MB en total. Optimízalas (formato moderno, tamaños adecuados, carga diferida) **sin cambiar su aspecto**.
+4. Las 37 imágenes del diseño (en `diseno/assets/`, ya en WebP) suman unos 2,4 MB. Revísalas: tamaños adecuados al ancho en que se muestran, atributos de ancho y alto para evitar saltos de maquetación y carga diferida en las que estén fuera de pantalla, **sin cambiar su aspecto**.
 
 ## Puntos de corte (ya decididos)
 

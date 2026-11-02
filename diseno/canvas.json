@@ -1,0 +1,195 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "CaseBuscador.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study Buscador app sanitaria · Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 13440
+    },
+    "CaseBuscadorMobile.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study Buscador app sanitaria · Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 13440
+    },
+    "CasePlanificador.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study Planificador de medicación · Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 21560
+    },
+    "CasePlanificadorMobile.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study Planificador de medicación · Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 21560
+    },
+    "CaseStudy.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study eSBARD Edu · Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 5320
+    },
+    "CaseStudyMobile.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study eSBARD Edu · Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 5320
+    },
+    "Estados.dc.html": {
+      "h": 1700,
+      "title": "Estados de interacción",
+      "w": 1440,
+      "x": 1990,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 4741,
+      "is_interactive": true,
+      "title": "Home · Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Mobile.dc.html": {
+      "expand": "fill",
+      "h": 3800,
+      "is_interactive": true,
+      "title": "Home · Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 0
+    },
+    "SobreMi.dc.html": {
+      "expand": "fill",
+      "h": 2620,
+      "is_interactive": true,
+      "title": "Sobre mí · Escritorio",
+      "w": 1440,
+      "x": 3510,
+      "y": 0
+    },
+    "SobreMiMobile.dc.html": {
+      "expand": "fill",
+      "h": 3836,
+      "is_interactive": true,
+      "title": "Sobre mí · Móvil",
+      "w": 390,
+      "x": 5030,
+      "y": 0
+    },
+    "Trabajo.dc.html": {
+      "expand": "fill",
+      "h": 1900,
+      "is_interactive": true,
+      "title": "Trabajo · Escritorio",
+      "w": 1440,
+      "x": 5500,
+      "y": 0
+    },
+    "TrabajoMobile.dc.html": {
+      "expand": "fill",
+      "h": 2400,
+      "is_interactive": true,
+      "title": "Trabajo · Móvil",
+      "w": 390,
+      "x": 7020,
+      "y": 0
+    },
+    "HomeTablet.dc.html": {
+      "expand": "fill",
+      "h": 3800,
+      "is_interactive": true,
+      "title": "Home · Tableta 820",
+      "w": 820,
+      "x": 0,
+      "y": 29680
+    },
+    "SobreMiTablet.dc.html": {
+      "expand": "fill",
+      "h": 3836,
+      "is_interactive": true,
+      "title": "Sobre mí · Tableta 820",
+      "w": 820,
+      "x": 900,
+      "y": 29680
+    },
+    "CaseBuscadorTablet.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Case study Buscador · Tableta 820",
+      "w": 820,
+      "x": 1800,
+      "y": 29680
+    },
+    "Home1024.dc.html": {
+      "expand": "fill",
+      "h": 3800,
+      "is_interactive": true,
+      "title": "Home · 1024 (límite escritorio)",
+      "w": 1024,
+      "x": 2720,
+      "y": 29680
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-23T10:00:00Z",
+    "v": 1
+  },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/artifact/88NmiFav8mKDariy9g36k5",
+      "copiedAt": "2026-10-28T11:05:00Z",
+      "namespace": "arnau-portfolio",
+      "title": "Arnau Larripa",
+      "version": "1793180582-9a7f"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {},
+  "order": [
+    "Main.dc.html",
+    "Mobile.dc.html",
+    "Trabajo.dc.html",
+    "TrabajoMobile.dc.html",
+    "Estados.dc.html",
+    "SobreMi.dc.html",
+    "SobreMiMobile.dc.html",
+    "CaseStudy.dc.html",
+    "CaseStudyMobile.dc.html",
+    "CaseBuscador.dc.html",
+    "CaseBuscadorMobile.dc.html",
+    "CasePlanificador.dc.html",
+    "CasePlanificadorMobile.dc.html",
+    "HomeTablet.dc.html",
+    "SobreMiTablet.dc.html",
+    "CaseBuscadorTablet.dc.html",
+    "Home1024.dc.html"
+  ],
+  "pages": [],
+  "title": "Portfolio Arnau · Home"
+}

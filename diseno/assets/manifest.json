@@ -1,0 +1,455 @@
+{
+ "f971ca01a390613a90849694bfa8725c": {
+  "file": "assets/f971ca01a390613a90849694bfa8725c.webp",
+  "bytes": 120966,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html",
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html",
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html",
+   "Home1024.dc.html",
+   "HomeTablet.dc.html",
+   "Main.dc.html",
+   "Mobile.dc.html",
+   "Trabajo.dc.html",
+   "TrabajoMobile.dc.html"
+  ],
+  "alt": [
+   "Composición de pantallas del buscador: resultados, filtros, búsquedas recientes y sugerencia de corrección"
+  ]
+ },
+ "3fe795bda6db19bc3c2c59d9d52841ed": {
+  "file": "assets/3fe795bda6db19bc3c2c59d9d52841ed.webp",
+  "bytes": 170062,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "User persona de un perfil autogestionado: mujer de 56 años con medicación crónica, con su biografía, metas, frustraciones y motivaciones"
+  ]
+ },
+ "e559b262271bf9ee37ecf6239b4d5bd7": {
+  "file": "assets/e559b262271bf9ee37ecf6239b4d5bd7.webp",
+  "bytes": 101112,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Mapa de propuesta de valor: acciones, deseos y dolores del perfil autogestionado frente a oportunidades, servicios y aliviadores del producto"
+  ]
+ },
+ "34c14c53dbfbe759b3da80285d7ad355": {
+  "file": "assets/34c14c53dbfbe759b3da80285d7ad355.webp",
+  "bytes": 80060,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Benchmark de cuatro apps de uso diario con buscador: Spotify, ajustes de mensajería, correo y una tienda de moda"
+  ]
+ },
+ "8a05557756de741f54810b557b669766": {
+  "file": "assets/8a05557756de741f54810b557b669766.webp",
+  "bytes": 34590,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Diagrama de flujo del buscador: según haya historial de búsqueda, muestra búsquedas recientes o secciones más visitadas, y al escribir sugiere contenido con coincidencias"
+  ]
+ },
+ "2701e8e7bbd226217c374da421b36ad7": {
+  "file": "assets/2701e8e7bbd226217c374da421b36ad7.webp",
+  "bytes": 57040,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Tres pantallas móviles del buscador, en catalán: búsquedas recientes con opción de borrar cada una; sugerencias mientras se escribe, con la ruta de cada resultado; y un resultado con la propuesta de corrección tras una errata"
+  ]
+ },
+ "76d82aaffc9699f77eb40fc9aecaff05": {
+  "file": "assets/76d82aaffc9699f77eb40fc9aecaff05.webp",
+  "bytes": 40362,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Wireframes móviles conectados: página con buscador, historial, sugerencias, filtros, resultados filtrados, ordenación y detalle"
+  ]
+ },
+ "7616b1d095e1de7e2d7b5e077426672b": {
+  "file": "assets/7616b1d095e1de7e2d7b5e077426672b.webp",
+  "bytes": 50616,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Tres pantallas móviles del buscador, en catalán: lista de resultados con etiquetas de filtros activos, ventana de filtros con categorías y fechas, y opciones de ordenación (más reciente, más antigua y orden alfabético)"
+  ]
+ },
+ "b0fbf2700ee936dbf2c6a0ed5988ccb3": {
+  "file": "assets/b0fbf2700ee936dbf2c6a0ed5988ccb3.webp",
+  "bytes": 53832,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Página del buscador en móvil, con cabecera, campo de búsqueda con icono de filtros y lista de resultados, junto a la misma página en escritorio, con menú superior, ruta de navegación y el botón de filtros con texto"
+  ]
+ },
+ "bb4716bce84f0a11033b69dea2f5ecb7": {
+  "file": "assets/bb4716bce84f0a11033b69dea2f5ecb7.webp",
+  "bytes": 53096,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Dos móviles con el buscador: página con buscador y resultados, y búsqueda en curso con sugerencias"
+  ]
+ },
+ "9b9c8724e99481cddc4f7210fa635a5d": {
+  "file": "assets/9b9c8724e99481cddc4f7210fa635a5d.webp",
+  "bytes": 49762,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Pantallas finales: página con buscador y lista de resultados, y resultados de una búsqueda con filtros activos y ordenación"
+  ]
+ },
+ "fc450c799d9e34ac49fc36f17fae4dc7": {
+  "file": "assets/fc450c799d9e34ac49fc36f17fae4dc7.webp",
+  "bytes": 44408,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html"
+  ],
+  "alt": [
+   "Tres pantallas móviles, en catalán: campo de búsqueda vacío con el teclado, indicador de carga con filtros activos y mensaje de que no hay coincidencias con la opción de borrar la búsqueda"
+  ]
+ },
+ "31df80bcfbea0c7257e7ecc699bbc095": {
+  "file": "assets/31df80bcfbea0c7257e7ecc699bbc095.webp",
+  "bytes": 56466,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html",
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html",
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html",
+   "Home1024.dc.html",
+   "HomeTablet.dc.html",
+   "Main.dc.html",
+   "Mobile.dc.html",
+   "Trabajo.dc.html",
+   "TrabajoMobile.dc.html"
+  ],
+  "alt": [
+   "eSBARD Edu en un portátil, mostrando el panel de laboratorios activos"
+  ]
+ },
+ "71b52f0a3d5b6228b498f47dd15a5726": {
+  "file": "assets/71b52f0a3d5b6228b498f47dd15a5726.webp",
+  "bytes": 122656,
+  "usedIn": [
+   "CaseBuscador.dc.html",
+   "CaseBuscadorMobile.dc.html",
+   "CaseBuscadorTablet.dc.html",
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html",
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html",
+   "Home1024.dc.html",
+   "HomeTablet.dc.html",
+   "Main.dc.html",
+   "Mobile.dc.html",
+   "Trabajo.dc.html",
+   "TrabajoMobile.dc.html"
+  ],
+  "alt": [
+   "Hoja del planificador, en catalán, vista en perspectiva: tabla de medicamentos con los cuatro momentos del día y, bajo cada medicamento, una tira con los días del mes"
+  ]
+ },
+ "f0c67c61d5c0ecd74671d720aae2cf47": {
+  "file": "assets/f0c67c61d5c0ecd74671d720aae2cf47.webp",
+  "bytes": 71170,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Esquema hecho a mano y pegado en una nevera, en catalán: tabla con desayuno, comida y cena; tres medicamentos con su dosis, un apunte resaltado sobre cómo tomar uno de ellos y otro medicamento tachado"
+  ]
+ },
+ "38e7955e35b70be71234fa5ca46575fc": {
+  "file": "assets/38e7955e35b70be71234fa5ca46575fc.webp",
+  "bytes": 189602,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Montaje de cuatro plantillas de medicación: una tabla con filas de mañana, mediodía, tarde, noche y solo cuando lo necesito; un planificador de un día con columnas de mañana, mediodía y noche; un plan de medicación organizado por comidas; y una hoja de pauta con campos para dosis, horario y motivo"
+  ]
+ },
+ "41424c8bb73dc95145fd10c6336ec915": {
+  "file": "assets/41424c8bb73dc95145fd10c6336ec915.webp",
+  "bytes": 30334,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Detalle de una caja de medicamento con un recuadro en blanco rotulado «Posología», para anotar la pauta a mano"
+  ]
+ },
+ "1eb3ed9e34109b77e65c0e79a33a3418": {
+  "file": "assets/1eb3ed9e34109b77e65c0e79a33a3418.webp",
+  "bytes": 16448,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Detalle de otra caja de medicamento con tres iconos (amanecer, mediodía y noche) y líneas de puntos para anotar la dosis de cada momento"
+  ]
+ },
+ "6d5c6b9c56fc9c05f1dd1f891e19cb41": {
+  "file": "assets/6d5c6b9c56fc9c05f1dd1f891e19cb41.webp",
+  "bytes": 38520,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Primera versión del documento, en catalán: tabla en blanco y negro con medicamento, vigencia, administración, comentarios y anotaciones, y las tomas ligadas a desayuno, comida y cena"
+  ]
+ },
+ "86ed21448a92c7795f34f18aabacb158": {
+  "file": "assets/86ed21448a92c7795f34f18aabacb158.webp",
+  "bytes": 30548,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Cabecera de la tabla con las columnas de mañana, mediodía, tarde y noche, y la fila de un parche con una toma por la mañana y una tira de 31 días con los días de toma resaltados cada tres días"
+  ]
+ },
+ "84b50a9206c3eefebd0a882e4d0cf65e": {
+  "file": "assets/84b50a9206c3eefebd0a882e4d0cf65e.webp",
+  "bytes": 29282,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Leyenda de iconos, en catalán: efectos adversos (somnolencia, malestar estomacal, fatiga y cambios de ánimo), forma de tomar (con alimentos, en ayunas, antes y después de la comida) y días con y sin toma"
+  ]
+ },
+ "7fe11c68e1df5e903b8d0a70e23e5cce": {
+  "file": "assets/7fe11c68e1df5e903b8d0a70e23e5cce.webp",
+  "bytes": 21842,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Primera hoja de la alternativa de varias páginas, en catalán: tabla con tres medicamentos numerados, sus dosis, los cuatro momentos del día, iconos de alertas y la leyenda al pie"
+  ]
+ },
+ "3dc32d460660602b85c76b8b60a8e408": {
+  "file": "assets/3dc32d460660602b85c76b8b60a8e408.webp",
+  "bytes": 69814,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Segunda hoja de la alternativa de varias páginas, en catalán: calendario de agosto con quince círculos numerados en cada día, uno por medicamento"
+  ]
+ },
+ "d17c99688e20be202e36a5ff63666d3d": {
+  "file": "assets/d17c99688e20be202e36a5ff63666d3d.webp",
+  "bytes": 125698,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Primera página del planificador, en catalán: título con el nombre del paciente y el mes, aviso de reimpresión, leyenda de iconos y tres medicamentos con su dosis, vía, cantidad en cada momento del día, forma de tomarlo, duración, anotaciones y tira de días de toma"
+  ]
+ },
+ "bf4299832ce09595d41d0c01f4f118ba": {
+  "file": "assets/bf4299832ce09595d41d0c01f4f118ba.webp",
+  "bytes": 71436,
+  "usedIn": [
+   "CasePlanificador.dc.html",
+   "CasePlanificadorMobile.dc.html"
+  ],
+  "alt": [
+   "Tabla de la segunda página del planificador, en catalán: encabezado repetido y cuatro medicamentos con su dosis, vía, momentos del día y duración, cada uno con una tira de 31 días con distintos patrones de días de toma"
+  ]
+ },
+ "43e60f86e421eb8a39630cf511423940": {
+  "file": "assets/43e60f86e421eb8a39630cf511423940.webp",
+  "bytes": 145490,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Mapa completo de los wireframes originales: decenas de pantallas conectadas con flechas y anotaciones técnicas"
+  ]
+ },
+ "de71221adea9af92616892076fe3e8b0": {
+  "file": "assets/de71221adea9af92616892076fe3e8b0.webp",
+  "bytes": 56222,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Wireframe original de la pantalla de usuarios de Blue Team y Red Team, con campos técnicos y anotaciones"
+  ]
+ },
+ "af3b7814b74e400d99f52a6ad9f3c73b": {
+  "file": "assets/af3b7814b74e400d99f52a6ad9f3c73b.webp",
+  "bytes": 26870,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Pantalla de asignación de usuarios a Blue Team y Red Team, con su IP de VPN",
+   "Pantalla final de asignación de usuarios a Blue Team y Red Team"
+  ]
+ },
+ "bb5a4ed9c47342af8dbbdbe59a32cdfc": {
+  "file": "assets/bb5a4ed9c47342af8dbbdbe59a32cdfc.webp",
+  "bytes": 79818,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Fundamentos del design system de eSBARD Edu en modo oscuro: paleta de fondos, texto, acento lila-azulado y estados, y escala tipográfica en BBC Reith Sans"
+  ]
+ },
+ "0ed40b796df0c84c97bef46a332dd5d5": {
+  "file": "assets/0ed40b796df0c84c97bef46a332dd5d5.webp",
+  "bytes": 132996,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Componentes del design system de eSBARD Edu: botones, campos de texto, selectores, pestañas, tablas, etiquetas de estado y tarjetas de laboratorio, con ejemplos de composición"
+  ]
+ },
+ "23c036df067d92b003a1fc74a6bdb7a3": {
+  "file": "assets/23c036df067d92b003a1fc74a6bdb7a3.webp",
+  "bytes": 30628,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Comprobación de contraste en Stark: texto gris claro #CCCCDC sobre fondo #22262B, ratio 9,57:1, que cumple AA y AAA para texto normal y grande"
+  ]
+ },
+ "09cc4c8e6474de94861648cc0d87964b": {
+  "file": "assets/09cc4c8e6474de94861648cc0d87964b.webp",
+  "bytes": 26874,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Comprobación de contraste en Stark: morado #7264E5 sobre fondo #181B1F, ratio 3,84:1, que cumple el nivel AA para elementos gráficos y de interfaz"
+  ]
+ },
+ "0c5d3a577b4c73dcdf460b9f0e1f5d3b": {
+  "file": "assets/0c5d3a577b4c73dcdf460b9f0e1f5d3b.webp",
+  "bytes": 66812,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "eSBARD Edu en un portátil, mostrando la asignación de usuarios a Blue Team y Red Team"
+  ]
+ },
+ "5b17b343095f1e3e2f2553702a57b9ef": {
+  "file": "assets/5b17b343095f1e3e2f2553702a57b9ef.webp",
+  "bytes": 49574,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Listado de laboratorios activos en tarjetas, cada uno con su estado: en marcha, pausado, listo u ocupado"
+  ]
+ },
+ "6de8556f242abcfa7be105e3c415be45": {
+  "file": "assets/6de8556f242abcfa7be105e3c415be45.webp",
+  "bytes": 34116,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Asistente para crear un laboratorio: selección de grupos y retos CTF con sus bloqueos"
+  ]
+ },
+ "048be793012cebc581c6802fc9a97e63": {
+  "file": "assets/048be793012cebc581c6802fc9a97e63.webp",
+  "bytes": 43148,
+  "usedIn": [
+   "CaseStudy.dc.html",
+   "CaseStudyMobile.dc.html"
+  ],
+  "alt": [
+   "Listado de plantillas de escenarios con su tipo, descripción y autor"
+  ]
+ },
+ "3922d7125125507603232effbe303355": {
+  "file": "assets/3922d7125125507603232effbe303355.webp",
+  "bytes": 17376,
+  "usedIn": [
+   "SobreMi.dc.html",
+   "SobreMiMobile.dc.html",
+   "SobreMiTablet.dc.html"
+  ],
+  "alt": [
+   "Retrato en blanco y negro de Arnau Larripa"
+  ]
+ }
+}
