@@ -1,0 +1,17 @@
+---
+// Cabecera común. «actual» indica en qué página estamos, para marcar el enlace activo.
+//   inicio · trabajo · caso (un caso de estudio) · sobre-mi
+interface Props {
+  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi';
+}
+const { actual } = Astro.props;
+---
+<header class="ds-wrap ds-header">
+<nav aria-label="Principal">
+<ul class="ds-header__list">
+<li><a class="ds-nav t-nav" href={actual === 'trabajo' ? '#titular' : '/trabajo/'} aria-current={actual === 'trabajo' || actual === 'caso' ? 'page' : undefined}>Trabajo</a></li>
+<li><a class="ds-logo t-nav-strong" href={actual === 'inicio' ? '#inicio' : '/'} aria-label="Arnau Larripa, ir al inicio">Arnau Larripa</a></li>
+<li><a class="ds-nav t-nav" href={actual === 'sobre-mi' ? '#sobre' : '/sobre-mi/'} aria-current={actual === 'sobre-mi' ? 'page' : undefined}>Sobre mí</a></li>
+</ul>
+</nav>
+</header>

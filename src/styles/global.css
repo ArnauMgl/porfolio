@@ -1,0 +1,11 @@
+/* Estilos generales de la página (venían en la cabecera de cada artboard). */
+body{margin:0;background:var(--bg)}
+a{color:var(--text)}a:hover{color:var(--text)}
+
+/* Colores de las ilustraciones SVG */
+.i-tint{fill:var(--accent-tint)}
+.i-surf{fill:var(--bg);stroke:var(--accent)}
+.i-acc{fill:var(--accent)}
+.i-accs{fill:none;stroke:var(--accent)}
+.i-line{fill:none;stroke:var(--line)}
+.i-dot{fill:var(--text-secondary)}
