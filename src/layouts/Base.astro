@@ -13,6 +13,7 @@ interface Props {
   actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi';
 }
 const { title, description, actual } = Astro.props;
+const canonica = new URL(Astro.url.pathname, Astro.site).href;
 ---
 <!doctype html>
 <html lang="es">
@@ -21,6 +22,16 @@ const { title, description, actual } = Astro.props;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content={description}>
+<link rel="canonical" href={canonica}>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Arnau Larripa">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonica}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
 <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
