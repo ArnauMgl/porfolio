@@ -13,6 +13,9 @@ Web personal de Arnau Larripa, hecha con [Astro](https://astro.build) como web e
 
 ## Publicación (Cloudflare Pages)
 
+Proyecto en Cloudflare: `arnaularripa` (dirección provisional: https://arnaularripa.pages.dev).
+Cada rama tiene además su propia vista previa en `https://<nombre-de-rama>.arnaularripa.pages.dev`.
+
 - Comando de construcción: `npm run build`
 - Carpeta de salida: `dist`
 - Versión de Node: 22 (ver `.nvmrc`)
