@@ -1,4 +1,5 @@
 ---
+import Imagen from '../../components/Imagen.astro';
 // Caso de estudio: Planificador de medicación imprimible. Marcado del artboard «CasePlanificadorMobile» (diseno/CasePlanificadorMobile.dc.html), con rutas reales.
 // La portada se ve en la primera pantalla y no se difiere; el resto de imágenes se cargan al acercarse.
 import Base from '../../layouts/Base.astro';
@@ -33,12 +34,12 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="48" y="48" width="64" height="64" rx="8"></rect><rect x="144" y="48" width="64" height="64" rx="8"></rect><rect x="48" y="144" width="64" height="64" rx="8"></rect><rect x="144" y="144" width="64" height="64" rx="8"></rect></svg>Sector</dt><dd class="t-body is-key">Salud pública</dd></div>
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="32" y="48" width="192" height="144" rx="8"></rect><line x1="160" y1="224" x2="96" y2="224"></line><line x1="32" y1="152" x2="224" y2="152"></line><line x1="128" y1="192" x2="128" y2="224"></line></svg>Plataforma</dt><dd class="t-body is-key">PDF imprimible, pensado para generarse desde la app</dd></div>
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="216" x2="40" y2="56"></line><path d="M40,56H208L176,104L208,152H40"></path></svg>Estado</dt><dd class="t-body is-key"><span class="ds-status ds-status--hollow" aria-hidden="true"></span>Propuesta · No implementada</dd></div>
-<div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product designer principal, con supervisión de Lead de diseño y Product Owner</dd></div>
+<div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product Designer principal, con supervisión de Lead de diseño y Product Owner</dd></div>
 <div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="84" cy="108" r="52"></circle><path d="M10.23,200a88,88,0,0,1,147.54,0"></path><path d="M172,160a87.89,87.89,0,0,1,73.77,40"></path><path d="M152.69,59.7A52,52,0,1,1,172,160"></path></svg>Equipo</dt><dd class="t-body">Diseño en la fase inicial, Lead de diseño y Product Owner</dd></div>
 </dl>
 </div>
 <figure class="ds-figure ds-cover">
-<img src={portada.src} alt="Hoja del planificador, en catalán, vista en perspectiva: tabla de medicamentos con los cuatro momentos del día y, bajo cada medicamento, una tira con los días del mes" width={portada.width} height={portada.height} loading="eager" decoding="async">
+<Imagen src={portada} alt="Hoja del planificador, en catalán, vista en perspectiva: tabla de medicamentos con los cuatro momentos del día y, bajo cada medicamento, una tira con los días del mes" loading="eager" />
 <figcaption class="t-meta">Planificador mensual en formato horizontal, con datos de ejemplo</figcaption>
 </figure>
 </section>
@@ -87,23 +88,23 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 <p>En otro proyecto de medicación entrevistamos a pacientes y a cuidadores para entender cómo gestionaban su medicación. En paralelo, mantuve conversaciones informales con profesionales de enfermería y farmacia para entender el lado clínico. Uno de los hallazgos más interesantes fue el papelito de la nevera: la solución tenía que parecerse a lo que la gente ya hacía, no a una app.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img src={nevera.src} alt="Esquema hecho a mano y pegado en una nevera, en catalán: tabla con desayuno, comida y cena; tres medicamentos con su dosis, un apunte resaltado sobre cómo tomar uno de ellos y otro medicamento tachado" width={nevera.width} height={nevera.height} loading="lazy" decoding="async">
+<Imagen src={nevera} alt="Esquema hecho a mano y pegado en una nevera, en catalán: tabla con desayuno, comida y cena; tres medicamentos con su dosis, un apunte resaltado sobre cómo tomar uno de ellos y otro medicamento tachado" loading="lazy" />
 <figcaption class="t-meta">Esquema hecho a mano en una nevera</figcaption>
 </figure>
 <div class="ds-prose">
 <p>También miramos cómo se organiza hoy la medicación en objetos cotidianos: pastilleros semanales, plantillas imprimibles que se encuentran en internet y las propias cajas de los medicamentos. Las plantillas organizan el día por momentos o por comidas, casi siempre con tablas en blanco que hay que rellenar a mano. Las cajas ya incluyen un espacio para anotar la posología y, en algunas, iconos con los momentos del día en que tomarla. Y el pastillero que miramos divide el día en mañana, tarde y noche, en lugar de en horas. Dos de esas ideas están en el planificador: una columna de anotaciones y los momentos del día.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img src={plantillasInternet.src} alt="Montaje de cuatro plantillas de medicación: una tabla con filas de mañana, mediodía, tarde, noche y solo cuando lo necesito; un planificador de un día con columnas de mañana, mediodía y noche; un plan de medicación organizado por comidas; y una hoja de pauta con campos para dosis, horario y motivo" width={plantillasInternet.width} height={plantillasInternet.height} loading="lazy" decoding="async">
+<Imagen src={plantillasInternet} alt="Montaje de cuatro plantillas de medicación: una tabla con filas de mañana, mediodía, tarde, noche y solo cuando lo necesito; un planificador de un día con columnas de mañana, mediodía y noche; un plan de medicación organizado por comidas; y una hoja de pauta con campos para dosis, horario y motivo" loading="lazy" />
 <figcaption class="t-meta">Plantillas de medicación que se encuentran en internet. Fuentes: EDIT.org, PLANSMART, Cruz Roja (SerCuidador) y PCNA</figcaption>
 </figure>
 <div class="ds-pair ds-pair--side">
 <figure class="ds-figure">
-<img src={cajaPosologia.src} alt="Detalle de una caja de medicamento con un recuadro en blanco rotulado «Posología», para anotar la pauta a mano" width={cajaPosologia.width} height={cajaPosologia.height} loading="lazy" decoding="async">
+<Imagen src={cajaPosologia} alt="Detalle de una caja de medicamento con un recuadro en blanco rotulado «Posología», para anotar la pauta a mano" loading="lazy" tamano="pequena" />
 <figcaption class="t-meta">Una caja con un recuadro en blanco para anotar la posología</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={cajaMomentos.src} alt="Detalle de otra caja de medicamento con tres iconos (amanecer, mediodía y noche) y líneas de puntos para anotar la dosis de cada momento" width={cajaMomentos.width} height={cajaMomentos.height} loading="lazy" decoding="async">
+<Imagen src={cajaMomentos} alt="Detalle de otra caja de medicamento con tres iconos (amanecer, mediodía y noche) y líneas de puntos para anotar la dosis de cada momento" loading="lazy" tamano="pequena" />
 <figcaption class="t-meta">Otra caja con los momentos del día y líneas para anotar la dosis</figcaption>
 </figure>
 </div>
@@ -115,7 +116,7 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 <p>El blanco y negro, el A4 y la accesibilidad no eran limitaciones, eran el diseño. El texto principal va en negro sobre blanco y en Arial a 12 puntos. Cada elemento tenía que ganarse su espacio en la hoja.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img class="ds-sheet" src={primeraVersion.src} alt="Primera versión del documento, en catalán: tabla en blanco y negro con medicamento, vigencia, administración, comentarios y anotaciones, y las tomas ligadas a desayuno, comida y cena" width={primeraVersion.width} height={primeraVersion.height} loading="lazy" decoding="async">
+<Imagen class="ds-sheet" src={primeraVersion} alt="Primera versión del documento, en catalán: tabla en blanco y negro con medicamento, vigencia, administración, comentarios y anotaciones, y las tomas ligadas a desayuno, comida y cena" loading="lazy" />
 <figcaption class="t-meta">Primera versión: tabla por columnas, en blanco y negro y A4 apaisado</figcaption>
 </figure>
 </li>
@@ -129,11 +130,11 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 </div>
 <div class="ds-pair">
 <figure class="ds-figure">
-<img src={momentosDelDia.src} alt="Cabecera de la tabla con las columnas de mañana, mediodía, tarde y noche, y la fila de un parche con una toma por la mañana y una tira de 31 días con los días de toma resaltados cada tres días" width={momentosDelDia.width} height={momentosDelDia.height} loading="lazy" decoding="async">
+<Imagen src={momentosDelDia} alt="Cabecera de la tabla con las columnas de mañana, mediodía, tarde y noche, y la fila de un parche con una toma por la mañana y una tira de 31 días con los días de toma resaltados cada tres días" loading="lazy" />
 <figcaption class="t-meta">Los cuatro momentos del día y la tira de días de toma de un medicamento</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={leyendaIconos.src} alt="Leyenda de iconos, en catalán: efectos adversos (somnolencia, malestar estomacal, fatiga y cambios de ánimo), forma de tomar (con alimentos, en ayunas, antes y después de la comida) y días con y sin toma" width={leyendaIconos.width} height={leyendaIconos.height} loading="lazy" decoding="async">
+<Imagen src={leyendaIconos} alt="Leyenda de iconos, en catalán: efectos adversos (somnolencia, malestar estomacal, fatiga y cambios de ánimo), forma de tomar (con alimentos, en ayunas, antes y después de la comida) y días con y sin toma" loading="lazy" />
 <figcaption class="t-meta">Leyenda: efectos adversos, forma de tomar y días de toma</figcaption>
 </figure>
 </div>
@@ -146,11 +147,11 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 <p>No era posible que cupiera todo en una hoja: a partir de cuatro o cinco medicamentos hacía falta más de una. Por eso el diseño se pensó para extenderse a varias páginas, con el encabezado de la tabla repetido y las páginas numeradas.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img class="ds-sheet" src={alternativaHoja1.src} alt="Primera hoja de la alternativa de varias páginas, en catalán: tabla con tres medicamentos numerados, sus dosis, los cuatro momentos del día, iconos de alertas y la leyenda al pie" width={alternativaHoja1.width} height={alternativaHoja1.height} loading="lazy" decoding="async">
+<Imagen class="ds-sheet" src={alternativaHoja1} alt="Primera hoja de la alternativa de varias páginas, en catalán: tabla con tres medicamentos numerados, sus dosis, los cuatro momentos del día, iconos de alertas y la leyenda al pie" loading="lazy" />
 <figcaption class="t-meta">Alternativa de varias páginas, hoja 1: tabla con los medicamentos numerados</figcaption>
 </figure>
 <figure class="ds-figure ds-figure--text">
-<img class="ds-sheet" src={alternativaHoja2.src} alt="Segunda hoja de la alternativa de varias páginas, en catalán: calendario de agosto con quince círculos numerados en cada día, uno por medicamento" width={alternativaHoja2.width} height={alternativaHoja2.height} loading="lazy" decoding="async">
+<Imagen class="ds-sheet" src={alternativaHoja2} alt="Segunda hoja de la alternativa de varias páginas, en catalán: calendario de agosto con quince círculos numerados en cada día, uno por medicamento" loading="lazy" />
 <figcaption class="t-meta">Alternativa de varias páginas, hoja 2: calendario del mes con un círculo por medicamento</figcaption>
 </figure>
 </li>
@@ -165,11 +166,11 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 <p>El planificador final es una hoja A4 apaisada que se extiende a las páginas necesarias según el número de medicamentos. Con todos los requisitos, no había forma de que todo cupiera en una sola página, porque hay personas polimedicadas con más de 12 medicamentos.</p>
 </div>
 <figure class="ds-figure">
-<img class="ds-sheet" src={pagina1.src} alt="Primera página del planificador, en catalán: título con el nombre del paciente y el mes, aviso de reimpresión, leyenda de iconos y tres medicamentos con su dosis, vía, cantidad en cada momento del día, forma de tomarlo, duración, anotaciones y tira de días de toma" width={pagina1.width} height={pagina1.height} loading="lazy" decoding="async">
+<Imagen class="ds-sheet" src={pagina1} alt="Primera página del planificador, en catalán: título con el nombre del paciente y el mes, aviso de reimpresión, leyenda de iconos y tres medicamentos con su dosis, vía, cantidad en cada momento del día, forma de tomarlo, duración, anotaciones y tira de días de toma" loading="lazy" />
 <figcaption class="t-meta">Página 1 de 2 del planificador mensual en formato horizontal, con datos ficticios</figcaption>
 </figure>
 <figure class="ds-figure">
-<img class="ds-sheet" src={pagina2.src} alt="Tabla de la segunda página del planificador, en catalán: encabezado repetido y cuatro medicamentos con su dosis, vía, momentos del día y duración, cada uno con una tira de 31 días con distintos patrones de días de toma" width={pagina2.width} height={pagina2.height} loading="lazy" decoding="async">
+<Imagen class="ds-sheet" src={pagina2} alt="Tabla de la segunda página del planificador, en catalán: encabezado repetido y cuatro medicamentos con su dosis, vía, momentos del día y duración, cada uno con una tira de 31 días con distintos patrones de días de toma" loading="lazy" />
 <figcaption class="t-meta">Página 2 de 2 (tabla): continúa con el mismo encabezado, con datos ficticios</figcaption>
 </figure>
 </div>

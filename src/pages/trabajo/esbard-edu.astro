@@ -1,4 +1,5 @@
 ---
+import Imagen from '../../components/Imagen.astro';
 // Caso de estudio: eSBARD Edu. Marcado del artboard «CaseStudyMobile» (diseno/CaseStudyMobile.dc.html), con rutas reales.
 // La portada se ve en la primera pantalla y no se difiere; el resto de imágenes se cargan al acercarse.
 import Base from '../../layouts/Base.astro';
@@ -33,12 +34,12 @@ import plantillas from '../../assets/esbard-edu/plantillas.webp';
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="48" y="48" width="64" height="64" rx="8"></rect><rect x="144" y="48" width="64" height="64" rx="8"></rect><rect x="48" y="144" width="64" height="64" rx="8"></rect><rect x="144" y="144" width="64" height="64" rx="8"></rect></svg>Sector</dt><dd class="t-body is-key">Ciberseguridad · Educación</dd></div>
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="32" y="48" width="192" height="144" rx="8"></rect><line x1="160" y1="224" x2="96" y2="224"></line><line x1="32" y1="152" x2="224" y2="152"></line><line x1="128" y1="192" x2="128" y2="224"></line></svg>Plataforma</dt><dd class="t-body is-key">Web (solo escritorio)</dd></div>
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="216" x2="40" y2="56"></line><path d="M40,56H208L176,104L208,152H40"></path></svg>Estado</dt><dd class="t-body is-key"><span class="ds-status" aria-hidden="true"></span>Lanzado</dd></div>
-<div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product designer, responsable del diseño</dd></div>
+<div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product Designer, responsable del diseño</dd></div>
 <div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="84" cy="108" r="52"></circle><path d="M10.23,200a88,88,0,0,1,147.54,0"></path><path d="M172,160a87.89,87.89,0,0,1,73.77,40"></path><path d="M152.69,59.7A52,52,0,1,1,172,160"></path></svg>Equipo</dt><dd class="t-body">Responsable de ciberseguridad (impulsor del producto), apoyo puntual de diseño junior y feedback del equipo de diseño</dd></div>
 </dl>
 </div>
 <figure class="ds-figure ds-cover">
-<img src={portada.src} alt="eSBARD Edu en un portátil, mostrando el panel de laboratorios activos" width={portada.width} height={portada.height} loading="eager" decoding="async">
+<Imagen src={portada} alt="eSBARD Edu en un portátil, mostrando el panel de laboratorios activos" loading="eager" grande />
 </figure>
 </section>
 
@@ -85,7 +86,7 @@ import plantillas from '../../assets/esbard-edu/plantillas.webp';
 <p>No hubo investigación con usuarios al uso: nuestra investigación fue entender al experto. Trabajamos muy de cerca con el responsable de ciberseguridad, revisando con él cada flujo y cada pantalla de sus wireframes hasta entender qué hacía cada herramienta, para quién y en qué momento. Sin esa fase, cualquier simplificación habría sido superficial.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img src={mapaWireframes.src} alt="Mapa completo de los wireframes originales: decenas de pantallas conectadas con flechas y anotaciones técnicas" width={mapaWireframes.width} height={mapaWireframes.height} loading="lazy" decoding="async">
+<Imagen src={mapaWireframes} alt="Mapa completo de los wireframes originales: decenas de pantallas conectadas con flechas y anotaciones técnicas" loading="lazy" grande />
 <figcaption class="t-meta">Mapa original de wireframes: decenas de pantallas, flujos y anotaciones técnicas</figcaption>
 </figure>
 </li>
@@ -98,11 +99,11 @@ import plantillas from '../../assets/esbard-edu/plantillas.webp';
 </div>
 <div class="ds-pair">
 <figure class="ds-figure">
-<img src={wireframeUsuarios.src} alt="Wireframe original de la pantalla de usuarios de Blue Team y Red Team, con campos técnicos y anotaciones" width={wireframeUsuarios.width} height={wireframeUsuarios.height} loading="lazy" decoding="async">
+<Imagen src={wireframeUsuarios} alt="Wireframe original de la pantalla de usuarios de Blue Team y Red Team, con campos técnicos y anotaciones" loading="lazy" grande />
 <figcaption class="t-meta">Antes: wireframe original</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={pantallaUsuarios.src} alt="Pantalla final de asignación de usuarios a Blue Team y Red Team" width={pantallaUsuarios.width} height={pantallaUsuarios.height} loading="lazy" decoding="async">
+<Imagen src={pantallaUsuarios} alt="Pantalla final de asignación de usuarios a Blue Team y Red Team" loading="lazy" grande />
 <figcaption class="t-meta">Después: pantalla final</figcaption>
 </figure>
 </div>
@@ -115,11 +116,11 @@ import plantillas from '../../assets/esbard-edu/plantillas.webp';
 </div>
 <div class="ds-pair">
 <figure class="ds-figure">
-<button type="button" class="ds-zoom" data-ampliar="A" aria-label="Ampliar imagen: Fundamentos: color y tipografía"><img src={dsFundamentos.src} alt="Fundamentos del design system de eSBARD Edu en modo oscuro: paleta de fondos, texto, acento lila-azulado y estados, y escala tipográfica en BBC Reith Sans" width={dsFundamentos.width} height={dsFundamentos.height} loading="lazy" decoding="async"></button>
+<button type="button" class="ds-zoom" data-ampliar="A" aria-label="Ampliar imagen: Fundamentos: color y tipografía"><Imagen src={dsFundamentos} alt="Fundamentos del design system de eSBARD Edu en modo oscuro: paleta de fondos, texto, acento lila-azulado y estados, y escala tipográfica en BBC Reith Sans" loading="lazy" grande /></button>
 <figcaption class="t-meta">Fundamentos: color y tipografía</figcaption>
 </figure>
 <figure class="ds-figure">
-<button type="button" class="ds-zoom" data-ampliar="B" aria-label="Ampliar imagen: Componentes y composición"><img src={dsComponentes.src} alt="Componentes del design system de eSBARD Edu: botones, campos de texto, selectores, pestañas, tablas, etiquetas de estado y tarjetas de laboratorio, con ejemplos de composición" width={dsComponentes.width} height={dsComponentes.height} loading="lazy" decoding="async"></button>
+<button type="button" class="ds-zoom" data-ampliar="B" aria-label="Ampliar imagen: Componentes y composición"><Imagen src={dsComponentes} alt="Componentes del design system de eSBARD Edu: botones, campos de texto, selectores, pestañas, tablas, etiquetas de estado y tarjetas de laboratorio, con ejemplos de composición" loading="lazy" grande /></button>
 <figcaption class="t-meta">Componentes y composición</figcaption>
 </figure>
 </div>
@@ -133,11 +134,11 @@ import plantillas from '../../assets/esbard-edu/plantillas.webp';
 </div>
 <div class="ds-pair ds-pair--side">
 <figure class="ds-figure">
-<img src={contrasteTexto.src} alt="Comprobación de contraste en Stark: texto gris claro #CCCCDC sobre fondo #22262B, ratio 9,57:1, que cumple AA y AAA para texto normal y grande" width={contrasteTexto.width} height={contrasteTexto.height} loading="lazy" decoding="async">
+<Imagen src={contrasteTexto} alt="Comprobación de contraste en Stark: texto gris claro #CCCCDC sobre fondo #22262B, ratio 9,57:1, que cumple AA y AAA para texto normal y grande" loading="lazy" tamano="pequena" grande />
 <figcaption class="t-meta">Texto principal: 9,57:1, nivel AAA</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={contrasteAcento.src} alt="Comprobación de contraste en Stark: morado #7264E5 sobre fondo #181B1F, ratio 3,84:1, que cumple el nivel AA para elementos gráficos y de interfaz" width={contrasteAcento.width} height={contrasteAcento.height} loading="lazy" decoding="async">
+<Imagen src={contrasteAcento} alt="Comprobación de contraste en Stark: morado #7264E5 sobre fondo #181B1F, ratio 3,84:1, que cumple el nivel AA para elementos gráficos y de interfaz" loading="lazy" tamano="pequena" grande />
 <figcaption class="t-meta">Acento de interfaz: 3,84:1, nivel AA para elementos gráficos</figcaption>
 </figure>
 </div>
@@ -154,22 +155,22 @@ import plantillas from '../../assets/esbard-edu/plantillas.webp';
 </div>
 </div>
 <figure class="ds-figure ds-cover">
-<img src={portatilUsuarios.src} alt="eSBARD Edu en un portátil, mostrando la asignación de usuarios a Blue Team y Red Team" width={portatilUsuarios.width} height={portatilUsuarios.height} loading="lazy" decoding="async">
+<Imagen src={portatilUsuarios} alt="eSBARD Edu en un portátil, mostrando la asignación de usuarios a Blue Team y Red Team" loading="lazy" grande />
 </figure>
 <figure class="ds-figure">
-<img src={pantallaUsuarios.src} alt="Pantalla de asignación de usuarios a Blue Team y Red Team, con su IP de VPN" width={pantallaUsuarios.width} height={pantallaUsuarios.height} loading="lazy" decoding="async">
+<Imagen src={pantallaUsuarios} alt="Pantalla de asignación de usuarios a Blue Team y Red Team, con su IP de VPN" loading="lazy" grande />
 <figcaption class="t-meta">Red y Blue Team integrados: asignación de usuarios por equipo</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={laboratorios.src} alt="Listado de laboratorios activos en tarjetas, cada uno con su estado: en marcha, pausado, listo u ocupado" width={laboratorios.width} height={laboratorios.height} loading="lazy" decoding="async">
+<Imagen src={laboratorios} alt="Listado de laboratorios activos en tarjetas, cada uno con su estado: en marcha, pausado, listo u ocupado" loading="lazy" grande />
 <figcaption class="t-meta">Laboratorios activos y su estado</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={retosCtf.src} alt="Asistente para crear un laboratorio: selección de grupos y retos CTF con sus bloqueos" width={retosCtf.width} height={retosCtf.height} loading="lazy" decoding="async">
+<Imagen src={retosCtf} alt="Asistente para crear un laboratorio: selección de grupos y retos CTF con sus bloqueos" loading="lazy" grande />
 <figcaption class="t-meta">Retos CTF personalizables por grupo</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={plantillas.src} alt="Listado de plantillas de escenarios con su tipo, descripción y autor" width={plantillas.width} height={plantillas.height} loading="lazy" decoding="async">
+<Imagen src={plantillas} alt="Listado de plantillas de escenarios con su tipo, descripción y autor" loading="lazy" grande />
 <figcaption class="t-meta">Plantillas reutilizables y editables</figcaption>
 </figure>
 </section>
@@ -216,7 +217,7 @@ const grande = dialogo.querySelector('img');
 document.querySelectorAll('.ds-zoom').forEach((boton) => {
   boton.addEventListener('click', () => {
     const origen = boton.querySelector('img');
-    grande.src = origen.currentSrc || origen.src;
+    grande.src = origen.dataset.grande || origen.currentSrc || origen.src;
     grande.alt = origen.alt;
     dialogo.setAttribute('aria-label', 'Imagen ampliada: ' + boton.getAttribute('aria-label').replace('Ampliar imagen: ', ''));
     dialogo.showModal();

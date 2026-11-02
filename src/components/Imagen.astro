@@ -1,0 +1,27 @@
+---
+// Imagen adaptable: Astro genera varias versiones de cada imagen (de menor a mayor ancho) y el navegador
+// descarga solo la que necesita según el ancho de su pantalla. El aspecto no cambia; solo el peso.
+//   tamano: cuánto ocupa la imagen en pantalla (para que el navegador elija bien la versión)
+//     columna   → ancho completo de la columna de lectura (lo habitual en los casos)
+//     pequena   → imagen estrecha (las cuatro de 340 px en escritorio)
+//     miniatura → miniatura de la lista de proyectos
+//     retrato   → foto de «Sobre mí»
+//   grande: si se indica, guarda la ruta de la imagen original para la vista ampliada (lightbox)
+import { Image } from 'astro:assets';
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  loading?: 'eager' | 'lazy';
+  class?: string;
+  tamano?: 'columna' | 'pequena' | 'miniatura' | 'retrato';
+  grande?: boolean;
+}
+const { src, alt, loading = 'lazy', class: clase, tamano = 'columna', grande = false } = Astro.props;
+const ajustes = {
+  columna:   { widths: [480, 720, 1080, 1440], sizes: '(min-width:1024px) 704px, (min-width:640px) calc(100vw - 96px), calc(100vw - 48px)' },
+  pequena:   { widths: [340, 480, 720, 1080], sizes: '(min-width:1024px) 340px, (min-width:640px) calc(100vw - 96px), calc(100vw - 48px)' },
+  miniatura: { widths: [480, 720, 1080],      sizes: '(min-width:1024px) 360px, (min-width:640px) calc(100vw - 96px), calc(100vw - 48px)' },
+  retrato:   { widths: [260, 520, 720, 960],  sizes: '(min-width:1024px) 360px, (min-width:760px) 260px, (min-width:640px) calc(100vw - 96px), calc(100vw - 48px)' },
+}[tamano];
+---
+<Image src={src} alt={alt} loading={loading} decoding="async" class={clase} widths={ajustes.widths} sizes={ajustes.sizes} format="webp" quality={85} data-grande={grande ? src.src : undefined} />

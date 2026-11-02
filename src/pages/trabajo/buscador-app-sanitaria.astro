@@ -1,4 +1,5 @@
 ---
+import Imagen from '../../components/Imagen.astro';
 // Caso de estudio: Buscador para una app sanitaria. Marcado del artboard «CaseBuscadorMobile» (diseno/CaseBuscadorMobile.dc.html), con rutas reales.
 // La portada se ve en la primera pantalla y no se difiere; el resto de imágenes se cargan al acercarse.
 import Base from '../../layouts/Base.astro';
@@ -33,12 +34,12 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="48" y="48" width="64" height="64" rx="8"></rect><rect x="144" y="48" width="64" height="64" rx="8"></rect><rect x="48" y="144" width="64" height="64" rx="8"></rect><rect x="144" y="144" width="64" height="64" rx="8"></rect></svg>Sector</dt><dd class="t-body is-key">Salud pública</dd></div>
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="32" y="48" width="192" height="144" rx="8"></rect><line x1="160" y1="224" x2="96" y2="224"></line><line x1="32" y1="152" x2="224" y2="152"></line><line x1="128" y1="192" x2="128" y2="224"></line></svg>Plataforma</dt><dd class="t-body is-key">Móvil y escritorio</dd></div>
 <div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="216" x2="40" y2="56"></line><path d="M40,56H208L176,104L208,152H40"></path></svg>Estado</dt><dd class="t-body is-key"><span class="ds-status ds-status--hollow" aria-hidden="true"></span>Propuesta · No implementada</dd></div>
-<div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product designer principal</dd></div>
+<div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product Designer principal</dd></div>
 <div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="84" cy="108" r="52"></circle><path d="M10.23,200a88,88,0,0,1,147.54,0"></path><path d="M172,160a87.89,87.89,0,0,1,73.77,40"></path><path d="M152.69,59.7A52,52,0,1,1,172,160"></path></svg>Equipo</dt><dd class="t-body">Diseño de apoyo, Lead de diseño y Product Manager</dd></div>
 </dl>
 </div>
 <figure class="ds-figure ds-cover">
-<img src={portada.src} alt="Composición de pantallas del buscador: resultados, filtros, búsquedas recientes y sugerencia de corrección" width={portada.width} height={portada.height} loading="eager" decoding="async">
+<Imagen src={portada} alt="Composición de pantallas del buscador: resultados, filtros, búsquedas recientes y sugerencia de corrección" loading="eager" />
 </figure>
 </section>
 
@@ -62,11 +63,11 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <p>Mientras la app actual seguía en funcionamiento, trabajábamos en paralelo en una nueva versión. El buscador era uno de los proyectos de esa nueva versión y la respuesta a este problema.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img src={personaMedicacion.src} alt="User persona de un perfil autogestionado: mujer de 56 años con medicación crónica, con su biografía, metas, frustraciones y motivaciones" width={personaMedicacion.width} height={personaMedicacion.height} loading="lazy" decoding="async">
+<Imagen src={personaMedicacion} alt="User persona de un perfil autogestionado: mujer de 56 años con medicación crónica, con su biografía, metas, frustraciones y motivaciones" loading="lazy" />
 <figcaption class="t-meta">User persona del proyecto de medicación: perfil autogestionado</figcaption>
 </figure>
 <figure class="ds-figure ds-figure--text">
-<img src={mapaValor.src} alt="Mapa de propuesta de valor: acciones, deseos y dolores del perfil autogestionado frente a oportunidades, servicios y aliviadores del producto" width={mapaValor.width} height={mapaValor.height} loading="lazy" decoding="async">
+<Imagen src={mapaValor} alt="Mapa de propuesta de valor: acciones, deseos y dolores del perfil autogestionado frente a oportunidades, servicios y aliviadores del producto" loading="lazy" />
 <figcaption class="t-meta">Mapa de propuesta de valor del proyecto de medicación: perfil autogestionado</figcaption>
 </figure>
 </section>
@@ -94,7 +95,7 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <p>Para un público con poca experiencia digital, lo más intuitivo es lo que ya conocen. Analizamos cómo resuelven la búsqueda plataformas muy usadas que manejan muchísimos resultados, como Spotify, y nos basamos en patrones que la gente ya reconoce en lugar de inventar una interacción nueva.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img src={benchmark.src} alt="Benchmark de cuatro apps de uso diario con buscador: Spotify, ajustes de mensajería, correo y una tienda de moda" width={benchmark.width} height={benchmark.height} loading="lazy" decoding="async">
+<Imagen src={benchmark} alt="Benchmark de cuatro apps de uso diario con buscador: Spotify, ajustes de mensajería, correo y una tienda de moda" loading="lazy" />
 <figcaption class="t-meta">Referencias de buscadores analizados: Spotify, una app de mensajería, Gmail y Zalando</figcaption>
 </figure>
 </li>
@@ -105,11 +106,11 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <p>Diseñamos el buscador para que ayude mientras se escribe. Al abrirlo, el campo vacío muestra las búsquedas recientes, que se pueden borrar una a una. Al escribir, aparecen sugerencias con la ruta de cada resultado (por ejemplo, «Nivel 1 &gt; Nivel 2»), para saber en qué parte de la app está. Y si hay una errata, propone la búsqueda correcta con un enlace.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img src={flujoBuscador.src} alt="Diagrama de flujo del buscador: según haya historial de búsqueda, muestra búsquedas recientes o secciones más visitadas, y al escribir sugiere contenido con coincidencias" width={flujoBuscador.width} height={flujoBuscador.height} loading="lazy" decoding="async">
+<Imagen src={flujoBuscador} alt="Diagrama de flujo del buscador: según haya historial de búsqueda, muestra búsquedas recientes o secciones más visitadas, y al escribir sugiere contenido con coincidencias" loading="lazy" />
 <figcaption class="t-meta">Flujo del buscador: historial, sugerencias y coincidencias mientras escribes</figcaption>
 </figure>
 <figure class="ds-figure ds-figure--text">
-<img src={pantallasSugerencias.src} alt="Tres pantallas móviles del buscador, en catalán: búsquedas recientes con opción de borrar cada una; sugerencias mientras se escribe, con la ruta de cada resultado; y un resultado con la propuesta de corrección tras una errata" width={pantallasSugerencias.width} height={pantallasSugerencias.height} loading="lazy" decoding="async">
+<Imagen src={pantallasSugerencias} alt="Tres pantallas móviles del buscador, en catalán: búsquedas recientes con opción de borrar cada una; sugerencias mientras se escribe, con la ruta de cada resultado; y un resultado con la propuesta de corrección tras una errata" loading="lazy" />
 <figcaption class="t-meta">Pantallas finales: búsquedas recientes, sugerencias con ruta y corrección de errores</figcaption>
 </figure>
 </li>
@@ -122,11 +123,11 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <p>También pensamos en los momentos en que no hay nada que mostrar: mientras cargan los resultados y cuando una búsqueda no tiene coincidencias, donde se ofrece borrarla para empezar de nuevo.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<img src={wireframesMoviles.src} alt="Wireframes móviles conectados: página con buscador, historial, sugerencias, filtros, resultados filtrados, ordenación y detalle" width={wireframesMoviles.width} height={wireframesMoviles.height} loading="lazy" decoding="async">
+<Imagen src={wireframesMoviles} alt="Wireframes móviles conectados: página con buscador, historial, sugerencias, filtros, resultados filtrados, ordenación y detalle" loading="lazy" />
 <figcaption class="t-meta">Wireframes móviles: resultados, filtros y ordenación</figcaption>
 </figure>
 <figure class="ds-figure ds-figure--text">
-<img src={pantallasFiltros.src} alt="Tres pantallas móviles del buscador, en catalán: lista de resultados con etiquetas de filtros activos, ventana de filtros con categorías y fechas, y opciones de ordenación (más reciente, más antigua y orden alfabético)" width={pantallasFiltros.width} height={pantallasFiltros.height} loading="lazy" decoding="async">
+<Imagen src={pantallasFiltros} alt="Tres pantallas móviles del buscador, en catalán: lista de resultados con etiquetas de filtros activos, ventana de filtros con categorías y fechas, y opciones de ordenación (más reciente, más antigua y orden alfabético)" loading="lazy" />
 <figcaption class="t-meta">Pantallas finales: resultados con filtros activos, ventana de filtros y ordenación</figcaption>
 </figure>
 </li>
@@ -138,7 +139,7 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <p>Por ejemplo, el botón de filtros: en móvil es un icono dentro del campo de búsqueda y, en escritorio, lleva además el texto «Filtres». La página de escritorio añade también la ruta de navegación (Inici &gt; Página actual) y el menú de la cabecera.</p>
 </div>
 <figure class="ds-figure">
-<img src={movilEscritorio.src} alt="Página del buscador en móvil, con cabecera, campo de búsqueda con icono de filtros y lista de resultados, junto a la misma página en escritorio, con menú superior, ruta de navegación y el botón de filtros con texto" width={movilEscritorio.width} height={movilEscritorio.height} loading="lazy" decoding="async">
+<Imagen src={movilEscritorio} alt="Página del buscador en móvil, con cabecera, campo de búsqueda con icono de filtros y lista de resultados, junto a la misma página en escritorio, con menú superior, ruta de navegación y el botón de filtros con texto" loading="lazy" />
 <figcaption class="t-meta">Página del buscador en móvil (izquierda) y en escritorio (derecha)</figcaption>
 </figure>
 </li>
@@ -153,14 +154,14 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <p>Un buscador que acompaña a la persona en cada momento: antes de escribir, con las búsquedas recientes; mientras escribe, con sugerencias y corrección de erratas; y al ver los resultados, con filtros y ordenación para llegar rápido a lo importante. Funciona en móvil y en escritorio.</p>
 </div>
 <figure class="ds-figure">
-<img src={dosMoviles.src} alt="Dos móviles con el buscador: página con buscador y resultados, y búsqueda en curso con sugerencias" width={dosMoviles.width} height={dosMoviles.height} loading="lazy" decoding="async">
+<Imagen src={dosMoviles} alt="Dos móviles con el buscador: página con buscador y resultados, y búsqueda en curso con sugerencias" loading="lazy" />
 </figure>
 <figure class="ds-figure">
-<img src={pantallasResultados.src} alt="Pantallas finales: página con buscador y lista de resultados, y resultados de una búsqueda con filtros activos y ordenación" width={pantallasResultados.width} height={pantallasResultados.height} loading="lazy" decoding="async">
+<Imagen src={pantallasResultados} alt="Pantallas finales: página con buscador y lista de resultados, y resultados de una búsqueda con filtros activos y ordenación" loading="lazy" />
 <figcaption class="t-meta">Página con buscador y resultados con filtros y ordenación</figcaption>
 </figure>
 <figure class="ds-figure">
-<img src={estados.src} alt="Tres pantallas móviles, en catalán: campo de búsqueda vacío con el teclado, indicador de carga con filtros activos y mensaje de que no hay coincidencias con la opción de borrar la búsqueda" width={estados.width} height={estados.height} loading="lazy" decoding="async">
+<Imagen src={estados} alt="Tres pantallas móviles, en catalán: campo de búsqueda vacío con el teclado, indicador de carga con filtros activos y mensaje de que no hay coincidencias con la opción de borrar la búsqueda" loading="lazy" />
 <figcaption class="t-meta">Estados del buscador: campo vacío, cargando y sin coincidencias</figcaption>
 </figure>
 </div>

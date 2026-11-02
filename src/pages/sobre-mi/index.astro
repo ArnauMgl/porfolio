@@ -1,4 +1,5 @@
 ---
+import Imagen from '../../components/Imagen.astro';
 // Sobre mí. Marcado del artboard «SobreMiMobile» (diseno/SobreMiMobile.dc.html), con rutas reales.
 // El retrato está en la primera pantalla en todos los anchos, por eso no se difiere.
 import Base from '../../layouts/Base.astro';
@@ -6,7 +7,7 @@ import retrato from '../../assets/sobre-mi/retrato.webp';
 ---
 <Base
   title="Sobre mí · Arnau Larripa"
-  description="Soy Arnau Larripa, product designer en Barcelona. Llegué al diseño de producto desde la fotografía y hoy diseño productos de salud, formación y ciberseguridad."
+  description="Soy Arnau Larripa, Product Designer en Barcelona. Llegué al diseño de producto desde la fotografía y hoy diseño productos de salud, formación y ciberseguridad."
   actual="sobre-mi"
 >
 <main id="sobre">
@@ -15,10 +16,10 @@ import retrato from '../../assets/sobre-mi/retrato.webp';
 <div class="ds-about-head">
 <h1 id="sobre-titulo" class="ds-about-head__title ds-case__title t-page-title-mobile">Hola, soy Arnau</h1>
 <figure class="ds-figure ds-about-head__photo">
-<img src={retrato.src} alt="Retrato en blanco y negro de Arnau Larripa" width={retrato.width} height={retrato.height} loading="eager" decoding="async">
+<Imagen src={retrato} alt="Retrato en blanco y negro de Arnau Larripa" loading="eager" tamano="retrato" />
 </figure>
 <div class="ds-about-head__bio">
-<p class="t-statement">Soy product designer en Barcelona. Desde 2022 diseño productos digitales en Aktios, una consultora tecnológica de Barcelona, en sectores como la salud, la formación y la ciberseguridad.</p>
+<p class="t-statement">Soy Product Designer en Barcelona. Desde 2022 diseño productos digitales en Aktios, una consultora tecnológica de Barcelona, en sectores como la salud, la formación y la ciberseguridad.</p>
 <p class="t-body">Llegué al diseño de producto desde el audiovisual. Durante seis años dirigí el equipo de fotografía e imagen de Misako, una marca de moda y complementos, y allí empecé a colaborar con el equipo web en investigación y experiencia de usuario. <br><br>Ese descubrimiento me llevó a formarme en UX y a cambiar de rumbo. De la fotografía me quedé con dos cosas que hoy uso a diario: mirar cada situación con empatía antes de proponer nada, y cuidar el detalle hasta entregar algo de lo que todos podamos estar orgullosos.</p>
 <p class="t-body">Me gusta especialmente traducir lo complejo en algo sencillo, ya sea un producto muy técnico, una app que usan muchísimas personas o un documento que tiene que entenderse de un vistazo.</p>
 </div>
@@ -36,7 +37,7 @@ import retrato from '../../assets/sobre-mi/retrato.webp';
 <h2 id="trayectoria" class="ds-section-title t-section-title-mobile">Trayectoria</h2>
 <div class="ds-prose">
 <ol class="ds-timeline">
-<li class="ds-timeline__item"><span class="ds-timeline__years t-meta">2022 – hoy</span><div class="ds-timeline__body"><span class="ds-timeline__role t-body-strong">Product designer</span><span class="ds-timeline__place t-body">Aktios</span></div></li>
+<li class="ds-timeline__item"><span class="ds-timeline__years t-meta">2022 – hoy</span><div class="ds-timeline__body"><span class="ds-timeline__role t-body-strong">Product Designer</span><span class="ds-timeline__place t-body">Aktios</span></div></li>
 <li class="ds-timeline__item"><span class="ds-timeline__years t-meta">2021</span><div class="ds-timeline__body"><span class="ds-timeline__role t-body-strong">UX Internship</span><span class="ds-timeline__place t-body">Landbot</span></div></li>
 
 <li class="ds-timeline__item"><span class="ds-timeline__years t-meta">2016 – 2022</span><div class="ds-timeline__body"><span class="ds-timeline__role t-body-strong">Responsable de fotografía e imagen, y colaboración en UX</span><span class="ds-timeline__place t-body">Misako</span></div></li>
