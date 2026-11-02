@@ -256,6 +256,10 @@
 .ds-figure img{display:block;width:100%;height:auto;border-radius:var(--radius)}
 .ds-pair--side{align-items:start}
 .ds-case-section > .ds-cover{margin-top:0}
+/* Arreglos de la revisión (paso 6): en el diseño original `.ds-figure{margin:0}` anulaba el espacio de la imagen de cabecera,
+   y a 320 px «Ciberseguridad» e «implementada» se partían a mitad de palabra. En escritorio (≥1024 px) se mantiene como el artboard. */
+@media (max-width:1023.98px){.ds-figure.ds-cover{margin-top:var(--space-3)}}
+@media (max-width:359.98px){.ds-meta dd.is-key{font-size:17px}}
 .ds-step__note{margin:0;color:var(--text-secondary)}
 
 /* Imagen que se puede ampliar */
