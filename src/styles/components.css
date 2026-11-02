@@ -15,7 +15,7 @@
 /* ---------- Navegación ---------- */
 .ds-header{padding-top:var(--space-3)}
 .ds-header__list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 var(--space-4)}
-.ds-nav,.ds-logo{display:inline-flex;align-items:center;min-height:var(--touch-min);padding:0 var(--space-1);text-decoration:none;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--accent);transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-nav,.ds-logo{display:inline-flex;align-items:center;min-height:var(--touch-min);padding:0 var(--space-1);text-decoration-line:none;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--accent);transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
 .ds-nav{color:var(--text-secondary)}
 .ds-logo{color:var(--text)}
 .ds-nav:hover,.ds-nav.is-hover,.ds-logo:hover{color:var(--text)}
@@ -120,6 +120,8 @@
 .ds-status{display:inline-block;vertical-align:.1em;width:10px;height:10px;box-sizing:border-box;margin-right:var(--space-1);border-radius:50%;background:var(--accent)}
 .ds-status--hollow{background:transparent;border:2px solid var(--accent)}
 .ds-cover{margin-top:var(--space-8)}
+/* Subtítulo de la cabecera de «Trabajo» (era un estilo en línea) */
+.ds-hero .ds-case__subtitle{margin-top:var(--space-3)}
 
 .ds-case-section,.ds-about-section{margin-top:var(--space-12);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-3);align-items:start}
 .ds-block{display:contents}

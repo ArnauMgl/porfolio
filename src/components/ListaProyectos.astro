@@ -1,0 +1,24 @@
+---
+// Lista numerada de proyectos, común a la Home y a «Trabajo seleccionado».
+//   indice: variante de la página Trabajo (miniatura al lado del texto en escritorio)
+//   primeraEager: la primera miniatura se carga sin diferir (para cuando se ve en la primera pantalla)
+import { proyectos } from '../data/proyectos.js';
+interface Props { indice?: boolean; primeraEager?: boolean; }
+const { indice = false, primeraEager = false } = Astro.props;
+---
+<ol class:list={['ds-work', { 'ds-work--index': indice }]}>
+{proyectos.map((p, i) => (
+<li>
+<a class="ds-proj" href={p.href}>
+<div class="ds-proj__row">
+<span class="ds-proj__num t-project-title-mobile">{p.num}</span>
+<div class="ds-proj__main"><h3 class="ds-proj__title t-project-title-mobile"><span>{p.titulo}</span></h3><p class="ds-proj__desc t-body">{indice && p.descTrabajo ? p.descTrabajo : p.desc}</p><ul class="ds-proj__tags" aria-label="Sector y estado">{p.etiquetas.map((e) => <li class="ds-label-tag t-meta">{e}</li>)}</ul></div>
+<svg class="ds-proj__arrow" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg>
+</div>
+<div class="ds-proj__thumb">
+<img src={p.img.src} alt="" width={p.img.width} height={p.img.height} loading={primeraEager && i === 0 ? 'eager' : 'lazy'} decoding="async">
+</div>
+</a>
+</li>
+))}
+</ol>

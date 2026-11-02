@@ -1,17 +1,7 @@
 ---
 // Home. Marcado del artboard «Mobile» (diseno/Mobile.dc.html), con enlaces a rutas reales.
 import Base from '../layouts/Base.astro';
-import esbard from '../assets/home/esbard-edu.webp';
-import buscador from '../assets/home/buscador-app-sanitaria.webp';
-import planificador from '../assets/home/planificador-medicacion.webp';
-
-// Las tres miniaturas quedan por debajo de la primera pantalla, así que se cargan de forma diferida.
-// Ancho y alto vienen del propio archivo: reservan el hueco y evitan saltos de maquetación.
-const proyectos = [
-  { num: '01', href: '/trabajo/esbard-edu/', titulo: 'eSBARD Edu', desc: 'De los wireframes de un experto a una plataforma que se entiende.', etiquetas: ['Ciberseguridad', 'Educación', 'Lanzado'], img: esbard },
-  { num: '02', href: '/trabajo/buscador-app-sanitaria/', titulo: 'Buscador para una app sanitaria', desc: 'Encontrar tu información de salud sin perderte.', etiquetas: ['Salud pública', 'Propuesta · No implementada'], img: buscador },
-  { num: '03', href: '/trabajo/planificador-medicacion/', titulo: 'Planificador de medicación imprimible', desc: 'Del "papelito" de la nevera a un plan claro para cada día.', etiquetas: ['Salud pública', 'Propuesta · No implementada'], img: planificador },
-];
+import ListaProyectos from '../components/ListaProyectos.astro';
 
 const citas = [
   { texto: '«Su capacidad para combinar creatividad con un enfoque estratégico lo convierte en un diseñador muy completo. Siempre destacó por su compromiso, conocimientos, atención al detalle y habilidad para colaborar en equipo.»', nombre: 'Joan Bagan', cargo: 'Senior Product Designer / Design Team Lead' },
@@ -34,22 +24,7 @@ const citas = [
 
 <section id="trabajo" class="ds-wrap ds-section" aria-labelledby="trabajo-titulo">
 <div class="ds-section__head"><h2 id="trabajo-titulo" class="ds-section-title ds-section-title--grande t-section-title-mobile">Trabajo seleccionado</h2></div>
-<ol class="ds-work">
-{proyectos.map((p) => (
-<li>
-<a class="ds-proj" href={p.href}>
-<div class="ds-proj__row">
-<span class="ds-proj__num t-project-title-mobile">{p.num}</span>
-<div class="ds-proj__main"><h3 class="ds-proj__title t-project-title-mobile"><span>{p.titulo}</span></h3><p class="ds-proj__desc t-body">{p.desc}</p><ul class="ds-proj__tags" aria-label="Sector y estado">{p.etiquetas.map((e) => <li class="ds-label-tag t-meta">{e}</li>)}</ul></div>
-<svg class="ds-proj__arrow" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg>
-</div>
-<div class="ds-proj__thumb">
-<img src={p.img.src} alt="" width={p.img.width} height={p.img.height} loading="lazy" decoding="async">
-</div>
-</a>
-</li>
-))}
-</ol>
+<ListaProyectos />
 <p class="ds-work__more"><a class="ds-link ds-link--touch t-body" href="/trabajo/">Ver todo el trabajo<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"></line><polyline points="144 56 216 128 144 200"></polyline></svg></a></p>
 </section>
 
