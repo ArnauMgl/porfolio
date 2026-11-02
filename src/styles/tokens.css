@@ -1,0 +1,62 @@
+/* Arnau Larripa — generated from tokens.json */
+:root, [data-theme="light"] {
+  --bg: #ffffff;
+  --text: #111111;
+  --text-secondary: #6b6b6b;
+  --line-strong: #111111;
+  --line: #e2e2e2;
+  --accent: #b5502a;
+  --accent-hover: #9a4423;
+  --accent-pressed: #7f3820;
+  --accent-tint: #f7eae4;
+  --on-accent-tint: #7f3820;
+  --on-accent: #ffffff;
+  --disabled-bg: #ededed;
+  --disabled-text: #8a8a8a;
+  --focus: #ffdd00;
+  --focus-ink: #0b0c0c;
+  --ring-focus: 0 0 0 3px #ffdd00, 0 0 0 6px #0b0c0c;
+  --underline-focus: inset 0 -4px 0 #0b0c0c;
+}
+:root {
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-16: 128px;
+  --radius: 4px;
+  --content-max: 1120px;
+  --text-max: 704px;
+  --aside-col: 320px;
+  --gutter-mobile: 24px;
+  --gutter-desktop: 80px;
+  --touch-min: 48px;
+  --icon-size: 24px;
+  --duration-base: 200ms;
+  --duration-slow: 600ms;
+  --font-sans: "Inter Tight", system-ui, sans-serif;
+}
+.t-hero-desktop { font-family: var(--font-sans); font-size: 136px; line-height: 0.92; font-weight: 700; letter-spacing: -0.045em; }
+.t-hero-mobile { font-family: var(--font-sans); font-size: 56px; line-height: 0.92; font-weight: 700; letter-spacing: -0.04em; }
+.t-page-title-desktop { font-family: var(--font-sans); font-size: 96px; line-height: 0.95; font-weight: 700; letter-spacing: -0.04em; }
+.t-page-title-mobile { font-family: var(--font-sans); font-size: 48px; line-height: 1; font-weight: 700; letter-spacing: -0.035em; }
+.t-footer-email-desktop { font-family: var(--font-sans); font-size: 64px; line-height: 1; font-weight: 700; letter-spacing: -0.04em; }
+.t-footer-email-mobile { font-family: var(--font-sans); font-size: 32px; line-height: 1.1; font-weight: 700; letter-spacing: -0.03em; }
+.t-project-title-desktop { font-family: var(--font-sans); font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; }
+.t-project-title-mobile { font-family: var(--font-sans); font-size: 24px; line-height: 1.2; font-weight: 600; letter-spacing: -0.02em; }
+.t-section-title-desktop { font-family: var(--font-sans); font-size: 40px; line-height: 1.1; font-weight: 600; letter-spacing: -0.03em; }
+.t-section-title-mobile { font-family: var(--font-sans); font-size: 32px; line-height: 1.15; font-weight: 600; letter-spacing: -0.03em; }
+.t-statement { font-family: var(--font-sans); font-size: 26px; line-height: 1.35; font-weight: 500; letter-spacing: -0.02em; }
+.t-quote { font-family: var(--font-sans); font-size: 24px; line-height: 1.4; font-weight: 500; letter-spacing: -0.015em; }
+.t-subhead { font-family: var(--font-sans); font-size: 24px; line-height: 1.25; font-weight: 600; letter-spacing: -0.02em; }
+.t-body { font-family: var(--font-sans); font-size: 18px; line-height: 1.6; font-weight: 500; letter-spacing: 0em; }
+.t-body-strong { font-family: var(--font-sans); font-size: 18px; line-height: 1.6; font-weight: 600; letter-spacing: 0em; }
+.t-nav { font-family: var(--font-sans); font-size: 16px; line-height: 1.4; font-weight: 500; letter-spacing: 0em; }
+.t-nav-strong { font-family: var(--font-sans); font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: 0em; }
+.t-button { font-family: var(--font-sans); font-size: 16px; line-height: 1; font-weight: 600; letter-spacing: 0em; }
+.t-meta { font-family: var(--font-sans); font-size: 15px; line-height: 1.4; font-weight: 500; letter-spacing: 0em; }
