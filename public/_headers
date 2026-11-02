@@ -1,0 +1,5 @@
+# Cloudflare Pages: cabeceras que se añaden a archivos concretos.
+# El CV en PDF se puede descargar desde la web, pero no debe aparecer en los resultados de los buscadores
+# (lleva el teléfono). «noindex» se lo pide a Google y compañía; no lo protege de quien tenga el enlace.
+/cv-arnau-larripa.pdf
+  X-Robots-Tag: noindex, nofollow

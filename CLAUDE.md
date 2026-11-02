@@ -75,7 +75,7 @@ Anchos de prueba: **320, 390, 768, 820, 1024 y 1440 px**. En todos, sin textos c
 - Los subtítulos del bloque «Resumen» de cada caso van en color de acento.
 - Los números de los pasos de los casos tienen el mismo tamaño que el título del paso.
 - Las imágenes que son páginas impresas (en el caso del planificador) llevan un borde gris claro y una sombra suave para distinguirlas del fondo.
-- Tipografía: **Inter Tight** (500, 600 y 700). Hoy se carga desde Google Fonts. Consulta con Arnau antes de cambiar el método de carga.
+- Tipografía: **Inter Tight** (500, 600 y 700). Está alojada en el propio proyecto (`public/fonts/`, definida en `src/styles/fuentes.css`), sin Google Fonts. Consulta con Arnau antes de cambiar el método de carga.
 
 ## Accesibilidad y calidad
 

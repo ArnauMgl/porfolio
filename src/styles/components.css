@@ -15,7 +15,7 @@
 /* ---------- Navegación ---------- */
 .ds-header{padding-top:var(--space-3)}
 .ds-header__list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 var(--space-4)}
-.ds-nav,.ds-logo{display:inline-flex;align-items:center;min-height:var(--touch-min);padding:0 var(--space-1);text-decoration:none;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--accent);transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-nav,.ds-logo{display:inline-flex;align-items:center;min-height:var(--touch-min);padding:0 var(--space-1);text-decoration-line:none;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--accent);transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
 .ds-nav{color:var(--text-secondary)}
 .ds-logo{color:var(--text)}
 .ds-nav:hover,.ds-nav.is-hover,.ds-logo:hover{color:var(--text)}
@@ -120,6 +120,8 @@
 .ds-status{display:inline-block;vertical-align:.1em;width:10px;height:10px;box-sizing:border-box;margin-right:var(--space-1);border-radius:50%;background:var(--accent)}
 .ds-status--hollow{background:transparent;border:2px solid var(--accent)}
 .ds-cover{margin-top:var(--space-8)}
+/* Subtítulo de la cabecera de «Trabajo» (era un estilo en línea) */
+.ds-hero .ds-case__subtitle{margin-top:var(--space-3)}
 
 .ds-case-section,.ds-about-section{margin-top:var(--space-12);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-3);align-items:start}
 .ds-block{display:contents}
@@ -229,6 +231,12 @@
   .ds-about-head{padding-top:var(--space-12);grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:auto 1fr;grid-template-areas:"title photo" "bio photo";column-gap:var(--space-10);row-gap:var(--space-8);align-items:start}
 }
 
+/* ---------- Escritorio ancho (pantalla ≥1440 px) ---------- */
+@media (min-width:1440px){
+  /* «Trabajo seleccionado» de la Home: en el artboard de escritorio (Main, 1440 px) llevaba este tamaño en línea; = t-page-title-mobile */
+  .ds-section-title--grande{font-size:48px;line-height:1;font-weight:700;letter-spacing:-0.035em}
+}
+
 /* ---------- Fichas de estado (vistas previas y hoja de estados) ---------- */
 .ds-state{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-1)}
 .ds-state__label{margin:0;color:var(--text-secondary)}
@@ -240,3 +248,26 @@
 }
 .ds-sheet{border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .ds-hero__title,.ds-case__title,.ds-section-title,.ds-proj__title{overflow-wrap:break-word}
+
+/* Retrato de «Sobre mí» (era un estilo en línea en el artboard) */
+.ds-about-head__photo img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius)}
+
+/* ---------- Casos de estudio: estilos que en los artboards eran «en línea» ---------- */
+.ds-figure img{display:block;width:100%;height:auto;border-radius:var(--radius)}
+.ds-pair--side{align-items:start}
+.ds-case-section > .ds-cover{margin-top:0}
+/* Arreglos de la revisión (paso 6): en el diseño original `.ds-figure{margin:0}` anulaba el espacio de la imagen de cabecera,
+   y a 320 px «Ciberseguridad» e «implementada» se partían a mitad de palabra. En escritorio (≥1024 px) se mantiene como el artboard. */
+@media (max-width:1023.98px){.ds-figure.ds-cover{margin-top:var(--space-3)}}
+@media (max-width:359.98px){.ds-meta dd.is-key{font-size:17px}}
+.ds-step__note{margin:0;color:var(--text-secondary)}
+
+/* Imagen que se puede ampliar */
+.ds-zoom{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;border-radius:var(--radius)}
+.ds-zoom:focus-visible{outline:none;box-shadow:var(--ring-focus)}
+.ds-lightbox{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;border:0;box-sizing:border-box;padding:80px 24px 24px;background:rgba(11,12,12,.94);align-items:center;justify-content:center}
+.ds-lightbox[open]{display:flex}
+.ds-lightbox::backdrop{background:transparent}
+.ds-lightbox img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:var(--radius)}
+.ds-lightbox__close{position:absolute;top:16px;right:16px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;padding:0;border:2px solid #fff;border-radius:var(--radius);background:#111;color:#fff;cursor:pointer}
+.ds-lightbox__close:focus-visible{outline:3px solid var(--focus);outline-offset:2px}

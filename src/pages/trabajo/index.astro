@@ -1,0 +1,22 @@
+---
+// Trabajo seleccionado. Marcado del artboard «TrabajoMobile» (diseno/TrabajoMobile.dc.html).
+import Base from '../../layouts/Base.astro';
+import ListaProyectos from '../../components/ListaProyectos.astro';
+---
+<Base
+  title="Trabajo · Arnau Larripa"
+  description="Case studies de producto digital de Arnau Larripa, Product Designer: salud, formación y ciberseguridad."
+  actual="trabajo"
+>
+<main id="trabajo-pagina">
+<section class="ds-wrap ds-hero" aria-labelledby="titular">
+<h1 id="titular" class="ds-case__title t-page-title-mobile">Trabajo</h1>
+<p class="ds-case__subtitle t-statement">Case studies de producto digital en salud, formación y ciberseguridad. <br><br>En cada uno cuento qué problema había, qué decidí y qué aprendí.</p>
+</section>
+
+<section class="ds-wrap ds-section" aria-label="Case studies">
+<!-- La primera miniatura se ve en la primera pantalla en escritorio, por eso no se difiere -->
+<ListaProyectos indice primeraEager nivelTitulo="h2" />
+</section>
+</main>
+</Base>
