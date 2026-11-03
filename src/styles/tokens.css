@@ -60,3 +60,14 @@
 .t-nav-strong { font-family: var(--font-sans); font-size: 16px; line-height: 1.4; font-weight: 600; letter-spacing: 0em; }
 .t-button { font-family: var(--font-sans); font-size: 16px; line-height: 1; font-weight: 600; letter-spacing: 0em; }
 .t-meta { font-family: var(--font-sans); font-size: 15px; line-height: 1.4; font-weight: 500; letter-spacing: 0em; }
+/* Modal de contacto (v1.1) */
+:root {
+  --panel-w: 520px;
+  --border-field: 2px;
+  --border-thick: 4px;
+  --icon-sm: 20px;
+  --icon-lg: 40px;
+  --textarea-min: 120px;
+  --duration-panel: 250ms;
+  --scrim: color-mix(in srgb, var(--text) 50%, transparent);
+}
