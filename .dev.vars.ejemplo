@@ -1,0 +1,11 @@
+# Copia este archivo como .dev.vars (que NO se sube a GitHub) para probar /api/contact en tu ordenador.
+# Solo sirve en local: en Cloudflare Pages las variables se crean en el panel.
+ENTORNO=local
+# Clave secreta de PRUEBA de Turnstile (oficial de Cloudflare): siempre aprueba.
+# Para probar el rechazo usa 2x0000000000000000000000000000000AA
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+# Con una clave falsa Resend rechaza el envío y verás el estado de error del formulario.
+RESEND_API_KEY=re_falsa
+# Opcional, solo en local: un Resend (y un Turnstile) simulados para probar el caso de éxito sin enviar correos.
+# RESEND_API_URL=http://127.0.0.1:8799/emails
+# TURNSTILE_VERIFY_URL=http://127.0.0.1:8799/siteverify

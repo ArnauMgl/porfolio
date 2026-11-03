@@ -2,3 +2,7 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# Claves locales de Wrangler (nunca se suben)
+.dev.vars
+.wrangler/
