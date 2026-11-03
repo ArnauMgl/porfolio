@@ -275,17 +275,19 @@
 /* ---------- Modal de contacto (v1.1) ---------- */
 /* Botón de cierre, 48×48 */
 .ds-close{display:flex;align-items:center;justify-content:center;flex:none;align-self:flex-end;width:var(--touch-min);height:var(--touch-min);padding:0;border:var(--border-field) solid transparent;border-radius:var(--radius);background:transparent;color:var(--text);cursor:pointer;transition:background-color var(--duration-base) ease,color var(--duration-base) ease}
-.ds-close:hover{background-color:var(--text);color:var(--bg)}
+@media (hover:hover){.ds-close:hover{background-color:var(--text);color:var(--bg)}}
+.ds-close:active{background-color:var(--accent-tint);color:var(--on-accent-tint);border-color:var(--accent-pressed)}
 .ds-close:focus-visible{outline:none;background-color:var(--focus);color:var(--focus-ink);border-color:var(--focus-ink)}
 
 /* Botón secundario */
 .ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-1);min-height:var(--touch-min);min-width:calc(var(--space-12) * 2);box-sizing:border-box;padding:0 var(--space-3);border:var(--border-field) solid var(--line-strong);border-radius:var(--radius);background-color:var(--bg);color:var(--text);cursor:pointer;transition:background-color var(--duration-base) ease,color var(--duration-base) ease,border-color var(--duration-base) ease}
 .ds-btn-secondary[data-cerrar]{min-width:0}
-.ds-btn-secondary:hover{background-color:var(--text);color:var(--bg)}
-.ds-btn-secondary:active{background-color:var(--text);color:var(--bg)}
+@media (hover:hover){.ds-btn-secondary:hover{background-color:var(--text);color:var(--bg)}}
+/* Pulsado: distinto del hover (fondo tintado y borde terracota oscuro, como el estado «pressed» del sistema) */
+.ds-btn-secondary:active{background-color:var(--accent-tint);color:var(--on-accent-tint);border-color:var(--accent-pressed)}
 .ds-btn-secondary:focus-visible{outline:none;background-color:var(--focus);color:var(--focus-ink);border-color:var(--focus-ink)}
 .ds-btn-secondary .ds-check{color:var(--accent)}
-.ds-btn-secondary:hover .ds-check{color:var(--bg)}
+@media (hover:hover){.ds-btn-secondary:hover .ds-check{color:var(--bg)}}
 .ds-btn-secondary:focus-visible .ds-check{color:var(--focus-ink)}
 
 /* Campo de formulario */
