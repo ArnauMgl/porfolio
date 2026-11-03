@@ -299,6 +299,8 @@
 /* Seleccionado con ratón o toque: distinto del foco de teclado (anillo doble). Borde terracota y halo suave */
 .ds-contact[data-entrada="raton"] .ds-field__input:focus:not([aria-invalid="true"]):not([readonly]){outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint)}
 .ds-field__input[aria-invalid="true"]{border-width:var(--border-thick);border-color:var(--accent-pressed);padding-inline:calc(var(--space-2) - (var(--border-thick) - var(--border-field)))}
+/* Con error, al hacer clic con el ratón se mantiene solo el borde de error (sin el anillo de foco de teclado) */
+.ds-contact[data-entrada="raton"] .ds-field__input[aria-invalid="true"]:focus{box-shadow:none}
 .ds-field__input[readonly]{border-color:var(--line);color:var(--text-secondary)}
 
 /* Mensaje de error de un campo */
