@@ -334,6 +334,7 @@
 .ds-contact__note{margin:var(--space-1) 0 0;color:var(--text-secondary)}
 .ds-contact__form{margin-top:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3)}
 .ds-contact__foot{margin-top:var(--space-5);margin-bottom:var(--space-6)}
+.ds-contact__legal{margin:var(--space-2) 0 0;color:var(--text-secondary)}
 .ds-contact__privacy{margin:var(--space-2) 0 0;color:var(--text-secondary)}
 .ds-contact__direct{margin-top:auto;border-top:1px solid var(--line);padding-top:var(--space-4)}
 .ds-contact__email{margin:var(--space-2) 0 0;color:var(--text);user-select:text;overflow-wrap:anywhere}
@@ -371,6 +372,7 @@
   .ds-contact__panel{padding:var(--space-1) var(--space-3) 0}
   /* En el marcado el botón va antes que el bloque directo (orden de Tab = orden visual en escritorio); en móvil se invierte a la vista */
   .ds-contact__form{margin-bottom:var(--space-5)}
+  .ds-contact__legal{margin-top:calc(-1 * var(--space-3))}
   .ds-contact__direct{order:1;margin-bottom:var(--space-3)}
   .ds-contact{scroll-padding-bottom:var(--foot-h,0px)}
   /* El envío va fijo al pie de la hoja y el resto hace scroll por encima */
