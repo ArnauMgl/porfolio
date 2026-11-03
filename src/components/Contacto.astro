@@ -35,6 +35,8 @@ const ico = { fill: 'none', stroke: 'currentColor', 'stroke-width': 16, 'stroke-
 <textarea class="ds-field__input ds-field__input--area t-body" id="contacto-mensaje" name="message" rows="4" required></textarea>
 <div class="ds-error" id="contacto-mensaje-error" aria-live="polite"></div>
 </div>
+<!-- Cloudflare Turnstile (antispam). Normalmente vacío; solo aparece si Cloudflare pide una comprobación. -->
+<div class="ds-contact__turnstile" id="contacto-turnstile"></div>
 <!-- Campo trampa: debe llegar vacío -->
 <div class="ds-hp" aria-hidden="true"><label>Web<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
 </form>

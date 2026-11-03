@@ -315,6 +315,9 @@
 .ds-alert strong{display:block;color:var(--accent-pressed);font-weight:600}
 .ds-alert .ds-icon-sm{width:var(--icon-sm);height:var(--icon-sm);flex:none;margin-top:2px;color:var(--accent-pressed)}
 
+/* Turnstile: fuera del flujo (sin hueco en el formulario) salvo cuando Cloudflare muestra la casilla */
+.ds-contact__turnstile:not(.is-visible){position:absolute;width:0;height:0;overflow:hidden}
+.ds-contact__turnstile.is-visible{min-height:65px}
 .ds-hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
 
 /* Panel: base común (el <dialog> es el panel; el velo es su ::backdrop) */
