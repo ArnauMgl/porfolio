@@ -84,6 +84,16 @@ Hay que crearlas **en Production y en Preview**.
 
 Sin `RESEND_API_KEY` o `TURNSTILE_SECRET_KEY`, la función responde 500 y el formulario muestra el error. El email directo sigue en la modal.
 
+Al cambiar variables o el binding de KV hay que **volver a desplegar** (Deployments → Retry deployment): solo se aplican a los despliegues nuevos.
+
+### Turnstile: dominios del widget
+
+En Cloudflare → Turnstile → tu widget → Hostname Management deben estar `arnaularripa.com`, `www.arnaularripa.com` y `arnaularripa.pages.dev`. Si falta alguno, el widget da el error **110200** («dominio no permitido») y el formulario muestra «No se ha podido enviar». Si una vista previa concreta diera ese error, añade su dirección completa (por ejemplo `feature-backend-contacto.arnaularripa.pages.dev`).
+
+### Qué se ha comprobado en la vista previa
+
+Envío real de punta a punta (formulario → Turnstile → función → Resend → Email Routing → bandeja), `Reply-To` correcto, sin cookies de Turnstile en el navegador, y «No se ha podido enviar» sin conexión conservando los datos. El primer correo desde un dominio nuevo puede tardar más de lo normal en llegar.
+
 ### Probarlo en tu ordenador
 
 1. `npm install` (una vez).
