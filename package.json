@@ -2,13 +2,20 @@
   "name": "arnaularripa-com",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test": "node --test tests/*.test.js",
+    "dev:funciones": "astro build && wrangler pages dev dist --kv RATE_LIMIT --compatibility-date=2026-10-01"
   },
   "dependencies": {
     "astro": "7.4.5"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.3"
   }
 }

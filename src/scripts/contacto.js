@@ -1,5 +1,5 @@
 // Panel de contacto: apertura/cierre, historial (#contacto), validación, envío y copiar email.
-// La capa de red está aislada en enviarContacto(datos). El backend (Cloudflare + Resend) llega después.
+// La capa de red está aislada en enviarContacto(datos). El backend está en functions/api/contact.js.
 
 const EMAIL = 'hola@arnaularripa.com';
 
@@ -59,6 +59,71 @@ export async function enviarContacto(datos) {
     return { ok: false };
   }
 }
+
+// ---------------------------------------------------------------------------
+// Cloudflare Turnstile (antispam). El script de Cloudflare se carga solo al abrir el panel por primera vez,
+// así que quien no abre el formulario no hace ninguna petición a Turnstile.
+// Modo gestionado + «interaction-only»: normalmente no se ve nada; solo si Cloudflare tiene dudas
+// aparece una casilla encima del botón de envío.
+// ---------------------------------------------------------------------------
+const ES_LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+// Claves de prueba oficiales de Cloudflare (solo en localhost): siempre aprueba / siempre falla / pide interacción.
+const CLAVES_PRUEBA = { aprueba: '1x00000000000000000000AA', falla: '2x00000000000000000000AB', interactivo: '3x00000000000000000000FF' };
+const SITE_KEY = ES_LOCAL
+  ? CLAVES_PRUEBA[new URLSearchParams(location.search).get('turnstile')] || CLAVES_PRUEBA.aprueba
+  : import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+
+const turnstile = {
+  widget: null,
+  token: '',
+  esperando: [],
+  cargando: null,
+  cargar(contenedor) {
+    if (this.cargando || !SITE_KEY) return;
+    this.cargando = new Promise((resolver) => {
+      window.alCargarTurnstile = resolver;
+      const s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=alCargarTurnstile';
+      s.async = true;
+      s.onerror = () => { this.cargando = null; this.avisar(''); }; // bloqueado o sin red: el servidor lo rechazará
+      document.head.append(s);
+    }).then(() => {
+      this.widget = window.turnstile.render(contenedor, {
+        sitekey: SITE_KEY,
+        action: 'contacto',
+        appearance: 'interaction-only',
+        language: 'es',
+        theme: 'light',
+        // La versión ancha mide 300 px; en pantallas estrechas se usa la compacta para no desbordar.
+        size: contenedor.parentElement.clientWidth >= 300 ? 'flexible' : 'compact',
+        'refresh-expired': 'auto',
+        'response-field': false,
+        callback: (t) => this.avisar(t),
+        'expired-callback': () => { this.token = ''; },
+        'error-callback': () => { this.avisar(''); return false; }, // Turnstile muestra su propio aviso y reintenta
+        'before-interactive-callback': () => contenedor.classList.add('is-visible'),
+        'after-interactive-callback': () => contenedor.classList.remove('is-visible'),
+      });
+    });
+  },
+  avisar(t) {
+    this.token = t;
+    this.esperando.splice(0).forEach((f) => f(t));
+  },
+  // Devuelve el token; si aún no está listo, espera un poco (por ejemplo, a que se pulse la casilla).
+  obtener(ms = 30000) {
+    if (this.token || !this.cargando) return Promise.resolve(this.token);
+    return new Promise((resolver) => {
+      const t = setTimeout(() => resolver(''), ms);
+      this.esperando.push((v) => { clearTimeout(t); resolver(v); });
+    });
+  },
+  // Cada token sirve una sola vez: tras un intento hay que pedir otro.
+  reiniciar() {
+    this.token = '';
+    if (this.widget !== null && window.turnstile) window.turnstile.reset(this.widget);
+  },
+};
 
 // ---------------------------------------------------------------------------
 // Interfaz
@@ -144,14 +209,14 @@ function iniciar(dialogo) {
   });
 
   // ---- Envío ----
-  function datos() {
+  function datos(turnstileToken) {
     return {
       name: campos.name.el.value.trim(),
       email: campos.email.el.value.trim(),
       message: campos.message.el.value.trim(),
       website: form.elements.website.value,
       startedAt: empezado,
-      turnstileToken: '', // TODO: Cloudflare Turnstile se integra después
+      turnstileToken,
     };
   }
 
@@ -165,9 +230,10 @@ function iniciar(dialogo) {
     alerta.textContent = '';
     enviando = true;
     poner('enviando');
-    const payload = datos();
+    const payload = datos(await turnstile.obtener());
     const r = await enviarContacto(payload);
     enviando = false;
+    turnstile.reiniciar();
 
     if (r.ok) {
       hubo_error_envio = false;
@@ -247,6 +313,7 @@ function iniciar(dialogo) {
     html.classList.add('ds-lock');
     dialogo.showModal();
     ajustarTeclado();
+    turnstile.cargar(dialogo.querySelector('#contacto-turnstile'));
   }
 
   dialogo.addEventListener('close', () => {
