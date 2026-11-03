@@ -100,7 +100,10 @@
 .ds-footer__email:active{color:var(--accent-pressed)}
 .ds-footer__email:focus-visible{outline:none;background-color:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
 .ds-footer__email:focus-visible .ds-dot{color:var(--focus-ink)}
-.ds-footer__links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 var(--space-4)}
+.ds-footer__links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:0 var(--space-4)}
+/* Botón más compacto (footer): 40 px visibles; la zona de pulsación sigue siendo de 48 px gracias al área invisible */
+.ds-btn--sm{position:relative;min-height:var(--space-5);padding:0 var(--space-2)}
+.ds-btn--sm::after{content:"";position:absolute;inset:calc((var(--touch-min) - var(--space-5)) / -2 - 3px) -3px} /* -3px: el borde del botón */
 .ds-footer__legal{margin:var(--space-6) 0 0;color:var(--text-secondary)}
 
 /* ---------- Páginas de contenido (case studies y Sobre mí) ---------- */
