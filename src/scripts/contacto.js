@@ -232,8 +232,14 @@ function iniciar(dialogo) {
     copiaSr.textContent = '';
   }
 
-  function abrir() {
+  // Cómo se está usando el panel: 'teclado' (anillo de foco) o 'raton' (campo seleccionado)
+  function modo(m) { dialogo.dataset.entrada = m; }
+  dialogo.addEventListener('pointerdown', () => modo('raton'));
+  dialogo.addEventListener('keydown', (e) => { if (e.key === 'Tab') modo('teclado'); });
+
+  function abrir(m = 'teclado') {
     if (abierta) return;
+    modo(m);
     abierta = true;
     empezado = Date.now();
     const barra = window.innerWidth - html.clientWidth;
@@ -265,12 +271,12 @@ function iniciar(dialogo) {
     e.preventDefault();
     if (!abierta) {
       history.pushState({ contacto: true }, '', '#contacto');
-      abrir();
+      abrir(e.detail === 0 ? 'teclado' : 'raton'); // detail 0: se activó con el teclado
     }
   });
 
   function sincronizar() {
-    if (location.hash === '#contacto') abrir();
+    if (location.hash === '#contacto') abrir('teclado');
     else if (abierta) dialogo.close();
   }
   window.addEventListener('hashchange', sincronizar);

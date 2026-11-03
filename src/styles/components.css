@@ -296,6 +296,8 @@
 .ds-field__input{box-sizing:border-box;width:100%;min-height:var(--touch-min);margin:0;padding:0 var(--space-2);border:var(--border-field) solid var(--line-strong);border-radius:var(--radius);background:var(--bg);color:var(--text);font-weight:500}
 .ds-field__input--area{min-height:var(--textarea-min);padding-block:var(--space-1);resize:vertical;display:block}
 .ds-field__input:focus-visible{outline:none;box-shadow:var(--ring-focus)}
+/* Seleccionado con ratón o toque: distinto del foco de teclado (anillo doble). Borde terracota y halo suave */
+.ds-contact[data-entrada="raton"] .ds-field__input:focus:not([aria-invalid="true"]):not([readonly]){outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-tint)}
 .ds-field__input[aria-invalid="true"]{border-width:var(--border-thick);border-color:var(--accent-pressed);padding-inline:calc(var(--space-2) - (var(--border-thick) - var(--border-field)))}
 .ds-field__input[readonly]{border-color:var(--line);color:var(--text-secondary)}
 
