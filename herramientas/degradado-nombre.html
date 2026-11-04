@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Prueba del degradado del nombre</title>
+<!-- Herramienta interna: NO forma parte de la web publicada (está fuera de src/ y public/).
+     Se abre con doble clic. Replica la animación de .ds-hero__name en src/styles/components.css. -->
+<style>
+@font-face{font-family:"Inter Tight";font-weight:500 700;src:url("../public/fonts/inter-tight-latin.woff2") format("woff2")}
+:root{--text:#111;--bg:#fff;--line:#e2e2e2;--accent:#b5502a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:500 16px/1.5 "Inter Tight",system-ui,sans-serif}
+main{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
+h2{font-size:15px;font-weight:600;margin:0 0 12px;color:#6b6b6b;text-transform:uppercase;letter-spacing:.04em}
+.escena{border:1px solid var(--line);border-radius:4px;padding:40px 32px;margin-bottom:24px;overflow:hidden}
+.nombre{margin:0;font-weight:700;font-size:clamp(48px,11vw,136px);line-height:.92;letter-spacing:-.04em}
+.rol{display:block;margin-top:12px;font-size:clamp(20px,4vw,54px);line-height:1.2;font-weight:700;letter-spacing:-.02em}
+/* --- Misma técnica que la web --- */
+.nombre span.activa{
+  background-image:linear-gradient(90deg,var(--text) 0%,var(--text) 20%,var(--c1) 25%,var(--c2) 36%,var(--c3) 47%,var(--text) 57%,var(--text) 100%);
+  background-size:500% 100%;background-repeat:no-repeat;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  animation:intro-nombre 3.4s both;
+}
+@keyframes intro-nombre{
+  0%{background-position:71.25% 0;animation-timing-function:cubic-bezier(.45,0,.3,1)}
+  73.53%{background-position:33.75% 0}
+  76.47%{background-position:33.75% 0;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+  100%{background-position:0% 0}
+}
+/* --- Panel --- */
+.panel{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.color{display:flex;flex-direction:column;gap:8px}
+.color label{font-weight:600}
+.fila{display:flex;gap:8px;align-items:center}
+input[type=color]{width:56px;height:44px;padding:2px;border:1px solid var(--line);border-radius:4px;background:#fff;cursor:pointer}
+input[type=text]{flex:1;min-width:0;height:44px;padding:0 12px;border:2px solid var(--line);border-radius:4px;font:600 16px "Inter Tight",monospace;text-transform:uppercase}
+.contraste{font-size:14px;color:#6b6b6b}
+button{min-height:44px;padding:0 20px;border:3px solid transparent;border-radius:4px;background:var(--accent);color:#fff;font:600 16px "Inter Tight",sans-serif;cursor:pointer}
+button.sec{background:#fff;color:var(--text);border-color:var(--text)}
+button:focus-visible,input:focus-visible{outline:3px solid #ffdd00;outline-offset:2px;box-shadow:0 0 0 6px #0b0c0c}
+.barra{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:24px 0}
+.barra input[type=range]{flex:1;min-width:200px}
+pre{margin:0;padding:16px;background:#f6f6f6;border-radius:4px;font:500 15px/1.5 ui-monospace,monospace;overflow:auto}
+.copiado{color:#1a7f37;font-weight:600;min-height:1.5em}
+.fondo{display:flex;gap:8px;align-items:center}
+</style>
+</head>
+<body>
+<main>
+<h2>Vista previa</h2>
+<div class="escena" id="escena">
+  <h1 class="nombre"><span id="nombre">Arnau Larripa</span><span class="rol">Product Designer<span style="color:#b5502a">.</span></span></h1>
+</div>
+
+<div class="barra">
+  <button id="repetir" type="button">Repetir animación</button>
+  <button id="pausa" type="button" class="sec">Pausar</button>
+  <label for="tiempo" style="font-weight:600">Tiempo</label>
+  <input id="tiempo" type="range" min="0" max="3400" step="10" value="2550" aria-describedby="t-val">
+  <output id="t-val">2,55 s</output>
+</div>
+<p class="contraste" style="margin-top:-8px">Tiempos clave: entrada 0–2,5 s · pausa con todo coloreado 2,5–2,6 s · salida 2,6–3,4 s. Mueve el control para verlo parado.</p>
+
+<h2 style="margin-top:32px">Colores</h2>
+<div class="panel">
+  <div class="color"><label for="h1">Color 1 · naranja (primeras letras)</label>
+    <div class="fila"><input type="color" id="p1" value="#d4572b" aria-label="Selector del color 1"><input type="text" id="h1" value="#D4572B" maxlength="7"></div>
+    <span class="contraste" id="k1"></span></div>
+  <div class="color"><label for="h2">Color 2 · melocotón (centro)</label>
+    <div class="fila"><input type="color" id="p2" value="#f2b36b" aria-label="Selector del color 2"><input type="text" id="h2" value="#F2B36B" maxlength="7"></div>
+    <span class="contraste" id="k2"></span></div>
+  <div class="color"><label for="h3">Color 3 · coral (últimas letras)</label>
+    <div class="fila"><input type="color" id="p3" value="#e8788a" aria-label="Selector del color 3"><input type="text" id="h3" value="#E8788A" maxlength="7"></div>
+    <span class="contraste" id="k3"></span></div>
+</div>
+
+<h2 style="margin-top:32px">Para copiar a components.css</h2>
+<pre id="css"></pre>
+<p style="display:flex;gap:12px;align-items:center;margin-top:12px"><button id="copiar" type="button">Copiar</button><span class="copiado" id="ok" role="status"></span></p>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const nombre = $('nombre');
+const HEX = /^#[0-9a-f]{6}$/i;
+const nombres = ['naranja', 'melocotón', 'coral'];
+
+function luminancia(hex) {
+  const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+function contraste(a, b) {
+  const [x, y] = [luminancia(a), luminancia(b)].sort((m, n) => n - m);
+  return (x + 0.05) / (y + 0.05);
+}
+
+function aplicar() {
+  const v = [1, 2, 3].map((n) => $('h' + n).value.toUpperCase());
+  v.forEach((hex, i) => {
+    document.documentElement.style.setProperty('--c' + (i + 1), hex);
+    $('k' + (i + 1)).textContent = 'Contraste sobre blanco: ' + contraste(hex, '#ffffff').toFixed(1).replace('.', ',') + ':1';
+  });
+  $('css').textContent = ['--intro-c1:' + v[0] + '; /* ' + nombres[0] + ' */', '--intro-c2:' + v[1] + '; /* ' + nombres[1] + ' */', '--intro-c3:' + v[2] + '; /* ' + nombres[2] + ' */'].join('\n');
+}
+
+[1, 2, 3].forEach((n) => {
+  $('p' + n).addEventListener('input', () => { $('h' + n).value = $('p' + n).value.toUpperCase(); aplicar(); });
+  $('h' + n).addEventListener('input', () => {
+    if (HEX.test($('h' + n).value)) { $('p' + n).value = $('h' + n).value.toLowerCase(); aplicar(); }
+  });
+});
+
+function anim() { return nombre.getAnimations()[0]; }
+function repetir() {
+  nombre.classList.remove('activa'); void nombre.offsetWidth; nombre.classList.add('activa');
+  $('pausa').textContent = 'Pausar';
+}
+$('repetir').addEventListener('click', repetir);
+$('pausa').addEventListener('click', () => {
+  const a = anim(); if (!a) return;
+  if (a.playState === 'running') { a.pause(); $('pausa').textContent = 'Reanudar'; } else { a.play(); $('pausa').textContent = 'Pausar'; }
+});
+$('tiempo').addEventListener('input', () => {
+  const a = anim(); if (!a) return;
+  a.pause(); a.currentTime = +$('tiempo').value; $('pausa').textContent = 'Reanudar';
+  $('t-val').textContent = (+$('tiempo').value / 1000).toFixed(2).replace('.', ',') + ' s';
+});
+$('copiar').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('css').textContent); $('ok').textContent = 'Copiado'; }
+  catch { const r = document.createRange(); r.selectNodeContents($('css')); getSelection().removeAllRanges(); getSelection().addRange(r); $('ok').textContent = 'Selecciona y copia con Ctrl/Cmd+C'; }
+});
+
+aplicar();
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+  repetir();
+  // empieza parado en el momento «nombre lleno» para ver los colores enseguida
+  const a = anim(); a.pause(); a.currentTime = 2550; $('pausa').textContent = 'Reanudar';
+});
+</script>
+</body>
+</html>
