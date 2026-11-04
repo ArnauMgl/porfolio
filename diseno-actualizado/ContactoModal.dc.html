@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Modal de contacto · escritorio · Arnau Larripa</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/arnau-portfolio/tokens.css">
+<link rel="stylesheet" href="ds/arnau-portfolio/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:var(--bg)}
+a{color:var(--text)}a:hover{color:var(--text)}
+/* Solo para presentar los estados en el lienzo: cada marco hace de «pantalla» */
+.dc-wrap{box-sizing:border-box;padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-6);align-items:flex-start}
+.dc-label{margin:0 0 var(--space-1);color:var(--text-secondary)}
+.dc-frame{position:relative;width:1440px;height:1120px;overflow:hidden;container-type:inline-size;border:1px solid var(--line);background:var(--bg)}
+.dc-page-bg{position:absolute;inset:0;padding:var(--space-6) var(--space-3)}
+.dc-page-bg p{margin:0}
+.dc-frame::before{content:"";position:absolute;inset:0;background:var(--scrim);z-index:1}
+.dc-frame .ds-contact{position:absolute;z-index:2;display:block;transform:none;opacity:1;height:auto;bottom:0}
+.dc-frame .ds-contact{height:100%}
+</style>
+</helmet>
+<div class="ds-page t-body" style="min-height: 0">
+<div class="dc-wrap">
+<div class="dc-item"><p class="dc-label t-meta">1 · Formulario vacío</p><div class="dc-frame"><div class="dc-page-bg" aria-hidden="true"><p class="t-section-title-mobile">Arnau Larripa</p></div><div class="ds-contact" open><div class="ds-contact__panel"><button type="button" class="ds-close" aria-label="Cerrar formulario de contacto"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="200" y1="56" x2="56" y2="200"></line><line x1="200" y1="200" x2="56" y2="56"></line></svg></button>
+<h2 class="ds-contact__title t-page-title-mobile">Hablemos<span class="ds-dot">.</span></h2>
+<p class="ds-contact__lead t-body">Cuéntame en qué estás trabajando.</p>
+<p class="ds-contact__note t-meta">Todos los campos son obligatorios.</p>
+
+<div class="ds-contact__form">
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="n1">Nombre</label><input class="ds-field__input t-body" id="n1" type="text" value=""><div class="ds-error"></div></div>
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="e1">Email</label><input class="ds-field__input t-body" id="e1" type="email" value=""><div class="ds-error"></div></div>
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="m1">Mensaje</label><textarea class="ds-field__input ds-field__input--area t-body" id="m1" rows="4"></textarea><div class="ds-error"></div></div>
+</div>
+<p class="t-meta ds-contact__legal">Tu mensaje pasa por Cloudflare (antispam) y Resend (envío), que puede guardar una copia temporal.</p>
+<div class="ds-contact__foot">
+<button type="button" class="ds-btn t-button ds-contact__submit"><span class="ds-contact__submit-label">Enviar mensaje</span><svg class="ds-icon ds-contact__arrow" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"></line><polyline points="144 56 216 128 144 200"></polyline></svg></button>
+<p class="t-meta ds-contact__privacy">Usaré tus datos solo para responderte.</p>
+</div>
+<section class="ds-contact__direct" aria-label="Contacto directo">
+<p class="t-meta ds-label">O escríbeme directamente</p>
+<p class="t-subhead ds-contact__email">hola@arnaularripa.com</p>
+<div class="ds-actions ds-contact__direct-actions">
+<button type="button" class="ds-btn-secondary t-button"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="40" y="88" width="128" height="128" rx="8"></rect><polyline points="168 88 168 40 216 40 216 168 168 168"></polyline></svg><span>Copiar email</span></button>
+<a class="ds-link ds-link--touch t-body" href="https://www.linkedin.com/in/arnaularripa/">LinkedIn<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg></a>
+</div>
+</section></div></div></div></div>
+<div class="dc-item"><p class="dc-label t-meta">2 · Errores de validación</p><div class="dc-frame"><div class="dc-page-bg" aria-hidden="true"><p class="t-section-title-mobile">Arnau Larripa</p></div><div class="ds-contact" open><div class="ds-contact__panel"><button type="button" class="ds-close" aria-label="Cerrar formulario de contacto"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="200" y1="56" x2="56" y2="200"></line><line x1="200" y1="200" x2="56" y2="56"></line></svg></button>
+<h2 class="ds-contact__title t-page-title-mobile">Hablemos<span class="ds-dot">.</span></h2>
+<p class="ds-contact__lead t-body">Cuéntame en qué estás trabajando.</p>
+<p class="ds-contact__note t-meta">Todos los campos son obligatorios.</p>
+
+<div class="ds-contact__form">
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="n2">Nombre</label><input class="ds-field__input t-body" id="n2" type="text" value="Laura"><div class="ds-error"></div></div>
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="e2">Email</label><input class="ds-field__input t-body" id="e2" type="email" value="laura@" aria-invalid="true"><div class="ds-error"><svg class="ds-icon-sm" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="128" r="96"></circle><line x1="128" y1="80" x2="128" y2="136"></line><circle cx="128" cy="172" r="4"></circle></svg><span>Parece que falta algo en el email. Prueba con un formato como nombre@dominio.com.</span></div></div>
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="m2">Mensaje</label><textarea class="ds-field__input ds-field__input--area t-body" id="m2" rows="4" aria-invalid="true"></textarea><div class="ds-error"><svg class="ds-icon-sm" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="128" r="96"></circle><line x1="128" y1="80" x2="128" y2="136"></line><circle cx="128" cy="172" r="4"></circle></svg><span>Escribe unas líneas sobre lo que tienes en mente.</span></div></div>
+</div>
+<p class="t-meta ds-contact__legal">Tu mensaje pasa por Cloudflare (antispam) y Resend (envío), que puede guardar una copia temporal.</p>
+<div class="ds-contact__foot">
+<button type="button" class="ds-btn t-button ds-contact__submit"><span class="ds-contact__submit-label">Enviar mensaje</span><svg class="ds-icon ds-contact__arrow" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"></line><polyline points="144 56 216 128 144 200"></polyline></svg></button>
+<p class="t-meta ds-contact__privacy">Usaré tus datos solo para responderte.</p>
+</div>
+<section class="ds-contact__direct" aria-label="Contacto directo">
+<p class="t-meta ds-label">O escríbeme directamente</p>
+<p class="t-subhead ds-contact__email">hola@arnaularripa.com</p>
+<div class="ds-actions ds-contact__direct-actions">
+<button type="button" class="ds-btn-secondary t-button"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="40" y="88" width="128" height="128" rx="8"></rect><polyline points="168 88 168 40 216 40 216 168 168 168"></polyline></svg><span>Copiar email</span></button>
+<a class="ds-link ds-link--touch t-body" href="https://www.linkedin.com/in/arnaularripa/">LinkedIn<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg></a>
+</div>
+</section></div></div></div></div>
+<div class="dc-item"><p class="dc-label t-meta">3 · Error de envío</p><div class="dc-frame"><div class="dc-page-bg" aria-hidden="true"><p class="t-section-title-mobile">Arnau Larripa</p></div><div class="ds-contact" open><div class="ds-contact__panel"><button type="button" class="ds-close" aria-label="Cerrar formulario de contacto"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="200" y1="56" x2="56" y2="200"></line><line x1="200" y1="200" x2="56" y2="56"></line></svg></button>
+<h2 class="ds-contact__title t-page-title-mobile">Hablemos<span class="ds-dot">.</span></h2>
+<p class="ds-contact__lead t-body">Cuéntame en qué estás trabajando.</p>
+<p class="ds-contact__note t-meta">Todos los campos son obligatorios.</p>
+<div class="ds-alert" role="alert"><svg class="ds-icon-sm" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="128" r="96"></circle><line x1="128" y1="80" x2="128" y2="136"></line><circle cx="128" cy="172" r="4"></circle></svg><div><strong>No se ha podido enviar tu mensaje.</strong>Tus datos siguen aquí. Vuelve a intentarlo o escríbeme a hola@arnaularripa.com.</div></div>
+<div class="ds-contact__form">
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="n3">Nombre</label><input class="ds-field__input t-body" id="n3" type="text" value="Laura"><div class="ds-error"></div></div>
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="e3">Email</label><input class="ds-field__input t-body" id="e3" type="email" value="laura@empresa.com"><div class="ds-error"></div></div>
+<div class="ds-field"><label class="ds-field__label t-body-strong" for="m3">Mensaje</label><textarea class="ds-field__input ds-field__input--area t-body" id="m3" rows="4">Hola Arnau, me gustaría hablar de un proyecto.</textarea><div class="ds-error"></div></div>
+</div>
+<p class="t-meta ds-contact__legal">Tu mensaje pasa por Cloudflare (antispam) y Resend (envío), que puede guardar una copia temporal.</p>
+<div class="ds-contact__foot">
+<button type="button" class="ds-btn t-button ds-contact__submit"><span class="ds-contact__submit-label">Reintentar envío</span><svg class="ds-icon ds-contact__arrow" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"></line><polyline points="144 56 216 128 144 200"></polyline></svg></button>
+<p class="t-meta ds-contact__privacy">Usaré tus datos solo para responderte.</p>
+</div>
+<section class="ds-contact__direct" aria-label="Contacto directo">
+<p class="t-meta ds-label">O escríbeme directamente</p>
+<p class="t-subhead ds-contact__email">hola@arnaularripa.com</p>
+<div class="ds-actions ds-contact__direct-actions">
+<button type="button" class="ds-btn-secondary t-button"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="40" y="88" width="128" height="128" rx="8"></rect><polyline points="168 88 168 40 216 40 216 168 168 168"></polyline></svg><span>Copiar email</span></button>
+<a class="ds-link ds-link--touch t-body" href="https://www.linkedin.com/in/arnaularripa/">LinkedIn<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg></a>
+</div>
+</section></div></div></div></div>
+<div class="dc-item"><p class="dc-label t-meta">4 · Mensaje enviado</p><div class="dc-frame"><div class="dc-page-bg" aria-hidden="true"><p class="t-section-title-mobile">Arnau Larripa</p></div><div class="ds-contact" open><div class="ds-contact__panel"><button type="button" class="ds-close" aria-label="Cerrar formulario de contacto"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="200" y1="56" x2="56" y2="200"></line><line x1="200" y1="200" x2="56" y2="56"></line></svg></button>
+<div class="ds-contact__done" role="status">
+<svg class="ds-contact__check" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="128" r="96"></circle><polyline points="88 136 112 160 168 104"></polyline></svg>
+<h2 class="ds-contact__title t-page-title-mobile">Mensaje enviado<span class="ds-dot">.</span></h2>
+<p class="t-body ds-contact__done-text">Gracias, Laura. Te responderé desde hola@arnaularripa.com.</p>
+<p class="t-body ds-contact__done-more">Suelo contestar en uno o dos días laborables. Si no ves mi respuesta, mira en la carpeta de spam.</p>
+<div><button type="button" class="ds-btn-secondary t-button">Cerrar</button></div>
+<div class="ds-contact__after">
+<p class="t-meta ds-label">Mientras tanto</p>
+<a class="ds-link ds-link--touch t-body" href="https://www.linkedin.com/in/arnaularripa/">LinkedIn<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg></a>
+</div>
+</div></div></div></div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1536,"height":4880}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
