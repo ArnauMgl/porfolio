@@ -48,8 +48,9 @@
 /* ---------- Home: hero e introducción ---------- */
 .ds-hero{padding-top:var(--space-8)}
 .ds-hero__title{margin:0;color:var(--text)}
-/* Cargo bajo el nombre: ~1/2,5 del tamaño del nombre, peso más ligero y color de texto. Separación de 10 px */
-.ds-hero__role{display:block;margin-top:10px;font-size:22px;line-height:1.2;font-weight:500;letter-spacing:-0.02em;color:var(--text)}
+/* Cargo bajo el nombre: mismo peso y color que el nombre a ~1/2,5 de su tamaño (interletraje más abierto: con el del nombre las palabras se pegan). Separación de 10 px */
+.ds-hero__role{display:block;margin-top:10px;font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;color:var(--text)}
+.ds-hero__role .ds-dot{font-size:1.5em;line-height:0;margin-left:-.1em}
 .ds-intro{margin-top:var(--space-8);display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-5)}
 .ds-intro__text{margin:0;max-width:var(--text-max);color:var(--text)}
 
@@ -65,7 +66,7 @@
 .ds-proj{display:block;color:var(--text);text-decoration:none;cursor:pointer}
 .ds-proj:hover{color:var(--text)}
 .ds-proj__row{display:grid;--t:28px;grid-template-columns:var(--space-3) minmax(0,1fr) var(--icon-size);grid-template-areas:"dot main arrow";column-gap:0;align-items:baseline}
-.ds-proj__dot{grid-area:dot;width:10px;height:10px;border-radius:50%;background:var(--accent);align-self:start;margin-top:calc(var(--t) * .575 - 5px)}
+.ds-proj__dot{grid-area:dot;width:calc(var(--t) * .4);height:calc(var(--t) * .4);border-radius:50%;background:var(--accent);align-self:start;margin-top:calc(var(--t) * .375)}
 .ds-proj__main{grid-area:main;min-width:0;display:flex;flex-direction:column;gap:var(--space-1)}
 .ds-proj__title{margin:0;color:var(--text);font-size:var(--t);line-height:1.15;letter-spacing:-0.025em}
 .ds-proj__title span{text-decoration-line:none;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
@@ -188,7 +189,7 @@
   .ds-hero__role{font-size:36px;margin-top:10px}
   .ds-section-title{font-size:36px;line-height:1.1;letter-spacing:-0.03em}
   .ds-case-head .ds-case__title{font-size:56px;line-height:1;letter-spacing:-0.035em}
-  .ds-proj__row{--t:36px}
+  .ds-proj__row{--t:36px;grid-template-columns:var(--space-4) minmax(0,1fr) var(--icon-size)}
   .ds-proj__title{line-height:1.15;letter-spacing:-0.03em}
   .ds-meta dd.is-key{font-size:22px}
   .ds-footer__email{font-size:48px;line-height:1;letter-spacing:-0.035em}
