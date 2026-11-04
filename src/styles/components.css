@@ -48,8 +48,8 @@
 /* ---------- Home: hero e introducción ---------- */
 .ds-hero{padding-top:var(--space-8)}
 .ds-hero__title{margin:0;color:var(--text)}
-/* Cargo bajo el nombre: ~1/2,8 del tamaño del nombre, más ligero y en gris secundario (5,3:1 sobre blanco). Separación de 10 px */
-.ds-hero__role{display:block;margin-top:10px;font-size:20px;line-height:1.2;font-weight:500;letter-spacing:-0.02em;color:var(--text-secondary)}
+/* Cargo bajo el nombre: ~1/2,5 del tamaño del nombre, peso más ligero y color de texto. Separación de 10 px */
+.ds-hero__role{display:block;margin-top:10px;font-size:22px;line-height:1.2;font-weight:500;letter-spacing:-0.02em;color:var(--text)}
 .ds-intro{margin-top:var(--space-8);display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-5)}
 .ds-intro__text{margin:0;max-width:var(--text-max);color:var(--text)}
 
@@ -64,9 +64,10 @@
 .ds-work__more{margin:var(--space-8) 0 0}
 .ds-proj{display:block;color:var(--text);text-decoration:none;cursor:pointer}
 .ds-proj:hover{color:var(--text)}
-.ds-proj__row{display:grid;grid-template-columns:minmax(0,1fr) var(--icon-size);grid-template-areas:"main arrow";column-gap:var(--space-2);align-items:baseline}
+.ds-proj__row{display:grid;--t:28px;grid-template-columns:var(--space-3) minmax(0,1fr) var(--icon-size);grid-template-areas:"dot main arrow";column-gap:0;align-items:baseline}
+.ds-proj__dot{grid-area:dot;width:10px;height:10px;border-radius:50%;background:var(--accent);align-self:start;margin-top:calc(var(--t) * .575 - 5px)}
 .ds-proj__main{grid-area:main;min-width:0;display:flex;flex-direction:column;gap:var(--space-1)}
-.ds-proj__title{margin:0;color:var(--text);font-size:28px;line-height:1.15;letter-spacing:-0.025em}
+.ds-proj__title{margin:0;color:var(--text);font-size:var(--t);line-height:1.15;letter-spacing:-0.025em}
 .ds-proj__title span{text-decoration-line:none;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
 .ds-proj__desc{margin:0;color:var(--text-secondary)}
 .ds-proj__tags{list-style:none;margin:var(--space-1) 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-1)}
@@ -184,10 +185,11 @@
   .ds-case-head,.ds-case-section{max-width:calc(var(--text-max) + 2 * var(--space-6))}
   .ds-hero{padding-top:var(--space-10)}
   .ds-hero__title{font-size:88px;letter-spacing:-0.04em}
-  .ds-hero__role{font-size:32px;margin-top:10px}
+  .ds-hero__role{font-size:36px;margin-top:10px}
   .ds-section-title{font-size:36px;line-height:1.1;letter-spacing:-0.03em}
   .ds-case-head .ds-case__title{font-size:56px;line-height:1;letter-spacing:-0.035em}
-  .ds-proj__title{font-size:36px;line-height:1.15;letter-spacing:-0.03em}
+  .ds-proj__row{--t:36px}
+  .ds-proj__title{line-height:1.15;letter-spacing:-0.03em}
   .ds-meta dd.is-key{font-size:22px}
   .ds-footer__email{font-size:48px;line-height:1;letter-spacing:-0.035em}
 }
@@ -203,16 +205,17 @@
   .ds-hero{padding-top:var(--space-12)}
   /* = t-hero-desktop */
   .ds-hero__title{font-size:136px;letter-spacing:-0.045em}
-  .ds-hero__role{font-size:48px;margin-top:12px}
+  .ds-hero__role{font-size:54px;margin-top:12px}
   .ds-intro{margin-top:var(--space-12)}
   .ds-section{margin-top:var(--space-16)}
   .ds-hero + .ds-section{margin-top:var(--space-10)}
-  .ds-proj__row{column-gap:var(--space-4)}
+  .ds-proj__row{--t:48px;grid-template-columns:var(--space-5) minmax(0,1fr) var(--icon-size)}
   /* = t-project-title-desktop */
-  .ds-proj__title{font-size:48px;line-height:1.1;letter-spacing:-0.03em}
+  .ds-proj__title{line-height:1.1;letter-spacing:-0.03em}
   .ds-work--index .ds-proj{display:grid;grid-template-columns:minmax(0,1fr) 360px;column-gap:var(--space-6);align-items:start}
   .ds-work--index .ds-proj__thumb{margin-top:0}
-  .ds-work--index .ds-proj__title{font-size:40px;line-height:1.15}
+  .ds-work--index .ds-proj__row{--t:40px}
+  .ds-work--index .ds-proj__title{line-height:1.15}
   .ds-quotes{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-10)}
   .ds-footer{margin-top:var(--space-16)}
   /* = t-footer-email-desktop */
