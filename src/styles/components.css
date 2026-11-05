@@ -51,6 +51,33 @@
 /* Cargo bajo el nombre: mismo peso y color que el nombre a ~1/2,5 de su tamaño (interletraje más abierto: con el del nombre las palabras se pegan). Separación de 10 px */
 .ds-hero__role{display:block;margin-top:10px;font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;color:var(--text)}
 .ds-hero__role .ds-dot{font-size:1.5em;line-height:0;margin-left:-.1em}
+/* Intro del nombre (solo home): un degradado cálido cruza «Arnau Larripa» una vez por sesión.
+   Lo lanza src/scripts/intro-titulo.js añadiendo .is-intro. Sin esa clase, sin JS, sin soporte
+   de background-clip:text o con movimiento reducido, el nombre es texto normal. */
+@media (prefers-reduced-motion:no-preference){
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .ds-hero__name.is-intro{
+      /* Degradado de dos colores en diagonal (118°, arriba-izquierda → abajo-derecha). Sobre el tramo coloreado
+         (25 %–47 % del degradado completo): naranja liso hasta su 45 % (34,9 %), paso a melocotón hasta su 90 % (44,8 %)
+         y melocotón liso hasta el final (47 %). Se puede probar en herramientas/degradado-nombre.html. */
+      --intro-c1:#D4572B; /* naranja */
+      --intro-c2:#F2B36B; /* melocotón */
+      background-image:linear-gradient(118deg,var(--text) 0%,var(--text) 20%,var(--intro-c1) 25%,var(--intro-c1) 34.9%,var(--intro-c2) 44.8%,var(--intro-c2) 47%,var(--text) 57%,var(--text) 100%);
+      background-size:500% 100%;
+      background-repeat:no-repeat;
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;color:transparent;
+      -webkit-box-decoration-break:clone;box-decoration-break:clone; /* si el nombre se parte en dos líneas, ambas barren a la vez */
+      animation:intro-nombre 3.4s both;
+    }
+  }
+}
+@keyframes intro-nombre{
+  0%{background-position:71.25% 0;animation-timing-function:cubic-bezier(.45,0,.3,1)}
+  73.53%{background-position:33.75% 0}
+  76.47%{background-position:33.75% 0;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+  100%{background-position:0% 0}
+}
 .ds-intro{margin-top:var(--space-8);display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-5)}
 .ds-intro__text{margin:0;max-width:var(--text-max);color:var(--text)}
 
