@@ -49,7 +49,7 @@
 .ds-hero{padding-top:var(--space-8)}
 .ds-hero__title{margin:0;color:var(--text)}
 /* Cargo bajo el nombre: mismo peso y color que el nombre a ~1/2,5 de su tamaño (interletraje más abierto: con el del nombre las palabras se pegan). Separación de 10 px */
-.ds-hero__role{display:block;margin-top:10px;font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;color:var(--text)}
+.ds-hero__role{display:block;margin-top:0;font-size:22px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;color:var(--text)}
 .ds-hero__role .ds-dot{font-size:1.5em;line-height:0;margin-left:-.1em}
 /* Intro del nombre (solo home): un degradado cálido cruza «Arnau Larripa» una vez por sesión.
    Lo lanza src/scripts/intro-titulo.js añadiendo .is-intro. Sin esa clase, sin JS, sin soporte
@@ -213,7 +213,7 @@
   .ds-case-head,.ds-case-section{max-width:calc(var(--text-max) + 2 * var(--space-6))}
   .ds-hero{padding-top:var(--space-10)}
   .ds-hero__title{font-size:88px;letter-spacing:-0.04em}
-  .ds-hero__role{font-size:36px;margin-top:10px}
+  .ds-hero__role{font-size:36px;margin-top:0}
   .ds-section-title{font-size:36px;line-height:1.1;letter-spacing:-0.03em}
   .ds-case-head .ds-case__title{font-size:56px;line-height:1;letter-spacing:-0.035em}
   .ds-proj__row{--t:36px;grid-template-columns:var(--space-4) minmax(0,1fr) var(--icon-size)}
@@ -233,7 +233,7 @@
   .ds-hero{padding-top:var(--space-12)}
   /* = t-hero-desktop */
   .ds-hero__title{font-size:136px;letter-spacing:-0.045em}
-  .ds-hero__role{font-size:54px;margin-top:12px}
+  .ds-hero__role{font-size:54px;margin-top:0}
   .ds-intro{margin-top:var(--space-12)}
   .ds-section{margin-top:var(--space-16)}
   .ds-hero + .ds-section{margin-top:var(--space-10)}
@@ -362,11 +362,10 @@
 .ds-contact__panel{box-sizing:border-box;min-height:100%;display:flex;flex-direction:column}
 .ds-contact [hidden]{display:none !important}
 .ds-contact__title{margin:var(--space-5) 0 0;color:var(--text)}
-.ds-contact__lead{margin:var(--space-2) 0 0;color:var(--text-secondary)}
+.ds-contact__lead{margin:var(--space-2) 0 0;color:var(--text-secondary);text-wrap:balance}
 .ds-contact__note{margin:var(--space-1) 0 0;color:var(--text-secondary)}
 .ds-contact__form{margin-top:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3)}
 .ds-contact__foot{margin-top:var(--space-5);margin-bottom:var(--space-6)}
-.ds-contact__legal{margin:var(--space-2) 0 0;color:var(--text-secondary)}
 .ds-contact__privacy{margin:var(--space-2) 0 0;color:var(--text-secondary)}
 .ds-contact__direct{margin-top:auto;border-top:1px solid var(--line);padding-top:var(--space-4)}
 .ds-contact__email{margin:var(--space-2) 0 0;color:var(--text);user-select:text;overflow-wrap:anywhere}
@@ -404,7 +403,6 @@
   .ds-contact__panel{padding:var(--space-1) var(--space-3) 0}
   /* En el marcado el botón va antes que el bloque directo (orden de Tab = orden visual en escritorio); en móvil se invierte a la vista */
   .ds-contact__form{margin-bottom:var(--space-5)}
-  .ds-contact__legal{margin-top:calc(-1 * var(--space-3))}
   .ds-contact__direct{order:1;margin-bottom:var(--space-3)}
   .ds-contact{scroll-padding-bottom:var(--foot-h,0px)}
   /* El envío va fijo al pie de la hoja y el resto hace scroll por encima */
