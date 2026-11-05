@@ -10,7 +10,7 @@
      pero con un degradado de DOS colores (naranja → melocotón) en lugar de tres. -->
 <style>
 @font-face{font-family:"Inter Tight";font-weight:500 700;src:url("../public/fonts/inter-tight-latin.woff2") format("woff2")}
-:root{--text:#111;--bg:#fff;--line:#e2e2e2;--accent:#b5502a;--c1:#D4572B;--c2:#F2B36B;--pos:36%}
+:root{--text:#111;--bg:#fff;--line:#e2e2e2;--accent:#b5502a;--c1:#D4572B;--c2:#F2B36B;--pos:44.8%;--ang:118deg}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:500 16px/1.5 "Inter Tight",system-ui,sans-serif}
 main{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
@@ -20,7 +20,7 @@ h2{font-size:15px;font-weight:600;margin:0 0 12px;color:#6b6b6b;text-transform:u
 .rol{display:block;margin-top:12px;font-size:clamp(20px,4vw,54px);line-height:1.2;font-weight:700;letter-spacing:-.02em}
 /* --- Misma técnica que la web --- */
 .nombre span.activa{
-  background-image:linear-gradient(90deg,var(--text) 0%,var(--text) 20%,var(--c1) 25%,var(--c2) var(--pos),var(--c2) 47%,var(--text) 57%,var(--text) 100%);
+  background-image:linear-gradient(var(--ang),var(--text) 0%,var(--text) 20%,var(--c1) 25%,var(--c2) var(--pos),var(--c2) 47%,var(--text) 57%,var(--text) 100%);
   background-size:500% 100%;background-repeat:no-repeat;
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
@@ -46,7 +46,7 @@ button.sec{background:#fff;color:var(--text);border-color:var(--text)}
 button:focus-visible,input:focus-visible{outline:3px solid #ffdd00;outline-offset:2px;box-shadow:0 0 0 6px #0b0c0c}
 .barra{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:24px 0}
 .barra input[type=range]{flex:1;min-width:200px}
-.franja{height:56px;border-radius:4px;background:linear-gradient(90deg,var(--c1) 0%,var(--c2) var(--p),var(--c2) 100%)}
+.franja{width:100%;max-width:420px;aspect-ratio:646/348;border-radius:4px;background:linear-gradient(var(--ang),var(--c1) 0%,var(--c2) var(--p),var(--c2) 100%)}
 pre{margin:0;padding:16px;background:#f6f6f6;border-radius:4px;font:500 15px/1.5 ui-monospace,monospace;overflow:auto}
 .copiado{color:#1a7f37;font-weight:600;min-height:1.5em}
 </style>
@@ -77,8 +77,11 @@ pre{margin:0;padding:16px;background:#f6f6f6;border-radius:4px;font:500 15px/1.5
     <div class="fila"><input type="color" id="p2" value="#f2b36b" aria-label="Selector del color 2"><input type="text" id="h2" value="#F2B36B" maxlength="7"></div>
     <span class="contraste" id="k2"></span></div>
   <div class="color"><label for="pos">Posición del color 2</label>
-    <div class="fila"><input type="range" id="pos" min="10" max="100" step="1" value="50" style="flex:1" aria-describedby="pos-val"><output id="pos-val" style="min-width:3ch;font-weight:600">50%</output></div>
+    <div class="fila"><input type="range" id="pos" min="10" max="100" step="1" value="90" style="flex:1" aria-describedby="pos-val"><output id="pos-val" style="min-width:3ch;font-weight:600">90%</output></div>
     <span class="contraste">Del 0 % al valor elegido va de un color al otro; después se mantiene el color 2.</span></div>
+  <div class="color"><label for="ang">Ángulo del degradado</label>
+    <div class="fila"><input type="range" id="ang" min="90" max="150" step="1" value="118" style="flex:1" aria-describedby="ang-val"><output id="ang-val" style="min-width:5ch;font-weight:600">118°</output></div>
+    <span class="contraste">90° = horizontal. 118° = diagonal de esquina a esquina como en el ejemplo (arriba a la izquierda → abajo a la derecha).</span></div>
 </div>
 
 <h2 style="margin-top:32px">Valores del degradado</h2>
@@ -109,7 +112,10 @@ function aplicar() {
   raiz.setProperty('--c1', v[0]);
   raiz.setProperty('--c2', v[1]);
   raiz.setProperty('--pos', pos + '%');
+  const ang = +$('ang').value;
   raiz.setProperty('--p', p + '%');
+  raiz.setProperty('--ang', ang + 'deg');
+  $('ang-val').textContent = ang + '°';
   $('pos-val').textContent = p + '%';
   v.forEach((hex, i) => {
     $('k' + (i + 1)).textContent = 'Contraste sobre blanco: ' + contraste(hex, '#ffffff').toFixed(1).replace('.', ',') + ':1';
@@ -117,7 +123,7 @@ function aplicar() {
   $('css').textContent =
     'Color 1 (0 %):  ' + v[0] + '\n' +
     'Color 2 (' + p + ' %): ' + v[1] + '\n\n' +
-    'linear-gradient(90deg, var(--text) 0%, var(--text) 20%,\n  ' + v[0] + ' 25%, ' + v[1] + ' ' + pos + '%, ' + v[1] + ' 47%,\n  var(--text) 57%, var(--text) 100%)';
+    'linear-gradient(' + ang + 'deg, var(--text) 0%, var(--text) 20%,\n  ' + v[0] + ' 25%, ' + v[1] + ' ' + pos + '%, ' + v[1] + ' 47%,\n  var(--text) 57%, var(--text) 100%)';
 }
 
 [1, 2].forEach((n) => {
@@ -127,6 +133,7 @@ function aplicar() {
   });
 });
 $('pos').addEventListener('input', aplicar);
+$('ang').addEventListener('input', aplicar);
 
 function anim() { return nombre.getAnimations()[0]; }
 function repetir() {
