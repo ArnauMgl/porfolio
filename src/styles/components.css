@@ -309,10 +309,13 @@
 
 /* ---------- Modal de contacto (v1.1) ---------- */
 /* Botón de cierre, 48×48 */
-.ds-close{display:flex;align-items:center;justify-content:center;flex:none;align-self:flex-end;width:var(--touch-min);height:var(--touch-min);padding:0;border:var(--border-field) solid transparent;border-radius:var(--radius);background:transparent;color:var(--text);cursor:pointer;transition:background-color var(--duration-base) ease,color var(--duration-base) ease}
+.ds-close{display:flex;align-items:center;justify-content:center;flex:none;width:var(--touch-min);height:var(--touch-min);padding:0;border:var(--border-field) solid transparent;border-radius:var(--radius);background:transparent;color:var(--text);cursor:pointer;transition:background-color var(--duration-base) ease,color var(--duration-base) ease}
 @media (hover:hover){.ds-close:hover{background-color:var(--text);color:var(--bg)}}
 .ds-close:active{background-color:var(--accent-tint);color:var(--on-accent-tint);border-color:var(--accent-pressed)}
 .ds-close:focus-visible{outline:none;background-color:var(--focus);color:var(--focus-ink);border-color:var(--focus-ink)}
+/* Barra superior fija con el botón de cierre: el contenido hace scroll por detrás */
+.ds-contact__bar{position:sticky;top:0;z-index:2;flex:none;display:flex;justify-content:flex-end;background:var(--bg);border-bottom:1px solid transparent}
+.ds-contact[data-scrolled] .ds-contact__bar{border-bottom-color:var(--line)}
 
 /* Botón secundario */
 .ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-1);min-height:var(--touch-min);min-width:calc(var(--space-12) * 2);box-sizing:border-box;padding:0 var(--space-3);border:var(--border-field) solid var(--line-strong);border-radius:var(--radius);background-color:var(--bg);color:var(--text);cursor:pointer;transition:background-color var(--duration-base) ease,color var(--duration-base) ease,border-color var(--duration-base) ease}
@@ -361,7 +364,7 @@
 @starting-style{.ds-contact[open]{transform:translateX(100%);opacity:1}.ds-contact[open]::backdrop{background:transparent}}
 .ds-contact__panel{box-sizing:border-box;min-height:100%;display:flex;flex-direction:column}
 .ds-contact [hidden]{display:none !important}
-.ds-contact__title{margin:var(--space-5) 0 0;color:var(--text)}
+.ds-contact__title{margin:var(--space-4) 0 0;color:var(--text)}
 .ds-contact__lead{margin:var(--space-2) 0 0;color:var(--text-secondary);text-wrap:balance}
 .ds-contact__note{margin:var(--space-1) 0 0;color:var(--text-secondary)}
 .ds-contact__form{margin-top:var(--space-4);display:flex;flex-direction:column;gap:var(--space-3)}
@@ -393,14 +396,18 @@
 /* Escritorio (>640 px): panel a la derecha */
 @media (min-width:641px){
   .ds-contact{top:0;right:0;bottom:0;left:auto;width:min(var(--panel-w),100%);height:100dvh;border-left:2px solid var(--line-strong);transform:translateX(100%)}
-  .ds-contact__panel{padding:var(--space-2) var(--space-5) var(--space-5)}
+  .ds-contact__panel{padding:0 var(--space-5) var(--space-5)}
+  .ds-contact__bar{margin-inline:calc(-1 * var(--space-5));padding:var(--space-2) var(--space-5) var(--space-1)}
+  .ds-contact{scroll-padding-top:calc(var(--touch-min) + var(--space-2) + var(--space-1))}
 }
 
 /* Móvil (≤640 px): hoja desde abajo */
 @media (max-width:640px){
   .ds-contact{top:calc(var(--vv-top,0px) + var(--space-5));right:0;left:0;bottom:auto;width:100%;height:calc(var(--vv-h,100dvh) - var(--space-5));border-top:2px solid var(--line-strong);border-radius:var(--radius) var(--radius) 0 0;transform:translateY(100%)}
   @starting-style{.ds-contact[open]{transform:translateY(100%)}}
-  .ds-contact__panel{padding:var(--space-1) var(--space-3) 0}
+  .ds-contact__panel{padding:0 var(--space-3)}
+  .ds-contact__bar{margin-inline:calc(-1 * var(--space-3));padding:var(--space-1) var(--space-3)}
+  .ds-contact{scroll-padding-top:calc(var(--touch-min) + var(--space-2))}
   /* En el marcado el botón va antes que el bloque directo (orden de Tab = orden visual en escritorio); en móvil se invierte a la vista */
   .ds-contact__form{margin-bottom:var(--space-5)}
   .ds-contact__direct{order:1;margin-bottom:var(--space-3)}

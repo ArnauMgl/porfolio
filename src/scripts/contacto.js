@@ -316,7 +316,11 @@ function iniciar(dialogo) {
     turnstile.cargar(dialogo.querySelector('#contacto-turnstile'));
   }
 
+  // Línea fina bajo la barra superior cuando el contenido ya ha empezado a pasar por detrás
+  dialogo.addEventListener('scroll', () => { dialogo.toggleAttribute('data-scrolled', dialogo.scrollTop > 0); }, { passive: true });
+
   dialogo.addEventListener('close', () => {
+    dialogo.removeAttribute('data-scrolled');
     abierta = false;
     html.classList.remove('ds-lock');
     html.style.removeProperty('--ds-sbw');
