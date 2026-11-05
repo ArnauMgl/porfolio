@@ -6,10 +6,11 @@
 <meta name="robots" content="noindex">
 <title>Prueba del degradado del nombre</title>
 <!-- Herramienta interna: NO forma parte de la web publicada (está fuera de src/ y public/).
-     Se abre con doble clic. Replica la animación de .ds-hero__name en src/styles/components.css. -->
+     Se abre con doble clic. Replica la animación de .ds-hero__name en src/styles/components.css,
+     pero con un degradado de DOS colores (naranja → melocotón) en lugar de tres. -->
 <style>
 @font-face{font-family:"Inter Tight";font-weight:500 700;src:url("../public/fonts/inter-tight-latin.woff2") format("woff2")}
-:root{--text:#111;--bg:#fff;--line:#e2e2e2;--accent:#b5502a}
+:root{--text:#111;--bg:#fff;--line:#e2e2e2;--accent:#b5502a;--c1:#D4572B;--c2:#F2B36B;--pos:36%}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:500 16px/1.5 "Inter Tight",system-ui,sans-serif}
 main{max-width:1120px;margin:0 auto;padding:32px 24px 64px}
@@ -19,7 +20,7 @@ h2{font-size:15px;font-weight:600;margin:0 0 12px;color:#6b6b6b;text-transform:u
 .rol{display:block;margin-top:12px;font-size:clamp(20px,4vw,54px);line-height:1.2;font-weight:700;letter-spacing:-.02em}
 /* --- Misma técnica que la web --- */
 .nombre span.activa{
-  background-image:linear-gradient(90deg,var(--text) 0%,var(--text) 20%,var(--c1) 25%,var(--c2) 36%,var(--c3) 47%,var(--text) 57%,var(--text) 100%);
+  background-image:linear-gradient(90deg,var(--text) 0%,var(--text) 20%,var(--c1) 25%,var(--c2) var(--pos),var(--c2) 47%,var(--text) 57%,var(--text) 100%);
   background-size:500% 100%;background-repeat:no-repeat;
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
@@ -45,9 +46,9 @@ button.sec{background:#fff;color:var(--text);border-color:var(--text)}
 button:focus-visible,input:focus-visible{outline:3px solid #ffdd00;outline-offset:2px;box-shadow:0 0 0 6px #0b0c0c}
 .barra{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:24px 0}
 .barra input[type=range]{flex:1;min-width:200px}
+.franja{height:56px;border-radius:4px;background:linear-gradient(90deg,var(--c1) 0%,var(--c2) var(--p),var(--c2) 100%)}
 pre{margin:0;padding:16px;background:#f6f6f6;border-radius:4px;font:500 15px/1.5 ui-monospace,monospace;overflow:auto}
 .copiado{color:#1a7f37;font-weight:600;min-height:1.5em}
-.fondo{display:flex;gap:8px;align-items:center}
 </style>
 </head>
 <body>
@@ -66,20 +67,21 @@ pre{margin:0;padding:16px;background:#f6f6f6;border-radius:4px;font:500 15px/1.5
 </div>
 <p class="contraste" style="margin-top:-8px">Tiempos clave: entrada 0–2,5 s · pausa con todo coloreado 2,5–2,6 s · salida 2,6–3,4 s. Mueve el control para verlo parado.</p>
 
-<h2 style="margin-top:32px">Colores</h2>
-<div class="panel">
-  <div class="color"><label for="h1">Color 1 · naranja (primeras letras)</label>
+<h2 style="margin-top:32px">Degradado (dos colores)</h2>
+<div class="franja" id="franja" role="img" aria-label="Muestra del degradado de dos colores"></div>
+<div class="panel" style="margin-top:24px">
+  <div class="color"><label for="h1">Color 1 · naranja (parada al 0 %)</label>
     <div class="fila"><input type="color" id="p1" value="#d4572b" aria-label="Selector del color 1"><input type="text" id="h1" value="#D4572B" maxlength="7"></div>
     <span class="contraste" id="k1"></span></div>
-  <div class="color"><label for="h2">Color 2 · melocotón (centro)</label>
+  <div class="color"><label for="h2">Color 2 · melocotón</label>
     <div class="fila"><input type="color" id="p2" value="#f2b36b" aria-label="Selector del color 2"><input type="text" id="h2" value="#F2B36B" maxlength="7"></div>
     <span class="contraste" id="k2"></span></div>
-  <div class="color"><label for="h3">Color 3 · coral (últimas letras)</label>
-    <div class="fila"><input type="color" id="p3" value="#e8788a" aria-label="Selector del color 3"><input type="text" id="h3" value="#E8788A" maxlength="7"></div>
-    <span class="contraste" id="k3"></span></div>
+  <div class="color"><label for="pos">Posición del color 2</label>
+    <div class="fila"><input type="range" id="pos" min="10" max="100" step="1" value="50" style="flex:1" aria-describedby="pos-val"><output id="pos-val" style="min-width:3ch;font-weight:600">50%</output></div>
+    <span class="contraste">Del 0 % al valor elegido va de un color al otro; después se mantiene el color 2.</span></div>
 </div>
 
-<h2 style="margin-top:32px">Para copiar a components.css</h2>
+<h2 style="margin-top:32px">Valores del degradado</h2>
 <pre id="css"></pre>
 <p style="display:flex;gap:12px;align-items:center;margin-top:12px"><button id="copiar" type="button">Copiar</button><span class="copiado" id="ok" role="status"></span></p>
 </main>
@@ -87,8 +89,8 @@ pre{margin:0;padding:16px;background:#f6f6f6;border-radius:4px;font:500 15px/1.5
 <script>
 const $ = (id) => document.getElementById(id);
 const nombre = $('nombre');
+const raiz = document.documentElement.style;
 const HEX = /^#[0-9a-f]{6}$/i;
-const nombres = ['naranja', 'melocotón', 'coral'];
 
 function luminancia(hex) {
   const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
@@ -101,20 +103,30 @@ function contraste(a, b) {
 }
 
 function aplicar() {
-  const v = [1, 2, 3].map((n) => $('h' + n).value.toUpperCase());
+  const v = [1, 2].map((n) => $('h' + n).value.toUpperCase());
+  const p = +$('pos').value;                 // posición del color 2 dentro del tramo coloreado (0–100 %)
+  const pos = (25 + 22 * p / 100).toFixed(2); // el tramo coloreado ocupa del 25 % al 47 % del degradado completo
+  raiz.setProperty('--c1', v[0]);
+  raiz.setProperty('--c2', v[1]);
+  raiz.setProperty('--pos', pos + '%');
+  raiz.setProperty('--p', p + '%');
+  $('pos-val').textContent = p + '%';
   v.forEach((hex, i) => {
-    document.documentElement.style.setProperty('--c' + (i + 1), hex);
     $('k' + (i + 1)).textContent = 'Contraste sobre blanco: ' + contraste(hex, '#ffffff').toFixed(1).replace('.', ',') + ':1';
   });
-  $('css').textContent = ['--intro-c1:' + v[0] + '; /* ' + nombres[0] + ' */', '--intro-c2:' + v[1] + '; /* ' + nombres[1] + ' */', '--intro-c3:' + v[2] + '; /* ' + nombres[2] + ' */'].join('\n');
+  $('css').textContent =
+    'Color 1 (0 %):  ' + v[0] + '\n' +
+    'Color 2 (' + p + ' %): ' + v[1] + '\n\n' +
+    'linear-gradient(90deg, var(--text) 0%, var(--text) 20%,\n  ' + v[0] + ' 25%, ' + v[1] + ' ' + pos + '%, ' + v[1] + ' 47%,\n  var(--text) 57%, var(--text) 100%)';
 }
 
-[1, 2, 3].forEach((n) => {
+[1, 2].forEach((n) => {
   $('p' + n).addEventListener('input', () => { $('h' + n).value = $('p' + n).value.toUpperCase(); aplicar(); });
   $('h' + n).addEventListener('input', () => {
     if (HEX.test($('h' + n).value)) { $('p' + n).value = $('h' + n).value.toLowerCase(); aplicar(); }
   });
 });
+$('pos').addEventListener('input', aplicar);
 
 function anim() { return nombre.getAnimations()[0]; }
 function repetir() {
