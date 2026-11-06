@@ -1,0 +1,210 @@
+---
+import Imagen from '../../components/Imagen.astro';
+// Caso de estudio: Portfolio de Arnau Larripa. Misma estructura que los demás casos (Planificador, eSBARD Edu, Buscador).
+// La portada se ve en la primera pantalla y no se difiere; el resto de imágenes se cargan al acercarse.
+import Base from '../../layouts/Base.astro';
+import ListaProyectos from '../../components/ListaProyectos.astro';
+import portada from '../../assets/portfolio-arnau-larripa/portada-home-escritorio.webp';
+import homeMovil from '../../assets/portfolio-arnau-larripa/home-movil.webp';
+import framer from '../../assets/portfolio-arnau-larripa/primera-version-home-framer.webp';
+import beige from '../../assets/portfolio-arnau-larripa/primera-version-claude-design-beige.webp';
+import tipografiaPaleta from '../../assets/portfolio-arnau-larripa/tipografia-paleta.webp';
+import componentes from '../../assets/portfolio-arnau-larripa/componentes-design-system.webp';
+import casoEstudio from '../../assets/portfolio-arnau-larripa/caso-estudio-escritorio.webp';
+import contactoEscritorio from '../../assets/portfolio-arnau-larripa/contacto-escritorio.webp';
+import contactoMovil from '../../assets/portfolio-arnau-larripa/contacto-movil.webp';
+import lighthouse from '../../assets/portfolio-arnau-larripa/lighthouse-home-movil.webp';
+---
+<Base
+  imagen="/og/og-portfolio-arnau-larripa.jpg"
+  imagenAlt="Caso de estudio: Portfolio de Arnau Larripa, por Arnau Larripa"
+  title="Case study: portfolio de Arnau Larripa"
+  description="Cómo se diseñó el portfolio de un Product Designer con Claude Design: dirección de arte, casos de estudio y el formulario de contacto del MVP."
+  actual="caso"
+>
+<main id="caso">
+
+<section class="ds-wrap ds-case-head" aria-labelledby="caso-titulo">
+<div class="ds-prose">
+<h1 id="caso-titulo" class="ds-case__title t-page-title-mobile">Portfolio de Arnau Larripa</h1>
+<p class="ds-case__subtitle t-statement">Diseñar mi propia web</p>
+<dl class="ds-meta">
+<div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="128" r="96"></circle><polyline points="128 72 128 128 184 128"></polyline></svg>Duración</dt><dd class="t-body is-key">Unas 3 semanas</dd></div>
+<div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="32" y="48" width="192" height="144" rx="8"></rect><line x1="160" y1="224" x2="96" y2="224"></line><line x1="32" y1="152" x2="224" y2="152"></line><line x1="128" y1="192" x2="128" y2="224"></line></svg>Herramientas</dt><dd class="t-body is-key">Claude Design, Claude Code</dd></div>
+<div class="ds-meta__item"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="216" x2="40" y2="56"></line><path d="M40,56H208L176,104L208,152H40"></path></svg>Estado</dt><dd class="t-body is-key"><span class="ds-status" aria-hidden="true"></span>MVP publicado (v1.0), con una versión 1.1 centrada en el contacto</dd></div>
+<div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product Designer: dirección de arte, diseño de interfaz, contenido y puesta en producción</dd></div>
+</dl>
+</div>
+<div class="ds-pair">
+<figure class="ds-figure ds-cover">
+<Imagen class="ds-sheet" src={portada} alt="Home del portfolio en escritorio, con el nombre y «Product Designer» en tipografía grande, un botón de contacto y el listado de trabajo seleccionado." loading="eager" />
+<figcaption class="t-meta">La home del portfolio en escritorio.</figcaption>
+</figure>
+<div class="ds-pair ds-pair--side">
+<figure class="ds-figure">
+<Imagen class="ds-sheet" src={homeMovil} alt="Home del portfolio en móvil, con el mismo contenido en una sola columna." loading="lazy" tamano="pequena" />
+<figcaption class="t-meta">La misma home en móvil.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section class="ds-wrap ds-case-section" aria-labelledby="contexto">
+<h2 id="contexto" class="ds-section-title t-section-title-mobile">Contexto y reto</h2>
+<div class="ds-prose">
+<p>Un portfolio es el primer proyecto que un diseñador enseña sin que nadie se lo haya encargado y, a la vez, el único en el que no hay un cliente que ponga límites. Partía de una versión empezada en Framer y decidí rehacerla desde cero, diseñándola con Claude Design y llevándola después a código con Claude Code.</p>
+</div>
+<figure class="ds-figure ds-figure--text">
+<Imagen class="ds-sheet" src={framer} alt="Versión anterior del portfolio, hecha en Framer: foto de perfil, presentación en texto, enlaces a redes y tres imágenes de proyectos." loading="lazy" />
+<figcaption class="t-meta">El punto de partida: la versión hecha en Framer.</figcaption>
+</figure>
+<div class="ds-prose">
+<p>El reto era que quien llegara a la web (recruiters, equipos de producto, otros diseñadores) entendiera en pocos minutos cómo trabajo y cómo pienso. Y conseguirlo con una sola persona a cargo de todo: la visión, el diseño, el contenido y la puesta en producción.</p>
+</div>
+</section>
+
+<section class="ds-wrap ds-case-section" aria-labelledby="objetivos">
+<h2 id="objetivos" class="ds-section-title t-section-title-mobile">Objetivos</h2>
+<div class="ds-prose">
+<ul>
+<li>Presentar el trabajo con claridad, con casos de estudio fáciles de leer y de recorrer.</li>
+<li>Transmitir una forma de diseñar: cuidada, consistente y accesible desde el primer día.</li>
+<li>Mostrar también la dirección de arte, una parte que los otros casos de estudio apenas cubren.</li>
+<li>Salir con un MVP sólido: el portfolio con sus casos de estudio y un contacto que funcione bien.</li>
+</ul>
+</div>
+</section>
+
+<section class="ds-wrap ds-case-section" aria-labelledby="proceso">
+<h2 id="proceso" class="ds-section-title t-section-title-mobile">Proceso</h2>
+<ol class="ds-steps">
+
+<li class="ds-step">
+<div class="ds-prose">
+<h3 class="ds-step__head"><span class="ds-step__num t-meta">1</span><span class="ds-step__title t-subhead">Partir de una visión clara</span></h3>
+<p>Antes de abrir ninguna herramienta, la dirección estaba definida: a quién se dirige el portfolio, qué tono transmitir y qué enseñar y qué dejar fuera. La idea era una web pequeña, minimalista y cálida, con un punto más formal que las referencias que gustaban, y con prioridades concretas: consistencia, accesibilidad y usabilidad por encima de cualquier efecto.</p>
+<p>En la marca, la decisión fue presentarse como Product Designer y usar «Arnau Larripa» como nombre en toda la web.</p>
+</div>
+
+</li>
+<li class="ds-step">
+<div class="ds-prose">
+<h3 class="ds-step__head"><span class="ds-step__num t-meta">2</span><span class="ds-step__title t-subhead">Una primera versión que no me representaba</span></h3>
+<p>La primera versión que diseñé con Claude Design era cálida: fondo beige, acento verde oliva y una tipografía con serifa en el titular de la portada. No terminaba de convencerme: no me sentía representado por lo que se estaba diseñando, y por eso hice un cambio bastante radical de la dirección de arte.</p>
+</div>
+<figure class="ds-figure ds-figure--text">
+<Imagen class="ds-sheet" src={beige} alt="Primera versión del portfolio diseñada con Claude Design: fondo beige, titular con serifa y acento verde oliva, botón de contacto, tres proyectos y testimonios." loading="lazy" />
+<figcaption class="t-meta">La primera versión diseñada con Claude Design, en beige y verde oliva.</figcaption>
+</figure>
+</li>
+<li class="ds-step">
+<div class="ds-prose">
+<h3 class="ds-step__head"><span class="ds-step__num t-meta">3</span><span class="ds-step__title t-subhead">Estilo suizo, tipografía y color</span></h3>
+<p>Los otros casos de estudio tienen un trabajo amplio de usabilidad, pero poca dirección de arte. Este permite explicarla.</p>
+<p>El estilo es suizo y tipográfico: una retícula clara, mucho espacio en blanco y una jerarquía construida casi solo con la tipografía (tamaños, pesos y espacios), sin depender de adornos. Encaja con lo que se quería transmitir, que es orden, claridad y un punto formal, y deja el protagonismo a los casos de estudio.</p>
+<p>En un estilo así, la tipografía hace casi todo el trabajo. La elegida es Inter Tight, por su buena legibilidad desde el primer vistazo y porque encajaba con el estilo buscado, gracias a su espaciado entre letras más ajustado. Para conocer mejor su origen, hay una <a class="ds-link" href="https://www.figma.com/blog/the-birth-of-inter/" target="_blank" rel="noopener" aria-label="entrevista a Rasmus Andersson, creador de Inter, sobre su nacimiento (se abre en una pestaña nueva)">entrevista a Rasmus Andersson, creador de Inter, sobre su nacimiento</a>.</p>
+<p>Para el color, una base neutra y clara con un único acento terracota, escogido porque se buscaba un color que representara el deporte, la salud, los estilos de vida y la naturaleza. Al ser el único color, además, sirve para guiar la vista hacia lo importante: enlaces, acciones y elementos activos.</p>
+</div>
+<figure class="ds-figure ds-figure--text">
+<Imagen class="ds-sheet" src={tipografiaPaleta} alt="Muestra de la tipografía Inter Tight en su jerarquía real y paleta del design system con el valor y el contraste de cada color." loading="lazy" />
+<figcaption class="t-meta">Inter Tight en su jerarquía real y la paleta con el contraste de cada color. El amarillo de foco no se usa solo: va siempre con un borde o subrayado negro.</figcaption>
+</figure>
+</li>
+<li class="ds-step">
+<div class="ds-prose">
+<h3 class="ds-step__head"><span class="ds-step__num t-meta">4</span><span class="ds-step__title t-subhead">Un design system para tener consistencia</span></h3>
+<p>Antes de dibujar pantallas definí un design system mínimo: tipografía, una escala de tamaños, una paleta corta y unas reglas de espaciado. Sirve para tener consistencia en todo el portfolio.</p>
+<p>También puse el foco en la accesibilidad, comprobando los contrastes, y creé una serie de componentes básicos, como botones, enlaces y tags, con la idea de hacer crecer el sistema a medida que las necesidades lo vayan pidiendo.</p>
+</div>
+<figure class="ds-figure ds-figure--text">
+<Imagen class="ds-sheet" src={componentes} alt="Botones, enlace y tags del design system en reposo, hover y foco de teclado; el foco se marca en amarillo con borde negro." loading="lazy" />
+<figcaption class="t-meta">Los componentes básicos en sus estados de reposo, hover y foco. El foco se marca en amarillo con un borde o subrayado negro, que es lo que aporta el contraste.</figcaption>
+</figure>
+</li>
+<li class="ds-step">
+<div class="ds-prose">
+<h3 class="ds-step__head"><span class="ds-step__num t-meta">5</span><span class="ds-step__title t-subhead">Dirigir la herramienta en el diseño</span></h3>
+<p>Claude Design propone, pero no sabe hacia dónde quiero llevar el portfolio, ya que el foco y la dirección están en mi idea y concepto del proyecto. Por eso el trabajo no consistió en pedir y aceptar: pedía modificaciones de forma activa y corregía el rumbo cuando una propuesta no encajaba.</p>
+<p>Por ejemplo, la web se llenó de separadores y decidí reducirlos al mínimo: es un recurso que me gusta, pero quería reservarlo para momentos concretos.</p>
+<p>Con la numeración tipo 01, 02 en los apartados ocurrió algo distinto. Un compañero de diseño me hizo ver que es un recurso muy evidente y muy asociado a los asistentes de IA, y después encontré un par de portfolios que decían estar hechos con Claude y también la llevaban. Decidí quitarla: fue aplicar el feedback de un compañero.</p>
+<p>La herramienta aportaba rapidez para explorar, y yo asumía la responsabilidad de qué se queda y qué no.</p>
+</div>
+
+</li>
+<li class="ds-step">
+<div class="ds-prose">
+<h3 class="ds-step__head"><span class="ds-step__num t-meta">6</span><span class="ds-step__title t-subhead">Los casos de estudio</span></h3>
+<p>Los casos de estudio tienen un peso jerárquico muy importante dentro del portfolio de un diseñador, porque es donde se enseña el trabajo realizado. Por eso cuidé especialmente las explicaciones y los textos.</p>
+</div>
+<figure class="ds-figure ds-figure--text">
+<Imagen class="ds-sheet" src={casoEstudio} alt="Inicio de la página de un caso de estudio (eSBARD Edu) en escritorio: título, subtítulo, ficha de datos, imagen de portada y bloque de resumen." loading="lazy" />
+<figcaption class="t-meta">Página de un caso de estudio en escritorio.</figcaption>
+</figure>
+<div class="ds-prose">
+<p>Para ello creé dos skills, es decir, instrucciones reutilizables para Claude: una para definir el tono y otra para la redacción y la revisión de los textos. Aun así, repasé los textos en todo momento, hice modificaciones de forma activa y dejé siempre un último repaso antes de aprobar todos los textos e imágenes de cada caso de estudio.</p>
+</div>
+</li>
+<li class="ds-step">
+<div class="ds-prose">
+<h3 class="ds-step__head"><span class="ds-step__num t-meta">7</span><span class="ds-step__title t-subhead">Delegar la parte técnica</span></h3>
+<p>La parte técnica, tanto el backend como el código del front, la delegué en Claude Code. Es un terreno que desconozco: sé interpretar HTML y CSS, pero hay una parte técnica muy amplia, como el alojamiento o los dominios, que no domino. No tenía sentido asumir un papel tan activo como en el diseño, porque no es mi campo. Como mucho, repasaba algo de código.</p>
+</div>
+
+</li>
+</ol>
+</section>
+
+<section class="ds-wrap ds-case-section" aria-labelledby="contacto">
+<div class="ds-block">
+<h2 id="contacto" class="ds-section-title t-section-title-mobile">Una decisión de diseño: el contacto</h2>
+<div class="ds-prose">
+<p>Mientras probaba la web, el botón de contacto me molestó especialmente: abría el correo por defecto del dispositivo, algo que no me gusta nada encontrarme en otras páginas. Era importante publicar el portfolio con esto resuelto, así que hice un sprint rápido, una versión 1.1, solo para solucionarlo.</p>
+<p>La parte de diseño fue rápida. El botón de contacto sigue en su sitio, pero ahora abre una modal que se despliega por la derecha en escritorio y como bottom sheet, un panel que sube desde la parte inferior, en móvil. Dentro hay un formulario con nombre, correo y mensaje, y lo que se escribe llega directamente a la bandeja de entrada. Con el design system y sus componentes ya desarrollados, fue sobre todo trabajo visual y de usabilidad. Decidí no admitir adjuntos ni enlaces, para no abrir la puerta a archivos o enlaces maliciosos.</p>
+</div>
+<figure class="ds-figure">
+<Imagen class="ds-sheet" src={contactoEscritorio} alt="Modal de contacto abierta por la derecha sobre la home, con los campos Nombre, Email y Mensaje y el botón Enviar mensaje." loading="lazy" />
+<figcaption class="t-meta">La modal de contacto en escritorio, desplegada por la derecha.</figcaption>
+</figure>
+<div class="ds-pair ds-pair--side">
+<figure class="ds-figure">
+<Imagen class="ds-sheet" src={contactoMovil} alt="Modal de contacto como bottom sheet en móvil, con los campos Nombre, Email y Mensaje y el botón Enviar mensaje." loading="lazy" tamano="pequena" />
+<figcaption class="t-meta">La misma modal en móvil, como bottom sheet.</figcaption>
+</figure>
+</div>
+<div class="ds-prose">
+<p>Lo que más tiempo llevó fue lo que no se ve: el desarrollo del backend para poder recibir y enviar correos desde una dirección propia. Mi perfil es el de diseñador, así que esa parte la delegué en Claude, supervisando cada paso y preguntando siempre que tenía dudas.</p>
+</div>
+</div>
+</section>
+
+<section class="ds-wrap ds-case-section" aria-labelledby="resultados">
+<h2 id="resultados" class="ds-section-title t-section-title-mobile">Resultados</h2>
+<div class="ds-prose">
+<p>El MVP está en producción: el portfolio con sus casos de estudio y un contacto que funciona como se quería.</p>
+<p>Para comprobar el rendimiento y la accesibilidad se hizo una auditoría con Lighthouse, la herramienta de Google, sobre la web publicada, en móvil y en escritorio, en la home, en Trabajo, en Sobre mí y en un caso de estudio. Con tres ejecuciones por combinación, la mediana es de 100 en rendimiento, accesibilidad, buenas prácticas y SEO en las ocho. En móvil, el elemento principal de la home y del caso de estudio tarda entre 1,1 y 1,3 segundos en aparecer, y en escritorio entre 0,3 y 0,5. Según los <a class="ds-link" href="https://web.dev/articles/defining-core-web-vitals-thresholds" target="_blank" rel="noopener" aria-label="umbrales de Core Web Vitals (se abre en una pestaña nueva)">umbrales de Core Web Vitals</a>, un tiempo de hasta 2,5 segundos se considera bueno, así que el resultado queda en torno a la mitad del límite incluso en móvil, que es la simulación más exigente. Tampoco hay saltos de maquetación (0, cuando hasta 0,1 se considera bueno) y el bloqueo durante la carga es prácticamente nulo.</p>
+</div>
+<figure class="ds-figure ds-figure--text">
+<Imagen class="ds-sheet" src={lighthouse} alt="Gráfico con las cuatro puntuaciones de Lighthouse de la home en móvil (rendimiento, accesibilidad, buenas prácticas y SEO, todas en 100) y tres métricas: elemento principal en 1,1 segundos, sin saltos de maquetación (0) y bloqueo durante la carga de 0 milisegundos." loading="lazy" />
+<figcaption class="t-meta">Resultado de Lighthouse en la home publicada, en móvil.</figcaption>
+</figure>
+<div class="ds-prose">
+<p>Son mediciones de laboratorio, con el móvil simulado, y una puntuación de accesibilidad de 100 no sustituye una revisión manual con teclado y lector de pantalla. Es un MVP: hay otras cosas que se han quedado fuera por ahora y llegarán poco a poco.</p>
+</div>
+</section>
+
+<section class="ds-wrap ds-case-section" aria-labelledby="aprendizajes">
+<h2 id="aprendizajes" class="ds-section-title t-section-title-mobile">Qué me llevo</h2>
+<div class="ds-prose">
+<p>Un gran aprendizaje en el uso de Claude. Hasta ahora solo lo había usado en la parte de diseño, y aquí lo he usado también en la parte técnica, con Claude Code.</p>
+<p>También, avanzar muy rápido con las herramientas actuales y ver de cerca cómo se está transformando el oficio de diseñador, en concreto el de Product Designer.</p>
+<p>Y ver algo de luz en el futuro. Con la IA, tanto diseñadores como desarrolladores no sabemos cómo evolucionará nuestro oficio, pero estas herramientas me han hecho ver que podemos aumentar mucho nuestra velocidad y abarcar muchos más ámbitos. Eso sí, siempre hace falta alguien detrás que supervise: alguien que delegue con conocimiento y tenga claros el foco y los objetivos.</p>
+</div>
+</section>
+
+<section class="ds-wrap ds-case-section" aria-labelledby="mas">
+<h2 id="mas" class="ds-section-title t-section-title-mobile">Más proyectos</h2>
+<ListaProyectos actual="/trabajo/portfolio-arnau-larripa/" />
+</section>
+
+</main>
+</Base>

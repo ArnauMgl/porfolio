@@ -104,6 +104,8 @@
 .ds-proj__thumb{margin-top:var(--space-4);border-radius:var(--radius);overflow:hidden;background:var(--accent-tint);aspect-ratio:16/10;transition:box-shadow var(--duration-base) ease}
 .ds-proj__thumb > *{display:block;width:100%;height:100%;object-fit:cover;transition:transform var(--duration-slow) cubic-bezier(0.25,0.1,0.25,1),filter var(--duration-slow) ease}
 .ds-proj:hover .ds-proj__thumb > *,.ds-proj.is-hover .ds-proj__thumb > *{transform:scale(1.03)}
+/* Miniatura con borde sutil (para imágenes de fondo blanco que se confunden con la página). El contorno va por dentro y no lo recorta el overflow */
+.ds-proj__thumb--borde{outline:1px solid var(--line);outline-offset:-1px}
 .ds-proj:hover .ds-proj__title span,.ds-proj.is-hover .ds-proj__title span{text-decoration-line:underline}
 .ds-proj:hover .ds-proj__arrow,.ds-proj.is-hover .ds-proj__arrow{transform:translate(2px,-2px)}
 .ds-proj:active .ds-proj__thumb > *,.ds-proj.is-pressed .ds-proj__thumb > *{filter:brightness(0.9)}
@@ -151,6 +153,9 @@
 .ds-meta dd.is-key{font-size:20px;line-height:1.25;font-weight:600;letter-spacing:-0.02em}
 .ds-meta .ds-pending{display:block;margin-top:var(--space-1);font-size:15px;line-height:1.4;font-weight:500;letter-spacing:0}
 .ds-status{display:inline-block;vertical-align:.1em;width:10px;height:10px;box-sizing:border-box;margin-right:var(--space-1);border-radius:50%;background:var(--accent)}
+/* Si el estado ocupa varias líneas, todas quedan alineadas a la derecha de la viñeta (antes la segunda línea volvía debajo de ella) */
+.ds-meta dd:has(> .ds-status){position:relative;padding-left:calc(10px + var(--space-1))}
+.ds-meta dd > .ds-status{position:absolute;left:0;top:calc((1.25em - 10px) / 2);margin-right:0;vertical-align:baseline}
 .ds-cover{margin-top:var(--space-8)}
 /* Subtítulo de la cabecera de «Trabajo» (era un estilo en línea) */
 .ds-hero .ds-case__subtitle{margin-top:var(--space-3)}

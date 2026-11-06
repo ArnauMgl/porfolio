@@ -19,7 +19,7 @@ const Titulo = nivelTitulo;
 <div class="ds-proj__main"><Titulo class="ds-proj__title t-project-title-mobile"><span>{p.titulo}</span></Titulo><p class="ds-proj__desc t-body">{p.desc}</p><ul class="ds-proj__tags" aria-label="Sector y estado">{p.etiquetas.map((e) => <li class="ds-label-tag t-meta">{e}</li>)}{p.href === actual && <li><span class="ds-tag t-meta">Estás aquí</span></li>}</ul></div>
 <svg class="ds-proj__arrow" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg>
 </div>
-<div class="ds-proj__thumb">
+<div class:list={['ds-proj__thumb', { 'ds-proj__thumb--borde': p.borde }]}>
 <Imagen src={p.img} alt="" tamano={indice ? 'miniatura' : 'columna'} loading={primeraEager && i === 0 ? 'eager' : 'lazy'} />
 </div>
 </a>
