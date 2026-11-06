@@ -13,6 +13,7 @@ import componentes from '../../assets/portfolio-arnau-larripa/componentes-design
 import casoEstudio from '../../assets/portfolio-arnau-larripa/caso-estudio-escritorio.webp';
 import contactoEscritorio from '../../assets/portfolio-arnau-larripa/contacto-escritorio.webp';
 import contactoMovil from '../../assets/portfolio-arnau-larripa/contacto-movil.webp';
+import lighthouse from '../../assets/portfolio-arnau-larripa/lighthouse-home-movil.webp';
 ---
 <Base
   imagen="/og/og-portfolio-arnau-larripa.jpg"
@@ -92,7 +93,7 @@ import contactoMovil from '../../assets/portfolio-arnau-larripa/contacto-movil.w
 <p>La primera versión que diseñé con Claude Design era cálida: fondo beige, acento verde oliva y una tipografía con serifa en el titular de la portada. No terminaba de convencerme: no me sentía representado por lo que se estaba diseñando, y por eso hice un cambio bastante radical de la dirección de arte.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<Imagen src={beige} alt="Primera versión del portfolio diseñada con Claude Design: fondo beige, titular con serifa y acento verde oliva, botón de contacto, tres proyectos y testimonios." loading="lazy" />
+<Imagen class="ds-sheet" src={beige} alt="Primera versión del portfolio diseñada con Claude Design: fondo beige, titular con serifa y acento verde oliva, botón de contacto, tres proyectos y testimonios." loading="lazy" />
 <figcaption class="t-meta">La primera versión diseñada con Claude Design, en beige y verde oliva.</figcaption>
 </figure>
 </li>
@@ -136,7 +137,7 @@ import contactoMovil from '../../assets/portfolio-arnau-larripa/contacto-movil.w
 <p>Los casos de estudio tienen un peso jerárquico muy importante dentro del portfolio de un diseñador, porque es donde se enseña el trabajo realizado. Por eso cuidé especialmente las explicaciones y los textos.</p>
 </div>
 <figure class="ds-figure ds-figure--text">
-<Imagen class="ds-sheet" src={casoEstudio} alt="Página de un caso de estudio (eSBARD Edu) en escritorio, con resumen, contexto, reto, momentos clave, solución, aprendizajes y más proyectos." loading="lazy" />
+<Imagen class="ds-sheet" src={casoEstudio} alt="Inicio de la página de un caso de estudio (eSBARD Edu) en escritorio: título, subtítulo, ficha de datos, imagen de portada y bloque de resumen." loading="lazy" />
 <figcaption class="t-meta">Página de un caso de estudio en escritorio.</figcaption>
 </figure>
 <div class="ds-prose">
@@ -161,12 +162,12 @@ import contactoMovil from '../../assets/portfolio-arnau-larripa/contacto-movil.w
 <p>La parte de diseño fue rápida. El botón de contacto sigue en su sitio, pero ahora abre una modal que se despliega por la derecha en escritorio y como bottom sheet, un panel que sube desde la parte inferior, en móvil. Dentro hay un formulario con nombre, correo y mensaje, y lo que se escribe llega directamente a la bandeja de entrada. Con el design system y sus componentes ya desarrollados, fue sobre todo trabajo visual y de usabilidad. Decidí no admitir adjuntos ni enlaces, para no abrir la puerta a archivos o enlaces maliciosos.</p>
 </div>
 <figure class="ds-figure">
-<Imagen src={contactoEscritorio} alt="Modal de contacto abierta por la derecha sobre la home, con los campos Nombre, Email y Mensaje y el botón Enviar mensaje." loading="lazy" />
+<Imagen class="ds-sheet" src={contactoEscritorio} alt="Modal de contacto abierta por la derecha sobre la home, con los campos Nombre, Email y Mensaje y el botón Enviar mensaje." loading="lazy" />
 <figcaption class="t-meta">La modal de contacto en escritorio, desplegada por la derecha.</figcaption>
 </figure>
 <div class="ds-pair ds-pair--side">
 <figure class="ds-figure">
-<Imagen src={contactoMovil} alt="Modal de contacto como bottom sheet en móvil, con los campos Nombre, Email y Mensaje y el botón Enviar mensaje." loading="lazy" tamano="pequena" />
+<Imagen class="ds-sheet" src={contactoMovil} alt="Modal de contacto como bottom sheet en móvil, con los campos Nombre, Email y Mensaje y el botón Enviar mensaje." loading="lazy" tamano="pequena" />
 <figcaption class="t-meta">La misma modal en móvil, como bottom sheet.</figcaption>
 </figure>
 </div>
@@ -181,6 +182,12 @@ import contactoMovil from '../../assets/portfolio-arnau-larripa/contacto-movil.w
 <div class="ds-prose">
 <p>El MVP está en producción: el portfolio con sus casos de estudio y un contacto que funciona como se quería.</p>
 <p>Para comprobar el rendimiento y la accesibilidad se hizo una auditoría con Lighthouse, la herramienta de Google, sobre la web publicada, en móvil y en escritorio, en la home, en Trabajo, en Sobre mí y en un caso de estudio. Con tres ejecuciones por combinación, la mediana es de 100 en rendimiento, accesibilidad, buenas prácticas y SEO en las ocho. En móvil, el elemento principal de la home y del caso de estudio tarda entre 1,1 y 1,3 segundos en aparecer, y en escritorio entre 0,3 y 0,5. Según los <a class="ds-link" href="https://web.dev/articles/defining-core-web-vitals-thresholds" target="_blank" rel="noopener" aria-label="umbrales de Core Web Vitals (se abre en una pestaña nueva)">umbrales de Core Web Vitals</a>, un tiempo de hasta 2,5 segundos se considera bueno, así que el resultado queda en torno a la mitad del límite incluso en móvil, que es la simulación más exigente. Tampoco hay saltos de maquetación (0, cuando hasta 0,1 se considera bueno) y el bloqueo durante la carga es prácticamente nulo.</p>
+</div>
+<figure class="ds-figure ds-figure--text">
+<Imagen class="ds-sheet" src={lighthouse} alt="Gráfico con las cuatro puntuaciones de Lighthouse de la home en móvil (rendimiento, accesibilidad, buenas prácticas y SEO, todas en 100) y tres métricas: elemento principal en 1,1 segundos, sin saltos de maquetación (0) y bloqueo durante la carga de 0 milisegundos." loading="lazy" />
+<figcaption class="t-meta">Resultado de Lighthouse en la home publicada, en móvil.</figcaption>
+</figure>
+<div class="ds-prose">
 <p>Son mediciones de laboratorio, con el móvil simulado, y una puntuación de accesibilidad de 100 no sustituye una revisión manual con teclado y lector de pantalla. Es un MVP: hay otras cosas que se han quedado fuera por ahora y llegarán poco a poco.</p>
 </div>
 </section>
