@@ -104,8 +104,10 @@
 .ds-proj__thumb{margin-top:var(--space-4);border-radius:var(--radius);overflow:hidden;background:var(--accent-tint);aspect-ratio:16/10;transition:box-shadow var(--duration-base) ease}
 .ds-proj__thumb > *{display:block;width:100%;height:100%;object-fit:cover;transition:transform var(--duration-slow) cubic-bezier(0.25,0.1,0.25,1),filter var(--duration-slow) ease}
 .ds-proj:hover .ds-proj__thumb > *,.ds-proj.is-hover .ds-proj__thumb > *{transform:scale(1.03)}
-/* Miniatura con borde sutil (para imágenes de fondo blanco que se confunden con la página). El contorno va por dentro y no lo recorta el overflow */
-.ds-proj__thumb--borde{outline:1px solid var(--line);outline-offset:-1px}
+/* Miniatura con borde sutil (para imágenes de fondo blanco que se confunden con la página).
+   El borde es una capa por encima de la imagen: así no se pierde cuando la imagen se amplía al pasar el ratón. */
+.ds-proj__thumb--borde{position:relative}
+.ds-proj__thumb--borde::after{content:"";position:absolute;inset:0;box-sizing:border-box;border:1px solid var(--line);border-radius:inherit;pointer-events:none}
 .ds-proj:hover .ds-proj__title span,.ds-proj.is-hover .ds-proj__title span{text-decoration-line:underline}
 .ds-proj:hover .ds-proj__arrow,.ds-proj.is-hover .ds-proj__arrow{transform:translate(2px,-2px)}
 .ds-proj:active .ds-proj__thumb > *,.ds-proj.is-pressed .ds-proj__thumb > *{filter:brightness(0.9)}
