@@ -19,6 +19,7 @@ Cada rama tiene además su propia vista previa en `https://<nombre-de-rama>.arna
 - Comando de construcción: `npm run build`
 - Carpeta de salida: `dist`
 - Versión de Node: 22 (ver `.nvmrc`)
+- Páginas que no existen: `src/pages/404.astro` genera `dist/404.html`. Con ese archivo en la raíz, Cloudflare Pages devuelve un 404 real (sin él, serviría la home con código 200). No hace falta configurar nada más. La página lleva `noindex`.
 
 ## Verlo en tu ordenador (opcional)
 
