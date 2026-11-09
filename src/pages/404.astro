@@ -1,0 +1,18 @@
+---
+// Página de error 404. Cloudflare Pages la sirve con código 404 para cualquier ruta que no existe
+// (al haber un 404.html en la raíz del build deja de tratar la web como una SPA).
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Página no encontrada · Arnau Larripa"
+  description="Esta página no existe o ha cambiado de sitio. Vuelve al inicio para ver el trabajo de Arnau Larripa, Product Designer en Barcelona."
+  noindex
+>
+<main id="error-404">
+<section class="ds-wrap ds-hero" aria-labelledby="titular">
+<h1 id="titular" class="ds-case__title t-page-title-mobile">Esta página no existe<span class="ds-dot">.</span></h1>
+<p class="ds-case__subtitle t-statement">Puede que el enlace esté mal escrito o que la página haya cambiado de sitio.</p>
+<p><a class="ds-btn t-button" href="/">Volver al inicio</a></p>
+</section>
+</main>
+</Base>
