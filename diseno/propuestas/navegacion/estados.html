@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Estados de la navegación</title>
+<link rel="stylesheet" href="fuentes.css"><link rel="stylesheet" href="../../../src/styles/tokens.css"><link rel="stylesheet" href="../../../src/styles/components.css"><link rel="stylesheet" href="nav.css">
+<style>
+body{margin:0;padding:40px;background:#fff;font-family:var(--font-sans);color:var(--text)}
+h1{font-size:32px;letter-spacing:-.03em;margin:0 0 4px}
+.sub{color:var(--text-secondary);margin:0 0 32px;font-size:16px}
+.grid{display:grid;grid-template-columns:200px repeat(5,1fr);border-top:2px solid var(--line-strong);max-width:1280px}
+.grid>div{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;min-height:72px}
+.grid .h{min-height:auto;font-size:14px;font-weight:600;color:var(--text-secondary);padding-top:16px;padding-bottom:8px}
+.grid .r{font-size:15px;font-weight:600}
+.grid .r small{display:block;font-weight:500;color:var(--text-secondary);font-size:13px}
+.ds-menu-btn{display:inline-flex !important}
+.grid .r{display:block}
+.na{color:var(--disabled-text);font-size:14px}
+.cell-m{display:block;padding-top:0;padding-bottom:0}
+.cell-m .ds-menu__link{min-height:56px}
+.cell-m .ds-menu__link[aria-current="page"]{}
+.ds-menu__lang{border-top:0;padding:0;width:100%}.ds-menu__lang-row{width:100%}
+</style></head><body>
+<h1>Estados de interacción · navegación</h1>
+<p class="sub">Reposo, hover, pulsado, foco con teclado y «actual». Mismos patrones que el sistema de diseño (foco amarillo con subrayado negro; terracota solo como acento).</p>
+<div class="grid">
+<div class="h"></div><div class="h">Reposo</div><div class="h">Hover</div><div class="h">Pulsado</div><div class="h">Foco (teclado)</div><div class="h">Actual</div>
+
+<div class="r">Nombre<small>enlace a la home</small></div>
+<div><a class="ds-logo t-nav-strong" href="#">Arnau Larripa</a></div>
+<div><a class="ds-logo t-nav-strong is-hover" href="#">Arnau Larripa</a></div>
+<div><a class="ds-logo t-nav-strong is-pressed" href="#" style="color:var(--accent-pressed)">Arnau Larripa</a></div>
+<div><a class="ds-logo t-nav-strong is-focus" href="#">Arnau Larripa</a></div>
+<div class="na">—</div>
+
+<div class="r">Enlace principal<small>Trabajo · Sobre mí · Blog</small></div>
+<div><a class="ds-nav t-nav" href="#">Sobre mí</a></div>
+<div><a class="ds-nav t-nav is-hover" href="#">Sobre mí</a></div>
+<div><a class="ds-nav t-nav is-pressed" href="#">Sobre mí</a></div>
+<div><a class="ds-nav t-nav is-focus" href="#">Sobre mí</a></div>
+<div><a class="ds-nav t-nav" href="#" aria-current="page">Trabajo</a></div>
+
+<div class="r">Lab.<small>derecha, escritorio</small></div>
+<div><a class="ds-nav ds-lab t-nav" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></div>
+<div><a class="ds-nav ds-lab t-nav is-hover" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></div>
+<div><a class="ds-nav ds-lab t-nav is-pressed" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></div>
+<div><a class="ds-nav ds-lab t-nav is-focus" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></div>
+<div class="na">Por decidir</div>
+
+<div class="r">Idioma: botón<small>escritorio · «actual» = abierto</small></div><div><button class="ds-nav ds-lang__btn t-nav " aria-expanded="false">ES<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"><polyline points="48 96 128 176 208 96"/></svg></button></div><div><button class="ds-nav ds-lang__btn t-nav is-hover" aria-expanded="false">ES<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"><polyline points="48 96 128 176 208 96"/></svg></button></div><div><button class="ds-nav ds-lang__btn t-nav is-pressed" aria-expanded="false">ES<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"><polyline points="48 96 128 176 208 96"/></svg></button></div><div><button class="ds-nav ds-lang__btn t-nav is-focus" aria-expanded="false">ES<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"><polyline points="48 96 128 176 208 96"/></svg></button></div><div><button class="ds-nav ds-lang__btn t-nav " aria-expanded="true">ES<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"><polyline points="48 96 128 176 208 96"/></svg></button></div><div class="r">Idioma: opción<small>dentro del desplegable</small></div><div><a class="ds-lang__item " href="#" style="width:72px;border:1px solid var(--line)">CA</a></div><div><a class="ds-lang__item is-hover" href="#" style="width:72px;border:1px solid var(--line)">CA</a></div><div><a class="ds-lang__item is-pressed" href="#" style="width:72px;border:1px solid var(--line)">CA</a></div><div><a class="ds-lang__item is-focus" href="#" style="width:72px;border:1px solid var(--line)">CA</a></div><div><a class="ds-lang__item " href="#" style="width:72px;border:1px solid var(--line)" aria-current="true">ES</a></div><div class="r">Lab.<small>menú móvil</small></div><div class="cell-m"><span class="ds-menu__lab" style="display:block;border:0"><a class="ds-menu__link " href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></span></div><div class="cell-m"><span class="ds-menu__lab" style="display:block;border:0"><a class="ds-menu__link is-hover" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></span></div><div class="cell-m"><span class="ds-menu__lab" style="display:block;border:0"><a class="ds-menu__link is-pressed" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></span></div><div class="cell-m"><span class="ds-menu__lab" style="display:block;border:0"><a class="ds-menu__link is-focus" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></span></div><div class="na">Por decidir</div><div class="r">Botón hamburguesa<small>móvil y tableta · «actual» = abierto</small></div>
+<div><button class="ds-menu-btn" style="margin:0" aria-label="Menú"><svg class="burger" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"><line x1="40" y1="80" x2="216" y2="80"/><line x1="40" y1="128" x2="216" y2="128"/><line x1="40" y1="176" x2="216" y2="176"/></svg></button></div>
+<div><button class="ds-menu-btn is-hover" style="margin:0" aria-label="Menú"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"><line x1="40" y1="80" x2="216" y2="80"/><line x1="40" y1="128" x2="216" y2="128"/><line x1="40" y1="176" x2="216" y2="176"/></svg></button></div>
+<div><button class="ds-menu-btn is-pressed" style="margin:0" aria-label="Menú"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"><line x1="40" y1="80" x2="216" y2="80"/><line x1="40" y1="128" x2="216" y2="128"/><line x1="40" y1="176" x2="216" y2="176"/></svg></button></div>
+<div><button class="ds-menu-btn is-focus" style="margin:0" aria-label="Menú"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round"><line x1="40" y1="80" x2="216" y2="80"/><line x1="40" y1="128" x2="216" y2="128"/><line x1="40" y1="176" x2="216" y2="176"/></svg></button></div>
+<div><button class="ds-menu-btn" style="margin:0" aria-label="Cerrar menú" aria-expanded="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" style="display:block"><line x1="56" y1="56" x2="200" y2="200"/><line x1="200" y1="56" x2="56" y2="200"/></svg></button></div>
+
+<div class="r">Elemento del menú<small>móvil</small></div>
+<div class="cell-m"><a class="ds-menu__link" href="#">Sobre mí</a></div>
+<div class="cell-m"><a class="ds-menu__link is-hover" href="#">Sobre mí</a></div>
+<div class="cell-m"><a class="ds-menu__link is-pressed" href="#">Sobre mí</a></div>
+<div class="cell-m"><a class="ds-menu__link is-focus" href="#">Sobre mí</a></div>
+<div class="cell-m"><a class="ds-menu__link" href="#" aria-current="page">Trabajo</a></div>
+
+<div class="r">Idioma<small>móvil</small></div><div><nav class="ds-menu__lang"><ul class="ds-menu__lang-row" style="grid-template-columns:1fr"><li><a class="ds-menu__lang-link " href="#">CA</a></li></ul></nav></div><div><nav class="ds-menu__lang"><ul class="ds-menu__lang-row" style="grid-template-columns:1fr"><li><a class="ds-menu__lang-link is-hover" href="#">CA</a></li></ul></nav></div><div><nav class="ds-menu__lang"><ul class="ds-menu__lang-row" style="grid-template-columns:1fr"><li><a class="ds-menu__lang-link is-pressed" href="#">CA</a></li></ul></nav></div><div><nav class="ds-menu__lang"><ul class="ds-menu__lang-row" style="grid-template-columns:1fr"><li><a class="ds-menu__lang-link is-focus" href="#">CA</a></li></ul></nav></div><div><nav class="ds-menu__lang"><ul class="ds-menu__lang-row" style="grid-template-columns:1fr"><li><a class="ds-menu__lang-link " href="#" aria-current="true">ES</a></li></ul></nav></div></div></body></html>

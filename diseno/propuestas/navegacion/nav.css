@@ -1,0 +1,77 @@
+/* ===== PROPUESTA v2: sustituye al bloque «Navegación» de components.css ===== */
+.ds-header{padding-top:var(--space-3);position:relative}
+.ds-header__bar{display:flex;align-items:center}
+.ds-header .ds-logo{margin-left:calc(-1 * var(--space-1))}
+.ds-header__nav{display:none;margin-left:var(--space-4)}
+.ds-header__list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:0 var(--space-3)}
+.ds-header__extra{display:none;align-items:center;margin-left:auto;margin-right:calc(-1 * var(--space-1))}
+.ds-header__sep{width:1px;height:20px;background:var(--line);margin:0 var(--space-3)}
+.ds-nav[aria-current="true"]{color:var(--text);text-decoration-line:underline}
+
+/* Botón de menú (solo icono) */
+.ds-menu-btn{display:inline-flex;align-items:center;justify-content:center;width:var(--touch-min);height:var(--touch-min);margin:0 -12px 0 auto;padding:0;border:0;border-radius:var(--radius);background:none;color:var(--text);cursor:pointer;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-menu-btn svg{width:var(--icon-size);height:var(--icon-size)}
+.ds-menu-btn .x{display:none}
+.ds-menu-btn[aria-expanded="true"] .x{display:block}
+.ds-menu-btn[aria-expanded="true"] .burger{display:none}
+.ds-menu-btn:hover,.ds-menu-btn.is-hover{color:var(--accent-hover)}
+.ds-menu-btn:active,.ds-menu-btn.is-pressed{color:var(--accent-pressed)}
+.ds-menu-btn:focus-visible,.ds-menu-btn.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
+
+/* Menú desplegable */
+.ds-menu{display:none;border-top:2px solid var(--line-strong);margin-top:var(--space-1)}
+.ds-menu.is-open{display:block}
+.ds-menu>ul{list-style:none;margin:0;padding:var(--space-1) 0}
+.ds-menu>ul>li+li{border-top:1px solid var(--line)}
+.ds-menu__link{display:flex;align-items:center;justify-content:space-between;min-height:56px;font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.02em;color:var(--text-secondary);text-decoration:none;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-menu__link:hover,.ds-menu__link.is-hover{color:var(--text)}
+.ds-menu__link:active,.ds-menu__link.is-pressed{color:var(--accent-pressed)}
+.ds-menu__link[aria-current="page"]{color:var(--text)}
+.ds-menu__link[aria-current="page"]::after{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.ds-menu__link:focus-visible,.ds-menu__link.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
+.ds-menu__lab{border-top:2px solid var(--line-strong)}
+
+/* Lab. — punto verde grueso (decorativo) */
+:root{--lab-green:#52b558}
+.ds-lab__dot{display:inline-block;width:.4em;height:.4em;margin-left:.1em;border-radius:50%;background:var(--lab-green)}
+.ds-nav.ds-lab{color:var(--text);font-weight:700}
+.ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{text-decoration-line:underline;text-decoration-color:var(--lab-green)}
+.ds-nav.ds-lab:active,.ds-nav.ds-lab.is-pressed{color:var(--accent-pressed)}
+.ds-nav.ds-lab:focus-visible,.ds-nav.ds-lab.is-focus{color:var(--focus-ink);text-decoration:none}
+.ds-menu__lab .ds-menu__link{color:var(--text);font-weight:700}
+.ds-menu__lab .ds-menu__link:hover,.ds-menu__lab .ds-menu__link.is-hover{text-decoration:underline;text-decoration-color:var(--lab-green);text-decoration-thickness:3px;text-underline-offset:6px}
+.ds-menu__lab .ds-menu__link:active,.ds-menu__lab .ds-menu__link.is-pressed{color:var(--accent-pressed)}
+.ds-menu__lab .ds-menu__link:focus-visible,.ds-menu__lab .ds-menu__link.is-focus{color:var(--focus-ink);text-decoration:none}
+
+/* Desplegable de idioma (escritorio) */
+.ds-lang{position:relative}
+.ds-lang__btn{gap:4px;border:0;background:none;font-family:inherit;cursor:pointer}
+.ds-lang__btn[aria-expanded="true"]{color:var(--text)}
+.ds-lang__btn svg{width:16px;height:16px;flex:none;transition:transform var(--duration-base) ease}
+.ds-lang__btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.ds-lang__panel{box-sizing:border-box;position:absolute;left:50%;top:calc(100% + 4px);z-index:10;transform:translateX(-50%);min-width:72px;margin:0;padding:var(--space-1) 0;list-style:none;background:var(--bg);border:2px solid var(--line-strong);border-radius:var(--radius)}
+.ds-lang__panel[hidden]{display:none}
+.ds-lang__item{display:flex;align-items:center;justify-content:center;min-height:var(--touch-min);padding:0 var(--space-2);font-size:16px;font-weight:500;color:var(--text-secondary);text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:6px;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-lang__item:hover,.ds-lang__item.is-hover{color:var(--text);background:var(--accent-tint)}
+.ds-lang__item:active,.ds-lang__item.is-pressed{color:var(--accent-pressed);background:var(--accent-tint)}
+.ds-lang__item[aria-current="true"]{color:var(--text);text-decoration-color:var(--accent)}
+.ds-lang__item:focus-visible,.ds-lang__item.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
+
+/* Idioma en el menú móvil: tres celdas iguales, separadas por líneas */
+.ds-menu__lang{border-top:2px solid var(--line-strong);padding:var(--space-2) 0 var(--space-1)}
+.ds-menu__lang-label{margin:0 0 var(--space-1)}
+.ds-menu__lang-row{display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0;list-style:none;border:1px solid var(--line);border-radius:var(--radius)}
+.ds-menu__lang-row li+li{border-left:1px solid var(--line)}
+.ds-menu__lang-link{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 var(--space-1);font-size:16px;font-weight:500;color:var(--text-secondary);text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:6px;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-menu__lang-link:hover,.ds-menu__lang-link.is-hover{color:var(--text)}
+.ds-menu__lang-link:active,.ds-menu__lang-link.is-pressed{color:var(--accent-pressed)}
+.ds-menu__lang-link[aria-current="true"]{color:var(--text);text-decoration-color:var(--accent)}
+.ds-menu__lang-link:focus-visible,.ds-menu__lang-link.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
+
+@media (min-width:1024px){
+  .ds-header__nav{display:block}
+  .ds-header__extra{display:flex}
+  .ds-menu-btn,.ds-menu{display:none !important}
+}
+[hidden]{display:none !important}
+@media (prefers-reduced-motion:reduce){.ds-menu-btn,.ds-menu__link,.ds-lang__item,.ds-lang__btn svg,.ds-menu__lang-link{transition:none}}
