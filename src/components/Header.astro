@@ -1,17 +1,85 @@
 ---
 // Cabecera común. «actual» indica en qué página estamos, para marcar el enlace activo.
-//   inicio · trabajo · caso (un caso de estudio) · sobre-mi
+//   inicio · trabajo · caso (un caso de estudio) · sobre-mi · blog
+//
+// Escritorio (≥ 1024 px): nombre + Trabajo · Sobre mí · Blog a la izquierda; Lab. e idioma a la derecha.
+// Móvil y tableta: botón de menú que abre una hoja desde abajo (<dialog>). Comportamiento en src/scripts/navegacion.js.
+// Propuesta y estados: diseno/propuestas/navegacion/.
 interface Props {
-  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi';
+  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi' | 'blog';
 }
 const { actual } = Astro.props;
+
+// Ocultos hasta que estén listos. Para activarlos basta con poner true (no hay «próximamente»).
+const MOSTRAR_LAB = false;
+const MOSTRAR_IDIOMA = false;
+
+const enlaces = [
+  { texto: 'Trabajo', href: actual === 'trabajo' ? '#titular' : '/trabajo/', activo: actual === 'trabajo' || actual === 'caso' },
+  { texto: 'Sobre mí', href: actual === 'sobre-mi' ? '#sobre' : '/sobre-mi/', activo: actual === 'sobre-mi' },
+  { texto: 'Blog', href: '/blog/', activo: actual === 'blog' },
+];
+// Idiomas: las rutas son provisionales hasta que exista la versión en cada idioma.
+const idiomas = [
+  { codigo: 'ES', nombre: 'Español', lang: 'es', href: '/', activo: true },
+  { codigo: 'CA', nombre: 'Català', lang: 'ca', href: '/ca/', activo: false },
+  { codigo: 'EN', nombre: 'English', lang: 'en', href: '/en/', activo: false },
+];
+const homeHref = actual === 'inicio' ? '#inicio' : '/';
+const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round', 'aria-hidden': 'true' };
 ---
 <header class="ds-wrap ds-header">
-<nav aria-label="Principal">
+<div class="ds-header__bar">
+<a class="ds-logo t-nav-strong" href={homeHref} aria-label="Arnau Larripa, ir al inicio">Arnau Larripa</a>
+
+<nav class="ds-header__nav" aria-label="Principal">
 <ul class="ds-header__list">
-<li><a class="ds-nav t-nav" href={actual === 'trabajo' ? '#titular' : '/trabajo/'} aria-current={actual === 'trabajo' || actual === 'caso' ? 'page' : undefined}>Trabajo</a></li>
-<li><a class="ds-logo t-nav-strong" href={actual === 'inicio' ? '#inicio' : '/'} aria-label="Arnau Larripa, ir al inicio">Arnau Larripa</a></li>
-<li><a class="ds-nav t-nav" href={actual === 'sobre-mi' ? '#sobre' : '/sobre-mi/'} aria-current={actual === 'sobre-mi' ? 'page' : undefined}>Sobre mí</a></li>
+{enlaces.map((e) => <li><a class="ds-nav t-nav" href={e.href} aria-current={e.activo ? 'page' : undefined}>{e.texto}</a></li>)}
 </ul>
 </nav>
+
+{(MOSTRAR_LAB || MOSTRAR_IDIOMA) && (
+<div class="ds-header__extra">
+{MOSTRAR_LAB && <a class="ds-nav ds-lab t-nav" href="/lab/"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a>}
+{MOSTRAR_LAB && MOSTRAR_IDIOMA && <span class="ds-header__sep" aria-hidden="true"></span>}
+{MOSTRAR_IDIOMA && (
+<div class="ds-lang" data-idioma>
+<button class="ds-nav ds-lang__btn t-nav" type="button" aria-expanded="false" aria-controls="idioma-panel" aria-label="Idioma: Español" data-idioma-boton>ES<svg viewBox="0 0 256 256" stroke-width="20" stroke-linejoin="round" {...trazo}><polyline points="48 96 128 176 208 96"></polyline></svg></button>
+<ul class="ds-lang__panel" id="idioma-panel" hidden>
+{idiomas.map((i) => <li><a class="ds-lang__item" href={i.href} lang={i.lang} hreflang={i.lang} aria-label={i.nombre} aria-current={i.activo ? 'true' : undefined}>{i.codigo}</a></li>)}
+</ul>
+</div>
+)}
+</div>
+)}
+
+<button class="ds-menu-btn" type="button" aria-haspopup="dialog" aria-controls="menu-movil" aria-label="Menú" data-menu-abrir>
+<svg viewBox="0 0 256 256" stroke-width="16" {...trazo}><line x1="40" y1="80" x2="216" y2="80"></line><line x1="40" y1="128" x2="216" y2="128"></line><line x1="40" y1="176" x2="216" y2="176"></line></svg>
+</button>
+</div>
 </header>
+
+<dialog class="ds-navsheet" id="menu-movil" aria-labelledby="menu-movil-titulo">
+<div class="ds-navsheet__panel">
+<div class="ds-navsheet__bar">
+<p class="ds-label t-meta" id="menu-movil-titulo">Menú</p>
+<button type="button" class="ds-close" data-cerrar aria-label="Cerrar menú">
+<svg class="ds-icon" viewBox="0 0 256 256" stroke-width="16" {...trazo}><line x1="200" y1="56" x2="56" y2="200"></line><line x1="200" y1="200" x2="56" y2="56"></line></svg>
+</button>
+</div>
+<nav class="ds-navsheet__nav" aria-label="Principal">
+<ul class={`ds-navsheet__list${MOSTRAR_LAB || MOSTRAR_IDIOMA ? ' ds-navsheet__list--cierre' : ''}`}>
+{enlaces.map((e) => <li><a class="ds-navsheet__link" href={e.href} aria-current={e.activo ? 'page' : undefined}>{e.texto}</a></li>)}
+</ul>
+</nav>
+{MOSTRAR_LAB && <div class="ds-navsheet__lab"><a class="ds-navsheet__link" href="/lab/"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></div>}
+{MOSTRAR_IDIOMA && (
+<nav class="ds-navsheet__lang" aria-label="Idioma">
+<p class="ds-label t-meta ds-navsheet__lang-label">Idioma</p>
+<ul class="ds-navsheet__lang-row">
+{idiomas.map((i) => <li><a class="ds-navsheet__lang-link" href={i.href} lang={i.lang} hreflang={i.lang} aria-label={i.nombre} aria-current={i.activo ? 'true' : undefined}>{i.codigo}</a></li>)}
+</ul>
+</nav>
+)}
+</div>
+</dialog>

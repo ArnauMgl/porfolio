@@ -71,3 +71,12 @@
   --duration-panel: 250ms;
   --scrim: color-mix(in srgb, var(--text) 50%, transparent);
 }
+
+/* Marcas del ecosistema (v1.2): color del punto de cada wordmark. Solo decorativo, nunca para texto. */
+:root {
+  --brand-lab: #52b558;
+  --brand-frame: #d2352d;
+  --brand-iridescent-from: #635dce;
+  --brand-iridescent-to: #478699;
+  --brand-iridescent: linear-gradient(90deg, var(--brand-iridescent-from), var(--brand-iridescent-to));
+}

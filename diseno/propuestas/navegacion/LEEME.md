@@ -1,6 +1,6 @@
-# Propuesta de navegación (pendiente de implementar)
+# Propuesta de navegación (implementada en la web)
 
-Maqueta de la barra de navegación para cuando llegue el blog. **No está aplicada a la web**: el componente real sigue siendo `src/components/Header.astro`. Se implementará cuando el blog esté listo.
+Maqueta de la barra de navegación. **Ya está implementada** en `src/components/Header.astro` (ver `LEEME.md` de la raíz). Esta carpeta se conserva como referencia de diseño y estados; los estilos reales viven en `src/styles/components.css` (en la web la hoja se llama `.ds-navsheet`, porque `.ds-sheet` ya existía).
 
 ## Cómo verla
 
@@ -47,8 +47,8 @@ Abre los `.html` de esta carpeta en el navegador (usan los estilos reales de `sr
 
 ## Pendiente
 
-- Implementar en `Header.astro` y `components.css` cuando el blog esté listo (necesita la ruta `/blog/`).
-- Añadir al sistema de diseño los tokens de marca (`--brand-lab`, `--brand-frame`, `--brand-iridescent`) y el componente de wordmark (`marcas.css`).
+- Crear `/blog/` (el enlace ya apunta ahí) antes de publicar la barra.
+- Añadir al sistema de diseño (`diseno/ds/`) los tokens de marca y el componente de wordmark (`marcas.css`). Los tokens ya están en `src/styles/tokens.css`.
 - Valores exactos del degradado de Iridescent (aquí aproximado desde una captura).
 - Decidir si Lab tiene estado «actual».
-- Accesibilidad: comprobar con lector de pantalla el desplegable de idioma (botón con `aria-expanded`, nombres completos en `aria-label`).
+- Probar el desplegable de idioma con lector de pantalla cuando se active.

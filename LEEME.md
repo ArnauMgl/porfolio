@@ -6,7 +6,7 @@ Web personal de Arnau Larripa, hecha con [Astro](https://astro.build) como web e
 
 - `src/pages/`: una página por archivo. La ruta del archivo es la dirección de la web.
 - `src/layouts/Base.astro`: plantilla común (cabecera `<head>`, menú y pie).
-- `src/components/`: piezas reutilizables (`Header`, `Footer`).
+- `src/components/`: piezas reutilizables (`Header`, `Footer`, `Contacto`).
 - `src/styles/`: sistema de diseño (`tokens.css`, `components.css`) y estilos generales.
 - `public/`: archivos que se publican tal cual (favicon, robots.txt…).
 - `diseno/`: el diseño original de Claude Design. Solo es referencia; no se publica.
@@ -25,6 +25,15 @@ Cada rama tiene además su propia vista previa en `https://<nombre-de-rama>.arna
 
 Requiere Node.js. En la carpeta del proyecto, ejecuta `npm install` una vez y
 después `npm run dev`. Abre http://localhost:4321 en el navegador.
+
+## Barra de navegación
+
+- Marcado: `src/components/Header.astro`. Comportamiento: `src/scripts/navegacion.js`. Estilos: bloque «Navegación» de `src/styles/components.css`. Diseño y estados: `diseno/propuestas/navegacion/`.
+- Escritorio (≥ 1024 px): nombre, Trabajo, Sobre mí y Blog a la izquierda; Lab. e idioma a la derecha. En móvil y tableta, botón de menú que abre una hoja desde abajo (`<dialog>`, `.ds-navsheet`).
+- **Lab y el selector de idioma están ocultos.** En `Header.astro`, `MOSTRAR_LAB` y `MOSTRAR_IDIOMA` están en `false`; al ponerlos en `true` aparecen en escritorio y en la hoja móvil. Las rutas `/lab/`, `/ca/` y `/en/` son provisionales y aún no existen.
+- El enlace «Blog» apunta a `/blog/`, que se creará con el blog. **No publicar esta barra en la rama principal antes de que exista esa página.**
+- Sin JavaScript, en móvil los enlaces se muestran en línea (`<noscript>` en `Base.astro`).
+- Tokens de color de las marcas (Lab, Frame, Iridescent): final de `src/styles/tokens.css`.
 
 ## Modal de contacto (v1.1)
 
