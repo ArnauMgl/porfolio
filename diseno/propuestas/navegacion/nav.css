@@ -28,6 +28,8 @@
 .ds-sheet__bar .ds-close{margin-right:-12px}
 .ds-sheet__bar p{margin:0}
 .ds-sheet__list{list-style:none;margin:var(--space-1) 0 0;padding:var(--space-1) 0;border-top:2px solid var(--line-strong);border-bottom:2px solid var(--line-strong)}
+/* Sin Lab ni idioma debajo, la lista no lleva línea de cierre */
+.ds-sheet__list:has(+ .ds-sheet__lab[hidden] + .ds-sheet__lang[hidden]){border-bottom:0;padding-bottom:0}
 .ds-sheet__list>li+li{border-top:1px solid var(--line)}
 @media (min-width:640px){.ds-sheet__panel{padding-inline:var(--space-6)}}
 html.ds-lock{overflow:hidden}
