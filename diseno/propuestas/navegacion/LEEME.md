@@ -25,7 +25,7 @@ Abre los `.html` de esta carpeta en el navegador (usan los estilos reales de `sr
 **Móvil y tableta (menos de 1024 px): bottom sheet**
 - Nombre a la izquierda y botón de hamburguesa **solo con icono** (48 × 48 px) a la derecha. El icono no cambia al abrirse: la hoja se cierra con su propia X.
 - Al pulsarlo se abre una **hoja desde abajo** con velo oscuro, que ocupa solo la altura de su contenido. Se construye como el panel de contacto: un `<dialog>` con `showModal()` (foco atrapado, Escape y fondo inerte de forma nativa), borde superior de 2 px y esquinas superiores de 4 px.
-- Dentro: etiqueta «Menú» y botón X de cierre (`.ds-close`, alineado donde estaba el icono de hamburguesa), enlaces a 24 px separados por líneas (punto terracota en la página actual), Lab. al final y, bajo una línea gruesa, el idioma en tres celdas iguales con siglas (ES · CA · EN, mínimo 56 px de alto).
+- Dentro, de arriba abajo: etiqueta «Menú» y botón X de cierre (`.ds-close`, alineado donde estaba el icono de hamburguesa); línea gruesa; **navegación de la página** (Trabajo · Sobre mí · Blog, a 24 px, líneas finas entre ellos y punto terracota en la actual); línea gruesa; **Lab.** aparte; un hueco amplio (64 px, el doble que antes) y, **sin separador**, el **idioma** en tres celdas iguales con siglas (ES · CA · EN, mínimo 56 px de alto). Si Lab está oculto, el idioma sube a 32 px de la lista.
 - Se cierra con la X, tocando el velo o con Escape. Sin gesto de arrastrar (queda fuera de la primera versión).
 - A 640–1023 px la hoja ocupa todo el ancho con márgenes de 48 px.
 
@@ -38,7 +38,7 @@ Abre los `.html` de esta carpeta en el navegador (usan los estilos reales de `sr
 - Lab al final de la lista. Idioma en tres celdas iguales con siglas (ES · CA · EN), mínimo 56 px de alto.
 
 **Lab.**
-- Negrita (700) y en negro también en reposo. Punto verde (`--brand-lab`, `#52b558`) de 0,4 em en la barra, decorativo (`aria-hidden`).
+- Negrita (700) y en negro también en reposo. Punto verde (`--brand-lab`, `#52b558`) de 0,34 em en la barra de escritorio y 0,3 em en la hoja móvil, decorativo (`aria-hidden`).
 - Hover: subrayado verde. Pulsado: terracota oscuro. Foco: amarillo del sistema.
 - **Sin estado «actual» por ahora**: se decidirá cuando se plantee la página del Lab.
 

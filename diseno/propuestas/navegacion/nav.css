@@ -27,7 +27,7 @@
 .ds-sheet__bar{display:flex;align-items:center;justify-content:space-between;padding-top:var(--space-1)}
 .ds-sheet__bar .ds-close{margin-right:-12px}
 .ds-sheet__bar p{margin:0}
-.ds-sheet__list{list-style:none;margin:0;padding:var(--space-1) 0}
+.ds-sheet__list{list-style:none;margin:var(--space-1) 0 0;padding:var(--space-1) 0;border-top:2px solid var(--line-strong);border-bottom:2px solid var(--line-strong)}
 .ds-sheet__list>li+li{border-top:1px solid var(--line)}
 @media (min-width:640px){.ds-sheet__panel{padding-inline:var(--space-6)}}
 html.ds-lock{overflow:hidden}
@@ -37,15 +37,16 @@ html.ds-lock{overflow:hidden}
 .ds-sheet__link[aria-current="page"]{color:var(--text)}
 .ds-sheet__link[aria-current="page"]::after{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--accent)}
 .ds-sheet__link:focus-visible,.ds-sheet__link.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
-.ds-sheet__lab{border-top:2px solid var(--line-strong)}
+.ds-sheet__lab{padding:var(--space-1) 0 0}
 
 /* Lab. — punto verde grueso (decorativo) */
 :root{--lab-green:#52b558}
-.ds-lab__dot{display:inline-block;width:.4em;height:.4em;margin-left:.1em;border-radius:50%;background:var(--lab-green)}
+.ds-lab__dot{display:inline-block;width:.34em;height:.34em;margin-left:.1em;border-radius:50%;background:var(--lab-green)}
 .ds-nav.ds-lab{color:var(--text);font-weight:700}
 .ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{text-decoration-line:underline;text-decoration-color:var(--lab-green)}
 .ds-nav.ds-lab:active,.ds-nav.ds-lab.is-pressed{color:var(--accent-pressed)}
 .ds-nav.ds-lab:focus-visible,.ds-nav.ds-lab.is-focus{color:var(--focus-ink);text-decoration:none}
+.ds-sheet__lab .ds-lab__dot{width:.3em;height:.3em}
 .ds-sheet__lab .ds-sheet__link{color:var(--text);font-weight:700}
 .ds-sheet__lab .ds-sheet__link:hover,.ds-sheet__lab .ds-sheet__link.is-hover{text-decoration:underline;text-decoration-color:var(--lab-green);text-decoration-thickness:3px;text-underline-offset:6px}
 .ds-sheet__lab .ds-sheet__link:active,.ds-sheet__lab .ds-sheet__link.is-pressed{color:var(--accent-pressed)}
@@ -66,7 +67,8 @@ html.ds-lock{overflow:hidden}
 .ds-lang__item:focus-visible,.ds-lang__item.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
 
 /* Idioma en el menú móvil: tres celdas iguales, separadas por líneas */
-.ds-sheet__lang{border-top:2px solid var(--line-strong);padding:var(--space-2) 0 var(--space-1)}
+.ds-sheet__lang{margin-top:var(--space-8);padding:0}
+.ds-sheet__lab[hidden]+.ds-sheet__lang{margin-top:var(--space-4)}
 .ds-sheet__lang-label{margin:0 0 var(--space-1)}
 .ds-sheet__lang-row{display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0;list-style:none;border:1px solid var(--line);border-radius:var(--radius)}
 .ds-sheet__lang-row li+li{border-left:1px solid var(--line)}
