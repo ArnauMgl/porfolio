@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Propuesta de navegación v2</title>
+<title>Propuesta de navegación v3 (bottom sheet)</title>
 <link rel="stylesheet" href="fuentes.css"><link rel="stylesheet" href="../../../src/styles/tokens.css"><link rel="stylesheet" href="../../../src/styles/components.css"><link rel="stylesheet" href="nav.css">
 <style>.demo-hero{padding-top:96px}.demo-hero h1{margin:0;font-size:min(14vw,96px);line-height:.95;letter-spacing:-.04em;font-weight:700}</style></head>
 <body>
@@ -27,28 +27,36 @@
         </ul>
       </div>
     </div>
-    <button class="ds-menu-btn" id="btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menú">
+    <button class="ds-menu-btn" id="btn" type="button" aria-haspopup="dialog" aria-controls="menu" aria-label="Menú">
       <svg class="burger" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" aria-hidden="true"><line x1="40" y1="80" x2="216" y2="80"/><line x1="40" y1="128" x2="216" y2="128"/><line x1="40" y1="176" x2="216" y2="176"/></svg>
-      <svg class="x" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" aria-hidden="true"><line x1="56" y1="56" x2="200" y2="200"/><line x1="200" y1="56" x2="56" y2="200"/></svg>
     </button>
   </div>
-  <div class="ds-menu" id="menu">
-    <ul>
-      <li><a class="ds-menu__link" href="#" aria-current="page">Trabajo</a></li>
-      <li><a class="ds-menu__link" href="#">Sobre mí</a></li>
-      <li><a class="ds-menu__link" href="#">Blog</a></li>
-      <li class="ds-menu__lab" id="lab-m" hidden><a class="ds-menu__link" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></li>
+</header>
+<dialog class="ds-sheet" id="menu" aria-labelledby="menu-titulo">
+  <div class="ds-sheet__panel">
+    <div class="ds-sheet__bar">
+      <p class="ds-label t-meta" id="menu-titulo">Menú</p>
+      <button type="button" class="ds-close" data-cerrar aria-label="Cerrar menú"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" aria-hidden="true"><line x1="200" y1="56" x2="56" y2="200"/><line x1="200" y1="200" x2="56" y2="56"/></svg></button>
+    </div>
+  
+    <ul class="ds-sheet__list">
+      <li><a class="ds-sheet__link" href="#" aria-current="page">Trabajo</a></li>
+      <li><a class="ds-sheet__link" href="#">Sobre mí</a></li>
+      <li><a class="ds-sheet__link" href="#">Blog</a></li>
+      <li class="ds-sheet__lab" id="lab-m" hidden><a class="ds-sheet__link" href="#"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></li>
     </ul>
-    <nav class="ds-menu__lang" aria-label="Idioma" id="idioma-m" hidden>
-      <p class="ds-label t-meta ds-menu__lang-label">Idioma</p>
-      <ul class="ds-menu__lang-row">
-        <li><a class="ds-menu__lang-link" href="#" lang="es" hreflang="es" aria-label="Español" aria-current="true">ES</a></li>
-        <li><a class="ds-menu__lang-link" href="#" lang="ca" hreflang="ca" aria-label="Català">CA</a></li>
-        <li><a class="ds-menu__lang-link" href="#" lang="en" hreflang="en" aria-label="English">EN</a></li>
+    <nav class="ds-sheet__lang" aria-label="Idioma" id="idioma-m" hidden>
+      <p class="ds-label t-meta ds-sheet__lang-label">Idioma</p>
+      <ul class="ds-sheet__lang-row">
+        <li><a class="ds-sheet__lang-link" href="#" lang="es" hreflang="es" aria-label="Español" aria-current="true">ES</a></li>
+        <li><a class="ds-sheet__lang-link" href="#" lang="ca" hreflang="ca" aria-label="Català">CA</a></li>
+        <li><a class="ds-sheet__lang-link" href="#" lang="en" hreflang="en" aria-label="English">EN</a></li>
       </ul>
     </nav>
+  
   </div>
-</header>
+</dialog>
+
 <main class="ds-wrap demo-hero"><h1>Trabajo<br>seleccionado<span class="ds-dot">.</span></h1></main>
 </div>
 <script>
@@ -58,10 +66,12 @@ if(q.has('lab'))show(['lab-d','lab-m']);
 if(q.has('idioma'))show(['idioma-d','idioma-m']);
 if(q.has('lab')&&q.has('idioma'))show(['sep-d']);
 const b=document.getElementById('btn'),m=document.getElementById('menu');
-function set(o){b.setAttribute('aria-expanded',o);m.classList.toggle('is-open',o)}
-b.onclick=()=>set(b.getAttribute('aria-expanded')!=='true');
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){set(false);b.focus()}});
-if(q.has('open'))set(true);
+const lockOn=()=>document.documentElement.classList.add('ds-lock');
+const lockOff=()=>document.documentElement.classList.remove('ds-lock');
+b.onclick=()=>{m.showModal();lockOn()};
+m.addEventListener('close',lockOff);
+m.addEventListener('click',e=>{if(e.target===m||e.target.closest('[data-cerrar]'))m.close()});
+if(q.has('open')){m.showModal();lockOn()}
 const lb=document.getElementById('lang-btn'),lp=document.getElementById('lang-panel');
 function setLang(o){lb.setAttribute('aria-expanded',o);lp.hidden=!o}
 lb.onclick=e=>{e.stopPropagation();setLang(lb.getAttribute('aria-expanded')!=='true')};
