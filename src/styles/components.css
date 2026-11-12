@@ -13,8 +13,13 @@
 .ds-label{margin:0;color:var(--text-secondary)}
 
 /* ---------- Navegación ---------- */
-.ds-header{padding-top:var(--space-3)}
-.ds-header__list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:0 var(--space-4)}
+.ds-header{padding-top:var(--space-3);position:relative}
+.ds-header__bar{display:flex;align-items:center}
+.ds-header .ds-logo{margin-left:calc(-1 * var(--space-1))}
+.ds-header__nav{display:none;margin-left:var(--space-4)}
+.ds-header__list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:0 var(--space-3)}
+.ds-header__extra{display:none;align-items:center;margin-left:auto;margin-right:calc(-1 * var(--space-1))}
+.ds-header__sep{width:1px;height:20px;background:var(--line);margin:0 var(--space-3)}
 .ds-nav,.ds-logo{display:inline-flex;align-items:center;min-height:var(--touch-min);padding:0 var(--space-1);text-decoration-line:none;text-underline-offset:6px;text-decoration-thickness:2px;text-decoration-color:var(--accent);transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
 .ds-nav{color:var(--text-secondary)}
 .ds-logo{color:var(--text)}
@@ -22,6 +27,85 @@
 .ds-nav:active,.ds-nav.is-pressed{color:var(--accent-pressed)}
 .ds-nav[aria-current="page"]{color:var(--text);text-decoration-line:underline}
 .ds-nav:focus-visible,.ds-nav.is-focus,.ds-logo:focus-visible,.ds-logo.is-focus{outline:none;background-color:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
+.ds-nav[aria-current="true"]{color:var(--text);text-decoration-line:underline}
+
+/* Botón de menú (solo icono) */
+.ds-menu-btn{display:inline-flex;align-items:center;justify-content:center;width:var(--touch-min);height:var(--touch-min);margin:0 -12px 0 auto;padding:0;border:0;border-radius:var(--radius);background:none;color:var(--text);cursor:pointer;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-menu-btn svg{width:var(--icon-size);height:var(--icon-size)}
+.ds-menu-btn:hover,.ds-menu-btn.is-hover{color:var(--accent-hover)}
+.ds-menu-btn:active,.ds-menu-btn.is-pressed{color:var(--accent-pressed)}
+.ds-menu-btn:focus-visible,.ds-menu-btn.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
+
+/* Bottom sheet de navegación (móvil y tableta): <dialog> con showModal(), igual que el panel de contacto.
+   Se llama .ds-navsheet porque .ds-sheet ya es el marco de las imágenes. */
+.ds-navsheet{position:fixed;inset:auto 0 0 0;margin:0;padding:0;width:100%;max-width:none;max-height:calc(100dvh - var(--space-8));box-sizing:border-box;border:0;border-top:2px solid var(--line-strong);border-radius:var(--radius) var(--radius) 0 0;background:var(--bg);color:var(--text);font-family:var(--font-sans);overflow-y:auto;overscroll-behavior:contain;transform:translateY(100%);
+  transition:transform var(--duration-panel) ease,overlay var(--duration-panel) allow-discrete,display var(--duration-panel) allow-discrete}
+.ds-navsheet[open]{display:block;transform:none}
+@starting-style{.ds-navsheet[open]{transform:translateY(100%)}}
+.ds-navsheet::backdrop{background:transparent;transition:background-color var(--duration-panel) ease,overlay var(--duration-panel) allow-discrete,display var(--duration-panel) allow-discrete}
+.ds-navsheet[open]::backdrop{background:var(--scrim)}
+@starting-style{.ds-navsheet[open]::backdrop{background:transparent}}
+.ds-navsheet__panel{padding:0 var(--gutter-mobile) calc(var(--space-3) + env(safe-area-inset-bottom))}
+.ds-navsheet__bar{display:flex;align-items:center;justify-content:space-between;padding-top:var(--space-1)}
+.ds-navsheet__bar .ds-close{margin-right:-12px}
+.ds-navsheet__bar p{margin:0}
+/* La línea gruesa inferior solo existe si hay algo debajo (Lab o idioma): lleva el modificador --cierre */
+.ds-navsheet__list{list-style:none;margin:var(--space-1) 0 0;padding:var(--space-1) 0 0;border-top:2px solid var(--line-strong)}
+.ds-navsheet__list--cierre{padding-bottom:var(--space-1);border-bottom:2px solid var(--line-strong)}
+.ds-navsheet__list>li+li{border-top:1px solid var(--line)}
+@media (min-width:640px){.ds-navsheet__panel{padding-inline:var(--space-6)}}
+.ds-navsheet__link{display:flex;align-items:center;justify-content:space-between;min-height:56px;font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.02em;color:var(--text-secondary);text-decoration:none;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-navsheet__link:hover,.ds-navsheet__link.is-hover{color:var(--text)}
+.ds-navsheet__link:active,.ds-navsheet__link.is-pressed{color:var(--accent-pressed)}
+.ds-navsheet__link[aria-current="page"]{color:var(--text)}
+.ds-navsheet__link[aria-current="page"]::after{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.ds-navsheet__link:focus-visible,.ds-navsheet__link.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
+.ds-navsheet__lab{padding:var(--space-1) 0 0}
+
+/* Lab. — punto verde grueso (decorativo) */
+.ds-lab__dot{display:inline-block;width:.34em;height:.34em;margin-left:.1em;border-radius:50%;background:var(--brand-lab)}
+.ds-nav.ds-lab{color:var(--text);font-weight:700}
+.ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{text-decoration-line:underline;text-decoration-color:var(--brand-lab)}
+.ds-nav.ds-lab:active,.ds-nav.ds-lab.is-pressed{color:var(--accent-pressed)}
+.ds-nav.ds-lab:focus-visible,.ds-nav.ds-lab.is-focus{color:var(--focus-ink);text-decoration:none}
+.ds-navsheet__lab .ds-lab__dot{width:.3em;height:.3em}
+.ds-navsheet__lab .ds-navsheet__link{color:var(--text);font-weight:700}
+.ds-navsheet__lab .ds-navsheet__link:hover,.ds-navsheet__lab .ds-navsheet__link.is-hover{text-decoration:underline;text-decoration-color:var(--brand-lab);text-decoration-thickness:3px;text-underline-offset:6px}
+.ds-navsheet__lab .ds-navsheet__link:active,.ds-navsheet__lab .ds-navsheet__link.is-pressed{color:var(--accent-pressed)}
+.ds-navsheet__lab .ds-navsheet__link:focus-visible,.ds-navsheet__lab .ds-navsheet__link.is-focus{color:var(--focus-ink);text-decoration:none}
+
+/* Desplegable de idioma (escritorio) */
+.ds-lang{position:relative}
+.ds-lang__btn{gap:4px;border:0;background:none;font-family:inherit;cursor:pointer}
+.ds-lang__btn[aria-expanded="true"]{color:var(--text)}
+.ds-lang__btn svg{width:16px;height:16px;flex:none;transition:transform var(--duration-base) ease}
+.ds-lang__btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.ds-lang__panel{box-sizing:border-box;position:absolute;left:50%;top:calc(100% + 4px);z-index:10;transform:translateX(-50%);min-width:72px;margin:0;padding:var(--space-1) 0;list-style:none;background:var(--bg);border:2px solid var(--line-strong);border-radius:var(--radius)}
+.ds-lang__panel[hidden]{display:none}
+.ds-lang__item{display:flex;align-items:center;justify-content:center;min-height:var(--touch-min);padding:0 var(--space-2);font-size:16px;font-weight:500;color:var(--text-secondary);text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:6px;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-lang__item:hover,.ds-lang__item.is-hover{color:var(--text);background:var(--accent-tint)}
+.ds-lang__item:active,.ds-lang__item.is-pressed{color:var(--accent-pressed);background:var(--accent-tint)}
+.ds-lang__item[aria-current="true"]{color:var(--text);text-decoration-color:var(--accent)}
+.ds-lang__item:focus-visible,.ds-lang__item.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
+
+/* Idioma en el menú móvil: tres celdas iguales, separadas por líneas */
+.ds-navsheet__lang{margin-top:var(--space-8);padding:0}
+.ds-navsheet__nav+.ds-navsheet__lang{margin-top:var(--space-4)} /* sin Lab, el idioma sube */
+.ds-navsheet__lang-label{margin:0 0 var(--space-1)}
+.ds-navsheet__lang-row{display:grid;grid-template-columns:repeat(3,1fr);margin:0;padding:0;list-style:none;border:1px solid var(--line);border-radius:var(--radius)}
+.ds-navsheet__lang-row li+li{border-left:1px solid var(--line)}
+.ds-navsheet__lang-link{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 var(--space-1);font-size:16px;font-weight:500;color:var(--text-secondary);text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:6px;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
+.ds-navsheet__lang-link:hover,.ds-navsheet__lang-link.is-hover{color:var(--text)}
+.ds-navsheet__lang-link:active,.ds-navsheet__lang-link.is-pressed{color:var(--accent-pressed)}
+.ds-navsheet__lang-link[aria-current="true"]{color:var(--text);text-decoration-color:var(--accent)}
+.ds-navsheet__lang-link:focus-visible,.ds-navsheet__lang-link.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
+
+@media (min-width:1024px){
+  .ds-header__nav{display:block}
+  .ds-header__extra{display:flex}
+  .ds-menu-btn,.ds-navsheet{display:none !important}
+}
+
 
 /* ---------- Foco: patrón de texto ---------- */
 .ds-focus-text{background-color:var(--focus) !important;color:var(--focus-ink) !important;text-decoration:none !important;box-shadow:var(--underline-focus);-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -284,7 +368,7 @@
 .ds-state__label{margin:0;color:var(--text-secondary)}
 
 @media (prefers-reduced-motion:reduce){
-  .ds-nav,.ds-logo,.ds-btn,.ds-link,.ds-footer__email,.ds-proj__thumb,.ds-proj__thumb > *,.ds-proj__title span,.ds-proj__arrow{transition:none}
+  .ds-nav,.ds-logo,.ds-menu-btn,.ds-navsheet,.ds-navsheet::backdrop,.ds-navsheet__link,.ds-navsheet__lang-link,.ds-lang__item,.ds-lang__btn svg,.ds-btn,.ds-link,.ds-footer__email,.ds-proj__thumb,.ds-proj__thumb > *,.ds-proj__title span,.ds-proj__arrow{transition:none}
   .ds-proj:hover .ds-proj__thumb > *,.ds-proj.is-hover .ds-proj__thumb > *{transform:none}
   .ds-proj:hover .ds-proj__arrow,.ds-proj.is-hover .ds-proj__arrow{transform:none}
 }

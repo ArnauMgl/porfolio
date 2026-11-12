@@ -28,6 +28,7 @@ const siguiente = art ? seguirLeyendo(art, publicados) : [];
   description={art.descripcion}
   imagen={art.compartir ?? undefined}
   imagenAlt={art.compartir ? `Portada del artículo «${art.titulo}», por Arnau Larripa` : undefined}
+  actual="blog"
   tema="wip"
   publicadoEn={art.fecha}
   emailContacto
@@ -38,6 +39,7 @@ const siguiente = art ? seguirLeyendo(art, publicados) : [];
 <Base
   title="WIP · Blog de Arnau Larripa"
   description="WIP, el blog de Arnau Larripa, Product Designer en Barcelona. Diseño de producto, accesibilidad e IA, contados a medida que se aprende."
+  actual="blog"
   tema="wip"
   emailContacto
 >

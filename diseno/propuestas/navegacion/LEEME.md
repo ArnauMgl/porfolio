@@ -1,0 +1,54 @@
+# Propuesta de navegación (implementada en la web)
+
+Maqueta de la barra de navegación. **Ya está implementada** en `src/components/Header.astro` (ver `LEEME.md` de la raíz). Esta carpeta se conserva como referencia de diseño y estados; los estilos reales viven en `src/styles/components.css` (en la web la hoja se llama `.ds-navsheet`, porque `.ds-sheet` ya existía).
+
+## Cómo verla
+
+Abre los `.html` de esta carpeta en el navegador (usan los estilos reales de `src/styles/` y la fuente de `public/fonts/`).
+
+| Archivo | Qué es |
+|---|---|
+| `propuesta.html` | La barra y el bottom sheet, interactivos. Parámetros en la URL: `?lab&idioma` muestra Lab e idioma; `&lang` abre el desplegable; `&open` abre la hoja (en ancho móvil). |
+| `estados.html` | Estados de interacción de todos los elementos. |
+| `marcas.html` | Propuesta para el sistema de diseño: Iridescent., Lab. y Frame. |
+| `nav.css` | Estilos de la barra (sustituyen al bloque «Navegación» de `components.css`). |
+| `marcas.css` | Tokens y componente de las marcas. |
+| `capturas/` | Imágenes de referencia. |
+
+## Decisiones tomadas
+
+**Escritorio (desde 1024 px)**
+- Izquierda: **Arnau Larripa** (enlace a la home) · Trabajo · Sobre mí · Blog.
+- Derecha: **Lab.** · separador fino · selector de idioma.
+- Idioma: botón `ES ⌄` con desplegable de siglas (ES · CA · EN), recuadro centrado bajo el botón. La opción activa lleva subrayado terracota (sin punto). Se cierra con Escape y al hacer clic fuera.
+
+**Móvil y tableta (menos de 1024 px): bottom sheet**
+- Nombre a la izquierda y botón de hamburguesa **solo con icono** (48 × 48 px) a la derecha. El icono no cambia al abrirse: la hoja se cierra con su propia X.
+- Al pulsarlo se abre una **hoja desde abajo** con velo oscuro, que ocupa solo la altura de su contenido. Se construye como el panel de contacto: un `<dialog>` con `showModal()` (foco atrapado, Escape y fondo inerte de forma nativa), borde superior de 2 px y esquinas superiores de 4 px.
+- Dentro, de arriba abajo: etiqueta «Menú» y botón X de cierre (`.ds-close`, alineado donde estaba el icono de hamburguesa); línea gruesa; **navegación de la página** (Trabajo · Sobre mí · Blog, a 24 px, líneas finas entre ellos y punto terracota en la actual); línea gruesa; **Lab.** aparte; un hueco amplio (64 px, el doble que antes) y, **sin separador**, el **idioma** en tres celdas iguales con siglas (ES · CA · EN, mínimo 56 px de alto). Si Lab está oculto, el idioma sube a 32 px de la lista. **Con Lab e idioma ocultos (estado de lanzamiento) la línea gruesa inferior desaparece**: la lista termina sin separador.
+- Se cierra con la X, tocando el velo o con Escape. Sin gesto de arrastrar (queda fuera de la primera versión).
+- A 640–1023 px la hoja ocupa todo el ancho con márgenes de 48 px.
+
+**Lab.** · separador fino · selector de idioma.
+- Idioma: botón `ES ⌄` con desplegable de siglas (ES · CA · EN), recuadro centrado bajo el botón. La opción activa lleva subrayado terracota (sin punto). Se cierra con Escape y al hacer clic fuera.
+
+**Móvil y tableta (menos de 1024 px)**
+- Nombre a la izquierda y botón de hamburguesa **solo con icono** (48 × 48 px) a la derecha. Se convierte en X al abrirse.
+- Menú desplegable: enlaces a 24 px separados por líneas; la página actual lleva punto terracota.
+- Lab al final de la lista. Idioma en tres celdas iguales con siglas (ES · CA · EN), mínimo 56 px de alto.
+
+**Lab.**
+- Negrita (700) y en negro también en reposo. Punto verde (`--brand-lab`, `#52b558`) de 0,34 em en la barra de escritorio y 0,3 em en la hoja móvil, decorativo (`aria-hidden`).
+- Hover: subrayado verde. Pulsado: terracota oscuro. Foco: amarillo del sistema.
+- **Sin estado «actual» por ahora**: se decidirá cuando se plantee la página del Lab.
+
+**Ocultos hasta el lanzamiento de cada uno**
+- Lab y el selector de idioma van **ocultos del todo** (atributo `hidden`), sin «próximamente». Para activarlos basta con quitar el atributo.
+
+## Pendiente
+
+- Crear `/blog/` (el enlace ya apunta ahí) antes de publicar la barra.
+- Añadir al sistema de diseño (`diseno/ds/`) los tokens de marca y el componente de wordmark (`marcas.css`). Los tokens ya están en `src/styles/tokens.css`.
+- Valores exactos del degradado de Iridescent (aquí aproximado desde una captura).
+- Decidir si Lab tiene estado «actual».
+- Probar el desplegable de idioma con lector de pantalla cuando se active.

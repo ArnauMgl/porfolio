@@ -12,7 +12,7 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi';
+  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi' | 'blog';
   // Imagen para compartir en redes (1200×630, en public/og/). Por defecto, la general.
   imagen?: string;
   imagenAlt?: string;
@@ -60,6 +60,8 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <meta name="twitter:title" content={title}>
 <meta name="twitter:description" content={description}>
 <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Sin JavaScript no se puede abrir la hoja del menú: en su lugar se muestran los enlaces en línea. -->
+<noscript><style>.ds-header__bar{flex-wrap:wrap}.ds-header__nav{display:block;margin-left:0;width:100%}.ds-header__list{flex-wrap:wrap}.ds-menu-btn{display:none}</style></noscript>
 </head>
 <body class={tema === 'wip' ? 'tema-wip' : undefined}>
 <div class="ds-page t-body">
@@ -68,6 +70,6 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <Footer emailContacto={emailContacto} />
 </div>
 <Contacto />
-<script>import '../scripts/contacto.js';</script>
+<script>import '../scripts/contacto.js';import '../scripts/navegacion.js';</script>
 </body>
 </html>
