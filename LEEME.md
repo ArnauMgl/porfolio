@@ -26,6 +26,42 @@ Cada rama tiene además su propia vista previa en `https://<nombre-de-rama>.arna
 Requiere Node.js. En la carpeta del proyecto, ejecuta `npm install` una vez y
 después `npm run dev`. Abre http://localhost:4321 en el navegador.
 
+## Blog WIP (v1.2)
+
+Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una página «Work in progress» con amarillo `#F7BD03` como relleno y tinta negra.
+**No está enlazado desde el menú**: la navegación nueva saldrá junto con el blog.
+
+### Dónde está cada cosa
+
+- `content/articulos/AAAA-MM-DD-slug.md`: los artículos. El nombre del archivo debe coincidir con `date` y `slug` del frontmatter (si no, la construcción falla con un aviso).
+- `content/imagenes/`: imágenes de los artículos. En el Markdown, `<!-- IMAGEN n: archivo.webp — pie: «…» — alt: «…» -->` se convierte en `<figure>` (la imagen con «portada» en el nombre, o si no la primera, es la portada y la miniatura).
+- `src/content.config.ts`: validación del frontmatter. `src/data/blog.js`: lee los artículos y decide cuáles están publicados.
+- `src/pages/blog/[...slug].astro`: listado y artículos. `rss.xml.js` y `src/pages/sitemap-blog.xml.js`: feed y sitemap.
+- `src/components/blog/`, `src/scripts/blog-listado.js` (filtros, orden, paginador), `src/scripts/blog-lectura.js` (barra de progreso), `src/styles/wip.css` (capa amarilla y componentes `bl-*`).
+- `lib/blog/`: la lógica (fechas, filtros, orden, paginado, «Sigue leyendo», imágenes) con pruebas en `tests/blog*.test.js`. Los límites están en `lib/blog/config.js`: `POR_PAGINA` (6), `UMBRAL_CONTROLES` (6) y `MINIMO_SIGUE_LEYENDO` (3).
+
+### Publicación programada
+
+- Un artículo se publica a las 00:00 (Europe/Madrid) del día de su `date`. Mientras no llegue, no se genera su página, ni sale en el listado, el sitemap ni el RSS. Si no hay ningún artículo publicado, `/blog/` no existe.
+- Como la web es estática, hay que reconstruirla ese día: `.github/workflows/publicar-articulos.yml` lo hace a las 00:05 de Madrid llamando a un *deploy hook* de Cloudflare Pages, solo si hay un artículo con la fecha de hoy. Instrucciones de configuración en la cabecera de ese archivo (un hook en Cloudflare y un secreto `CLOUDFLARE_DEPLOY_HOOK` en GitHub).
+- Para adelantar un artículo, cambia `date` y el nombre del archivo.
+
+### Verlo antes de tiempo (solo desarrollo y vistas previas)
+
+| Comando | Qué ves |
+|---|---|
+| `npm run dev:blog` | Los 3 artículos reales, como si ya estuvieran publicados |
+| `npm run dev:blog-1` | Solo el del 24 nov (blog con 1 artículo) |
+| `npm run dev:blog-pruebas` | Los 3 reales + 7 de prueba (`content-dev/`): filtros, orden y paginador |
+| `npm run build:blog` | Construcción con todo publicado, para `npm run preview` y `npm test` |
+
+Con las variables `WIP_HOY=AAAA-MM-DD` (ver el blog como si hoy fuera ese día) y `WIP_PRUEBAS=1` (añade `content-dev/`). Para ver los artículos programados en las vistas previas de Cloudflare, define `WIP_HOY` en Settings → Variables de entorno → **solo Preview**. **No** la definas en Production ni uses `WIP_PRUEBAS` allí: los artículos de prueba nunca deben publicarse.
+
+### Listado y artículo
+
+- Sin JavaScript el listado se ve completo, ordenado por fecha. Los filtros, el orden y el paginador solo se activan desde 6 artículos publicados; su estado vive en la URL (`?tema=ia,accesibilidad&orden=antiguos&pagina=2`).
+- Palabras clave que filtran y se muestran: `sporttech`, `healthtech`, `ia` («IA y diseño») y `accesibilidad`. `ux`, `ui` y `producto` quedan en el contenido pero no filtran ni se ven.
+
 ## Modal de contacto (v1.1)
 
 - Marcado: `src/components/Contacto.astro` (se incluye en `Base.astro`). Comportamiento: `src/scripts/contacto.js`. Estilos: final de `src/styles/components.css`; tokens nuevos al final de `src/styles/tokens.css`.

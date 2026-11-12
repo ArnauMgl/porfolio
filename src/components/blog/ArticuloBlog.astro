@@ -1,0 +1,58 @@
+---
+import Imagen from '../Imagen.astro';
+import FilaArticulo from './FilaArticulo.astro';
+// Página de un artículo: cabecera, ficha, divisor, portada, cuerpo con barra de progreso y «Sigue leyendo».
+// El cuerpo (art.html) sale del Markdown ya convertido a HTML; el texto no se toca.
+interface Props { art: any; siguiente: any[]; }
+const { art, siguiente } = Astro.props;
+---
+<main id="articulo">
+<article>
+<header class="ds-wrap ds-case-head">
+<div class="ds-prose">
+<a class="ds-link ds-link--touch t-body bl-volver" href="/blog/"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="216" y1="128" x2="40" y2="128"></line><polyline points="112 56 40 128 112 200"></polyline></svg>Volver al blog</a>
+<h1 class="ds-case__title t-page-title-mobile">{art.titulo}<span class="ds-dot" aria-hidden="true">.</span></h1>
+<p class="ds-case__subtitle t-statement">{art.descripcion}</p>
+</div>
+<dl class="ds-meta">
+<div class="ds-meta__item"><dt class="t-meta">Publicado</dt><dd class="t-body-strong"><time datetime={art.fecha}>{art.fechaTexto}</time></dd></div>
+<div class="ds-meta__item"><dt class="t-meta">Lectura</dt><dd class="t-body-strong">{art.lectura} min</dd></div>
+{art.filtros.length > 0 && <div class="ds-meta__item"><dt class="t-meta">Palabras clave</dt><dd class="t-body-strong">{art.filtros.map((f) => f.nombre).join(', ')}</dd></div>}
+</dl>
+</header>
+
+<div class="ds-wrap bl-read" data-lectura>
+{art.secciones.length > 0 && (
+<div class="bl-rail">
+<div class="bl-rail__sticky">
+<div class="bl-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progreso><div class="bl-progress__fill" data-relleno></div></div>
+<ol class="bl-marks">
+{art.secciones.map((s) => <li class="bl-mark" data-seccion={s.id}><a class="bl-mark__dot" href={`#${s.id}`} aria-label={`Ir a la sección ${s.n}: ${s.texto}`}></a></li>)}
+</ol>
+</div>
+</div>
+)}
+<div class="bl-body" data-cuerpo>
+{art.portada && (
+<figure class="ds-figure bl-portada">
+<Imagen src={art.portada.meta} alt={art.portada.alt} loading="eager" tamano="columna" />
+{art.portada.pie && <figcaption class="t-meta">{art.portada.pie}</figcaption>}
+</figure>
+)}
+<div class="bl-cuerpo ds-prose t-body" set:html={art.html} />
+</div>
+<div class="bl-edge" aria-hidden="true" data-borde><div class="bl-edge__fill" data-borde-relleno></div></div>
+</div>
+</article>
+
+{siguiente.length > 0 && (
+<section class="ds-wrap ds-case-section bl-mas" aria-labelledby="mas-titulo">
+<div class="ds-section__head"><h2 class="ds-section-title t-section-title-mobile" id="mas-titulo">Sigue leyendo</h2></div>
+<ol class="bl-list">
+{siguiente.map((a) => <FilaArticulo art={a} nivelTitulo="h3" />)}
+</ol>
+<p class="bl-more"><a class="ds-link ds-link--touch t-body" href="/blog/">Ver todos los artículos<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"></line><polyline points="144 56 216 128 144 200"></polyline></svg></a></p>
+</section>
+)}
+</main>
+<script>import '../../scripts/blog-lectura.js';</script>

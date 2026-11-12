@@ -1,0 +1,56 @@
+---
+// Blog WIP. Una sola plantilla de ruta para el listado (/blog/) y para cada artículo (/blog/<slug>/).
+// Solo se generan las páginas de los artículos ya publicados (fecha de hoy en Madrid o anterior).
+// Si todavía no hay ninguno publicado, no se genera nada: /blog/ no existe (404) hasta el primer artículo.
+import Base from '../../layouts/Base.astro';
+import ListadoBlog from '../../components/blog/ListadoBlog.astro';
+import ArticuloBlog from '../../components/blog/ArticuloBlog.astro';
+import { articulosPublicados, mostrarControles } from '../../data/blog.js';
+import { seguirLeyendo } from '../../../lib/blog/relacionados.js';
+
+export async function getStaticPaths() {
+  const publicados = await articulosPublicados();
+  if (publicados.length === 0) return [];
+  return [
+    { params: { slug: undefined }, props: { slug: null } },
+    ...publicados.map((a) => ({ params: { slug: a.slug }, props: { slug: a.slug } })),
+  ];
+}
+
+const { slug } = Astro.props;
+const publicados = await articulosPublicados();
+const art = slug ? publicados.find((a) => a.slug === slug) : null;
+const siguiente = art ? seguirLeyendo(art, publicados) : [];
+---
+{art ? (
+<Base
+  title={art.seoTitle}
+  description={art.descripcion}
+  imagen={art.compartir ?? undefined}
+  imagenAlt={art.compartir ? `Portada del artículo «${art.titulo}», por Arnau Larripa` : undefined}
+  tema="wip"
+  publicadoEn={art.fecha}
+  emailContacto
+>
+<ArticuloBlog art={art} siguiente={siguiente} />
+</Base>
+) : (
+<Base
+  title="WIP · Blog de Arnau Larripa"
+  description="WIP, el blog de Arnau Larripa, Product Designer en Barcelona. Diseño de producto, accesibilidad e IA, contados a medida que se aprende."
+  tema="wip"
+  emailContacto
+>
+<main id="blog">
+<div class="ds-wrap">
+<section class="bl-head" aria-labelledby="titular">
+<div class="ds-prose">
+<h1 id="titular" class="ds-case__title t-page-title-mobile">WIP<span class="ds-dot">.</span></h1>
+<p class="ds-case__subtitle t-statement">Work in progress. Diseño de producto, accesibilidad e IA, contados a medida que se aprende.</p>
+</div>
+</section>
+<ListadoBlog articulos={publicados} controles={mostrarControles(publicados.length)} />
+</div>
+</main>
+</Base>
+)}

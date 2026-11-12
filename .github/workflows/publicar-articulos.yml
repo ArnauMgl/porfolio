@@ -1,0 +1,45 @@
+# Publicación programada del blog WIP.
+# La web es estática: un artículo con fecha futura no se genera hasta que se vuelve a construir la web.
+# Este flujo se ejecuta cada día a las 00:05 en Madrid y, SOLO si hay un artículo con la fecha de hoy,
+# pide a Cloudflare Pages que reconstruya la web (a través de un «deploy hook»).
+#
+# Configuración (una vez):
+#   1. Cloudflare → Workers & Pages → arnaularripa → Settings → Builds → Deploy hooks → crear uno para la rama «main».
+#   2. GitHub → Settings → Secrets and variables → Actions → New repository secret:
+#      nombre CLOUDFLARE_DEPLOY_HOOK, valor la URL del hook.
+# Nota: GitHub solo ejecuta flujos programados desde la rama principal, y los desactiva tras 60 días sin actividad
+# en el repositorio (si pasa, se reactivan en la pestaña Actions).
+name: Publicar artículos programados
+
+on:
+  schedule:
+    # Dos horas UTC para cubrir el horario de verano e invierno; el paso siguiente comprueba que en Madrid es medianoche.
+    - cron: '5 22 * * *'
+    - cron: '5 23 * * *'
+  workflow_dispatch: # También se puede lanzar a mano desde la pestaña Actions
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ¿Hay un artículo con la fecha de hoy?
+        id: toca
+        run: |
+          HOY=$(TZ=Europe/Madrid date +%F)
+          HORA=$(TZ=Europe/Madrid date +%H)
+          echo "Hoy en Madrid: $HOY, hora $HORA"
+          if [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$HORA" != "00" ]; then
+            echo "No es medianoche en Madrid: nada que hacer."; echo "toca=no" >> "$GITHUB_OUTPUT"
+          elif ls content/articulos/"$HOY"-*.md >/dev/null 2>&1; then
+            echo "Hay artículo para hoy: se reconstruye la web."; echo "toca=si" >> "$GITHUB_OUTPUT"
+          else
+            echo "Ningún artículo con fecha de hoy."; echo "toca=no" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Reconstruir la web en Cloudflare Pages
+        if: steps.toca.outputs.toca == 'si'
+        env:
+          HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then echo "Falta el secreto CLOUDFLARE_DEPLOY_HOOK"; exit 1; fi
+          curl --fail --silent --show-error -X POST "$HOOK"

@@ -1,0 +1,64 @@
+---
+import FilaArticulo from './FilaArticulo.astro';
+// Listado de WIP. Sin JavaScript se ve completo y ordenado por fecha (más reciente primero).
+// Con JavaScript (src/scripts/blog-listado.js) se activan filtros, orden y paginador, con su estado en la URL.
+// Los controles solo se muestran a partir de UMBRAL_CONTROLES artículos publicados.
+import { FILTROS } from '../../../lib/blog/etiquetas.js';
+import { ORDENES, ORDEN_POR_DEFECTO } from '../../../lib/blog/listado.js';
+import { POR_PAGINA } from '../../../lib/blog/config.js';
+interface Props { articulos: any[]; controles: boolean; }
+const { articulos, controles } = Astro.props;
+const ordenInicial = ORDENES.find((o) => o.id === ORDEN_POR_DEFECTO);
+const check = '<polyline points="40 144 96 200 224 72"></polyline>';
+---
+<div class="bl-listado" data-listado data-por-pagina={POR_PAGINA}>
+{controles && (
+<section class="bl-controls" aria-label="Filtrar y ordenar artículos" data-controles hidden>
+<div class="bl-ctl">
+<div class="bl-field">
+<div class="bl-field__head">
+<p class="bl-field__label t-meta" id="lbl-tags">Palabras clave</p>
+<button type="button" class="bl-reset bl-reset--inline ds-link is-off" data-quitar>Quitar filtros</button>
+</div>
+<div class="bl-chips" role="group" aria-labelledby="lbl-tags">
+{FILTROS.map((f) => (
+<button type="button" class="bl-chip t-nav-strong" aria-pressed="false" data-tema={f.id}>
+<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={check} />
+<span>{f.nombre}</span>
+</button>
+))}
+</div>
+</div>
+<div class="bl-field">
+<p class="bl-field__label t-meta" id="lbl-orden">Ordenar por</p>
+<div class="bl-select-wrap" data-orden>
+<button type="button" class="bl-trigger t-body" id="bl-orden-btn" aria-haspopup="true" aria-expanded="false" aria-controls="bl-orden-menu" aria-labelledby="lbl-orden bl-orden-btn">
+<span data-orden-actual>{ordenInicial.nombre}</span>
+<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="208 96 128 176 48 96"></polyline></svg>
+</button>
+<ul class="bl-menu" id="bl-orden-menu" hidden>
+{ORDENES.map((o) => (
+<li><button type="button" class="bl-opt t-body" data-valor={o.id} aria-current={o.id === ORDEN_POR_DEFECTO ? 'true' : 'false'}><span>{o.nombre}</span><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={check} /></button></li>
+))}
+</ul>
+</div>
+</div>
+</div>
+</section>
+)}
+
+<section class="bl-lista" aria-label="Artículos">
+{controles && <div class="bl-count" data-contador-caja hidden><p class="t-meta" aria-live="polite" data-contador></p></div>}
+{controles && (
+<div class="bl-empty" data-vacio hidden>
+<p class="t-statement">Ningún artículo con esas palabras clave.</p>
+<button type="button" class="bl-reset ds-link ds-link--touch t-body" data-quitar>Quitar filtros</button>
+</div>
+)}
+<ol class="bl-list" data-lista>
+{articulos.map((a, i) => <FilaArticulo art={a} miniatura nivelTitulo="h2" primera={i === 0} />)}
+</ol>
+{controles && <nav class="bl-pager" aria-label="Paginación" data-pager hidden></nav>}
+</section>
+</div>
+{controles && <script>import '../../scripts/blog-listado.js';</script>}

@@ -6,6 +6,7 @@ import Contacto from '../components/Contacto.astro';
 import '../styles/fuentes.css';
 import '../styles/tokens.css';
 import '../styles/components.css';
+import '../styles/wip.css';
 import '../styles/global.css';
 
 interface Props {
@@ -17,8 +18,14 @@ interface Props {
   imagenAlt?: string;
   // Página que no debe indexarse (por ejemplo, la 404): añade robots noindex y omite canonical y og:url.
   noindex?: boolean;
+  // Blog WIP: tema amarillo y tinta negra (src/styles/wip.css), enlace al feed RSS y tipo «article» para redes.
+  tema?: 'wip';
+  // Solo artículos: fecha de publicación (AAAA-MM-DD) para article:published_time.
+  publicadoEn?: string;
+  // El email del pie abre el panel de contacto (#contacto) en vez de un mailto:.
+  emailContacto?: boolean;
 }
-const { title, description, actual, imagen = '/og/og-general.png', imagenAlt = 'Arnau Larripa, Product Designer en Barcelona', noindex = false } = Astro.props;
+const { title, description, actual, imagen = '/og/og-general.png', imagenAlt = 'Arnau Larripa, Product Designer en Barcelona', noindex = false, tema, publicadoEn, emailContacto = false } = Astro.props;
 const imagenUrl = new URL(imagen, Astro.site).href;
 const canonica = new URL(Astro.url.pathname, Astro.site).href;
 ---
@@ -35,7 +42,9 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <link rel="manifest" href="/site.webmanifest">
 {noindex && <meta name="robots" content="noindex">}
 {!noindex && <link rel="canonical" href={canonica}>}
-<meta property="og:type" content="website">
+<meta property="og:type" content={publicadoEn ? 'article' : 'website'}>
+{publicadoEn && <meta property="article:published_time" content={publicadoEn}>}
+{tema === 'wip' && <link rel="alternate" type="application/rss+xml" title="WIP · Arnau Larripa" href="/blog/rss.xml">}
 <meta property="og:site_name" content="Arnau Larripa">
 <meta property="og:locale" content="es_ES">
 <meta property="og:title" content={title}>
@@ -52,11 +61,11 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <meta name="twitter:description" content={description}>
 <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
-<body>
+<body class={tema === 'wip' ? 'tema-wip' : undefined}>
 <div class="ds-page t-body">
 <Header actual={actual} />
 <slot />
-<Footer />
+<Footer emailContacto={emailContacto} />
 </div>
 <Contacto />
 <script>import '../scripts/contacto.js';</script>
