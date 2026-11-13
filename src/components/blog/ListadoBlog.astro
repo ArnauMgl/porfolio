@@ -47,7 +47,7 @@ const check = '<polyline points="40 144 96 200 224 72"></polyline>';
 </section>
 )}
 
-<section class="bl-lista" aria-label="Artículos">
+<section class:list={['bl-lista', { 'bl-lista--sin-controles': !controles }]} aria-label="Artículos">
 {controles && <div class="bl-count" data-contador-caja hidden><p class="t-meta" aria-live="polite" data-contador></p></div>}
 {controles && (
 <div class="bl-empty" data-vacio hidden>

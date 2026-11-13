@@ -7,11 +7,19 @@ interface Props { art: any; siguiente: any[]; }
 const { art, siguiente } = Astro.props;
 ---
 <main id="articulo">
-<article>
-<header class="ds-wrap ds-case-head">
+<article class="ds-wrap bl-articulo" data-lectura>
+{art.secciones.length > 0 && (
+<div class="bl-rail">
+<div class="bl-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progreso><div class="bl-progress__fill" data-relleno></div></div>
+<ol class="bl-marks">
+{art.secciones.map((s) => <li class="bl-mark" data-seccion={s.id}><a class="bl-mark__dot" href={`#${s.id}`} aria-label={`Ir a la sección ${s.n}: ${s.texto}`}></a></li>)}
+</ol>
+</div>
+)}
+<header class="bl-cab ds-case-head">
 <div class="ds-prose">
 <a class="ds-link ds-link--touch t-body bl-volver" href="/blog/"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="216" y1="128" x2="40" y2="128"></line><polyline points="112 56 40 128 112 200"></polyline></svg>Volver al blog</a>
-<h1 class="ds-case__title t-page-title-mobile">{art.titulo}<span class="ds-dot" aria-hidden="true">.</span></h1>
+<h1 class="ds-case__title t-page-title-mobile" data-titulo>{art.titulo}<span class="ds-dot" aria-hidden="true">.</span></h1>
 <p class="ds-case__subtitle t-statement">{art.descripcion}</p>
 </div>
 <dl class="ds-meta">
@@ -21,17 +29,6 @@ const { art, siguiente } = Astro.props;
 </dl>
 </header>
 
-<div class="ds-wrap bl-read" data-lectura>
-{art.secciones.length > 0 && (
-<div class="bl-rail">
-<div class="bl-rail__sticky">
-<div class="bl-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progreso><div class="bl-progress__fill" data-relleno></div></div>
-<ol class="bl-marks">
-{art.secciones.map((s) => <li class="bl-mark" data-seccion={s.id}><a class="bl-mark__dot" href={`#${s.id}`} aria-label={`Ir a la sección ${s.n}: ${s.texto}`}></a></li>)}
-</ol>
-</div>
-</div>
-)}
 <div class="bl-body" data-cuerpo>
 {art.portada && (
 <figure class="ds-figure bl-portada">
@@ -42,7 +39,6 @@ const { art, siguiente } = Astro.props;
 <div class="bl-cuerpo ds-prose t-body" set:html={art.html} />
 </div>
 <div class="bl-edge" aria-hidden="true" data-borde><div class="bl-edge__fill" data-borde-relleno></div></div>
-</div>
 </article>
 
 {siguiente.length > 0 && (

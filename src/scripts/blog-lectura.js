@@ -1,11 +1,12 @@
 // Barra de progreso de lectura del artículo.
-//  - Escritorio (≥1024 px): barra vertical sticky con un punto por título (H2). Móvil/tableta: barra fina de 4 px en el borde derecho.
+//  - Escritorio (≥1024 px): barra vertical sticky, a la altura del H1, con un punto por título (H2). Móvil/tableta: barra fina de 4 px en el borde derecho.
 //  - El relleno sigue el scroll real. La posición de cada punto se calcula con la posición real de su H2
 //    y se recalcula cuando cambia el tamaño de la página (giro, fuentes, imágenes que terminan de cargar).
 //  - Un punto pasa a amarillo cuando la «línea de lectura» (35 % de la altura de la pantalla) llega a su H2.
 const raiz = document.querySelector('[data-lectura]');
 const cuerpo = raiz?.querySelector('[data-cuerpo]');
-if (raiz && cuerpo) iniciar();
+const titulo = raiz?.querySelector('[data-titulo]');
+if (raiz && cuerpo && titulo) iniciar();
 
 function iniciar() {
   const barra = raiz.querySelector('[data-progreso]');
@@ -21,8 +22,10 @@ function iniciar() {
   const absoluto = (el) => el.getBoundingClientRect().top + window.scrollY;
 
   function medir() {
-    inicio = absoluto(cuerpo);
-    fin = inicio + cuerpo.offsetHeight;
+    // El recorrido empieza en el H1 (donde arranca la barra) y acaba al final del cuerpo.
+    // Nunca antes de la línea de lectura con la página arriba, para que el relleno arranque en 0.
+    inicio = Math.max(absoluto(titulo), window.innerHeight * LINEA);
+    fin = Math.max(inicio + 1, absoluto(cuerpo) + cuerpo.offsetHeight);
     const largo = Math.max(1, fin - inicio);
     for (const m of marcas) {
       m.f = Math.min(1, Math.max(0, (absoluto(m.titulo) - inicio) / largo));

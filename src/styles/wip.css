@@ -55,14 +55,9 @@
 .bl-head{padding-top:var(--space-8)}
 .bl-head .ds-prose{max-width:none;gap:var(--space-3)}
 .bl-head .ds-prose > p{max-width:var(--text-max)}
-@media (min-width:640px){
-  .bl-head{padding-top:var(--space-10)}
-  .bl-head .ds-case__title{font-size:56px;line-height:1;letter-spacing:-0.035em}
-}
-@media (min-width:1024px){
-  .bl-head{padding-top:var(--space-12)}
-  .bl-head .ds-case__title{font-size:64px}
-}
+/* El título «WIP.» no lleva tamaños propios: hereda .ds-case__title igual que «Trabajo» y «Sobre mí» (48 px; 96 px desde 1024) */
+@media (min-width:640px){.bl-head{padding-top:var(--space-10)}}
+@media (min-width:1024px){.bl-head{padding-top:var(--space-12)}}
 
 /* Controles: palabras clave (izquierda) y orden (derecha) */
 .bl-controls{margin-top:var(--space-8)}
@@ -105,6 +100,9 @@
 .bl-reset.is-off{visibility:hidden}
 .bl-lista{margin-top:var(--space-5)}
 .bl-controls:not([hidden]) ~ .bl-lista{margin-top:0}
+/* Sin controles (menos de 6 artículos) no hay línea entre el subtítulo y el listado */
+.bl-lista--sin-controles{margin-top:0}
+.bl-lista--sin-controles .bl-list{border-top:0}
 .bl-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--line-strong)}
 .bl-list > li + li{border-top:1px solid var(--line)}
 .bl-post__row{display:grid;grid-template-columns:minmax(0,1fr) var(--icon-size);grid-template-areas:"thumb thumb" "main arrow";column-gap:var(--space-2);row-gap:var(--space-3);padding-block:var(--space-4);align-items:start}
@@ -142,6 +140,7 @@
   .bl-select-wrap{max-width:none}
   .bl-count{grid-template-columns:var(--aside-col) minmax(0,1fr);column-gap:var(--space-10);margin-top:var(--space-5)}
   .bl-lista{margin-top:var(--space-6)}
+  .bl-lista--sin-controles{margin-top:0}
   /* Miniatura a la izquierda; texto en columna de lectura (704 px) con la flecha dentro de esa columna */
   .bl-post__row{grid-template-columns:var(--aside-col) minmax(0,var(--text-max));grid-template-areas:"thumb main";column-gap:var(--space-10);row-gap:0;padding-block:var(--space-5)}
   .bl-post .ds-proj__arrow{grid-area:main;justify-self:end;margin-top:0}
@@ -153,18 +152,23 @@
    Artículo
    ========================================================================== */
 .bl-volver{align-self:flex-start}
-.bl-read{margin-top:var(--space-4);display:grid;grid-template-columns:minmax(0,1fr)}
+.bl-articulo{display:grid;grid-template-columns:minmax(0,1fr)}
+/* Cabecera en la columna de lectura (704 px); el padding-top lo pone .ds-case-head */
+.bl-cab.ds-case-head{width:100%;max-width:var(--text-max);margin-inline:auto}
+.bl-body{margin-top:var(--space-4)}
 .bl-body{min-width:0;width:100%;max-width:var(--text-max);margin-inline:auto;border-top:2px solid var(--line-strong);padding-top:var(--space-3);display:flex;flex-direction:column;gap:var(--space-4)}
 .bl-portada{margin:0}
 .bl-portada img,.bl-cuerpo img{display:block;width:100%;height:auto;border-radius:var(--radius)}
 
 /* Cuerpo del artículo (HTML generado desde el Markdown) */
 .bl-cuerpo{max-width:none}
-.bl-cuerpo{counter-reset:seccion}
-.bl-cuerpo h2{display:flex;align-items:baseline;gap:var(--space-2);margin:var(--space-6) 0 var(--space-1);font-size:32px;line-height:1.15;font-weight:600;letter-spacing:-0.03em;color:var(--text);scroll-margin-top:var(--space-4);overflow-wrap:break-word}
+.bl-cuerpo h2{position:relative;margin:var(--space-6) 0 var(--space-1);font-size:32px;line-height:1.15;font-weight:600;letter-spacing:-0.03em;color:var(--text);scroll-margin-top:var(--space-4);overflow-wrap:break-word}
 .bl-cuerpo h2:first-child{margin-top:0}
-/* Número automático; «Referencias» no se numera */
-.bl-cuerpo h2:not(#referencias)::before{counter-increment:seccion;content:counter(seccion);flex:none;color:var(--text)}
+/* Punto amarillo (como las viñetas de las listas, más grande) colgado en el margen izquierdo: el texto del título
+   queda alineado con el del cuerpo. «Referencias» no lleva punto. */
+.bl-cuerpo h2:not(#referencias)::before{content:"";position:absolute;right:100%;margin-right:var(--space-1);top:calc(.575em - var(--punto) / 2);width:var(--punto);height:var(--punto);box-sizing:border-box;border:2px solid var(--text);border-radius:50%;background:var(--y)}
+.bl-cuerpo{--punto:12px}
+@media (min-width:640px){.bl-cuerpo{--punto:14px}}
 .bl-cuerpo h2:focus-visible{outline:none}
 .bl-cuerpo em{font-style:italic}
 .bl-cuerpo .bl-figura{margin:var(--space-2) 0}
@@ -174,7 +178,6 @@
 
 /* Barra de progreso de lectura (la dibuja src/scripts/blog-lectura.js; sin JavaScript no se muestra) */
 .bl-rail{display:none}
-.bl-rail__sticky{position:sticky;top:var(--space-3);height:240px}
 .bl-progress{position:relative;width:2px;height:100%;background:var(--line)}
 .bl-progress__fill{position:absolute;left:0;top:0;width:2px;height:0;background:var(--text)}
 .bl-marks{list-style:none;margin:0;padding:0}
@@ -187,12 +190,15 @@
 /* Móvil y tableta: barra fina de 4 px en el borde derecho de la pantalla */
 .bl-edge{display:none;position:fixed;top:0;bottom:0;right:0;width:4px;background:var(--line);z-index:5;pointer-events:none}
 .bl-edge__fill{position:absolute;left:0;top:0;width:4px;height:0;background:var(--text)}
-.bl-read[data-listo] ~ .bl-edge,.bl-edge[data-listo]{display:block}
+.bl-edge[data-listo]{display:block}
 
 @media (min-width:1024px){
-  .bl-read{grid-template-columns:minmax(0,1fr) minmax(0,var(--text-max)) minmax(0,1fr)}
-  .bl-read[data-listo] .bl-rail{display:block;grid-column:1;grid-row:1;justify-self:end;margin-right:var(--space-5);padding-top:calc(2px + var(--space-3))}
-  .bl-body{grid-column:2;grid-row:1}
+  .bl-articulo{grid-template-columns:minmax(0,1fr) minmax(0,var(--text-max)) minmax(0,1fr)}
+  .bl-cab{grid-column:2;grid-row:1}
+  .bl-body{grid-column:2;grid-row:2}
+  /* La barra arranca a la altura del H1: padding de la cabecera + enlace «Volver al blog» (48 px) + separación (24 px).
+     Es sticky dentro de todo el artículo (cabecera + cuerpo). */
+  .bl-articulo[data-listo] .bl-rail{display:block;grid-column:1;grid-row:1 / 3;align-self:start;position:sticky;top:var(--space-3);height:240px;margin-top:calc(var(--space-12) + var(--touch-min) + var(--space-3));justify-self:end;margin-right:var(--space-5)}
   .bl-edge,.bl-edge[data-listo]{display:none}
 }
 
