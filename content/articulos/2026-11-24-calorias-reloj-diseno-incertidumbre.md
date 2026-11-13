@@ -23,6 +23,8 @@ Esa diferencia tiene consecuencias. En un estudio de la Universidad de Stanford 
 
 Los modelos cambian cada año y es probable que los algoritmos actuales hayan mejorado algo. Aun así, el motivo de fondo sigue ahí: el pulso se mide directamente y las calorías se deducen, y cada persona se aleja a su manera de ese cuerpo medio.
 
+<!-- IMAGEN 2: calorias-reloj-foto.webp — alt: «Primer plano de una muñeca con un reloj deportivo negro que muestra, tras una salida a correr, 526 kcal, una carga de entrenamiento de 70 y un tiempo de 43:16.» -->
+
 ## El problema no es el dato, sino cómo se presenta
 
 Como diseñador, lo que me interesa no es que la estimación falle, porque calcular el gasto energético de una persona concreta es difícil. Lo que me interesa es que la interfaz no lo diga. Las calorías suelen aparecer con la misma tipografía, el mismo tamaño y la misma exactitud que la frecuencia cardiaca. «526 kcal» transmite la misma seguridad que «138 ppm», aunque una cifra sea una medición bastante fiable y la otra una aproximación que puede desviarse una cuarta parte o más.
@@ -47,7 +49,7 @@ No hace falta reinventar nada. Con decisiones bastante sencillas, una interfaz p
 - **Explicar bajo demanda.** Un icono de información que, al tocarlo, cuente en dos frases cómo se calcula el dato. Quien no lo necesita no lo ve; quien quiere entenderlo, lo tiene a un toque.
 - **Presentar las predicciones como escenarios.** «Entre 4:55 y 5:20/km según cómo llegues» ayuda más a planificar que una única cifra cerrada.
 
-<!-- IMAGEN 2: calorias-antes-despues.webp — pie: «A la izquierda, el resumen de la salida tal como lo muestra la app. A la derecha, una propuesta de cambio en las calorías (maqueta, no es la app real).» — alt: «Dos paneles de resumen de una salida de 7,59 km en la app del reloj, antes y después. A la izquierda, tal como los muestra la app, las calorías aparecen como «526 kcal», una cifra exacta y sin explicación. A la derecha, una propuesta de cambio: «≈ 530 kcal», con un rango de 420 a 660 y un icono de información. El resto de datos no cambia.» -->
+<!-- IMAGEN 3: calorias-antes-despues.webp — pie: «A la izquierda, el resumen de la salida tal como lo muestra la app. A la derecha, una propuesta de cambio en las calorías (maqueta, no es la app real).» — alt: «Dos paneles de resumen de una salida de 7,59 km en la app del reloj, antes y después. A la izquierda, tal como los muestra la app, las calorías aparecen como «526 kcal», una cifra exacta y sin explicación. A la derecha, una propuesta de cambio: «≈ 530 kcal», con un rango de 420 a 660 y un icono de información. El resto de datos no cambia.» -->
 
 ## Saber cuánto puedes fiarte de cada número
 

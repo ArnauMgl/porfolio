@@ -29,6 +29,10 @@
 .ds-nav:focus-visible,.ds-nav.is-focus,.ds-logo:focus-visible,.ds-logo.is-focus{outline:none;background-color:var(--focus);color:var(--focus-ink);text-decoration:none;box-shadow:var(--underline-focus)}
 .ds-nav[aria-current="true"]{color:var(--text);text-decoration-line:underline}
 
+/* Cabecera clásica (hasta el lanzamiento del blog): centrada, tres enlaces, como antes de la barra nueva */
+.ds-header--clasico .ds-logo{margin-left:0}
+.ds-header--clasico .ds-header__list{flex-wrap:wrap;justify-content:center;gap:0 var(--space-4)}
+
 /* Botón de menú (solo icono) */
 .ds-menu-btn{display:inline-flex;align-items:center;justify-content:center;width:var(--touch-min);height:var(--touch-min);margin:0 -12px 0 auto;padding:0;border:0;border-radius:var(--radius);background:none;color:var(--text);cursor:pointer;transition:color var(--duration-base) ease,background-color var(--duration-base) ease}
 .ds-menu-btn svg{width:var(--icon-size);height:var(--icon-size)}

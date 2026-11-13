@@ -44,6 +44,7 @@ Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una
 
 - Un artículo se publica a las 00:00 (Europe/Madrid) del día de su `date`. Mientras no llegue, no se genera su página, ni sale en el listado, el sitemap ni el RSS. Si no hay ningún artículo publicado, `/blog/` no existe.
 - Como la web es estática, hay que reconstruirla ese día: `.github/workflows/publicar-articulos.yml` lo hace a las 00:05 de Madrid llamando a un *deploy hook* de Cloudflare Pages, solo si hay un artículo con la fecha de hoy. Instrucciones de configuración en la cabecera de ese archivo (un hook en Cloudflare y un secreto `CLOUDFLARE_DEPLOY_HOOK` en GitHub).
+- Para probar el hook sin esperar a una fecha: GitHub → Actions → «Publicar artículos programados» → *Run workflow* con la casilla **Forzar** marcada. Reconstruye la web aunque no haya artículo de hoy (no publica nada que no esté ya en su fecha).
 - Para adelantar un artículo, cambia `date` y el nombre del archivo.
 
 ### Verlo antes de tiempo (solo desarrollo y vistas previas)

@@ -10,7 +10,10 @@ interface Props {
 }
 const { actual } = Astro.props;
 
-// «Blog» solo se enlaza cuando hay al menos un artículo publicado (antes del primero, /blog/ no existe).
+// LANZAMIENTO: la barra nueva (con «Blog») sale a la vez que el primer artículo. Hasta entonces se muestra la cabecera
+// clásica (centrada: Trabajo · nombre · Sobre mí), idéntica a la de antes. Se decide al construir la web: en cuanto
+// hay al menos un artículo publicado (fecha de hoy en Madrid o anterior) aparece la barra nueva y /blog/ existe.
+// Cuando el blog esté lanzado, se puede borrar la rama «clásica» (y .ds-header--clasico en components.css).
 import { articulosPublicados } from '../data/blog.js';
 const hayBlog = (await articulosPublicados()).length > 0;
 
@@ -32,6 +35,19 @@ const idiomas = [
 const homeHref = actual === 'inicio' ? '#inicio' : '/';
 const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round', 'aria-hidden': 'true' };
 ---
+{!hayBlog && (
+<header class="ds-wrap ds-header ds-header--clasico">
+<nav aria-label="Principal">
+<ul class="ds-header__list">
+<li><a class="ds-nav t-nav" href={actual === 'trabajo' ? '#titular' : '/trabajo/'} aria-current={actual === 'trabajo' || actual === 'caso' ? 'page' : undefined}>Trabajo</a></li>
+<li><a class="ds-logo t-nav-strong" href={actual === 'inicio' ? '#inicio' : '/'} aria-label="Arnau Larripa, ir al inicio">Arnau Larripa</a></li>
+<li><a class="ds-nav t-nav" href={actual === 'sobre-mi' ? '#sobre' : '/sobre-mi/'} aria-current={actual === 'sobre-mi' ? 'page' : undefined}>Sobre mí</a></li>
+</ul>
+</nav>
+</header>
+)}
+{hayBlog && (
+<>
 <header class="ds-wrap ds-header">
 <div class="ds-header__bar">
 <a class="ds-logo t-nav-strong" href={homeHref} aria-label="Arnau Larripa, ir al inicio">Arnau Larripa</a>
@@ -87,3 +103,5 @@ const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round',
 )}
 </div>
 </dialog>
+</>
+)}

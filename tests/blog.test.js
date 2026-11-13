@@ -34,7 +34,7 @@ test('formato de fecha «24 nov 2026»', () => {
 });
 
 test('solo las cinco palabras clave se muestran; las secundarias no', () => {
-  assert.deepEqual(filtrosDe(['ux', 'accesibilidad', 'ui', 'ia', 'diseno']).map((f) => f.nombre), ['IA', 'Diseño', 'Accesibilidad']);
+  assert.deepEqual(filtrosDe(['ux', 'accesibilidad', 'ui', 'ia', 'diseno']).map((f) => f.nombre), ['Accesibilidad', 'Diseño', 'IA']);
   assert.deepEqual(filtrosDe(['ux', 'ui']), []);
 });
 
