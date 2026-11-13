@@ -6,7 +6,7 @@ slug: "prueba-03-ia-prueba"
 date: "2026-07-14"
 lang: "es"
 readingTime: 6
-tags: ["ia", "producto"]
+tags: ["ia", "diseno", "producto"]
 ---
 
 Texto de prueba. Este artículo solo existe en desarrollo (content-dev) y nunca llega a la web real.

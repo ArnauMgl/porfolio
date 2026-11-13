@@ -6,7 +6,7 @@ slug: "accesibilidad-web-retrocede-diseno"
 date: "2027-01-19"
 lang: "es"
 readingTime: 4
-tags: ["accesibilidad", "ui", "ux"]
+tags: ["accesibilidad", "diseno", "ui", "ux"]
 ---
 
 Seguro que te suena la escena: un texto secundario en gris claro sobre fondo blanco, porque «queda más limpio». O un botón que es solo un icono, porque todo el mundo sabe qué significa una lupa. Son decisiones pequeñas que tomamos a diario en diseño, y casi siempre con buena intención. El problema es que, sumadas, explican buena parte de por qué la web sigue siendo difícil de usar para muchas personas.
@@ -19,7 +19,9 @@ El 95,9 % de las páginas analizadas tenía errores detectables de las pautas WC
 
 El error más frecuente es el de siempre: texto con contraste insuficiente, presente en el 83,9 % de las páginas (un año antes era el 79,1 %). De media, cada página tenía 34 textos con poco contraste.
 
-<!-- IMAGEN 1: accesibilidad-grafico-webaim.webp — alt: «Gráfico de líneas con el porcentaje de páginas de inicio con fallos WCAG detectables según WebAIM: 97,8 % en 2019, 98,1 % en 2020, 97,4 % en 2021, 96,8 % en 2022, 96,3 % en 2023, 95,9 % en 2024, 94,8 % en 2025 y 95,9 % en 2026. Sube un poco en 2020, baja poco a poco hasta 2025 y en 2026 vuelve a subir. El eje vertical empieza en el 92 %.» -->
+<!-- IMAGEN 1: accesibilidad-portada.webp — alt: «» -->
+
+<!-- IMAGEN 2: accesibilidad-grafico-webaim.webp — alt: «Gráfico de líneas con el porcentaje de páginas de inicio con fallos WCAG detectables según WebAIM: 97,8 % en 2019, 98,1 % en 2020, 97,4 % en 2021, 96,8 % en 2022, 96,3 % en 2023, 95,9 % en 2024, 94,8 % en 2025 y 95,9 % en 2026. Sube un poco en 2020, baja poco a poco hasta 2025 y en 2026 vuelve a subir. El eje vertical empieza en el 92 %.» -->
 
 ## Más complejidad, más errores
 
@@ -42,7 +44,7 @@ Y muchos de esos fundamentos se deciden antes de escribir una sola línea de có
 - **Botones e iconos.** Un botón que solo tiene un icono necesita un nombre accesible. Indicarlo en el diseño («este botón se anuncia como Buscar») evita que llegue vacío a producción.
 - **Imágenes.** Decidir qué imágenes aportan información y cuáles son decorativas, y proponer el texto alternativo de las primeras, también es trabajo de diseño.
 
-<!-- IMAGEN 2: accesibilidad-contraste.webp — alt: «Comparación del mismo texto en dos grises sobre fondo blanco. A la izquierda, un gris claro con un contraste de 2,4:1, que no cumple las WCAG. A la derecha, un gris más oscuro con un contraste de 7,0:1, que sí las cumple. El mínimo para texto normal es 4,5:1.» -->
+<!-- IMAGEN 3: accesibilidad-contraste.webp — alt: «Comparación del mismo texto en dos grises sobre fondo blanco. A la izquierda, un gris claro con un contraste de 2,4:1, que no cumple las WCAG. A la derecha, un gris más oscuro con un contraste de 7,0:1, que sí las cumple. El mínimo para texto normal es 4,5:1.» -->
 
 ## Ya no es solo una buena práctica
 

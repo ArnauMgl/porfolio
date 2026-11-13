@@ -6,7 +6,7 @@ slug: "prueba-05-healthtech-ia"
 date: "2026-09-15"
 lang: "es"
 readingTime: 8
-tags: ["healthtech", "ia"]
+tags: ["healthtech", "diseno"]
 ---
 
 Texto de prueba. Este artículo solo existe en desarrollo (content-dev) y nunca llega a la web real.

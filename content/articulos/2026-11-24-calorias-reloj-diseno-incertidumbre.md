@@ -6,14 +6,14 @@ slug: "calorias-reloj-diseno-incertidumbre"
 date: "2026-11-24"
 lang: "es"
 readingTime: 4
-tags: ["sporttech", "ux", "ui"]
+tags: ["sporttech", "diseno", "ux", "ui"]
 ---
 
 Cuando salgo a correr, durante el entrenamiento miro sobre todo dos cosas: el ritmo y las pulsaciones. El ritmo, porque antes de salir ya sé qué tengo que hacer ese día; las pulsaciones, para comprobar que el esfuerzo encaja con lo previsto. Las calorías, los kilómetros y el tiempo total los miro después, ya en casa, cuando la salida ha terminado.
 
 Hace poco me di cuenta de que trato esos números de forma muy distinta sin habérmelo planteado nunca. La pantalla del reloj, en cambio, los trata a todos igual.
 
-<!-- IMAGEN 1: calorias-reloj-portada.webp — alt: «Primer plano de una muñeca con un reloj deportivo negro que muestra, tras una salida a correr, 526 kcal, una carga de entrenamiento de 70 y un tiempo de 43:16.» -->
+<!-- IMAGEN 1: calorias-reloj-portada.webp — alt: «» -->
 
 ## No todos los datos se obtienen igual
 

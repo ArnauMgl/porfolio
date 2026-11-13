@@ -22,6 +22,13 @@ export function imagenDe(archivo) {
   return meta;
 }
 
+// Imagen para compartir de cada artículo (la portada de la tarjeta de LinkedIn, WhatsApp, etc.)
+const COMPARTIR = {
+  'calorias-reloj-diseno-incertidumbre': '/og/og-calorias-reloj.jpg',
+  'ia-ux-mas-rapido-no-mejor': '/og/og-ia-mas-rapido.jpg',
+  'accesibilidad-web-retrocede-diseno': '/og/og-accesibilidad-web.jpg',
+};
+
 const ANCHOS = [480, 720, 1080, 1440];
 const SIZES = '(min-width:1024px) 704px, (min-width:640px) calc(100vw - 96px), calc(100vw - 48px)';
 
@@ -54,8 +61,8 @@ async function prepararArticulo(entrada) {
     portada,
     html: cuerpo.html,
     secciones: secciones.map((h, i) => ({ n: i + 1, id: h.slug, texto: h.text })),
-    // Imagen para compartir: solo Calorías tiene una propia (1200×630)
-    compartir: d.slug === 'calorias-reloj-diseno-incertidumbre' ? '/og/og-calorias-reloj.jpg' : null,
+    // Imagen para compartir en redes (1200×630, en public/og/). Los artículos sin una propia usan la general del sitio.
+    compartir: COMPARTIR[d.slug] ?? null,
   };
 }
 

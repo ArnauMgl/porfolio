@@ -6,7 +6,7 @@ slug: "ia-ux-mas-rapido-no-mejor"
 date: "2026-12-08"
 lang: "es"
 readingTime: 5
-tags: ["ia", "ux", "producto"]
+tags: ["ia", "diseno", "ux", "producto"]
 ---
 
 Un prototipo generado con IA en diez minutos parece una gran noticia. Hasta que alguien del equipo tiene que dedicar dos días a revisarlo, corregir lo que no tiene sentido y dejarlo en un estado que se pueda poner delante de un usuario. ¿Hemos ganado tiempo o solo lo hemos movido de sitio?
@@ -33,7 +33,9 @@ En hockey sobre hielo esto se entiende enseguida. Un jugador que sube el disco a
 
 Con la IA pasa lo mismo. Si medimos cuánta gente la usa o cuánto tarda cada entregable, nos perdemos la parte importante: cuánto esfuerzo total, sumando a todas las personas implicadas, cuesta que algo llegue al usuario con la calidad suficiente.
 
-<!-- IMAGEN 1: ia-esquema-tarea-sistema.webp — alt: «Esquema de dos barras. La tarea, una persona con IA, dura 10 minutos para generar un prototipo. El sistema, el equipo hasta que el trabajo llega al usuario, dura unos dos días: generar (10 minutos), revisar, corregir y dejarlo listo. La segunda barra es casi cien veces más larga. Es un ejemplo ilustrativo.» -->
+<!-- IMAGEN 1: ia-portada.webp — alt: «» -->
+
+<!-- IMAGEN 2: ia-esquema-tarea-sistema.webp — alt: «Esquema de dos barras. La tarea, una persona con IA, dura 10 minutos para generar un prototipo. El sistema, el equipo hasta que el trabajo llega al usuario, dura unos dos días: generar (10 minutos), revisar, corregir y dejarlo listo. La segunda barra es casi cien veces más larga. Es un ejemplo ilustrativo.» -->
 
 ## Donde la IA casi no entra
 

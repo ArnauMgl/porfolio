@@ -34,7 +34,7 @@ Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una
 ### Dónde está cada cosa
 
 - `content/articulos/AAAA-MM-DD-slug.md`: los artículos. El nombre del archivo debe coincidir con `date` y `slug` del frontmatter (si no, la construcción falla con un aviso).
-- `content/imagenes/`: imágenes de los artículos. En el Markdown, `<!-- IMAGEN n: archivo.webp — pie: «…» — alt: «…» -->` se convierte en `<figure>` (la imagen con «portada» en el nombre, o si no la primera, es la portada y la miniatura).
+- `content/imagenes/`: imágenes de los artículos. En el Markdown, `<!-- IMAGEN n: archivo.webp — pie: «…» — alt: «…» -->` se convierte en `<figure>` (la imagen con «portada» en el nombre, o si no la primera, es la portada y la miniatura). Las portadas son 16:9 (1600×900 en WebP) y decorativas (`alt: «»`: el texto del artículo ya da la información). La imagen para compartir en redes de cada artículo (1200×630, `public/og/`) se asigna por slug en `src/data/blog.js` (`COMPARTIR`); sin una propia se usa la general del sitio.
 - `src/content.config.ts`: validación del frontmatter. `src/data/blog.js`: lee los artículos y decide cuáles están publicados.
 - `src/pages/blog/[...slug].astro`: listado y artículos. `rss.xml.js` y `src/pages/sitemap-blog.xml.js`: feed y sitemap.
 - `src/components/blog/`, `src/scripts/blog-listado.js` (filtros, orden, paginador), `src/scripts/blog-lectura.js` (barra de progreso), `src/styles/wip.css` (capa amarilla y componentes `bl-*`).
@@ -60,7 +60,7 @@ Con las variables `WIP_HOY=AAAA-MM-DD` (ver el blog como si hoy fuera ese día) 
 ### Listado y artículo
 
 - Sin JavaScript el listado se ve completo, ordenado por fecha. Los filtros, el orden y el paginador solo se activan desde 6 artículos publicados; su estado vive en la URL (`?tema=ia,accesibilidad&orden=antiguos&pagina=2`).
-- Palabras clave que filtran y se muestran: `sporttech`, `healthtech`, `ia` («IA y diseño») y `accesibilidad`. `ux`, `ui` y `producto` quedan en el contenido pero no filtran ni se ven.
+- Palabras clave que filtran y se muestran: `sporttech`, `healthtech`, `ia` («IA»), `diseno` («Diseño») y `accesibilidad`. `ux`, `ui` y `producto` quedan en el contenido pero no filtran ni se ven.
 
 ## Barra de navegación
 
