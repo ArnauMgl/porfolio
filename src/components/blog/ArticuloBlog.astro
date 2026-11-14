@@ -5,10 +5,14 @@ import FilaArticulo from './FilaArticulo.astro';
 // El cuerpo (art.html) sale del Markdown ya convertido a HTML; el texto no se toca.
 interface Props { art: any; siguiente: any[]; }
 const { art, siguiente } = Astro.props;
+
+// Barra de progreso de lectura: OCULTA hasta que se diseñe la nueva. Para volver a activarla, poner true
+// (la barra antigua, con sus estilos en wip.css y src/scripts/blog-lectura.js, es la que se activaría).
+const MOSTRAR_PROGRESO = false;
 ---
 <main id="articulo">
 <article class="ds-wrap bl-articulo" data-lectura>
-{art.secciones.length > 0 && (
+{MOSTRAR_PROGRESO && art.secciones.length > 0 && (
 <div class="bl-rail">
 <div class="bl-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progreso><div class="bl-progress__fill" data-relleno></div></div>
 <ol class="bl-marks">
@@ -38,7 +42,7 @@ const { art, siguiente } = Astro.props;
 )}
 <div class="bl-cuerpo ds-prose t-body" set:html={art.html} />
 </div>
-<div class="bl-edge" aria-hidden="true" data-borde><div class="bl-edge__fill" data-borde-relleno></div></div>
+{MOSTRAR_PROGRESO && <div class="bl-edge" aria-hidden="true" data-borde><div class="bl-edge__fill" data-borde-relleno></div></div>}
 </article>
 
 {siguiente.length > 0 && (
@@ -51,4 +55,4 @@ const { art, siguiente } = Astro.props;
 </section>
 )}
 </main>
-<script>import '../../scripts/blog-lectura.js';</script>
+{MOSTRAR_PROGRESO && <script>import '../../scripts/blog-lectura.js';</script>}

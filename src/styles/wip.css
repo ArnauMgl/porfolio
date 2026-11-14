@@ -38,8 +38,8 @@
 }
 /* Etiquetas */
 .tema-wip .ds-label-tag{background:var(--y-label);color:var(--text)}
-/* Viñetas de listas: círculo amarillo de 8 px con borde negro de 2 px */
-.tema-wip .ds-prose li::before{top:calc(.8em - 4px);width:8px;height:8px;box-sizing:border-box;border:2px solid var(--text);background:var(--y)}
+/* Viñetas de listas: círculo amarillo de 8 px, sin contorno */
+.tema-wip .ds-prose li::before{top:calc(.8em - 4px);width:8px;height:8px;border-radius:50%;background:var(--y)}
 /* Los enlaces del contenido se comportan como el resto de enlaces de texto */
 .tema-wip .ds-prose a{color:var(--text);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:4px;overflow-wrap:anywhere}
 .tema-wip .ds-prose a:hover:not(:focus-visible){text-decoration-color:var(--y);text-decoration-thickness:6px;text-underline-offset:3px;text-decoration-skip-ink:none}
@@ -164,9 +164,9 @@
 .bl-cuerpo{max-width:none}
 .bl-cuerpo h2{position:relative;margin:var(--space-6) 0 var(--space-1);font-size:32px;line-height:1.15;font-weight:600;letter-spacing:-0.03em;color:var(--text);scroll-margin-top:var(--space-4);overflow-wrap:break-word}
 .bl-cuerpo h2:first-child{margin-top:0}
-/* Punto amarillo (como las viñetas de las listas, más grande) colgado en el margen izquierdo: el texto del título
+/* Punto amarillo sin contorno (como las viñetas de las listas, más grande) colgado en el margen izquierdo: el texto del título
    queda alineado con el del cuerpo. «Referencias» no lleva punto. */
-.bl-cuerpo h2:not(#referencias)::before{content:"";position:absolute;right:100%;margin-right:var(--space-1);top:calc(.575em - var(--punto) / 2);width:var(--punto);height:var(--punto);box-sizing:border-box;border:2px solid var(--text);border-radius:50%;background:var(--y)}
+.bl-cuerpo h2:not(#referencias)::before{content:"";position:absolute;right:100%;margin-right:var(--space-1);top:calc(.575em - var(--punto) / 2);width:var(--punto);height:var(--punto);border-radius:50%;background:var(--y)}
 .bl-cuerpo{--punto:12px}
 @media (min-width:640px){.bl-cuerpo{--punto:14px}}
 .bl-cuerpo h2:focus-visible{outline:none}

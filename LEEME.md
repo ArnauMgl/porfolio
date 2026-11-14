@@ -37,7 +37,7 @@ Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una
 - `content/imagenes/`: imágenes de los artículos. En el Markdown, `<!-- IMAGEN n: archivo.webp — pie: «…» — alt: «…» -->` se convierte en `<figure>` (la imagen con «portada» en el nombre, o si no la primera, es la portada y la miniatura). Las portadas son 16:9 (1600×900 en WebP) y decorativas (`alt: «»`: el texto del artículo ya da la información). La imagen para compartir en redes de cada artículo (1200×630, `public/og/`) se asigna por slug en `src/data/blog.js` (`COMPARTIR`); sin una propia se usa la general del sitio.
 - `src/content.config.ts`: validación del frontmatter. `src/data/blog.js`: lee los artículos y decide cuáles están publicados.
 - `src/pages/blog/[...slug].astro`: listado y artículos. `rss.xml.js` y `src/pages/sitemap-blog.xml.js`: feed y sitemap.
-- `src/components/blog/`, `src/scripts/blog-listado.js` (filtros, orden, paginador), `src/scripts/blog-lectura.js` (barra de progreso), `src/styles/wip.css` (capa amarilla y componentes `bl-*`).
+- `src/components/blog/`, `src/scripts/blog-listado.js` (filtros, orden, paginador), `src/scripts/blog-lectura.js` (barra de progreso de lectura, **oculta**: interruptor `MOSTRAR_PROGRESO` en `ArticuloBlog.astro`, a la espera de una barra nueva), `src/styles/wip.css` (capa amarilla y componentes `bl-*`).
 - `lib/blog/`: la lógica (fechas, filtros, orden, paginado, «Sigue leyendo», imágenes) con pruebas en `tests/blog*.test.js`. Los límites están en `lib/blog/config.js`: `POR_PAGINA` (6), `UMBRAL_CONTROLES` (6) y `MINIMO_SIGUE_LEYENDO` (3).
 
 ### Publicación programada
