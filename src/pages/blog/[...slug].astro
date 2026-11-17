@@ -7,6 +7,7 @@ import ListadoBlog from '../../components/blog/ListadoBlog.astro';
 import ArticuloBlog from '../../components/blog/ArticuloBlog.astro';
 import { articulosPublicados, mostrarControles } from '../../data/blog.js';
 import { seguirLeyendo } from '../../../lib/blog/relacionados.js';
+import { articuloJsonLd, blogJsonLd } from '../../../lib/blog/estructurados.js';
 
 export async function getStaticPaths() {
   const publicados = await articulosPublicados();
@@ -21,13 +22,20 @@ const { slug } = Astro.props;
 const publicados = await articulosPublicados();
 const art = slug ? publicados.find((a) => a.slug === slug) : null;
 const siguiente = art ? seguirLeyendo(art, publicados) : [];
+const base = Astro.site.href.replace(/\/$/, '');
+
+// Imagen para compartir: la del artículo (1200×630, en public/og/). Si un artículo no tiene propia, la de WIP (nunca la del portfolio).
+const IMAGEN_WIP = '/og/og-wip.png';
+const imagenOg = art ? (art.compartir ?? IMAGEN_WIP) : IMAGEN_WIP;
+const DESCRIPCION_LISTADO = 'WIP, el blog de Arnau Larripa, Product Designer en Barcelona. Diseño de producto, accesibilidad e IA, contados a medida que se aprende.';
 ---
 {art ? (
 <Base
   title={art.seoTitle}
   description={art.descripcion}
-  imagen={art.compartir ?? undefined}
-  imagenAlt={art.compartir ? `Portada del artículo «${art.titulo}», por Arnau Larripa` : undefined}
+  imagen={imagenOg}
+  imagenAlt={art.compartir ? `Portada del artículo «${art.titulo}», por Arnau Larripa` : 'WIP, el blog de Arnau Larripa'}
+  jsonld={articuloJsonLd(art, base, new URL(imagenOg, Astro.site).href)}
   actual="blog"
   tema="wip"
   publicadoEn={art.fecha}
@@ -38,7 +46,10 @@ const siguiente = art ? seguirLeyendo(art, publicados) : [];
 ) : (
 <Base
   title="WIP · Blog de Arnau Larripa"
-  description="WIP, el blog de Arnau Larripa, Product Designer en Barcelona. Diseño de producto, accesibilidad e IA, contados a medida que se aprende."
+  description={DESCRIPCION_LISTADO}
+  imagen={IMAGEN_WIP}
+  imagenAlt="WIP, el blog de Arnau Larripa, Product Designer en Barcelona"
+  jsonld={blogJsonLd(publicados, base, DESCRIPCION_LISTADO)}
   actual="blog"
   tema="wip"
   emailContacto

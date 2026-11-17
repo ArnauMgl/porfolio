@@ -125,3 +125,17 @@ test('cuerpo: la portada sale del cuerpo, el resto es <figure> y no queda ningú
   assert.ok(!r.html.includes('x-portada'));
   assert.match(r.html, /<figure class="ds-figure bl-figura"><img alt="Dice «526 kcal» en el panel."><figcaption class="t-meta">Un pie\.<\/figcaption><\/figure>/);
 });
+
+import { articuloJsonLd, blogJsonLd, serializarJsonLd } from '../lib/blog/estructurados.js';
+
+test('JSON-LD: autor y editor son Arnau, y el texto con «</script>» no cierra la etiqueta', () => {
+  const base = 'https://arnaularripa.com';
+  const d = articuloJsonLd({ slug: 'a', titulo: 'T </script>', descripcion: 'D', fecha: '2026-11-24', filtros: [{ nombre: 'IA' }] }, base, `${base}/og/x.jpg`);
+  assert.equal(d['@type'], 'BlogPosting');
+  assert.equal(d.author.name, 'Arnau Larripa');
+  assert.deepEqual(d.publisher, d.author);
+  assert.equal(d.mainEntityOfPage['@id'], `${base}/blog/a/`);
+  assert.ok(!serializarJsonLd(d).includes('</script>'));
+  assert.equal(JSON.parse(serializarJsonLd(d)).headline, 'T </script>');
+  assert.equal(blogJsonLd([], base, 'd')['@type'], 'Blog');
+});

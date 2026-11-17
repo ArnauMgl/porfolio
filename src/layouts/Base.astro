@@ -8,6 +8,8 @@ import '../styles/tokens.css';
 import '../styles/components.css';
 import '../styles/wip.css';
 import '../styles/global.css';
+import { blogSinIndexar } from '../data/blog.js';
+import { serializarJsonLd } from '../../lib/blog/estructurados.js';
 
 interface Props {
   title: string;
@@ -22,12 +24,18 @@ interface Props {
   tema?: 'wip';
   // Solo artículos: fecha de publicación (AAAA-MM-DD) para article:published_time.
   publicadoEn?: string;
+  // Datos estructurados (JSON-LD). Un objeto o una lista de objetos.
+  jsonld?: object | object[];
   // El email del pie abre el panel de contacto (#contacto) en vez de un mailto:.
   emailContacto?: boolean;
 }
-const { title, description, actual, imagen = '/og/og-general.png', imagenAlt = 'Arnau Larripa, Product Designer en Barcelona', noindex = false, tema, publicadoEn, emailContacto = false } = Astro.props;
+const { title, description, actual, imagen = '/og/og-general.png', imagenAlt = 'Arnau Larripa, Product Designer en Barcelona', noindex = false, tema, publicadoEn, jsonld, emailContacto = false } = Astro.props;
 const imagenUrl = new URL(imagen, Astro.site).href;
 const canonica = new URL(Astro.url.pathname, Astro.site).href;
+const rssUrl = new URL('/blog/rss.xml', Astro.site).href;
+// Las páginas del blog salen con noindex mientras BLOG_OCULTO (lib/blog/config.js) sea true. Es el mismo interruptor
+// que oculta el blog: al lanzarlo, este noindex desaparece solo.
+const sinIndexar = noindex || (tema === 'wip' && blogSinIndexar);
 ---
 <!doctype html>
 <html lang="es">
@@ -41,10 +49,11 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 {noindex && <meta name="robots" content="noindex">}
+{!noindex && sinIndexar && <meta name="robots" content="noindex, nofollow">}
 {!noindex && <link rel="canonical" href={canonica}>}
 <meta property="og:type" content={publicadoEn ? 'article' : 'website'}>
 {publicadoEn && <meta property="article:published_time" content={publicadoEn}>}
-{tema === 'wip' && <link rel="alternate" type="application/rss+xml" title="WIP · Arnau Larripa" href="/blog/rss.xml">}
+{tema === 'wip' && <link rel="alternate" type="application/rss+xml" title="WIP · Arnau Larripa" href={rssUrl}>}
 <meta property="og:site_name" content="Arnau Larripa">
 <meta property="og:locale" content="es_ES">
 <meta property="og:title" content={title}>
@@ -59,6 +68,7 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content={title}>
 <meta name="twitter:description" content={description}>
+{jsonld && <script type="application/ld+json" set:html={serializarJsonLd(jsonld)}></script>}
 <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Sin JavaScript no se puede abrir la hoja del menú: en su lugar se muestran los enlaces en línea. -->
 <noscript><style>.ds-header__bar{flex-wrap:wrap}.ds-header__nav{display:block;margin-left:0;width:100%}.ds-header__list{flex-wrap:wrap}.ds-menu-btn{display:none}</style></noscript>

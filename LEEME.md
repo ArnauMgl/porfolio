@@ -29,16 +29,30 @@ después `npm run dev`. Abre http://localhost:4321 en el navegador.
 ## Blog WIP (v1.2)
 
 Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una página «Work in progress» con amarillo `#F7BD03` como relleno y tinta negra.
-**No está enlazado desde el menú**: la navegación nueva saldrá junto con el blog.
+**Está oculto hasta el lanzamiento** (ver «Estado oculto y lanzamiento» más abajo).
 
 ### Dónde está cada cosa
 
 - `content/articulos/AAAA-MM-DD-slug.md`: los artículos. El nombre del archivo debe coincidir con `date` y `slug` del frontmatter (si no, la construcción falla con un aviso).
-- `content/imagenes/`: imágenes de los artículos. En el Markdown, `<!-- IMAGEN n: archivo.webp — pie: «…» — alt: «…» -->` se convierte en `<figure>` (la imagen con «portada» en el nombre, o si no la primera, es la portada y la miniatura). Las portadas son 16:9 (1600×900 en WebP) y decorativas (`alt: «»`: el texto del artículo ya da la información). La imagen para compartir en redes de cada artículo (1200×630, `public/og/`) se asigna por slug en `src/data/blog.js` (`COMPARTIR`); sin una propia se usa la general del sitio.
+- `content/imagenes/`: imágenes de los artículos. En el Markdown, `<!-- IMAGEN n: archivo.webp — pie: «…» — alt: «…» -->` se convierte en `<figure>` (la imagen con «portada» en el nombre, o si no la primera, es la portada y la miniatura). Las portadas son 16:9 (1600×900 en WebP) y decorativas (`alt: «»`: el texto del artículo ya da la información). La imagen para compartir en redes de cada artículo (1200×630, `public/og/`) se asigna por slug en `src/data/blog.js` (`COMPARTIR`); sin una propia se usa la de WIP (`public/og/og-wip.png`, creada con `herramientas/og-wip.html`), la misma del listado.
 - `src/content.config.ts`: validación del frontmatter. `src/data/blog.js`: lee los artículos y decide cuáles están publicados.
-- `src/pages/blog/[...slug].astro`: listado y artículos. `rss.xml.js` y `src/pages/sitemap-blog.xml.js`: feed y sitemap.
+- `src/pages/blog/[...slug].astro`: listado y artículos. `[feed].xml.js`: feed RSS (`/blog/rss.xml`). El sitemap (`src/pages/sitemap.xml.js`) es único: páginas del portfolio + blog cuando está lanzado.
 - `src/components/blog/`, `src/scripts/blog-listado.js` (filtros, orden, paginador), `src/scripts/blog-lectura.js` (barra de progreso de lectura, **oculta**: interruptor `MOSTRAR_PROGRESO` en `ArticuloBlog.astro`, a la espera de una barra nueva), `src/styles/wip.css` (capa amarilla y componentes `bl-*`).
 - `lib/blog/`: la lógica (fechas, filtros, orden, paginado, «Sigue leyendo», imágenes) con pruebas en `tests/blog*.test.js`. Los límites están en `lib/blog/config.js`: `POR_PAGINA` (6), `UMBRAL_CONTROLES` (6) y `MINIMO_SIGUE_LEYENDO` (3).
+
+### Estado oculto y lanzamiento
+
+**Un único interruptor:** `BLOG_OCULTO` en `lib/blog/config.js`. Hoy está en `true`:
+
+- La web publicada **no tiene blog**: no existen `/blog/`, ni los artículos, ni `/blog/rss.xml` (todo da 404), la cabecera no muestra «Blog», el sitemap no lo menciona y las imágenes para compartir de los artículos se quitan de `dist/` (`lib/podar-huerfanos.js`). No depende de las fechas de los artículos.
+- Para revisarlo en local o en una vista previa se construye con `WIP_HOY=…` (los scripts `dev:blog…` y `build:blog` ya lo hacen). Esas páginas salen con `<meta name="robots" content="noindex, nofollow">` y fuera del sitemap, automáticamente.
+- No hay Cloudflare Access ni ningún `noindex` suelto en el código: el único `noindex` del blog nace de este interruptor.
+
+**Al lanzar:** cambiar `BLOG_OCULTO` a `false` y subir. Desde ese momento cada artículo aparece en su fecha, con indexación, sitemap, RSS y enlace «Blog». `npm test` tras `build:blog` comprueba que no queda ningún `noindex` con el blog en el sitemap (ni al revés).
+
+### SEO del blog
+
+Título (`seoTitle`) y descripción de cada artículo salen del frontmatter; el listado tiene los suyos. Todas las páginas llevan canonical absoluto, Open Graph, Twitter card y la imagen para compartir con URL absoluta (1200×630). Los artículos añaden `og:type=article` y `article:published_time`, y datos estructurados JSON-LD `BlogPosting` (`Blog` en el listado; `lib/blog/estructurados.js`). Autodescubrimiento del RSS en el `<head>` de las páginas del blog.
 
 ### Publicación programada
 

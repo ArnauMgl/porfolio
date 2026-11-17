@@ -9,10 +9,18 @@ import { getImage } from 'astro:assets';
 import { hoyMadrid, estaPublicado, formatearFecha } from '../../lib/blog/fechas.js';
 import { filtrosDe } from '../../lib/blog/etiquetas.js';
 import { procesarCuerpo, leerMarcadores, elegirPortada } from '../../lib/blog/imagenes.js';
-import { UMBRAL_CONTROLES } from '../../lib/blog/config.js';
+import { UMBRAL_CONTROLES, BLOG_OCULTO } from '../../lib/blog/config.js';
 
 export const hoy = hoyMadrid(new Date(), process.env.WIP_HOY || undefined);
 const conPruebas = process.env.WIP_PRUEBAS === '1';
+
+// Con el blog oculto (BLOG_OCULTO), solo se construye si se pide expresamente una vista previa (WIP_HOY o WIP_PRUEBAS).
+const vistaPrevia = Boolean(process.env.WIP_HOY) || conPruebas;
+const generar = !BLOG_OCULTO || vistaPrevia;
+// ¿Hay que decirle a los buscadores que no lo indexen? Solo en una vista previa del blog oculto.
+export const blogSinIndexar = BLOG_OCULTO;
+// ¿Entra en el sitemap? Solo si el blog está lanzado.
+export const blogEnSitemap = !BLOG_OCULTO;
 
 // Todas las imágenes del blog, ya procesadas por Astro (tamaños, WebP, ancho y alto).
 const imagenes = import.meta.glob('/content/imagenes/*.{webp,jpg}', { eager: true, import: 'default' });
@@ -70,6 +78,7 @@ let cache;
 // Artículos publicados, del más reciente al más antiguo.
 export function articulosPublicados() {
   cache ??= (async () => {
+    if (!generar) return [];
     const entradas = [...(await getCollection('articulos')), ...(conPruebas ? await getCollection('pruebas') : [])];
     const publicados = entradas.filter((e) => estaPublicado(e.data.date, hoy));
     const listos = await Promise.all(publicados.map(prepararArticulo));
