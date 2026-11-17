@@ -27,6 +27,7 @@ const COMPARTIR = {
   'calorias-reloj-diseno-incertidumbre': '/og/og-calorias-reloj.jpg',
   'ia-ux-mas-rapido-no-mejor': '/og/og-ia-mas-rapido.jpg',
   'accesibilidad-web-retrocede-diseno': '/og/og-accesibilidad-web.jpg',
+  'patrones-oscuros-black-friday': '/og/og-patrones-oscuros.jpg',
 };
 
 const ANCHOS = [480, 720, 1080, 1440];

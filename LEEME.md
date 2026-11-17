@@ -61,7 +61,7 @@ Con las variables `WIP_HOY=AAAA-MM-DD` (ver el blog como si hoy fuera ese día) 
 ### Listado y artículo
 
 - Sin JavaScript el listado se ve completo, ordenado por fecha. Los filtros, el orden y el paginador solo se activan desde 6 artículos publicados; su estado vive en la URL (`?tema=ia,accesibilidad&orden=antiguos&pagina=2`).
-- Palabras clave que filtran y se muestran: `sporttech`, `healthtech`, `ia` («IA»), `diseno` («Diseño») y `accesibilidad`. `ux`, `ui` y `producto` quedan en el contenido pero no filtran ni se ven.
+- Palabras clave que filtran y se muestran: `sporttech`, `healthtech`, `ia` («IA»), `diseno` («Diseño»), `accesibilidad` y `regulacion` («Regulación»). `ux`, `ui` y `producto` quedan en el contenido pero no filtran ni se ven.
 
 ## Barra de navegación
 
