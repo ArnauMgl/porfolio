@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://arnaularripa.com/sitemap.xml
+Sitemap: https://arnaularripa.com/sitemap-blog.xml

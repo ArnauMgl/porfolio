@@ -6,7 +6,7 @@ Web personal de Arnau Larripa, hecha con [Astro](https://astro.build) como web e
 
 - `src/pages/`: una página por archivo. La ruta del archivo es la dirección de la web.
 - `src/layouts/Base.astro`: plantilla común (cabecera `<head>`, menú y pie).
-- `src/components/`: piezas reutilizables (`Header`, `Footer`).
+- `src/components/`: piezas reutilizables (`Header`, `Footer`, `Contacto`).
 - `src/styles/`: sistema de diseño (`tokens.css`, `components.css`) y estilos generales.
 - `public/`: archivos que se publican tal cual (favicon, robots.txt…).
 - `diseno/`: el diseño original de Claude Design. Solo es referencia; no se publica.
@@ -25,6 +25,52 @@ Cada rama tiene además su propia vista previa en `https://<nombre-de-rama>.arna
 
 Requiere Node.js. En la carpeta del proyecto, ejecuta `npm install` una vez y
 después `npm run dev`. Abre http://localhost:4321 en el navegador.
+
+## Blog WIP (v1.2)
+
+Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una página «Work in progress» con amarillo `#F7BD03` como relleno y tinta negra.
+**No está enlazado desde el menú**: la navegación nueva saldrá junto con el blog.
+
+### Dónde está cada cosa
+
+- `content/articulos/AAAA-MM-DD-slug.md`: los artículos. El nombre del archivo debe coincidir con `date` y `slug` del frontmatter (si no, la construcción falla con un aviso).
+- `content/imagenes/`: imágenes de los artículos. En el Markdown, `<!-- IMAGEN n: archivo.webp — pie: «…» — alt: «…» -->` se convierte en `<figure>` (la imagen con «portada» en el nombre, o si no la primera, es la portada y la miniatura). Las portadas son 16:9 (1600×900 en WebP) y decorativas (`alt: «»`: el texto del artículo ya da la información). La imagen para compartir en redes de cada artículo (1200×630, `public/og/`) se asigna por slug en `src/data/blog.js` (`COMPARTIR`); sin una propia se usa la general del sitio.
+- `src/content.config.ts`: validación del frontmatter. `src/data/blog.js`: lee los artículos y decide cuáles están publicados.
+- `src/pages/blog/[...slug].astro`: listado y artículos. `rss.xml.js` y `src/pages/sitemap-blog.xml.js`: feed y sitemap.
+- `src/components/blog/`, `src/scripts/blog-listado.js` (filtros, orden, paginador), `src/scripts/blog-lectura.js` (barra de progreso de lectura, **oculta**: interruptor `MOSTRAR_PROGRESO` en `ArticuloBlog.astro`, a la espera de una barra nueva), `src/styles/wip.css` (capa amarilla y componentes `bl-*`).
+- `lib/blog/`: la lógica (fechas, filtros, orden, paginado, «Sigue leyendo», imágenes) con pruebas en `tests/blog*.test.js`. Los límites están en `lib/blog/config.js`: `POR_PAGINA` (6), `UMBRAL_CONTROLES` (6) y `MINIMO_SIGUE_LEYENDO` (3).
+
+### Publicación programada
+
+- Un artículo se publica a las 00:00 (Europe/Madrid) del día de su `date`. Mientras no llegue, no se genera su página, ni sale en el listado, el sitemap ni el RSS. Si no hay ningún artículo publicado, `/blog/` no existe.
+- Como la web es estática, hay que reconstruirla ese día: `.github/workflows/publicar-articulos.yml` lo hace a las 00:05 de Madrid llamando a un *deploy hook* de Cloudflare Pages, solo si hay un artículo con la fecha de hoy. Instrucciones de configuración en la cabecera de ese archivo (un hook en Cloudflare y un secreto `CLOUDFLARE_DEPLOY_HOOK` en GitHub).
+- Para probar el hook sin esperar a una fecha: GitHub → Actions → «Publicar artículos programados» → *Run workflow* con la casilla **Forzar** marcada. Reconstruye la web aunque no haya artículo de hoy (no publica nada que no esté ya en su fecha).
+- Para adelantar un artículo, cambia `date` y el nombre del archivo.
+
+### Verlo antes de tiempo (solo desarrollo y vistas previas)
+
+| Comando | Qué ves |
+|---|---|
+| `npm run dev:blog` | Los 3 artículos reales, como si ya estuvieran publicados |
+| `npm run dev:blog-1` | Solo el del 24 nov (blog con 1 artículo) |
+| `npm run dev:blog-pruebas` | Los 3 reales + 7 de prueba (`content-dev/`): filtros, orden y paginador |
+| `npm run build:blog` | Construcción con todo publicado, para `npm run preview` y `npm test` |
+
+Con las variables `WIP_HOY=AAAA-MM-DD` (ver el blog como si hoy fuera ese día) y `WIP_PRUEBAS=1` (añade `content-dev/`). Para ver los artículos programados en las vistas previas de Cloudflare, define `WIP_HOY` en Settings → Variables de entorno → **solo Preview**. **No** la definas en Production ni uses `WIP_PRUEBAS` allí: los artículos de prueba nunca deben publicarse.
+
+### Listado y artículo
+
+- Sin JavaScript el listado se ve completo, ordenado por fecha. Los filtros, el orden y el paginador solo se activan desde 6 artículos publicados; su estado vive en la URL (`?tema=ia,accesibilidad&orden=antiguos&pagina=2`).
+- Palabras clave que filtran y se muestran: `sporttech`, `healthtech`, `ia` («IA»), `diseno` («Diseño»), `accesibilidad` y `regulacion` («Regulación»). `ux`, `ui` y `producto` quedan en el contenido pero no filtran ni se ven.
+
+## Barra de navegación
+
+- Marcado: `src/components/Header.astro`. Comportamiento: `src/scripts/navegacion.js`. Estilos: bloque «Navegación» de `src/styles/components.css`. Diseño y estados: `diseno/propuestas/navegacion/`.
+- Escritorio (≥ 1024 px): nombre, Trabajo, Sobre mí y Blog a la izquierda; Lab. e idioma a la derecha. En móvil y tableta, botón de menú que abre una hoja desde abajo (`<dialog>`, `.ds-navsheet`).
+- **Lab y el selector de idioma están ocultos.** En `Header.astro`, `MOSTRAR_LAB` y `MOSTRAR_IDIOMA` están en `false`; al ponerlos en `true` aparecen en escritorio y en la hoja móvil. Las rutas `/lab/`, `/ca/` y `/en/` son provisionales y aún no existen.
+- El enlace «Blog» apunta a `/blog/` y **solo aparece si hay al menos un artículo publicado** (lo decide `Header.astro` con `src/data/blog.js`). Antes del primer artículo la barra no lo muestra y no hay enlaces rotos.
+- Sin JavaScript, en móvil los enlaces se muestran en línea (`<noscript>` en `Base.astro`).
+- Tokens de color de las marcas (Lab, Frame, Iridescent): final de `src/styles/tokens.css`.
 
 ## Modal de contacto (v1.1)
 

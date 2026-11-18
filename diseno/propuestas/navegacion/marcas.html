@@ -1,0 +1,51 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Marcas · propuesta DS</title>
+<link rel="stylesheet" href="fuentes.css"><link rel="stylesheet" href="../../../src/styles/tokens.css"><link rel="stylesheet" href="../../../src/styles/components.css"><link rel="stylesheet" href="nav.css"><link rel="stylesheet" href="marcas.css">
+<style>
+body{margin:0;padding:48px 56px;font-family:var(--font-sans);color:var(--text);max-width:1200px}
+h1{font-size:32px;letter-spacing:-.03em;margin:0 0 4px}h2{font-size:20px;letter-spacing:-.02em;margin:48px 0 16px;padding-top:16px;border-top:2px solid var(--line-strong)}
+.sub{color:var(--text-secondary);margin:0}
+.big{display:grid;gap:8px;margin-top:32px}.big .ds-brand{font-size:112px}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{border:1px solid var(--line);border-radius:4px;padding:24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.card small{color:var(--text-secondary);font-size:13px;line-height:1.4}
+table{border-collapse:collapse;width:100%;font-size:15px}td,th{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}th{color:var(--text-secondary);font-weight:600;font-size:14px}
+.sw{display:inline-block;width:20px;height:20px;border-radius:50%;vertical-align:middle;margin-right:8px}
+code{font-size:14px;background:#f4f4f4;padding:1px 5px;border-radius:3px}
+</style></head><body>
+<h1>Marcas del ecosistema · propuesta para el DS</h1>
+<p class="sub">Tres wordmarks con la misma construcción: nombre en Inter Tight 700 + punto de color. Solo cambia el color del punto.</p>
+<div class="big">
+<span class="ds-brand ds-brand--iridescent">Iridescent<span class="ds-brand__dot"></span></span>
+<span class="ds-brand ds-brand--lab">Lab<span class="ds-brand__dot"></span></span>
+<span class="ds-brand ds-brand--frame">Frame<span class="ds-brand__dot"></span></span>
+</div>
+
+<h2>Tokens de color</h2>
+<table><tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
+<tr><td><code>--brand-lab</code></td><td><span class="sw" style="background:var(--brand-lab)"></span>#52b558</td><td>Punto de Lab.</td></tr>
+<tr><td><code>--brand-frame</code></td><td><span class="sw" style="background:var(--brand-frame)"></span>#d2352d</td><td>Punto de Frame.</td></tr>
+<tr><td><code>--brand-iridescent</code></td><td><span class="sw" style="background:var(--brand-iridescent)"></span>#635dce → #478699</td><td>Punto de Iridescent. (degradado a 90°, de morado a verde azulado)</td></tr>
+</table>
+
+<h2>Construcción</h2>
+<table><tr><th>Propiedad</th><th>Valor</th><th>Medido en tu captura</th></tr>
+<tr><td>Tipografía</td><td>Inter Tight 700, interletrado −0,045 em</td><td>igual que el título principal del sitio</td></tr>
+<tr><td>Diámetro del punto</td><td><code>0,185 em</code></td><td>≈ 23 px con letra de ≈ 130 px</td></tr>
+<tr><td>Separación texto–punto</td><td><code>0,045 em</code></td><td>≈ 6 px</td></tr>
+<tr><td>Posición del punto</td><td>sobre la línea base</td><td>—</td></tr>
+</table>
+
+<h2>En uso</h2>
+<div class="row">
+<div class="card"><span class="ds-brand ds-brand--lab" style="font-size:48px">Lab<span class="ds-brand__dot"></span></span><small>Titular de página (48 px)</small></div>
+<div class="card"><span class="ds-brand ds-brand--frame" style="font-size:24px">Frame<span class="ds-brand__dot"></span></span><small>Cabecera (24 px)</small></div>
+<div class="card"><span class="ds-brand ds-brand--iridescent" style="font-size:16px">Iridescent<span class="ds-brand__dot"></span></span><small>Pie de página (16 px). A tamaños pequeños el punto se ve más fino: en la barra de navegación se usa 0,28 em.</small></div>
+</div>
+
+<h2>Reglas propuestas</h2>
+<ul style="line-height:1.7;font-size:16px;padding-left:20px">
+<li>El color de marca vive <b>solo en el punto</b>. El nombre siempre va en el negro del texto.</li>
+<li>El punto es decorativo (<code>aria-hidden</code>): el contraste del verde y del degradado sobre blanco es bajo (≈ 2,4:1 el verde), por eso nunca se usan como color de texto.</li>
+<li>El terracota (<code>--accent</code>) sigue siendo el color de interacción de todo el sitio; los colores de marca no se usan en botones ni enlaces.</li>
+</ul>
+</body></html>

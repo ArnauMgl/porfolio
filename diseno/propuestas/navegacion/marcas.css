@@ -1,0 +1,14 @@
+/* ===== PROPUESTA DS: marcas (tokens + componente wordmark) ===== */
+:root{
+  --brand-iridescent-from:#635dce;
+  --brand-iridescent-to:#478699;
+  --brand-iridescent:linear-gradient(90deg,var(--brand-iridescent-from),var(--brand-iridescent-to));
+  --brand-lab:#52b558;
+  --brand-frame:#d2352d;
+  --lab-green:var(--brand-lab);
+}
+.ds-brand{display:inline-block;font-family:var(--font-sans);font-weight:700;letter-spacing:-.045em;line-height:.92;color:var(--text);white-space:nowrap}
+.ds-brand__dot{display:inline-block;width:.185em;height:.185em;margin-left:.045em;border-radius:50%;background:var(--brand-dot,var(--text))}
+.ds-brand--lab{--brand-dot:var(--brand-lab)}
+.ds-brand--frame{--brand-dot:var(--brand-frame)}
+.ds-brand--iridescent .ds-brand__dot{background:var(--brand-iridescent)}

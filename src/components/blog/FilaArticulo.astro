@@ -1,0 +1,26 @@
+---
+import Imagen from '../Imagen.astro';
+// Una fila de artículo: la usa el listado (con miniatura 16:10) y «Sigue leyendo» (sin miniatura).
+//   miniatura: muestra la portada reducida a la izquierda (escritorio) o encima del texto (móvil)
+//   nivelTitulo: h2 en el listado (tras el h1), h3 en «Sigue leyendo» (tras su h2). El aspecto es el mismo.
+//   primera: la primera miniatura del listado se ve en la primera pantalla y no se difiere
+interface Props { art: any; miniatura?: boolean; nivelTitulo?: 'h2' | 'h3'; primera?: boolean; }
+const { art, miniatura = false, nivelTitulo = 'h2', primera = false } = Astro.props;
+const Titulo = nivelTitulo;
+const idTitulo = `t-${art.slug}`;
+const idDesc = `d-${art.slug}`;
+---
+<li class="bl-item" data-slug={art.slug} data-fecha={art.fecha} data-temas={art.filtros.map((f) => f.id).join(' ')}>
+<a class="ds-proj bl-post" href={`/blog/${art.slug}/`} aria-labelledby={idTitulo} aria-describedby={idDesc}>
+<div class="bl-post__row">
+{miniatura && art.portada && <div class="ds-proj__thumb"><Imagen src={art.portada.meta} alt="" tamano="miniatura" loading={primera ? 'eager' : 'lazy'} /></div>}
+<div class="ds-proj__main">
+<p class="bl-post__meta t-meta"><time class="bl-post__date" datetime={art.fecha}>{art.fechaTexto}</time> · {art.lectura} min de lectura</p>
+<Titulo class="ds-proj__title t-project-title-mobile" id={idTitulo}><span>{art.titulo}</span></Titulo>
+<p class="ds-proj__desc t-body" id={idDesc}>{art.descripcion}</p>
+{art.filtros.length > 0 && <ul class="ds-proj__tags" aria-label="Palabras clave">{art.filtros.map((f) => <li class="ds-label-tag t-meta">{f.nombre}</li>)}</ul>}
+</div>
+<svg class="ds-proj__arrow" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg>
+</div>
+</a>
+</li>

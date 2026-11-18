@@ -1,9 +1,12 @@
 ---
 // Pie común a todas las páginas.
+//   emailContacto: el email grande abre el panel de contacto (#contacto) en lugar de un mailto: (lo usa el blog)
+interface Props { emailContacto?: boolean; }
+const { emailContacto = false } = Astro.props;
 ---
 <footer class="ds-wrap ds-footer">
 <div class="ds-footer__inner">
-<a class="ds-footer__email t-footer-email-mobile" href="mailto:hola@arnaularripa.com">hola@arnaularripa.com<span class="ds-dot">.</span></a>
+<a class="ds-footer__email t-footer-email-mobile" href={emailContacto ? '#contacto' : 'mailto:hola@arnaularripa.com'} data-contacto={emailContacto ? '' : undefined}>hola@arnaularripa.com<span class="ds-dot">.</span></a>
 <ul class="ds-footer__links t-body">
 <li><a class="ds-btn ds-btn--sm t-button" href="mailto:hola@arnaularripa.com" data-contacto>Contacto</a></li>
 <li><a class="ds-link ds-link--touch" href="https://www.linkedin.com/in/arnaularripa/" target="_blank" rel="noopener" aria-label="LinkedIn de Arnau Larripa (se abre en una pestaña nueva)">LinkedIn<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg></a></li>
