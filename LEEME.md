@@ -58,6 +58,10 @@ Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una
 
 Con las variables `WIP_HOY=AAAA-MM-DD` (ver el blog como si hoy fuera ese día) y `WIP_PRUEBAS=1` (añade `content-dev/`). Para ver los artículos programados en las vistas previas de Cloudflare, define `WIP_HOY` en Settings → Variables de entorno → **solo Preview**. **No** la definas en Production ni uses `WIP_PRUEBAS` allí: los artículos de prueba nunca deben publicarse.
 
+### Colaboraciones (artículos de otra persona)
+
+Campos opcionales del frontmatter: `author`, `authorRole`, `authorBio`, `authorLinkedin`, `authorPortfolio` y `authorPhoto` (nombre de un archivo de `content/imagenes/`). Si hay `author`, el artículo muestra «Autor» en la ficha y una ficha «Escrito por» tras el texto, con enlaces a LinkedIn y portfolio solo si existen. Todo lo que aún esté por confirmar se puede dejar como `[PENDIENTE: …]`: no llega a la web. Las URL deben ser completas (si no, la construcción falla). La foto va en blanco y negro con contraste alto (se procesa antes de guardarla) y con alt vacío, porque el nombre está al lado.
+
 ### Listado y artículo
 
 - Sin JavaScript el listado se ve completo, ordenado por fecha. Los filtros, el orden y el paginador solo se activan desde 6 artículos publicados; su estado vive en la URL (`?tema=ia,accesibilidad&orden=antiguos&pagina=2`).

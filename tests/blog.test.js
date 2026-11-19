@@ -5,6 +5,7 @@ import { hoyMadrid, estaPublicado, formatearFecha } from '../lib/blog/fechas.js'
 import { filtrosDe } from '../lib/blog/etiquetas.js';
 import { ordenar, filtrar, paginar, calcularVista, leerEstado, escribirEstado, textoContador } from '../lib/blog/listado.js';
 import { seguirLeyendo } from '../lib/blog/relacionados.js';
+import { leerAutor } from '../lib/blog/autor.js';
 import { leerMarcadores, elegirPortada, procesarCuerpo } from '../lib/blog/imagenes.js';
 
 const art = (slug, fecha, tags) => ({ slug, fecha, tags });
@@ -124,4 +125,25 @@ test('cuerpo: la portada sale del cuerpo, el resto es <figure> y no queda ningú
   assert.ok(!r.html.includes('<!--'));
   assert.ok(!r.html.includes('x-portada'));
   assert.match(r.html, /<figure class="ds-figure bl-figura"><img alt="Dice «526 kcal» en el panel."><figcaption class="t-meta">Un pie\.<\/figcaption><\/figure>/);
+});
+
+test('autoría: sin autor no hay ficha; los datos pendientes no llegan a la web', () => {
+  assert.equal(leerAutor({ title: 'x' }), null);
+  assert.equal(leerAutor({ author: '[PENDIENTE: nombre]' }), null);
+  const a = leerAutor({
+    author: 'Fran Cases', authorRole: 'UX/UI Accessibility Specialist',
+    authorBio: '[PENDIENTE: 2 frases de presentación, a confirmar con Fran]',
+    authorLinkedin: 'https://www.linkedin.com/in/francasesuxuiaccessibility/',
+    authorPortfolio: '[PENDIENTE: URL del portfolio de Fran]',
+  });
+  assert.equal(a.nombre, 'Fran Cases');
+  assert.equal(a.bio, null);
+  assert.equal(a.portfolio, null);
+  assert.equal(a.foto, null);
+  assert.match(a.linkedin, /^https:\/\/www\.linkedin\.com\//);
+});
+
+test('autoría: solo se aceptan enlaces http(s)', () => {
+  assert.equal(leerAutor({ author: 'A', authorLinkedin: 'javascript:alert(1)' }).linkedin, null);
+  assert.equal(leerAutor({ author: 'A', authorPortfolio: 'http://ejemplo.com' }).portfolio, 'http://ejemplo.com');
 });

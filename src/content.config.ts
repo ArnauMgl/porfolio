@@ -16,6 +16,13 @@ const esquema = z.object({
   lang: z.literal('es'),
   readingTime: z.number().int().positive(),
   tags: z.array(z.string().refine(etiquetasConocidas, 'Etiqueta desconocida')).min(1),
+  // Colaboraciones: quién firma el artículo (todo opcional; ver lib/blog/autor.js)
+  author: z.string().optional(),
+  authorRole: z.string().optional(),
+  authorBio: z.string().optional(),
+  authorLinkedin: z.string().url('authorLinkedin debe ser una URL completa (o quitar el campo)').optional(),
+  authorPortfolio: z.string().url('authorPortfolio debe ser una URL completa (o quitar el campo)').optional(),
+  authorPhoto: z.string().optional(),
 });
 
 // El archivo se llama AAAA-MM-DD-slug.md y debe coincidir con `date` y `slug` del frontmatter.
