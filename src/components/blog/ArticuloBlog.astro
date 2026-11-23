@@ -1,6 +1,7 @@
 ---
 import Imagen from '../Imagen.astro';
 import FilaArticulo from './FilaArticulo.astro';
+import { Image } from 'astro:assets';
 // Página de un artículo: cabecera, ficha, divisor, portada, cuerpo con barra de progreso y «Sigue leyendo».
 // El cuerpo (art.html) sale del Markdown ya convertido a HTML; el texto no se toca.
 interface Props { art: any; siguiente: any[]; }
@@ -30,6 +31,7 @@ const MOSTRAR_PROGRESO = false;
 <div class="ds-meta__item"><dt class="t-meta">Publicado</dt><dd class="t-body-strong"><time datetime={art.fecha}>{art.fechaTexto}</time></dd></div>
 <div class="ds-meta__item"><dt class="t-meta">Lectura</dt><dd class="t-body-strong">{art.lectura} min</dd></div>
 {art.filtros.length > 0 && <div class="ds-meta__item"><dt class="t-meta">Palabras clave</dt><dd class="t-body-strong">{art.filtros.map((f) => f.nombre).join(', ')}</dd></div>}
+{art.autor && <div class="ds-meta__item"><dt class="t-meta">Autor</dt><dd class="t-body-strong">{art.autor.nombre}</dd></div>}
 </dl>
 </header>
 
@@ -41,6 +43,23 @@ const MOSTRAR_PROGRESO = false;
 </figure>
 )}
 <div class="bl-cuerpo ds-prose t-body" set:html={art.html} />
+{art.autor && (
+<aside class="bl-autor" aria-label="Sobre quien firma el artículo">
+{art.autor.fotoMeta && <Image class="bl-autor__foto" src={art.autor.fotoMeta} alt="" width={120} height={120} widths={[120, 240]} sizes="120px" format="webp" quality={85} loading="lazy" decoding="async" />}
+<div class="bl-autor__datos">
+<p class="bl-autor__label t-meta">Escrito por</p>
+<p class="bl-autor__nombre t-subhead">{art.autor.nombre}</p>
+{art.autor.rol && <p class="bl-autor__rol t-body">{art.autor.rol}</p>}
+{art.autor.bio && <p class="bl-autor__bio t-body">{art.autor.bio}</p>}
+{(art.autor.linkedin || art.autor.portfolio) && (
+<ul class="bl-autor__enlaces">
+{art.autor.linkedin && <li><a class="ds-link ds-link--touch t-body" href={art.autor.linkedin} target="_blank" rel="noopener" aria-label={`LinkedIn de ${art.autor.nombre} (se abre en una pestaña nueva)`}>LinkedIn<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg></a></li>}
+{art.autor.portfolio && <li><a class="ds-link ds-link--touch t-body" href={art.autor.portfolio} target="_blank" rel="noopener" aria-label={`Portfolio de ${art.autor.nombre} (se abre en una pestaña nueva)`}>Portfolio<svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="64" y1="192" x2="192" y2="64"></line><polyline points="88 64 192 64 192 168"></polyline></svg></a></li>}
+</ul>
+)}
+</div>
+</aside>
+)}
 </div>
 {MOSTRAR_PROGRESO && <div class="bl-edge" aria-hidden="true" data-borde><div class="bl-edge__fill" data-borde-relleno></div></div>}
 </article>

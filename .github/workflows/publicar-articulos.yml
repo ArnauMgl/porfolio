@@ -1,7 +1,13 @@
 # Publicación programada del blog WIP.
 # La web es estática: un artículo con fecha futura no se genera hasta que se vuelve a construir la web.
-# Este flujo se ejecuta cada día a las 00:05 en Madrid y, SOLO si hay un artículo con la fecha de hoy,
-# pide a Cloudflare Pages que reconstruya la web (a través de un «deploy hook»).
+#
+# Este flujo se ejecuta varias veces cada noche y decide SOLO por la fecha, no por la hora:
+#   - Si hay un artículo con la fecha de hoy (en Madrid) que todavía NO está publicado en arnaularripa.com,
+#     pide a Cloudflare Pages que reconstruya la web (a través de un «deploy hook»).
+#   - Si ya está publicado, o no hay ningún artículo con la fecha de hoy, no hace nada.
+# Por qué no mira la hora: GitHub lanza las tareas programadas con varias horas de retraso. Un filtro del tipo
+# «solo si es medianoche» dejaba pasar la publicación. Así, aunque llegue tarde, publica; y como comprueba si ya
+# está publicado, no reconstruye de más.
 #
 # Configuración (una vez):
 #   1. Cloudflare → Workers & Pages → arnaularripa → Settings → Builds → Deploy hooks → crear uno para la rama «main».
@@ -13,13 +19,13 @@ name: Publicar artículos programados
 
 on:
   schedule:
-    # Dos horas UTC para cubrir el horario de verano e invierno; el paso siguiente comprueba que en Madrid es medianoche.
-    - cron: '5 22 * * *'
-    - cron: '5 23 * * *'
+    # Cinco ejecuciones entre las 22:05 y las 02:05 UTC (23:05 a 03:05 en Madrid en invierno; 00:05 a 04:05 en verano).
+    # Si GitHub se retrasa, alguna llega a tiempo; el resto no hacen nada porque comprueban si ya está publicado.
+    - cron: '5 22,23,0,1,2 * * *'
   workflow_dispatch: # También se puede lanzar a mano desde la pestaña Actions (Run workflow)
     inputs:
       forzar:
-        description: 'Forzar: reconstruir la web aunque no haya un artículo con la fecha de hoy (sirve para probar el hook)'
+        description: 'Forzar: reconstruir la web aunque no haya un artículo pendiente de hoy (sirve para probar el hook)'
         type: boolean
         default: false
 
@@ -28,22 +34,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: ¿Hay un artículo con la fecha de hoy?
+      - name: ¿Hay un artículo de hoy sin publicar?
         id: toca
         env:
           FORZAR: ${{ inputs.forzar }}
         run: |
-          HOY=$(TZ=Europe/Madrid date +%F)
-          HORA=$(TZ=Europe/Madrid date +%H)
-          echo "Hoy en Madrid: $HOY, hora $HORA"
+          # HOY_SIMULADO y WEB solo existen para poder probar esta lógica; en el flujo real no se definen.
+          HOY="${HOY_SIMULADO:-$(TZ=Europe/Madrid date +%F)}"
+          WEB="${WEB:-https://arnaularripa.com}"
+          echo "Hoy en Madrid: $HOY"
           if [ "$FORZAR" = "true" ]; then
             echo "Forzado a mano: se reconstruye la web."; echo "toca=si" >> "$GITHUB_OUTPUT"
-          elif [ "$GITHUB_EVENT_NAME" != "workflow_dispatch" ] && [ "$HORA" != "00" ]; then
-            echo "No es medianoche en Madrid: nada que hacer."; echo "toca=no" >> "$GITHUB_OUTPUT"
-          elif ls content/articulos/"$HOY"-*.md >/dev/null 2>&1; then
-            echo "Hay artículo para hoy: se reconstruye la web."; echo "toca=si" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          pendientes=0
+          for f in content/articulos/"$HOY"-*.md; do
+            [ -e "$f" ] || continue
+            slug=$(basename "$f" .md); slug="${slug#"$HOY"-}"
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$WEB/blog/$slug/" || true)
+            if [ "$codigo" = "200" ]; then
+              echo "«$slug»: ya está publicado."
+            else
+              echo "«$slug»: NO está publicado todavía (respuesta: ${codigo:-sin respuesta})."
+              pendientes=$((pendientes + 1))
+            fi
+          done
+          if [ "$pendientes" -gt 0 ]; then
+            echo "Hay $pendientes artículo(s) de hoy sin publicar: se reconstruye la web."; echo "toca=si" >> "$GITHUB_OUTPUT"
           else
-            echo "Ningún artículo con fecha de hoy."; echo "toca=no" >> "$GITHUB_OUTPUT"
+            echo "Nada que publicar ahora."; echo "toca=no" >> "$GITHUB_OUTPUT"
           fi
       - name: Reconstruir la web en Cloudflare Pages
         if: steps.toca.outputs.toca == 'si'

@@ -43,7 +43,7 @@ Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una
 ### Publicación programada
 
 - Un artículo se publica a las 00:00 (Europe/Madrid) del día de su `date`. Mientras no llegue, no se genera su página, ni sale en el listado, el sitemap ni el RSS. Si no hay ningún artículo publicado, `/blog/` no existe.
-- Como la web es estática, hay que reconstruirla ese día: `.github/workflows/publicar-articulos.yml` lo hace a las 00:05 de Madrid llamando a un *deploy hook* de Cloudflare Pages, solo si hay un artículo con la fecha de hoy. Instrucciones de configuración en la cabecera de ese archivo (un hook en Cloudflare y un secreto `CLOUDFLARE_DEPLOY_HOOK` en GitHub).
+- Como la web es estática, hay que reconstruirla ese día. `.github/workflows/publicar-articulos.yml` se ejecuta varias veces cada noche (entre las 22:05 y las 02:05 UTC) y decide **solo por la fecha**: si hay un artículo con la fecha de hoy en Madrid que todavía no está publicado en arnaularripa.com, llama a un *deploy hook* de Cloudflare Pages; si ya está publicado, no hace nada. No mira la hora porque GitHub lanza las tareas programadas con horas de retraso: así publica aunque llegue tarde (normalmente cerca de las 00:05, a veces de madrugada).
 - Para probar el hook sin esperar a una fecha: GitHub → Actions → «Publicar artículos programados» → *Run workflow* con la casilla **Forzar** marcada. Reconstruye la web aunque no haya artículo de hoy (no publica nada que no esté ya en su fecha).
 - Para adelantar un artículo, cambia `date` y el nombre del archivo.
 
@@ -57,6 +57,10 @@ Blog del portfolio en `/blog/` (listado) y `/blog/<slug>/` (cada artículo). Una
 | `npm run build:blog` | Construcción con todo publicado, para `npm run preview` y `npm test` |
 
 Con las variables `WIP_HOY=AAAA-MM-DD` (ver el blog como si hoy fuera ese día) y `WIP_PRUEBAS=1` (añade `content-dev/`). Para ver los artículos programados en las vistas previas de Cloudflare, define `WIP_HOY` en Settings → Variables de entorno → **solo Preview**. **No** la definas en Production ni uses `WIP_PRUEBAS` allí: los artículos de prueba nunca deben publicarse.
+
+### Colaboraciones (artículos de otra persona)
+
+Campos opcionales del frontmatter: `author`, `authorRole`, `authorBio`, `authorLinkedin`, `authorPortfolio` y `authorPhoto` (nombre de un archivo de `content/imagenes/`). Si hay `author`, el artículo muestra «Autor» en la ficha y una ficha «Escrito por» tras el texto, con enlaces a LinkedIn y portfolio solo si existen. Todo lo que aún esté por confirmar se puede dejar como `[PENDIENTE: …]`: no llega a la web. Las URL deben ser completas (si no, la construcción falla). La foto va en blanco y negro con contraste alto (se procesa antes de guardarla) y con alt vacío, porque el nombre está al lado.
 
 ### Listado y artículo
 
