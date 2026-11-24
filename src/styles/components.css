@@ -73,8 +73,9 @@
 /* Lab. — enlace con borde a la derecha del todo (escritorio) y último elemento del menú móvil.
    Solo existe con LAB_PUBLIC=true. El punto es el punto del sistema (.ds-dot), en verde de marca; dentro del tema oscuro (.lab) es el acento. */
 .ds-nav.ds-lab{box-sizing:border-box;margin-right:var(--space-1);padding:0 var(--space-2);border:1px solid var(--line);border-radius:var(--radius);color:var(--text);font-weight:700}
-.ds-lab .ds-dot,.ds-navsheet__lab .ds-dot{color:var(--brand-lab)}
-.lab .ds-lab .ds-dot,.lab .ds-navsheet__lab .ds-dot{color:var(--accent)}
+/* Más específico que `.tema-wip .ds-dot` (amarillo, en el blog): el punto de «Lab.» es verde en todas las páginas */
+.ds-nav.ds-lab .ds-dot,.ds-navsheet .ds-navsheet__lab .ds-dot{color:var(--brand-lab)}
+.lab .ds-nav.ds-lab .ds-dot,.lab .ds-navsheet .ds-navsheet__lab .ds-dot{color:var(--accent)}
 .ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{border-color:var(--text-secondary)}
 .ds-nav.ds-lab:active,.ds-nav.ds-lab.is-pressed{color:var(--accent-pressed)}
 .ds-nav.ds-lab:focus-visible,.ds-nav.ds-lab.is-focus{color:var(--focus-ink);border-color:var(--focus-ink);text-decoration:none}
