@@ -1,5 +1,5 @@
-// Sitemap del Lab (/sitemap-lab.xml). Con LAB_PUBLIC=false (por defecto) va vacío: el Lab no se anuncia a los buscadores.
-// Con LAB_PUBLIC=true incluye /lab/ y cada entrada, y robots.txt lo enlaza.
+// Sitemap del Lab (/sitemap-lab.xml). Con LAB_PUBLIC=false (Lab oculto) va vacío: el Lab no se anuncia a los buscadores.
+// Con el Lab público (por defecto) incluye /lab/ y cada entrada, y robots.txt lo enlaza.
 import { entradasLab } from '../data/lab.js';
 import { labPublico } from '../../lib/lab/flag.js';
 

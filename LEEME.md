@@ -167,9 +167,6 @@ Sección `/lab/` (bitácora con filtro por proyecto) y `/lab/<slug>/` (cada entr
 
 ### Interruptor `LAB_PUBLIC` (variable de entorno del build)
 
-| Valor | Efecto |
-|---|---|
-| sin definir o `false` (por defecto) | Las páginas existen con la URL directa, pero: sin enlace «Lab.» en el menú, `<meta robots noindex, nofollow>`, cabecera `X-Robots-Tag: noindex` (se añade a `dist/_headers`) y `sitemap-lab.xml` vacío y no anunciado en `robots.txt`. |
-| `true` | Enlace «Lab.» visible, sin `noindex`, entradas en `sitemap-lab.xml` (anunciado en `robots.txt`) y canonical/Open Graph normales. |
+El Lab es **público por defecto** (se lanzó antes del 15 dic 2026): enlace «Lab.» en el menú, sin `noindex`, entradas en `sitemap-lab.xml` (anunciado en `robots.txt`) y canonical/Open Graph normales.
 
-Para publicar el Lab (15 dic 2026): Cloudflare Pages → Settings → Variables de entorno → **Production** → `LAB_PUBLIC` = `true` y volver a desplegar. Para probarlo en local: `LAB_PUBLIC=true npm run build`.
+Para ocultarlo (interruptor de emergencia o una vista previa que no deba indexarse), define `LAB_PUBLIC=false` en el build (Cloudflare Pages → Settings → Variables de entorno) o en local con `LAB_PUBLIC=false npm run build`. Entonces las páginas siguen existiendo con la URL directa, pero sin enlace en el menú, con `<meta robots noindex, nofollow>`, cabecera `X-Robots-Tag: noindex` (se añade a `dist/_headers`) y `sitemap-lab.xml` vacío.

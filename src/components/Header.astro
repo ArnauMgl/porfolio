@@ -17,7 +17,7 @@ const { actual } = Astro.props;
 import { articulosPublicados } from '../data/blog.js';
 const hayBlog = (await articulosPublicados()).length > 0;
 
-// Lab.: el enlace sale solo si el Lab es público (variable de build LAB_PUBLIC=true; ver lib/lab/flag.js).
+// Lab.: el enlace sale solo si el Lab es público (público por defecto; LAB_PUBLIC=false lo oculta; ver lib/lab/flag.js).
 // El idioma sigue oculto hasta que esté listo: para activarlo basta con poner true.
 import { labPublico } from '../../lib/lab/flag.js';
 const MOSTRAR_LAB = labPublico();

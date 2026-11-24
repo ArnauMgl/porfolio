@@ -13,13 +13,12 @@ const datos = [
   e('c', '2026-11-24'),
 ];
 
-test('el flag LAB_PUBLIC es false por defecto y solo «true» lo activa', () => {
-  assert.equal(labPublico({}), false);
-  assert.equal(labPublico({ LAB_PUBLIC: '' }), false);
-  assert.equal(labPublico({ LAB_PUBLIC: 'false' }), false);
-  assert.equal(labPublico({ LAB_PUBLIC: '1' }), false);
+test('el Lab es público por defecto y solo LAB_PUBLIC=false lo oculta', () => {
+  assert.equal(labPublico({}), true);
+  assert.equal(labPublico({ LAB_PUBLIC: '' }), true);
   assert.equal(labPublico({ LAB_PUBLIC: 'true' }), true);
-  assert.equal(labPublico({ LAB_PUBLIC: ' TRUE ' }), true);
+  assert.equal(labPublico({ LAB_PUBLIC: 'false' }), false);
+  assert.equal(labPublico({ LAB_PUBLIC: ' FALSE ' }), false);
 });
 
 test('la bitácora va de la más nueva a la más antigua', () => {

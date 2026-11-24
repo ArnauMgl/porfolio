@@ -1,4 +1,4 @@
-// robots.txt. Era un archivo fijo en public/; ahora se genera para que el sitemap del Lab solo se anuncie con LAB_PUBLIC=true.
+// robots.txt. Era un archivo fijo en public/; ahora se genera para que el sitemap del Lab solo se anuncie con el Lab público.
 // No se pone «Disallow: /lab/» a propósito: para que un buscador vea el noindex tiene que poder entrar en la página.
 import { labPublico } from '../../lib/lab/flag.js';
 
