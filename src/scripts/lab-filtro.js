@@ -20,7 +20,8 @@ function iniciar(raiz) {
     // Bajo un proyecto solo salen sus entradas: las de «lab» y la entrada «Próximamente» se ocultan.
     const visible = (el) => !proyecto || el.dataset.project === proyecto;
     for (const el of [...entradas, ...enlacesIndice]) el.hidden = !visible(el);
-    for (const g of grupos) g.hidden = !visible(g) || ![...g.querySelectorAll('li')].some((li) => !li.hidden);
+    // Un grupo del índice (mes o «Próximamente») se oculta si ya no le queda ninguna entrada visible.
+    for (const g of grupos) g.hidden = ![...g.querySelectorAll('li')].some((li) => !li.hidden);
     if (anunciar) {
       const cantidad = entradas.filter((e) => !e.hidden).length;
       estado.textContent = textoResultado(cantidad, proyecto ? chip.dataset.label : '');

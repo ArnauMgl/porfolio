@@ -155,3 +155,21 @@ Envío real de punta a punta (formulario → Turnstile → función → Resend �
    - Con la clave de Resend falsa del ejemplo, el envío acaba en «No se ha podido enviar». Para probar el éxito sin mandar correos, activa `RESEND_API_URL` en `.dev.vars` y apúntala a un servidor que responda 200. `RESEND_API_URL` y `TURNSTILE_VERIFY_URL` solo funcionan con `ENTORNO=local`.
 5. Vista previa: cada rama subida a GitHub se publica en `https://<rama>.arnaularripa.pages.dev`. El formulario funciona ahí si las variables de Preview están creadas.
 
+
+## Lab. (bitácora de apps propias)
+
+Sección `/lab/` (bitácora con filtro por proyecto) y `/lab/<slug>/` (cada entrada, con Anterior/Siguiente). Entradas en Markdown, como el blog.
+
+- `content/lab/AAAA-MM-DD-slug.md`: las entradas. Campos obligatorios: `title` (sin punto final), `slug`, `date`, `project` (`lab` o el slug del proyecto), `projectLabel`, `type`. Opcionales: `resumen` (en la bitácora sale el resumen y «Seguir leyendo»; sin él, la entrada entera) y `draft: true` (la excluye). Si falta un campo obligatorio, la construcción falla.
+- Los chips del filtro salen de los datos: uno por cada proyecto distinto de `lab`. Las entradas con `project: lab` solo salen en «Todos».
+- `src/styles/lab.css`: tema oscuro, solo dentro de la clase `.lab` (la pone `Base.astro` en el `<body>` con `tema="lab"`). `src/pages/lab/`, `src/components/lab/`, `src/scripts/lab-filtro.js`, `lib/lab/` (lógica con pruebas en `tests/lab.test.js`).
+- La entrada «Próximamente» es un componente fijo (`src/components/lab/Proximamente.astro`), no un archivo.
+
+### Interruptor `LAB_PUBLIC` (variable de entorno del build)
+
+| Valor | Efecto |
+|---|---|
+| sin definir o `false` (por defecto) | Las páginas existen con la URL directa, pero: sin enlace «Lab.» en el menú, `<meta robots noindex, nofollow>`, cabecera `X-Robots-Tag: noindex` (se añade a `dist/_headers`) y `sitemap-lab.xml` vacío y no anunciado en `robots.txt`. |
+| `true` | Enlace «Lab.» visible, sin `noindex`, entradas en `sitemap-lab.xml` (anunciado en `robots.txt`) y canonical/Open Graph normales. |
+
+Para publicar el Lab (15 dic 2026): Cloudflare Pages → Settings → Variables de entorno → **Production** → `LAB_PUBLIC` = `true` y volver a desplegar. Para probarlo en local: `LAB_PUBLIC=true npm run build`.
