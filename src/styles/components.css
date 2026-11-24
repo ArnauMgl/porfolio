@@ -66,17 +66,21 @@
 .ds-navsheet__link:focus-visible,.ds-navsheet__link.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
 .ds-navsheet__lab{padding:var(--space-1) 0 0}
 
-/* Lab. — punto verde grueso (decorativo) */
-.ds-lab__dot{display:inline-block;width:.34em;height:.34em;margin-left:.1em;border-radius:50%;background:var(--brand-lab)}
-.ds-nav.ds-lab{color:var(--text);font-weight:700}
-.ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{text-decoration-line:underline;text-decoration-color:var(--brand-lab)}
+/* Lab. — enlace con borde a la derecha del todo (escritorio) y último elemento del menú móvil.
+   Solo existe con LAB_PUBLIC=true. El punto es el punto del sistema (.ds-dot), en verde de marca; dentro del tema oscuro (.lab) es el acento. */
+.ds-nav.ds-lab{box-sizing:border-box;margin-right:var(--space-1);padding:0 var(--space-2);border:1px solid var(--line);border-radius:var(--radius);color:var(--text);font-weight:700}
+.ds-lab .ds-dot,.ds-navsheet__lab .ds-dot{color:var(--brand-lab)}
+.lab .ds-lab .ds-dot,.lab .ds-navsheet__lab .ds-dot{color:var(--accent)}
+.ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{border-color:var(--text-secondary)}
 .ds-nav.ds-lab:active,.ds-nav.ds-lab.is-pressed{color:var(--accent-pressed)}
-.ds-nav.ds-lab:focus-visible,.ds-nav.ds-lab.is-focus{color:var(--focus-ink);text-decoration:none}
-.ds-navsheet__lab .ds-lab__dot{width:.3em;height:.3em}
+.ds-nav.ds-lab:focus-visible,.ds-nav.ds-lab.is-focus{color:var(--focus-ink);border-color:var(--focus-ink);text-decoration:none}
+.ds-nav.ds-lab:focus-visible .ds-dot{color:var(--focus-ink)}
+.ds-nav.ds-lab[aria-current="page"]{text-decoration-line:none}
 .ds-navsheet__lab .ds-navsheet__link{color:var(--text);font-weight:700}
-.ds-navsheet__lab .ds-navsheet__link:hover,.ds-navsheet__lab .ds-navsheet__link.is-hover{text-decoration:underline;text-decoration-color:var(--brand-lab);text-decoration-thickness:3px;text-underline-offset:6px}
+.ds-navsheet__lab .ds-navsheet__link:hover,.ds-navsheet__lab .ds-navsheet__link.is-hover{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:6px}
 .ds-navsheet__lab .ds-navsheet__link:active,.ds-navsheet__lab .ds-navsheet__link.is-pressed{color:var(--accent-pressed)}
 .ds-navsheet__lab .ds-navsheet__link:focus-visible,.ds-navsheet__lab .ds-navsheet__link.is-focus{color:var(--focus-ink);text-decoration:none}
+.ds-navsheet__lab .ds-navsheet__link:focus-visible .ds-dot{color:var(--focus-ink)}
 
 /* Desplegable de idioma (escritorio) */
 .ds-lang{position:relative}

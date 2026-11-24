@@ -6,7 +6,7 @@
 // Móvil y tableta: botón de menú que abre una hoja desde abajo (<dialog>). Comportamiento en src/scripts/navegacion.js.
 // Propuesta y estados: diseno/propuestas/navegacion/.
 interface Props {
-  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi' | 'blog';
+  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi' | 'blog' | 'lab';
 }
 const { actual } = Astro.props;
 
@@ -17,8 +17,12 @@ const { actual } = Astro.props;
 import { articulosPublicados } from '../data/blog.js';
 const hayBlog = (await articulosPublicados()).length > 0;
 
-// Ocultos hasta que estén listos. Para activarlos basta con poner true (no hay «próximamente»).
-const MOSTRAR_LAB = false;
+// Lab.: el enlace sale solo si el Lab es público (variable de build LAB_PUBLIC=true; ver lib/lab/flag.js).
+// El idioma sigue oculto hasta que esté listo: para activarlo basta con poner true.
+import { labPublico } from '../../lib/lab/flag.js';
+const MOSTRAR_LAB = labPublico();
+// La barra nueva también hace falta si el Lab es público (es la que lleva su enlace).
+const barraNueva = hayBlog || MOSTRAR_LAB;
 const MOSTRAR_IDIOMA = false;
 
 const enlaces = [
@@ -37,7 +41,7 @@ const idiomas = [
 const homeHref = '/';
 const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round', 'aria-hidden': 'true' };
 ---
-{!hayBlog && (
+{!barraNueva && (
 <header class="ds-wrap ds-header ds-header--clasico">
 <nav aria-label="Principal">
 <ul class="ds-header__list">
@@ -48,7 +52,7 @@ const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round',
 </nav>
 </header>
 )}
-{hayBlog && (
+{barraNueva && (
 <>
 <header class="ds-wrap ds-header">
 <div class="ds-header__bar">
@@ -62,7 +66,7 @@ const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round',
 
 {(MOSTRAR_LAB || MOSTRAR_IDIOMA) && (
 <div class="ds-header__extra">
-{MOSTRAR_LAB && <a class="ds-nav ds-lab t-nav" href="/lab/"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a>}
+{MOSTRAR_LAB && <a class="ds-nav ds-lab t-nav" href="/lab/" aria-current={actual === 'lab' ? 'page' : undefined}>Lab<span class="ds-dot">.</span></a>}
 {MOSTRAR_LAB && MOSTRAR_IDIOMA && <span class="ds-header__sep" aria-hidden="true"></span>}
 {MOSTRAR_IDIOMA && (
 <div class="ds-lang" data-idioma>
@@ -94,7 +98,7 @@ const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round',
 {enlaces.map((e) => <li><a class="ds-navsheet__link" href={e.href} aria-current={e.activo ? 'page' : undefined}>{e.texto}</a></li>)}
 </ul>
 </nav>
-{MOSTRAR_LAB && <div class="ds-navsheet__lab"><a class="ds-navsheet__link" href="/lab/"><span>Lab<span class="ds-lab__dot" aria-hidden="true"></span></span></a></div>}
+{MOSTRAR_LAB && <div class="ds-navsheet__lab"><a class="ds-navsheet__link" href="/lab/" aria-current={actual === 'lab' ? 'page' : undefined}><span>Lab<span class="ds-dot">.</span></span></a></div>}
 {MOSTRAR_IDIOMA && (
 <nav class="ds-navsheet__lang" aria-label="Idioma">
 <p class="ds-label t-meta ds-navsheet__lang-label">Idioma</p>
