@@ -42,7 +42,9 @@
 .lab-index__link:focus-visible{outline:none;background-color:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
 .lab-index__link:focus-visible .lab-index__title{text-decoration:none}
 /* Chips de proyecto (como el filtro del changelog de GitHub): activo = relleno claro, no solo color */
-.lab-filter{list-style:none;margin:0;padding:0;display:flex;flex-wrap:nowrap;gap:var(--space-1);overflow-x:auto;scrollbar-width:none}
+/* El margen negativo y el relleno de 4 px dan sitio a la zona táctil ampliada del chip (::after, -4px): sin ellos, overflow-x:auto
+   habilita también el scroll vertical y el chip se ve cortado. */
+.lab-filter{list-style:none;margin:-4px 0;padding:4px 0;display:flex;flex-wrap:nowrap;gap:var(--space-1);overflow-x:auto;scrollbar-width:none}
 .lab-filter::-webkit-scrollbar{display:none}
 .lab-filter__chip{position:relative;display:inline-flex;align-items:center;gap:var(--space-1);min-height:40px;box-sizing:border-box;padding:0 var(--space-2);background:none;border:1px solid var(--line);border-radius:999px;color:var(--text-secondary);font:inherit;white-space:nowrap;cursor:pointer;transition:color var(--duration-base) ease,border-color var(--duration-base) ease,background-color var(--duration-base) ease}
 .lab-filter__chip::after{content:"";position:absolute;inset:-4px 0}
@@ -89,7 +91,7 @@
 @media (min-width:768px){
   .lab-index__inner{gap:var(--space-5)}
   .lab-index__filter .lab-index__label{display:block}
-  .lab-filter{flex-wrap:wrap}
+  .lab-filter{flex-wrap:wrap;overflow:visible}
   .lab-index__body{display:flex;gap:var(--space-5)}
   /* Feed a la izquierda y índice a la derecha. En el HTML el índice (con el filtro) va antes que el feed, para que en móvil
      los chips salgan arriba; en escritorio se recolocan con la retícula. */
