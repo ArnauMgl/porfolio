@@ -18,9 +18,8 @@
 .ds-header .ds-logo{margin-left:calc(-1 * var(--space-1))}
 /* Texto de la barra de navegación (logo y enlaces): 24 px en lugar de los 16 px de .t-nav, solo dentro de la cabecera */
 .ds-header .t-nav,.ds-header .t-nav-strong{font-size:24px;line-height:1.25;letter-spacing:-.02em}
-/* Con el texto más grande, el peso 500 de los enlaces se veía fino al lado de «Lab.» (700): enlaces a 600 y logo a 700 */
-.ds-header .t-nav{font-weight:600}
-.ds-header .t-nav-strong{font-weight:700}
+/* Con el texto más grande, el peso 500 de los enlaces se veía fino al lado de «Lab.» (700): enlaces y logo a 700 */
+.ds-header .t-nav,.ds-header .t-nav-strong{font-weight:700}
 .ds-header__nav{display:none;margin-left:var(--space-4)}
 .ds-header__list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:0 var(--space-3)}
 .ds-header__extra{display:none;align-items:center;margin-left:auto;margin-right:calc(-1 * var(--space-1))}
