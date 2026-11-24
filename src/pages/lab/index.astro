@@ -1,0 +1,65 @@
+---
+// Lab. — bitácora (/lab/): chips de proyecto, índice por mes (escritorio) y feed. Hecho a partir de design/Main.dc.html del paquete de entrega.
+// Mejora progresiva: el HTML trae todas las entradas («Todos»); src/scripts/lab-filtro.js aplica el filtro (?proyecto=bike-tool).
+import Lab from '../../layouts/Lab.astro';
+import EntradaFeed from '../../components/lab/EntradaFeed.astro';
+import Proximamente from '../../components/lab/Proximamente.astro';
+import { entradasLab } from '../../data/lab.js';
+import { proyectos, agruparPorMes, diaMes } from '../../../lib/lab/bitacora.js';
+
+const entradas = await entradasLab();
+const chips = proyectos(entradas);
+const meses = agruparPorMes(entradas);
+---
+<Lab title="Lab. · Bitácora de Arnau Larripa" description="El cuaderno de bitácora de las apps de deporte y salud que diseño por mi cuenta. Deporte y salud, paso a paso.">
+<noscript><style>.lab-index__filter{display:none}</style></noscript>
+<main id="lab">
+<div class="ds-wrap">
+<section class="ds-case-head" aria-labelledby="lab-title">
+<div class="ds-prose">
+<h1 id="lab-title" class="ds-case__title t-page-title-mobile">Lab<span class="ds-dot">.</span></h1>
+<p class="ds-case__subtitle t-statement">El cuaderno de bitácora de las apps que diseño por mi cuenta. Deporte y salud, paso a paso.</p>
+</div>
+</section>
+
+<div class="lab-main" data-lab>
+<nav class="lab-index" aria-label="Bitácora">
+<div class="lab-index__inner">
+<div class="lab-index__filter" role="group" aria-label="Filtrar por proyecto">
+<p class="lab-index__label t-meta" aria-hidden="true">Proyecto</p>
+<ul class="lab-filter t-nav">
+<li><button class="lab-filter__chip" type="button" data-proyecto="" aria-pressed="true">Todos <span class="lab-filter__count t-meta">{entradas.length}</span></button></li>
+{chips.map((p) => <li><button class="lab-filter__chip" type="button" data-proyecto={p.slug} data-label={p.label} aria-pressed="false">{p.label} <span class="lab-filter__count t-meta">{p.count}</span></button></li>)}
+</ul>
+<p class="ds-sr" role="status" aria-live="polite" data-estado></p>
+</div>
+<div class="lab-index__body">
+<div data-project="lab" data-grupo>
+<p class="lab-index__label t-meta">Próximamente</p>
+<ol class="lab-index__list">
+<li data-project="lab"><a class="lab-index__link" href="#proxima"><span class="t-meta">—</span><span class="lab-index__title t-nav">Próxima entrada</span></a></li>
+</ol>
+</div>
+{meses.map((m) => (
+<div data-grupo>
+<p class="lab-index__label t-meta">{m.etiqueta}</p>
+<ol class="lab-index__list">
+{m.entradas.map((e) => (
+<li data-project={e.project}><a class="lab-index__link" href={`#${e.slug}`}><time class="t-meta" datetime={e.fecha}>{diaMes(e.fecha)}</time><span class="lab-index__title t-nav">{e.titulo}</span></a></li>
+))}
+</ol>
+</div>
+))}
+</div>
+</div>
+</nav>
+
+<ol class="lab-feed" data-feed>
+<Proximamente />
+{entradas.map((e) => <EntradaFeed entrada={e} />)}
+</ol>
+</div>
+</div>
+</main>
+<script>import '../../scripts/lab-filtro.js';</script>
+</Lab>
