@@ -22,8 +22,8 @@ const MOSTRAR_LAB = false;
 const MOSTRAR_IDIOMA = false;
 
 const enlaces = [
-  { texto: 'Trabajo', href: actual === 'trabajo' ? '#titular' : '/trabajo/', activo: actual === 'trabajo' || actual === 'caso' },
-  { texto: 'Sobre mí', href: actual === 'sobre-mi' ? '#sobre' : '/sobre-mi/', activo: actual === 'sobre-mi' },
+  { texto: 'Trabajo', href: '/trabajo/', activo: actual === 'trabajo' || actual === 'caso' },
+  { texto: 'Sobre mí', href: '/sobre-mi/', activo: actual === 'sobre-mi' },
   ...(hayBlog ? [{ texto: 'Blog', href: '/blog/', activo: actual === 'blog' }] : []),
 ];
 // Idiomas: las rutas son provisionales hasta que exista la versión en cada idioma.
@@ -32,16 +32,18 @@ const idiomas = [
   { codigo: 'CA', nombre: 'Català', lang: 'ca', href: '/ca/', activo: false },
   { codigo: 'EN', nombre: 'English', lang: 'en', href: '/en/', activo: false },
 ];
-const homeHref = actual === 'inicio' ? '#inicio' : '/';
+// Todos los enlaces del menú llevan siempre a su página (nunca a un ancla de la misma página, que dejaba la barra fuera de la vista).
+// El nombre lleva siempre a «/»: en la home recarga arriba del todo (antes iba a #inicio y dejaba la barra fuera de la vista).
+const homeHref = '/';
 const trazo = { fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round', 'aria-hidden': 'true' };
 ---
 {!hayBlog && (
 <header class="ds-wrap ds-header ds-header--clasico">
 <nav aria-label="Principal">
 <ul class="ds-header__list">
-<li><a class="ds-nav t-nav" href={actual === 'trabajo' ? '#titular' : '/trabajo/'} aria-current={actual === 'trabajo' || actual === 'caso' ? 'page' : undefined}>Trabajo</a></li>
-<li><a class="ds-logo t-nav-strong" href={actual === 'inicio' ? '#inicio' : '/'} aria-label="Arnau Larripa, ir al inicio">Arnau Larripa</a></li>
-<li><a class="ds-nav t-nav" href={actual === 'sobre-mi' ? '#sobre' : '/sobre-mi/'} aria-current={actual === 'sobre-mi' ? 'page' : undefined}>Sobre mí</a></li>
+<li><a class="ds-nav t-nav" href="/trabajo/" aria-current={actual === 'trabajo' || actual === 'caso' ? 'page' : undefined}>Trabajo</a></li>
+<li><a class="ds-logo t-nav-strong" href="/" aria-label="Arnau Larripa, ir al inicio">Arnau Larripa</a></li>
+<li><a class="ds-nav t-nav" href="/sobre-mi/" aria-current={actual === 'sobre-mi' ? 'page' : undefined}>Sobre mí</a></li>
 </ul>
 </nav>
 </header>

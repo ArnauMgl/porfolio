@@ -339,7 +339,7 @@
   .ds-work--index .ds-proj__thumb{margin-top:0}
   .ds-work--index .ds-proj__row{--t:40px}
   .ds-work--index .ds-proj__title{line-height:1.15}
-  .ds-quotes{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-10)}
+  .ds-quotes{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6)} /* tres testimonios: una sola fila */
   .ds-footer{margin-top:var(--space-16)}
   /* = t-footer-email-desktop */
   .ds-footer__email{font-size:64px;line-height:1;letter-spacing:-0.04em}
