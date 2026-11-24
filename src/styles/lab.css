@@ -1,0 +1,125 @@
+/* Lab. — tema oscuro sobre el sistema del portfolio (Arnau Larripa).
+   Cargar después de tokens.css y components/bundle.css. Tipografías, espaciados, radio y retícula salen del sistema;
+   aquí solo cambian los colores y se añade la maquetación de la bitácora. */
+
+/* ---------- Tema oscuro del Lab ---------- */
+/* Todo cuelga de la clase .lab (la pone Base.astro en el <body> de las páginas del Lab): el resto del portfolio no cambia.
+   Adaptado de design/lab.css del paquete de entrega: se quitan la cabecera y el menú propios (se usa la cabecera real del portfolio)
+   y las consultas de contenedor pasan a consultas de ancho de pantalla (768 px), como pide CLAUDE.md. */
+.lab{
+  color-scheme:dark;
+  --bg:#0c0d0d;
+  --text:#f2f4f1;
+  --text-secondary:#9ba59f;
+  --line-strong:#f2f4f1;
+  --line:color-mix(in srgb,var(--text) 14%,var(--bg));
+  --accent:#00cd77;
+  --accent-hover:color-mix(in srgb,var(--accent) 75%,#fff);
+  --accent-pressed:color-mix(in srgb,var(--accent) 75%,#000);
+  --accent-tint:color-mix(in srgb,var(--accent) 12%,var(--bg));
+  --on-accent-tint:color-mix(in srgb,var(--accent) 60%,#fff);
+  --on-accent:#06130c;
+  --disabled-bg:#1a201d;
+  --disabled-text:#78837c;
+  --ring-focus:0 0 0 3px #ffdd00,0 0 0 6px #f2f4f1;
+  /* Cromo: solo decorativo, en detalles pequeños. Texto oscuro encima (mín. 6:1). */
+  --chrome:linear-gradient(115deg,#8f989e 0%,#f2f5f6 16%,#a9b2b8 32%,#ffffff 48%,#9aa3a9 64%,#e4e8ea 82%,#8f989e 100%);
+}
+
+/* ---------- Índice (columna izquierda) ---------- */
+.lab-main{margin-top:var(--space-12);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-8);align-items:start}
+.lab-index__inner{display:flex;flex-direction:column;gap:var(--space-2)}
+/* Móvil: solo el filtro de proyecto (chips); el índice por fechas es de escritorio */
+.lab-index__body{display:none;flex-direction:column;gap:var(--space-3)}
+.lab-index__filter .lab-index__label{display:none}
+.lab-index__label{margin:0 0 var(--space-1);color:var(--text-secondary)}
+.lab-index__list{list-style:none;margin:0;padding:0}
+.lab-index__link{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:var(--space-1);align-items:center;min-height:var(--touch-min);box-sizing:border-box;padding:var(--space-1) 0;border-top:1px solid var(--line);color:var(--text-secondary);text-decoration:none;transition:color var(--duration-base) ease}
+.lab-index__list li:first-child .lab-index__link{border-top:0}
+.lab-index__link:hover{color:var(--text)}
+.lab-index__link[aria-current="location"]{color:var(--text)}
+.lab-index__link[aria-current="location"] .lab-index__title{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:6px}
+.lab-index__link:focus-visible{outline:none;background-color:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
+.lab-index__link:focus-visible .lab-index__title{text-decoration:none}
+/* Chips de proyecto (como el filtro del changelog de GitHub): activo = relleno claro, no solo color */
+/* El margen negativo y el relleno de 4 px dan sitio a la zona táctil ampliada del chip (::after, -4px): sin ellos, overflow-x:auto
+   habilita también el scroll vertical y el chip se ve cortado. */
+.lab-filter{list-style:none;margin:-4px 0;padding:4px 0;display:flex;flex-wrap:nowrap;gap:var(--space-1);overflow-x:auto;scrollbar-width:none}
+.lab-filter::-webkit-scrollbar{display:none}
+.lab-filter__chip{position:relative;display:inline-flex;align-items:center;gap:var(--space-1);min-height:40px;box-sizing:border-box;padding:0 var(--space-2);background:none;border:1px solid var(--line);border-radius:999px;color:var(--text-secondary);font:inherit;white-space:nowrap;cursor:pointer;transition:color var(--duration-base) ease,border-color var(--duration-base) ease,background-color var(--duration-base) ease}
+.lab-filter__chip::after{content:"";position:absolute;inset:-4px 0}
+.lab-filter__chip:hover{color:var(--text);border-color:var(--text-secondary)}
+.lab-filter__chip[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--bg)}
+.lab-filter__chip[aria-pressed="true"] .lab-filter__count{color:inherit}
+.lab-filter__count{color:var(--text-secondary)}
+.lab-filter__chip:focus-visible{outline:none;background-color:var(--focus);color:var(--focus-ink);border-color:var(--focus-ink)}
+.lab-filter__chip:focus-visible .lab-filter__count{color:var(--focus-ink)}
+
+/* El filtro de proyecto lo aplica src/scripts/lab-filtro.js con el atributo [hidden] (entradas, índice y grupos). */
+.lab [hidden]{display:none !important}
+
+/* ---------- Bitácora (columna derecha) ---------- */
+.lab-feed{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-12);min-width:0}
+.lab-entry{position:relative;border-top:2px solid var(--line-strong);padding-top:var(--space-3);display:flex;flex-direction:column;gap:var(--space-3);scroll-margin-top:var(--space-4);min-width:0}
+.lab-entry--next{border-top:2px dashed var(--line)}
+.lab-entry__head{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-1) var(--space-2);margin-top:var(--space-1)}
+.lab-entry__date{margin:0;color:var(--text-secondary)}
+.lab-entry__title{margin:0;color:var(--text);text-wrap:balance}
+.lab-entry--next .lab-entry__title{color:var(--text-secondary)}
+.lab-tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-1)}
+
+/* Nodo del avance: punto verde sobre la línea de la entrada */
+.lab-node{position:absolute;top:-8px;left:0;width:14px;height:14px;box-sizing:border-box;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
+.lab-entry--next .lab-node{background:var(--bg);border:2px solid var(--text-secondary)}
+
+/* Etiqueta de tipo de entrada */
+.lab-chip{display:inline-flex;align-items:center;box-sizing:border-box;min-height:28px;padding:0 var(--space-1);border-radius:var(--radius);white-space:nowrap;background:var(--accent-tint);color:var(--on-accent-tint)}
+
+/* Cromo (activable con el ajuste «Cromo»): solo la etiqueta de tipo; los nodos van solo con el punto verde */
+.lab--chrome .lab-chip{background:var(--chrome);background-size:220% 100%;background-position:0 0;color:#0b0d0c;transition:background-position var(--duration-slow) ease}
+.lab--chrome .lab-entry:hover .lab-chip{background-position:100% 0}
+
+/* Registro: qué hice / qué aprendí / qué viene */
+.lab-log{margin:0;display:flex;flex-direction:column;max-width:var(--text-max)}
+.lab-log__row{display:grid;grid-template-columns:minmax(0,1fr);gap:0;border-top:1px solid var(--line);padding-block:var(--space-2)}
+.lab-log dt{margin:0;color:var(--text-secondary)}
+.lab-log dd{margin:0;color:var(--text)}
+.lab-feed .ds-figure{max-width:var(--text-max)}
+.lab-feed .ds-pair{max-width:var(--text-max)}
+
+/* ---------- Escritorio (≥ 768 px) ---------- */
+@media (min-width:768px){
+  .lab-index__inner{gap:var(--space-5)}
+  .lab-index__filter .lab-index__label{display:block}
+  .lab-filter{flex-wrap:wrap;overflow:visible}
+  .lab-index__body{display:flex;gap:var(--space-5)}
+  /* Feed a la izquierda y índice a la derecha. En el HTML el índice (con el filtro) va antes que el feed, para que en móvil
+     los chips salgan arriba; en escritorio se recolocan con la retícula. */
+  .lab-main{--lab-index-col:240px;margin-top:var(--space-16);grid-template-columns:minmax(0,1fr) var(--lab-index-col);column-gap:var(--space-8)}
+  .lab-feed{grid-column:1;grid-row:1}
+  .lab-index{grid-column:2;grid-row:1;position:sticky;top:var(--space-3);align-self:start}
+  /* = t-section-title-desktop */
+  .lab-entry__title{font-size:40px;line-height:1.1;letter-spacing:-0.03em}
+  .lab-log__row{grid-template-columns:160px minmax(0,1fr);gap:var(--space-3)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .lab-index__link,.lab-filter__chip,.lab--chrome .lab-chip{transition:none}
+  .lab--chrome .lab-entry:hover .lab-chip{background-position:0 0}
+}
+
+@media (min-width:1024px){
+  .lab-main{--lab-index-col:280px;column-gap:var(--space-10)}
+}
+
+/* ---------- Página de una entrada (/lab/<slug>/): columna de lectura + Anterior / Siguiente ---------- */
+.lab-page{margin-top:var(--space-8);display:flex;flex-direction:column;gap:var(--space-8);align-items:flex-start;min-width:0}
+.lab-page .lab-entry{align-self:stretch}
+.lab-pager{align-self:stretch;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-3);border-top:1px solid var(--line);padding-top:var(--space-3)}
+.lab-pager a{align-items:flex-start;gap:var(--space-2);text-wrap:balance}
+.lab-pager__dir{display:block;color:var(--text-secondary);text-decoration:none}
+.lab-pager__next{justify-content:flex-end;text-align:right}
+@media (min-width:768px){
+  .lab-page{margin-top:var(--space-12)}
+  .lab-pager{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}
+}

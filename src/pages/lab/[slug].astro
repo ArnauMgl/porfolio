@@ -1,0 +1,47 @@
+---
+// Lab. — página de una entrada (/lab/<slug>/): cabecera idéntica a la del feed, cuerpo completo y Anterior / Siguiente por fecha.
+// Anterior = la entrada inmediatamente más antigua; Siguiente = la inmediatamente más nueva.
+import Lab from '../../layouts/Lab.astro';
+import CabeceraEntrada from '../../components/lab/CabeceraEntrada.astro';
+import { entradasLab } from '../../data/lab.js';
+
+export async function getStaticPaths() {
+  const entradas = await entradasLab();
+  return entradas.map((e) => ({ params: { slug: e.slug }, props: { entrada: e } }));
+}
+const { entrada } = Astro.props;
+const flecha = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' };
+---
+<Lab title={`${entrada.titulo}. Lab. · Arnau Larripa`} description={entrada.descripcion} publicadoEn={entrada.fecha}>
+<main id="lab">
+<div class="ds-wrap">
+<div class="lab-page">
+<a class="ds-link ds-link--touch t-body" href="/lab/">
+<svg class="ds-icon" {...flecha}><path d="M20 12H4M11 5l-7 7 7 7"></path></svg>
+Volver a la bitácora
+</a>
+<article class="lab-entry" id={entrada.slug}>
+<span class="lab-node" aria-hidden="true"></span>
+<CabeceraEntrada entrada={entrada} nivel="h1" />
+<div class="ds-prose t-body" set:html={entrada.html}></div>
+</article>
+{(entrada.anterior || entrada.siguiente) && (
+<nav class="lab-pager" aria-label="Entradas del Lab">
+{entrada.anterior ? (
+<a class="ds-link ds-link--touch t-body lab-pager__prev" href={`/lab/${entrada.anterior.slug}/`} rel="prev">
+<svg class="ds-icon" {...flecha}><path d="M20 12H4M11 5l-7 7 7 7"></path></svg>
+<span><span class="lab-pager__dir t-meta">Anterior</span>{entrada.anterior.titulo}</span>
+</a>
+) : <span></span>}
+{entrada.siguiente ? (
+<a class="ds-link ds-link--touch t-body lab-pager__next" href={`/lab/${entrada.siguiente.slug}/`} rel="next">
+<span><span class="lab-pager__dir t-meta">Siguiente</span>{entrada.siguiente.titulo}</span>
+<svg class="ds-icon" {...flecha}><path d="M4 12h16M13 5l7 7-7 7"></path></svg>
+</a>
+) : <span></span>}
+</nav>
+)}
+</div>
+</div>
+</main>
+</Lab>

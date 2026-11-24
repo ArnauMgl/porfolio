@@ -1,0 +1,16 @@
+---
+// Cabecera de una entrada (igual en el feed y en su página): fecha → etiqueta de proyecto → chip de tipo, y el título.
+// Nivel del título: h2 en el feed, h1 en la página de la entrada. El punto verde lo pinta el componente.
+interface Props {
+  entrada: { fecha: string; fechaTexto: string; projectLabel: string; tipo: string; titulo: string };
+  nivel: 'h1' | 'h2';
+}
+const { entrada, nivel } = Astro.props;
+const Titulo = nivel;
+---
+<header class="lab-entry__head">
+<time class="lab-entry__date t-meta" datetime={entrada.fecha}>{entrada.fechaTexto}</time>
+<span class="ds-label-tag t-meta">{entrada.projectLabel}</span>
+<span class="lab-chip t-meta">{entrada.tipo}</span>
+</header>
+<Titulo class="lab-entry__title t-section-title-mobile">{entrada.titulo}<span class="ds-dot">.</span></Titulo>

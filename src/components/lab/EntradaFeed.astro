@@ -1,0 +1,24 @@
+---
+// Una entrada en la bitácora (/lab/). Sin «resumen»: cuerpo entero. Con «resumen»: el resumen y «Seguir leyendo».
+// data-project lo usa el filtro (src/scripts/lab-filtro.js); el id (#slug) es el ancla del índice de escritorio.
+import CabeceraEntrada from './CabeceraEntrada.astro';
+interface Props { entrada: any }
+const { entrada } = Astro.props;
+---
+<li data-project={entrada.project} data-slug={entrada.slug}>
+<article class="lab-entry" id={entrada.slug}>
+<span class="lab-node" aria-hidden="true"></span>
+<CabeceraEntrada entrada={entrada} nivel="h2" />
+{entrada.resumen ? (
+<div class="ds-prose t-body"><p>{entrada.resumen}</p></div>
+) : (
+<div class="ds-prose t-body" set:html={entrada.html}></div>
+)}
+{entrada.resumen && (
+<a class="ds-link ds-link--touch t-body" href={`/lab/${entrada.slug}/`}>
+Seguir leyendo<span class="ds-sr"> sobre «{entrada.titulo}»</span>
+<svg class="ds-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"></path></svg>
+</a>
+)}
+</article>
+</li>

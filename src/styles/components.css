@@ -16,6 +16,10 @@
 .ds-header{padding-top:var(--space-3);position:relative}
 .ds-header__bar{display:flex;align-items:center}
 .ds-header .ds-logo{margin-left:calc(-1 * var(--space-1))}
+/* Texto de la barra de navegación (logo y enlaces): 24 px en lugar de los 16 px de .t-nav, solo dentro de la cabecera */
+.ds-header .t-nav,.ds-header .t-nav-strong{font-size:24px;line-height:1.25;letter-spacing:-.02em}
+/* Con el texto más grande, el peso 500 de los enlaces se veía fino al lado de «Lab.» (700): enlaces y logo a 700 */
+.ds-header .t-nav,.ds-header .t-nav-strong{font-weight:700}
 .ds-header__nav{display:none;margin-left:var(--space-4)}
 .ds-header__list{list-style:none;margin:0;padding:0;display:flex;align-items:center;gap:0 var(--space-3)}
 .ds-header__extra{display:none;align-items:center;margin-left:auto;margin-right:calc(-1 * var(--space-1))}
@@ -66,17 +70,21 @@
 .ds-navsheet__link:focus-visible,.ds-navsheet__link.is-focus{outline:none;background:var(--focus);color:var(--focus-ink);box-shadow:var(--underline-focus)}
 .ds-navsheet__lab{padding:var(--space-1) 0 0}
 
-/* Lab. — punto verde grueso (decorativo) */
-.ds-lab__dot{display:inline-block;width:.34em;height:.34em;margin-left:.1em;border-radius:50%;background:var(--brand-lab)}
+/* Lab. — enlace sin recuadro, a la derecha del todo (escritorio) y último elemento del menú móvil.
+   Solo existe con LAB_PUBLIC=true. El punto es el punto del sistema (.ds-dot), en verde de marca; dentro del tema oscuro (.lab) es el acento. */
 .ds-nav.ds-lab{color:var(--text);font-weight:700}
-.ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{text-decoration-line:underline;text-decoration-color:var(--brand-lab)}
+/* Más específico que `.tema-wip .ds-dot` (amarillo, en el blog): el punto de «Lab.» es verde en todas las páginas */
+.ds-nav.ds-lab .ds-dot,.ds-navsheet .ds-navsheet__lab .ds-dot{color:var(--brand-lab)}
+.lab .ds-nav.ds-lab .ds-dot,.lab .ds-navsheet .ds-navsheet__lab .ds-dot{color:var(--accent)}
+.ds-nav.ds-lab:hover,.ds-nav.ds-lab.is-hover{text-decoration-line:underline}
 .ds-nav.ds-lab:active,.ds-nav.ds-lab.is-pressed{color:var(--accent-pressed)}
 .ds-nav.ds-lab:focus-visible,.ds-nav.ds-lab.is-focus{color:var(--focus-ink);text-decoration:none}
-.ds-navsheet__lab .ds-lab__dot{width:.3em;height:.3em}
+.ds-nav.ds-lab:focus-visible .ds-dot{color:var(--focus-ink)}
 .ds-navsheet__lab .ds-navsheet__link{color:var(--text);font-weight:700}
-.ds-navsheet__lab .ds-navsheet__link:hover,.ds-navsheet__lab .ds-navsheet__link.is-hover{text-decoration:underline;text-decoration-color:var(--brand-lab);text-decoration-thickness:3px;text-underline-offset:6px}
+.ds-navsheet__lab .ds-navsheet__link:hover,.ds-navsheet__lab .ds-navsheet__link.is-hover{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:3px;text-underline-offset:6px}
 .ds-navsheet__lab .ds-navsheet__link:active,.ds-navsheet__lab .ds-navsheet__link.is-pressed{color:var(--accent-pressed)}
 .ds-navsheet__lab .ds-navsheet__link:focus-visible,.ds-navsheet__lab .ds-navsheet__link.is-focus{color:var(--focus-ink);text-decoration:none}
+.ds-navsheet__lab .ds-navsheet__link:focus-visible .ds-dot{color:var(--focus-ink)}
 
 /* Desplegable de idioma (escritorio) */
 .ds-lang{position:relative}

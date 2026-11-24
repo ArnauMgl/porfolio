@@ -6,6 +6,7 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { esDia } from '../lib/blog/fechas.js';
 import { etiquetasConocidas } from '../lib/blog/etiquetas.js';
+import { fechaIso } from '../lib/lab/bitacora.js';
 
 const esquema = z.object({
   title: z.string().min(1),
@@ -27,7 +28,7 @@ const esquema = z.object({
 
 // El archivo se llama AAAA-MM-DD-slug.md y debe coincidir con `date` y `slug` del frontmatter.
 function generarId({ entry, data }: { entry: string; data: Record<string, unknown> }) {
-  const esperado = `${data.date}-${data.slug}.md`;
+  const esperado = `${fechaIso(data.date)}-${data.slug}.md`;
   const real = entry.split('/').pop();
   if (real !== esperado) {
     throw new Error(`El archivo «${real}» debería llamarse «${esperado}» (fecha y slug del frontmatter).`);
@@ -46,4 +47,23 @@ const pruebas = defineCollection({
   schema: esquema,
 });
 
-export const collections = { articulos, pruebas };
+// Lab: las entradas de la bitácora (content/lab/). Falla la construcción si falta un campo obligatorio.
+// El archivo se llama AAAA-MM-DD-slug.md, igual que en el blog.
+const entradaLab = z.object({
+  title: z.string().min(1).refine((t) => !t.trim().endsWith('.'), 'El título no lleva punto final (lo pinta el componente)'),
+  slug: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'El slug solo admite minúsculas, números y guiones'),
+  // YAML lee `date: 2026-11-24` (sin comillas) como fecha; se normaliza a «AAAA-MM-DD».
+  date: z.preprocess(fechaIso, z.string().refine(esDia, 'La fecha debe tener el formato AAAA-MM-DD')),
+  project: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'project es el slug del proyecto (por ejemplo «lab» o «bike-tool»)'),
+  projectLabel: z.string().min(1),
+  type: z.string().min(1),
+  resumen: z.string().min(1).optional(),
+  draft: z.boolean().optional(),
+});
+
+const lab = defineCollection({
+  loader: glob({ pattern: '*.md', base: './content/lab', generateId: generarId }),
+  schema: entradaLab,
+});
+
+export const collections = { articulos, pruebas, lab };
