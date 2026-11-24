@@ -12,20 +12,23 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi' | 'blog';
+  actual?: 'inicio' | 'trabajo' | 'caso' | 'sobre-mi' | 'blog' | 'lab';
   // Imagen para compartir en redes (1200×630, en public/og/). Por defecto, la general.
   imagen?: string;
   imagenAlt?: string;
   // Página que no debe indexarse (por ejemplo, la 404): añade robots noindex y omite canonical y og:url.
   noindex?: boolean;
+  // Con noindex, además «nofollow» (el Lab oculto).
+  nofollow?: boolean;
   // Blog WIP: tema amarillo y tinta negra (src/styles/wip.css), enlace al feed RSS y tipo «article» para redes.
-  tema?: 'wip';
+  // Lab: tema oscuro (src/styles/lab.css), acotado a la clase .lab del <body>.
+  tema?: 'wip' | 'lab';
   // Solo artículos: fecha de publicación (AAAA-MM-DD) para article:published_time.
   publicadoEn?: string;
   // El email del pie abre el panel de contacto (#contacto) en vez de un mailto:.
   emailContacto?: boolean;
 }
-const { title, description, actual, imagen = '/og/og-general.png', imagenAlt = 'Arnau Larripa, Product Designer en Barcelona', noindex = false, tema, publicadoEn, emailContacto = false } = Astro.props;
+const { title, description, actual, imagen = '/og/og-general.png', imagenAlt = 'Arnau Larripa, Product Designer en Barcelona', noindex = false, nofollow = false, tema, publicadoEn, emailContacto = false } = Astro.props;
 const imagenUrl = new URL(imagen, Astro.site).href;
 const canonica = new URL(Astro.url.pathname, Astro.site).href;
 ---
@@ -40,7 +43,7 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-{noindex && <meta name="robots" content="noindex">}
+{noindex && <meta name="robots" content={nofollow ? 'noindex, nofollow' : 'noindex'}>}
 {!noindex && <link rel="canonical" href={canonica}>}
 <meta property="og:type" content={publicadoEn ? 'article' : 'website'}>
 {publicadoEn && <meta property="article:published_time" content={publicadoEn}>}
@@ -63,7 +66,7 @@ const canonica = new URL(Astro.url.pathname, Astro.site).href;
 <!-- Sin JavaScript no se puede abrir la hoja del menú: en su lugar se muestran los enlaces en línea. -->
 <noscript><style>.ds-header__bar{flex-wrap:wrap}.ds-header__nav{display:block;margin-left:0;width:100%}.ds-header__list{flex-wrap:wrap}.ds-menu-btn{display:none}</style></noscript>
 </head>
-<body class={tema === 'wip' ? 'tema-wip' : undefined}>
+<body class={tema === 'wip' ? 'tema-wip' : tema === 'lab' ? 'lab lab--chrome' : undefined}>
 <div class="ds-page t-body">
 <Header actual={actual} />
 <slot />
