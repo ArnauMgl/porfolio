@@ -13,7 +13,7 @@ La estructura del modelo que he medido se sostiene frente a las fuentes pública
 
 **Lo que cuadra**
 
-- **Los efectos se multiplican y el ancho pesa mucho.** El exponente de ancho que sale de las medidas, −0,89, cae dentro del rango que implica la tabla general de Schwalbe, de −0,83 a −1,07 (cálculo del informe).
+- **Los efectos se multiplican y el ancho pesa mucho.** El exponente de ancho que sale de las medidas, −0,89, cae dentro del rango que implica la tabla general de Schwalbe, de −0,83 a −1,07 (cálculo propio).
 - **El reparto delantero y trasero.** Un cociente de unos 1,05 entre la rueda trasera y la delantera es coherente con Silca, que usa repartos de 48/52 a 46,5/53,5, y con Schwalbe. No sirve para bicis de utility, cargo o touring con alforjas: Bicycle Quarterly cita repartos de hasta 35/65 en bici de ciudad.
 - **Un punto de validación.** Un dato de BikeRadar para gravel de 40 mm y 85 kg coincide con la estimación del modelo con una diferencia de unos 0,04 bar (cálculo propio).
 
