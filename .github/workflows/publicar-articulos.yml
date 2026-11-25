@@ -1,8 +1,9 @@
-# Publicación programada del blog WIP.
-# La web es estática: un artículo con fecha futura no se genera hasta que se vuelve a construir la web.
+# Publicación programada del blog WIP y de las entradas del Lab.
+# La web es estática: un artículo (o una entrada del Lab) con fecha futura no se genera hasta que se vuelve a construir la web.
 #
 # Este flujo se ejecuta varias veces cada noche y decide SOLO por la fecha, no por la hora:
-#   - Si hay un artículo con la fecha de hoy (en Madrid) que todavía NO está publicado en arnaularripa.com,
+#   - Si hay un artículo (content/articulos/) o una entrada del Lab (content/lab/) con la fecha de hoy (en Madrid) que todavía
+#     NO está publicado en arnaularripa.com,
 #     pide a Cloudflare Pages que reconstruya la web (a través de un «deploy hook»).
 #   - Si ya está publicado, o no hay ningún artículo con la fecha de hoy, no hace nada.
 # Por qué no mira la hora: GitHub lanza las tareas programadas con varias horas de retraso. Un filtro del tipo
@@ -15,7 +16,7 @@
 #      nombre CLOUDFLARE_DEPLOY_HOOK, valor la URL del hook.
 # Nota: GitHub solo ejecuta flujos programados desde la rama principal, y los desactiva tras 60 días sin actividad
 # en el repositorio (si pasa, se reactivan en la pestaña Actions).
-name: Publicar artículos programados
+name: Publicar artículos y entradas del Lab programados
 
 on:
   schedule:
@@ -34,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: ¿Hay un artículo de hoy sin publicar?
+      - name: ¿Hay un artículo o una entrada del Lab de hoy sin publicar?
         id: toca
         env:
           FORZAR: ${{ inputs.forzar }}
@@ -48,19 +49,23 @@ jobs:
             exit 0
           fi
           pendientes=0
-          for f in content/articulos/"$HOY"-*.md; do
+          for f in content/articulos/"$HOY"-*.md content/lab/"$HOY"-*.md; do
             [ -e "$f" ] || continue
             slug=$(basename "$f" .md); slug="${slug#"$HOY"-}"
-            codigo=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$WEB/blog/$slug/" || true)
+            seccion=blog
+            case "$f" in content/lab/*) seccion=lab ;; esac
+            # Una entrada del Lab marcada «draft: true» no se publica nunca, así que no hay que reconstruir por ella.
+            if [ "$seccion" = "lab" ] && grep -q '^draft: *true' "$f"; then echo "«$slug» (Lab): es un borrador, se ignora."; continue; fi
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "$WEB/$seccion/$slug/" || true)
             if [ "$codigo" = "200" ]; then
-              echo "«$slug»: ya está publicado."
+              echo "«$slug» ($seccion): ya está publicado."
             else
-              echo "«$slug»: NO está publicado todavía (respuesta: ${codigo:-sin respuesta})."
+              echo "«$slug» ($seccion): NO está publicado todavía (respuesta: ${codigo:-sin respuesta})."
               pendientes=$((pendientes + 1))
             fi
           done
           if [ "$pendientes" -gt 0 ]; then
-            echo "Hay $pendientes artículo(s) de hoy sin publicar: se reconstruye la web."; echo "toca=si" >> "$GITHUB_OUTPUT"
+            echo "Hay $pendientes artículo(s) o entrada(s) del Lab de hoy sin publicar: se reconstruye la web."; echo "toca=si" >> "$GITHUB_OUTPUT"
           else
             echo "Nada que publicar ahora."; echo "toca=no" >> "$GITHUB_OUTPUT"
           fi

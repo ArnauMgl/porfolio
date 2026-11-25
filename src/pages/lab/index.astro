@@ -3,7 +3,6 @@
 // Mejora progresiva: el HTML trae todas las entradas («Todos»); src/scripts/lab-filtro.js aplica el filtro (?proyecto=bike-tool).
 import Lab from '../../layouts/Lab.astro';
 import EntradaFeed from '../../components/lab/EntradaFeed.astro';
-import Proximamente from '../../components/lab/Proximamente.astro';
 import { entradasLab } from '../../data/lab.js';
 import { proyectos, agruparPorMes, diaMes } from '../../../lib/lab/bitacora.js';
 
@@ -34,12 +33,6 @@ const meses = agruparPorMes(entradas);
 <p class="ds-sr" role="status" aria-live="polite" data-estado></p>
 </div>
 <div class="lab-index__body">
-<div data-project="lab" data-grupo>
-<p class="lab-index__label t-meta">Próximamente</p>
-<ol class="lab-index__list">
-<li data-project="lab"><a class="lab-index__link" href="#proxima"><span class="t-meta">—</span><span class="lab-index__title t-nav">Próxima entrada</span></a></li>
-</ol>
-</div>
 {meses.map((m) => (
 <div data-grupo>
 <p class="lab-index__label t-meta">{m.etiqueta}</p>
@@ -55,7 +48,6 @@ const meses = agruparPorMes(entradas);
 </nav>
 
 <ol class="lab-feed" data-feed>
-<Proximamente />
 {entradas.map((e) => <EntradaFeed entrada={e} />)}
 </ol>
 </div>
