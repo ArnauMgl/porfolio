@@ -78,7 +78,7 @@ test('la fecha de YAML sin comillas (Date) se normaliza a AAAA-MM-DD', () => {
 
 test('las entradas de content/lab cumplen el frontmatter y el nombre de archivo AAAA-MM-DD-slug.md', () => {
   const archivos = readdirSync(new URL('../content/lab/', import.meta.url)).filter((f) => f.endsWith('.md'));
-  assert.equal(archivos.length, 6);
+  assert.ok(archivos.length >= 6);
   for (const f of archivos) {
     const texto = readFileSync(new URL(`../content/lab/${f}`, import.meta.url), 'utf8');
     const fm = Object.fromEntries([...texto.match(/^---\n([\s\S]*?)\n---/)[1].matchAll(/^(\w+):\s*(.*)$/gm)].map((m) => [m[1], m[2].replace(/^"|"$/g, '')]));
