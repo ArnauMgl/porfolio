@@ -123,3 +123,12 @@
   .lab-page{margin-top:var(--space-12)}
   .lab-pager{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}
 }
+
+/* ---------- Texto largo de las entradas: lista numerada y tablas ----------
+   El sistema solo define listas con viñeta (ul). Sin esto, una lista numerada sale con número y viñeta a la vez, y una tabla sin líneas. */
+.lab .ds-prose ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-1);counter-reset:lab-paso}
+.lab .ds-prose ol>li{counter-increment:lab-paso}
+.lab .ds-prose ol>li::before{content:counter(lab-paso) ".";top:0;width:auto;height:auto;border-radius:0;background:none;color:var(--accent);font-weight:600}
+.lab .ds-prose table{width:100%;border-collapse:collapse}
+.lab .ds-prose th,.lab .ds-prose td{padding:var(--space-1) var(--space-1) var(--space-1) 0;border-top:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.lab .ds-prose th{border-top:0;border-bottom:2px solid var(--line-strong);color:var(--text-secondary);font-weight:600}
