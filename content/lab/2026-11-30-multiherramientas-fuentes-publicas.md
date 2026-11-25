@@ -6,7 +6,6 @@ project: bike-tool
 projectLabel: "Bike tool"
 type: Investigación
 resumen: "La estructura del modelo medido se sostiene frente a las fuentes públicas, pero hay tres comportamientos que no pienso copiar: la temperatura, la saturación por peso y un efecto del peso demasiado bajo fuera del MTB."
-draft: true
 ---
 
 La estructura del modelo que he medido se sostiene frente a las fuentes públicas, pero hay tres comportamientos que no pienso copiar: el tratamiento de la temperatura, la saturación por peso y un efecto del peso demasiado bajo fuera del MTB.

@@ -6,7 +6,6 @@ project: bike-tool
 projectLabel: "Bike tool"
 type: Investigación
 resumen: "Ninguna gran marca publica su fórmula completa. Repaso de lo que ofrece cada calculadora y qué aprovecho del flujo de Vittoria como referencia de diseño."
-draft: true
 ---
 
 Antes de diseñar nada he mirado qué hacen los demás, y hay una conclusión que condiciona el resto del proyecto: ninguna gran marca publica su fórmula completa. La única relación abierta y reproducible que he encontrado es la carta de caída del neumático al 15 % de Frank Berto, difundida por Bicycle Quarterly. Solo Wolf Tooth publica una corrección por temperatura. Cada calculadora es, por tanto, una caja negra que solo se puede estudiar desde fuera.

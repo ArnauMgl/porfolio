@@ -6,7 +6,6 @@ project: bike-tool
 projectLabel: "Bike tool"
 type: Hallazgos
 resumen: "Las 46 pruebas dejaron cuatro resultados claros: los efectos se multiplican, el trasero es el delantero por 1,052, el ancho y el peso mandan, y la calculadora trabaja por escalones."
-draft: true
 ---
 
 Las 46 pruebas dejaron cuatro resultados claros. Los he medido solo en Gravel y en una calculadora concreta, así que son lo que dicen los datos de esta disciplina, no una regla general.

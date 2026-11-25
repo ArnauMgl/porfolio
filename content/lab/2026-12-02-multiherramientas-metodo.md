@@ -6,7 +6,6 @@ project: bike-tool
 projectLabel: "Bike tool"
 type: Método
 resumen: "Cambiar una sola cosa cada vez y apuntar qué ocurre. Cómo diseñé una hoja de 46 pruebas para Gravel y qué tropiezos tuve."
-draft: true
 ---
 
 Para entender cómo decide una calculadora de presión hay una forma sencilla: cambiar una sola cosa cada vez y apuntar qué ocurre. Es el mismo principio con el que se aprende la exposición en fotografía: si quieres saber qué hace el diafragma, no mueves a la vez la velocidad y el ISO.

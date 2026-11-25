@@ -6,10 +6,11 @@ project: bike-tool
 projectLabel: "Bike tool"
 type: Decisión
 resumen: "Preguntar solo lo que cambia el resultado de forma notable y lo que el usuario sabe contestar: seis pantallas en modo básico y los ajustes finos en experto."
-draft: true
 ---
 
 La regla que he fijado es preguntar solo lo que cambia el resultado de forma notable y lo que el usuario sabe contestar. Cada pregunta lleva una opción «No lo sé» con un valor por defecto razonable, para que nadie se quede bloqueado. Entrenando a categorías base aprendes pronto que se da una indicación cada vez: aquí pasa lo mismo con las preguntas.
+
+Respecto a lo que planteé el 13 de noviembre, cambian dos cosas: el peso ya no es un solo dato, sino dos (el del ciclista y el de la bici con el equipo), y el montaje y las condiciones del suelo pasan del modo experto al básico.
 
 **Modo básico: seis pantallas**
 
