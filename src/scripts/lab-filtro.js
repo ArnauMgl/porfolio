@@ -17,10 +17,10 @@ function iniciar(raiz) {
   function aplicar(proyecto, { anunciar }) {
     const chip = chips.find((c) => c.dataset.proyecto === proyecto);
     for (const c of chips) c.setAttribute('aria-pressed', String(c === chip));
-    // Bajo un proyecto solo salen sus entradas: las de «lab» y la entrada «Próximamente» se ocultan.
+    // Bajo un proyecto solo salen sus entradas: las de «lab» se ocultan.
     const visible = (el) => !proyecto || el.dataset.project === proyecto;
     for (const el of [...entradas, ...enlacesIndice]) el.hidden = !visible(el);
-    // Un grupo del índice (mes o «Próximamente») se oculta si ya no le queda ninguna entrada visible.
+    // Un grupo del índice (un mes) se oculta si ya no le queda ninguna entrada visible.
     for (const g of grupos) g.hidden = ![...g.querySelectorAll('li')].some((li) => !li.hidden);
     if (anunciar) {
       const cantidad = entradas.filter((e) => !e.hidden).length;

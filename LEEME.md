@@ -164,7 +164,6 @@ Sección `/lab/` (bitácora con filtro por proyecto) y `/lab/<slug>/` (cada entr
 - Los chips del filtro salen de los datos: uno por cada proyecto distinto de `lab`. Las entradas con `project: lab` solo salen en «Todos».
 - `src/styles/lab.css`: tema oscuro, solo dentro de la clase `.lab` (la pone `Base.astro` en el `<body>` con `tema="lab"`). `src/pages/lab/`, `src/components/lab/`, `src/scripts/lab-filtro.js`, `lib/lab/` (lógica con pruebas en `tests/lab.test.js`).
 - **Publicación programada** (igual que el blog): una entrada se ve desde las 00:00 (Madrid) del día de su `date`. Mientras no llegue, no se genera su página ni sale en el feed, el índice, los recuentos de los chips ni el sitemap. La misma tarea de GitHub del blog (`.github/workflows/publicar-articulos.yml`) comprueba cada noche si hay una entrada del Lab con la fecha de hoy que aún no está publicada y, si es así, pide a Cloudflare que reconstruya. No hay que hacer nada el día de la publicación. `draft: true` sigue sirviendo para tener una entrada escondida sin fecha de salida. Para verlas antes de tiempo: `WIP_HOY=2099-12-31 npm run dev` (la misma variable que el blog).
-- La entrada «Próximamente» es un componente fijo (`src/components/lab/Proximamente.astro`), no un archivo.
 
 ### Interruptor `LAB_PUBLIC` (variable de entorno del build)
 
