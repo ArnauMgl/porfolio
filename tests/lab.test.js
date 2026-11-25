@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { labPublico } from '../lib/lab/flag.js';
-import { ordenar, vecinas, proyectos, filtrar, proyectoValido, textoResultado, diaMes, agruparPorMes, descripcionDe, fechaIso } from '../lib/lab/bitacora.js';
+import { visibles, ordenar, vecinas, proyectos, filtrar, proyectoValido, textoResultado, diaMes, agruparPorMes, descripcionDe, fechaIso } from '../lib/lab/bitacora.js';
 
 const e = (slug, fecha, project = 'bike-tool', projectLabel = 'Bike tool') => ({ slug, fecha, project, projectLabel });
 const datos = [
@@ -19,6 +19,13 @@ test('el Lab es público por defecto y solo LAB_PUBLIC=false lo oculta', () => {
   assert.equal(labPublico({ LAB_PUBLIC: 'true' }), true);
   assert.equal(labPublico({ LAB_PUBLIC: 'false' }), false);
   assert.equal(labPublico({ LAB_PUBLIC: ' FALSE ' }), false);
+});
+
+test('solo se ven las entradas con fecha de hoy o anterior y sin borrador (programación como el blog)', () => {
+  const l = [e('hoy', '2026-11-27'), e('pasada', '2026-11-25'), e('futura', '2026-11-30'), { ...e('borrador', '2026-11-20'), draft: true }];
+  assert.deepEqual(visibles(l, '2026-11-27').map((x) => x.slug), ['hoy', 'pasada']);
+  assert.deepEqual(visibles(l, '2026-11-26').map((x) => x.slug), ['pasada']);
+  assert.deepEqual(visibles(l, '2026-12-31').map((x) => x.slug), ['hoy', 'pasada', 'futura']);
 });
 
 test('la bitácora va de la más nueva a la más antigua', () => {
