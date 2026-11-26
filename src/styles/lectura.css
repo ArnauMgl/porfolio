@@ -100,6 +100,29 @@
   .rp__item:focus-visible .rp__n{background:var(--rp-focus-bg);color:var(--rp-focus-ink);box-shadow:inset 0 -4px 0 var(--rp-focus-ink)}
   .rp__item:focus-visible .rp__n{box-shadow:none;padding:0}
   .rp__item:focus-visible .rp__marca{box-shadow:0 0 0 3px #ffdd00,0 0 0 6px #0b0c0c}
+
+  /* ---------- Lab: marcas en el margen izquierdo y barra vertical verde ---------- */
+  .rp--lab{--rp-paso:48px;position:fixed;z-index:10;left:max(16px,calc((100vw - var(--content-max)) / 2 - 104px));top:50%;transform:translateY(-50%);width:48px;color:var(--rp-text)}
+  .rp--lab .rp__rail{width:48px;margin:24px 0}
+  .rp--lab .rp__li{width:48px}
+  .rp--lab .rp__marca{width:16px;height:2px;border:0;border-radius:0;background:var(--rp-pending)}
+  .rp--lab .rp__item.is-visto .rp__marca{background:var(--rp-green)}
+  .rp--lab .rp__item[aria-current] .rp__marca{width:28px;height:4px;border:0;background:var(--rp-green)}
+  .rp--lab .rp__item[aria-current] .rp__n{color:var(--rp-green)}
+  /* La etiqueta está siempre en el HTML (nombre accesible = texto visible); se ve en la sección actual, al pasar el ratón y al enfocar */
+  .rp--lab .rp__texto{position:absolute;left:56px;top:50%;transform:translateY(-50%);width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;margin:0;padding:0}
+  .rp--lab .rp__item[aria-current] .rp__texto,
+  .rp--lab .rp__item:hover .rp__texto,
+  .rp--lab .rp__item:focus-visible .rp__texto{width:auto;height:auto;overflow:visible;clip-path:none;padding:4px 8px;background:var(--rp-bg);color:var(--rp-text);font-weight:600;border-radius:var(--radius)}
+  .rp--lab .rp__item:focus-visible .rp__texto{background:var(--rp-focus-bg);color:var(--rp-focus-ink)}
+  /* Página de la entrada: columna lateral (proyecto y contador) + texto de 720 px */
+  .lab-page--indice{display:grid;grid-template-columns:var(--aside-col) minmax(0,720px);column-gap:var(--space-10);justify-content:start;align-items:start}
+  .lab-page--indice > *{grid-column:2}
+  .lab-page--indice > .rp-lab-aside{grid-column:1;grid-row:2;position:sticky;top:128px;align-self:start}
+  .lab-page--indice > .lab-entry,.lab-page--indice > .lab-pager{align-self:stretch}
+  .rp-lab-aside__meta{margin:0;color:var(--rp-text-secondary)}
+  .rp-lab-aside__cuenta{margin:var(--space-1) 0 0;font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.02em;color:var(--rp-text-secondary)}
+  .rp-lab-aside__cur{color:var(--rp-green)}
 }
 
 /* Alto contraste: la pista y el relleno no pueden desaparecer */
