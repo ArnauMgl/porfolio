@@ -1,15 +1,18 @@
 ---
 import Imagen from '../Imagen.astro';
 import FilaArticulo from './FilaArticulo.astro';
+import IndiceLectura from '../IndiceLectura.astro';
 import { Image } from 'astro:assets';
 // Página de un artículo: cabecera, ficha, divisor, portada, cuerpo con barra de progreso y «Sigue leyendo».
 // El cuerpo (art.html) sale del Markdown ya convertido a HTML; el texto no se toca.
 interface Props { art: any; siguiente: any[]; }
 const { art, siguiente } = Astro.props;
+// Progreso de lectura (docs/reading-progress-spec.md): índice con puntos si hay 3 o más secciones (h2, sin «Referencias»).
+const conIndice = art.secciones.length >= 3;
 
 ---
 <main id="articulo">
-<article class="ds-wrap bl-articulo">
+<article class={`ds-wrap bl-articulo${conIndice ? ' bl-articulo--indice' : ''}`}>
 <header class="bl-cab ds-case-head">
 <div class="ds-prose">
 <a class="ds-link ds-link--touch t-body bl-volver" href="/blog/"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="216" y1="128" x2="40" y2="128"></line><polyline points="112 56 40 128 112 200"></polyline></svg>Volver al blog</a>
@@ -24,7 +27,8 @@ const { art, siguiente } = Astro.props;
 </dl>
 </header>
 
-<div class="bl-body" data-cuerpo>
+{conIndice && <IndiceLectura items={art.secciones} variante="blog" ariaLabel="Secciones del artículo" etiqueta="En este artículo" pie="WIP · Blog" />}
+<div class="bl-body" data-rp-cuerpo>
 {art.portada && (
 <figure class="ds-figure bl-portada">
 <Imagen src={art.portada.meta} alt={art.portada.alt} loading="eager" tamano="columna" />
