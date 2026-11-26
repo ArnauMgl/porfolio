@@ -32,17 +32,6 @@
   --rp-fill:#3ee08f;
 }
 
-/* Blog: números de sección delante de los h2 (a cualquier ancho y con o sin índice), en texto negro y sin fondo.
-   Sustituyen al punto amarillo colgado en el margen (wip.css). «Referencias» no lleva número. */
-.bl-cuerpo{counter-reset:rp}
-.bl-cuerpo h2:not(#referencias){counter-increment:rp}
-.bl-cuerpo h2:not(#referencias)::before{content:counter(rp);position:static;display:inline;width:auto;height:auto;margin:0 .3em 0 0;padding:0;border-radius:0;background:none;color:var(--text)}
-
-/* Casos: números de sección delante de los h2 a cualquier ancho (contador CSS: el texto no cambia), en el color de acento */
-.rp-cuerpo{counter-reset:rp}
-.rp-cuerpo h2{counter-increment:rp}
-.rp-cuerpo h2::before{content:counter(rp);color:var(--rp-accent);margin-right:.25em}
-
 /* El índice de escritorio está oculto por debajo de 1280 px (allí van la barra superior o el índice + selector) */
 .rp{display:none}
 
