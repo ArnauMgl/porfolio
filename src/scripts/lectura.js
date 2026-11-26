@@ -66,7 +66,6 @@ function indice(nav, seg) {
   const paso = Number(nav.dataset.rpPaso);
   const enlaces = [...nav.querySelectorAll('.rp__item')];
   const rail = el('.rp__rail', nav);
-  const contadores = document.querySelectorAll('[data-rp-cur]');
   let actual = -2, pintado = -1;
 
   seg.suscribir(({ i, f }) => {
@@ -78,7 +77,6 @@ function indice(nav, seg) {
     if (i !== actual) {
       actual = i;
       marcar(enlaces, i);
-      contadores.forEach((c) => { c.textContent = i < 0 ? '–' : String(i + 1); });
     }
   });
 }
@@ -89,7 +87,6 @@ function selector(sel, seg) {
   const panel = el('.rp-sel__panel', sel);
   const velo = el('.rp-sel__velo', sel);
   const relleno = el('.rp-sel__relleno', sel);
-  const cuenta = el('[data-rp-sel-cur]', sel);
   const titulo = el('[data-rp-sel-titulo]', sel);
   const enlaces = [...panel.querySelectorAll('a')];
   const inicial = el('[data-rp-lista]');
@@ -131,7 +128,6 @@ function selector(sel, seg) {
       actual = i;
       marcar(enlaces, i, () => {
         const k = Math.max(i, 0);
-        cuenta.textContent = String(k + 1);
         titulo.textContent = enlaces[k].dataset.titulo;
       });
     }

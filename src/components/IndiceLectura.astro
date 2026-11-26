@@ -16,7 +16,6 @@ const n = items.length;
 ---
 <nav class={`rp rp--${variante}`} aria-label={ariaLabel} data-rp data-rp-paso={paso}>
 {etiqueta && <p class="rp__etiqueta t-meta">{etiqueta}</p>}
-{variante !== 'lab' && <p class="rp__cuenta" aria-hidden="true"><span class="rp__cur" data-rp-cur>–</span><span class="rp__tot"> / {n}</span></p>}
 <div class="rp__rail" style={`--rp-h:${(n - 1) * paso}px`}>
 <span class="rp__pista" aria-hidden="true"><span class="rp__relleno"></span></span>
 <ol class="rp__lista">

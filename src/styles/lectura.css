@@ -53,8 +53,6 @@
 
   /* ---------- Índice con puntos ---------- */
   .rp__etiqueta{margin:0;font-size:15px;font-weight:500;color:var(--rp-text-secondary)}
-  .rp__cuenta{margin:var(--space-1) 0 0;font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.02em;color:var(--rp-text-secondary)}
-  .rp__cur{color:var(--rp-accent)}
   .rp__rail{position:relative;width:var(--aside-col);height:var(--rp-h);margin-top:calc(var(--space-5) + 24px);margin-bottom:24px}
   .rp__pista,.rp__relleno{position:absolute;top:0;width:2px;height:var(--rp-h)}
   .rp__pista{left:23px}
@@ -104,8 +102,6 @@
   .lab-page--indice > .rp-lab-aside{grid-column:1;grid-row:2;position:sticky;top:128px;align-self:start}
   .lab-page--indice > .lab-entry,.lab-page--indice > .lab-pager{align-self:stretch}
   .rp-lab-aside__meta{margin:0;color:var(--rp-text-secondary)}
-  .rp-lab-aside__cuenta{margin:var(--space-1) 0 0;font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.02em;color:var(--rp-text-secondary)}
-  .rp-lab-aside__cur{color:var(--rp-green)}
 }
 
 /* Alto contraste: la pista y el relleno no pueden desaparecer */
@@ -166,13 +162,10 @@
   .rp-sel__velo{position:fixed;inset:0;z-index:-1;background:rgba(255,255,255,.82)}
   .rp-sel__fila{position:relative;background:var(--bg)}
   .rp-sel__boton{appearance:none;-webkit-appearance:none;display:flex;align-items:center;gap:var(--space-1);width:100%;height:var(--touch-min);box-sizing:border-box;margin:0;padding:0 var(--gutter-mobile);border:0;background:var(--bg);color:var(--text);font:600 16px/1.2 var(--font-sans);text-align:left;cursor:pointer}
-  .rp-sel__cuenta{flex:none;color:var(--text-secondary)}
-  .rp-sel__cur{color:var(--rp-accent)}
   .rp-sel__titulo{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .rp-sel__flecha{flex:none;width:var(--icon-size);height:var(--icon-size)}
   .rp-sel__boton[aria-expanded="true"] .rp-sel__flecha{transform:rotate(180deg)}
   .rp-sel__boton:focus-visible{outline:none;background:var(--rp-focus-bg);color:var(--rp-focus-ink);box-shadow:inset 0 -4px 0 var(--rp-focus-ink)}
-  .rp-sel__boton:focus-visible .rp-sel__cuenta,.rp-sel__boton:focus-visible .rp-sel__cur{color:var(--rp-focus-ink)}
   .rp-sel__barra{display:block;height:3px;background:var(--rp-track)}
   .rp-sel__relleno{display:block;height:100%;background:var(--rp-fill);transform-origin:left;transform:scaleX(var(--rp-b,0))}
 
