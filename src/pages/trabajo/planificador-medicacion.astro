@@ -4,6 +4,7 @@ import Imagen from '../../components/Imagen.astro';
 // La portada se ve en la primera pantalla y no se difiere; el resto de imágenes se cargan al acercarse.
 import Base from '../../layouts/Base.astro';
 import IndiceLectura from '../../components/IndiceLectura.astro';
+import IndiceCasoEstrecho from '../../components/IndiceCasoEstrecho.astro';
 import ListaProyectos from '../../components/ListaProyectos.astro';
 import portada from '../../assets/proyectos/planificador-medicacion.webp';
 import nevera from '../../assets/planificador-medicacion/nevera.webp';
@@ -50,6 +51,7 @@ const secciones = [
 <div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product Designer principal, con supervisión de Lead de diseño y Product Owner</dd></div>
 <div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="84" cy="108" r="52"></circle><path d="M10.23,200a88,88,0,0,1,147.54,0"></path><path d="M172,160a87.89,87.89,0,0,1,73.77,40"></path><path d="M152.69,59.7A52,52,0,1,1,172,160"></path></svg>Equipo</dt><dd class="t-body">Diseño en la fase inicial, Lead de diseño y Product Owner</dd></div>
 </dl>
+<IndiceCasoEstrecho items={secciones} parte="lista" />
 </div>
 <figure class="ds-figure ds-cover">
 <Imagen src={portada} alt="Hoja del planificador, en catalán, vista en perspectiva: tabla de medicamentos con los cuatro momentos del día y, bajo cada medicamento, una tira con los días del mes" loading="eager" />
@@ -57,6 +59,7 @@ const secciones = [
 </figure>
 </section>
 
+<IndiceCasoEstrecho items={secciones} parte="selector" />
 <div class="rp-layout">
 <IndiceLectura items={secciones} variante="caso" ariaLabel="Secciones del caso de estudio" etiqueta="En este caso" pie="Salud pública" />
 <div class="rp-cuerpo" data-rp-cuerpo>

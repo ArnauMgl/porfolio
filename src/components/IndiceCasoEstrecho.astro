@@ -1,0 +1,39 @@
+---
+// Casos de estudio en ancho estrecho (< 1280 px): bloque «En este caso» al principio del contenido (enlaces, sin tiempos de lectura)
+// y selector sticky «3 / 6 · Decisiones» con barra fina y lista desplegable (disclosure, no diálogo modal).
+// La lista está siempre en el HTML; el selector solo aparece con JS (src/scripts/lectura.js) cuando el bloque inicial sale de la pantalla.
+import '../styles/lectura.css';
+interface Props { items: { id: string; texto: string }[]; parte: 'lista' | 'selector' }
+const { items, parte } = Astro.props;
+const n = items.length;
+const marca = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' };
+---
+{parte === 'lista' && (
+<nav class="rp-inicio" aria-label="Secciones del caso de estudio" data-rp-lista>
+<p class="rp-inicio__etiqueta t-meta">En este caso</p>
+<ol class="rp-inicio__lista">
+{items.map((s, i) => <li><a class="rp-inicio__fila" href={`#${s.id}`}><span class="rp-inicio__n">{i + 1}</span><span class="rp-inicio__titulo">{s.texto}</span></a></li>)}
+</ol>
+</nav>
+)}
+{parte === 'selector' && (
+<div class="rp-sel" data-rp-sel>
+<div class="rp-sel__velo" hidden></div>
+<div class="rp-sel__fila">
+<button type="button" class="rp-sel__boton" aria-expanded="false" aria-controls="rp-sel-panel">
+<span class="rp-sel__cuenta"><span class="rp-sel__cur" data-rp-sel-cur>1</span> / {n}</span>
+<span class="rp-sel__titulo" data-rp-sel-titulo>{items[0].texto}</span>
+<svg class="rp-sel__flecha" {...marca}><polyline points="6 9 12 15 18 9"></polyline></svg>
+</button>
+<span class="rp-sel__barra" aria-hidden="true"><span class="rp-sel__relleno"></span></span>
+</div>
+<nav class="rp-sel__panel" id="rp-sel-panel" aria-label="Secciones del caso de estudio" hidden>
+<ol>
+{items.map((s, i) => (
+<li><a class="rp-sel__item" href={`#${s.id}`} data-titulo={s.texto}><span class="rp-sel__marca"><span class="rp-sel__num">{i + 1}</span><svg class="rp-sel__check" {...marca}><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span><span class="rp-sel__nombre">{s.texto}</span><span class="rp-sel__aqui" aria-hidden="true">Estás aquí</span></a></li>
+))}
+</ol>
+</nav>
+</div>
+)}
+<script>import '../scripts/lectura.js';</script>
