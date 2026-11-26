@@ -5,7 +5,7 @@ import { hoyMadrid, estaPublicado, formatearFecha } from '../lib/blog/fechas.js'
 import { filtrosDe } from '../lib/blog/etiquetas.js';
 import { ordenar, filtrar, paginar, calcularVista, leerEstado, escribirEstado, textoContador } from '../lib/blog/listado.js';
 import { seguirLeyendo } from '../lib/blog/relacionados.js';
-import { leerAutor } from '../lib/blog/autor.js';
+import { leerAutor, AUTOR_POR_DEFECTO } from '../lib/blog/autor.js';
 import { leerMarcadores, elegirPortada, procesarCuerpo } from '../lib/blog/imagenes.js';
 
 const art = (slug, fecha, tags) => ({ slug, fecha, tags });
@@ -146,4 +146,15 @@ test('autoría: sin autor no hay ficha; los datos pendientes no llegan a la web'
 test('autoría: solo se aceptan enlaces http(s)', () => {
   assert.equal(leerAutor({ author: 'A', authorLinkedin: 'javascript:alert(1)' }).linkedin, null);
   assert.equal(leerAutor({ author: 'A', authorPortfolio: 'http://ejemplo.com' }).portfolio, 'http://ejemplo.com');
+});
+
+test('autoría: los enlaces salen en una lista uniforme y los artículos sin autor tienen a Arnau por defecto', () => {
+  const a = leerAutor({ author: 'Fran Cases', authorLinkedin: 'https://www.linkedin.com/in/x/', authorPortfolio: '[PENDIENTE: URL]' });
+  assert.deepEqual(a.enlaces.map((e) => e.texto), ['LinkedIn']);
+  assert.equal(a.enlaces[0].externo, true);
+  assert.equal(AUTOR_POR_DEFECTO.nombre, 'Arnau Larripa');
+  assert.deepEqual(AUTOR_POR_DEFECTO.enlaces.map((e) => e.texto), ['Portfolio', 'Sobre mí', 'LinkedIn']);
+  assert.ok(AUTOR_POR_DEFECTO.enlaces.some((e) => e.href === '/' && e.externo === false));
+  assert.ok(AUTOR_POR_DEFECTO.enlaces.some((e) => e.href === '/sobre-mi/' && e.externo === false));
+  assert.ok(AUTOR_POR_DEFECTO.enlaces.filter((e) => e.externo).every((e) => /^https:\/\//.test(e.href)));
 });

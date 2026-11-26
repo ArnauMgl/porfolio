@@ -9,13 +9,14 @@ const { art, miniatura = false, nivelTitulo = 'h2', primera = false } = Astro.pr
 const Titulo = nivelTitulo;
 const idTitulo = `t-${art.slug}`;
 const idDesc = `d-${art.slug}`;
+const idMeta = `m-${art.slug}`;
 ---
 <li class="bl-item" data-slug={art.slug} data-fecha={art.fecha} data-temas={art.filtros.map((f) => f.id).join(' ')}>
-<a class="ds-proj bl-post" href={`/blog/${art.slug}/`} aria-labelledby={idTitulo} aria-describedby={idDesc}>
+<a class="ds-proj bl-post" href={`/blog/${art.slug}/`} aria-labelledby={idTitulo} aria-describedby={`${idMeta} ${idDesc}`}>
 <div class="bl-post__row">
 {miniatura && art.portada && <div class="ds-proj__thumb"><Imagen src={art.portada.meta} alt="" tamano="miniaturaBlog" loading={primera ? 'eager' : 'lazy'} /></div>}
 <div class="ds-proj__main">
-<p class="bl-post__meta t-meta"><time class="bl-post__date" datetime={art.fecha}>{art.fechaTexto}</time> · {art.lectura} min de lectura</p>
+<p class="bl-post__meta t-meta" id={idMeta}><time class="bl-post__date" datetime={art.fecha}>{art.fechaTexto}</time> · {art.lectura} min de lectura{art.colaboracion && <> · Colaboración de <span class="bl-post__date">{art.autor.nombre}</span></>}</p>
 <Titulo class="ds-proj__title t-project-title-mobile" id={idTitulo}><span>{art.titulo}</span></Titulo>
 <p class="ds-proj__desc t-body" id={idDesc}>{art.descripcion}</p>
 {art.filtros.length > 0 && <ul class="ds-proj__tags" aria-label="Palabras clave">{art.filtros.map((f) => <li class="ds-label-tag t-meta">{f.nombre}</li>)}</ul>}
