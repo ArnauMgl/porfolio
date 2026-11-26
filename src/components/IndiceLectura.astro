@@ -9,9 +9,8 @@ interface Props {
   variante: 'caso' | 'blog' | 'lab';
   ariaLabel: string;
   etiqueta?: string; // «En este caso» / «En este artículo»
-  pie?: string;      // metadato al pie (sector, «WIP · Blog»)
 }
-const { items, variante, ariaLabel, etiqueta, pie } = Astro.props;
+const { items, variante, ariaLabel, etiqueta } = Astro.props;
 const paso = variante === 'lab' ? 48 : 56;
 const n = items.length;
 ---
@@ -26,6 +25,5 @@ const n = items.length;
 ))}
 </ol>
 </div>
-{pie && <p class="rp__pie t-meta">{pie}</p>}
 </nav>
 <script>import '../scripts/lectura.js';</script>
