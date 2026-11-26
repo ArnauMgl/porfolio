@@ -154,7 +154,7 @@ function barra(b) {
     pintar();
   }
   function pintar() {
-    if (ESCRITORIO.matches) return;
+    if (ESCRITORIO.matches && !b.classList.contains('rp-barra--siempre')) return;
     const p = Math.round(acotar((window.scrollY - y0) / Math.max(1, y1 - y0)) * 1000) / 1000;
     if (p !== pintado) { pintado = p; relleno.style.setProperty('--rp-b', String(p)); }
   }

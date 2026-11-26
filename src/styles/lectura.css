@@ -53,10 +53,10 @@
   .bl-articulo--indice > .bl-cab{grid-column:2;grid-row:1;max-width:none;margin-inline:0}
   .bl-articulo--indice > .rp{grid-column:1;grid-row:2;align-self:start;position:sticky;top:128px;margin-top:calc(var(--space-4) + var(--space-3))}
   .bl-articulo--indice > .bl-body{grid-column:2;grid-row:2;max-width:none;margin-inline:0}
-  /* Números de sección en pastilla amarilla (texto negro): sustituyen al punto amarillo del margen */
+  /* Números de sección delante de los h2: texto negro, sin fondo amarillo; sustituyen al punto amarillo del margen */
   .bl-articulo--indice .bl-cuerpo{counter-reset:rp}
   .bl-articulo--indice .bl-cuerpo h2:not(#referencias){counter-increment:rp}
-  .bl-articulo--indice .bl-cuerpo h2:not(#referencias)::before{content:counter(rp);position:static;display:inline-block;width:auto;height:auto;margin:0 12px 0 0;padding:0 6px;border-radius:var(--radius);background:var(--rp-yellow);color:var(--rp-on-yellow)}
+  .bl-articulo--indice .bl-cuerpo h2:not(#referencias)::before{content:counter(rp);position:static;display:inline;width:auto;height:auto;margin:0 .3em 0 0;padding:0;border-radius:0;background:none;color:var(--text)}
 
   /* ---------- Índice con puntos ---------- */
   .rp__etiqueta{margin:0;font-size:15px;font-weight:500;color:var(--rp-text-secondary)}
@@ -141,6 +141,12 @@
    Solo se anima transform (relleno) y opacity (desvanecido); sin JS no se muestra.
    ========================================================================== */
 .rp-barra{display:none}
+/* Variante «siempre» (Lab, entradas sin h2 y por tanto sin índice): la barra de 3 px también en escritorio */
+@media (min-width:1280px){
+  .rp-barra--siempre[data-listo]{display:block;position:fixed;z-index:30;top:0;left:0;right:0;height:3px;background:var(--rp-track);pointer-events:none}
+  .rp-barra--siempre .rp-barra__relleno{display:block;height:100%;background:var(--rp-fill);transform-origin:left;transform:scaleX(var(--rp-b,0))}
+  .rp-barra--siempre.is-fin{opacity:0}
+}
 @media (max-width:1279.98px){
   .rp-barra[data-listo]{display:block;position:fixed;z-index:30;top:0;left:0;right:0;height:3px;background:var(--rp-track);pointer-events:none;opacity:1}
   .rp-barra__relleno{display:block;height:100%;background:var(--rp-fill);transform-origin:left;transform:scaleX(var(--rp-b,0))}
