@@ -60,7 +60,7 @@ Con las variables `WIP_HOY=AAAA-MM-DD` (ver el blog como si hoy fuera ese día) 
 
 ### Colaboraciones (artículos de otra persona)
 
-Campos opcionales del frontmatter: `author`, `authorRole`, `authorBio`, `authorLinkedin`, `authorPortfolio` y `authorPhoto` (nombre de un archivo de `content/imagenes/`). Si hay `author`, el artículo muestra «Autor» en la ficha y una ficha «Escrito por» tras el texto, con enlaces a LinkedIn y portfolio solo si existen. Todo lo que aún esté por confirmar se puede dejar como `[PENDIENTE: …]`: no llega a la web. Las URL deben ser completas (si no, la construcción falla). La foto va en blanco y negro con contraste alto (se procesa antes de guardarla) y con alt vacío, porque el nombre está al lado.
+Campos opcionales del frontmatter: `author`, `authorRole`, `authorBio`, `authorLinkedin`, `authorPortfolio` y `authorPhoto` (nombre de un archivo de `content/imagenes/`). Si hay `author`, el artículo muestra «Autor» en la ficha y una ficha «Escrito por» tras el texto, con enlaces a LinkedIn y portfolio solo si existen. Todo lo que aún esté por confirmar se puede dejar como `[PENDIENTE: …]`: no llega a la web. Las URL deben ser completas (si no, la construcción falla). La foto va en color, recortada en cuadrado (hombros y cabeza) y con alt vacío, porque el nombre está al lado.
 
 ### Listado y artículo
 

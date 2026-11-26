@@ -10,6 +10,7 @@ tags: ["accesibilidad", "ia", "producto"]
 author: "Fran Cases"
 authorRole: "UX/UI Accessibility Specialist para CaixaBank Marketing"
 authorLinkedin: "https://www.linkedin.com/in/francasesuxuiaccessibility/"
+authorBio: "Fran Cases es diseñador UX/UI y especialista en accesibilidad digital en CaixaBank Marketing. Trabaja para que los productos digitales puedan usarse con autonomía por todas las personas, con y sin tecnologías de asistencia."
 authorPhoto: "fran-cases.webp"
 ---
 
