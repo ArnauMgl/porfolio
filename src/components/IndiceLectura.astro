@@ -8,14 +8,12 @@ interface Props {
   items: { id: string; texto: string }[];
   variante: 'caso' | 'blog' | 'lab';
   ariaLabel: string;
-  etiqueta?: string; // «En este caso» / «En este artículo»
 }
-const { items, variante, ariaLabel, etiqueta } = Astro.props;
+const { items, variante, ariaLabel } = Astro.props;
 const paso = variante === 'lab' ? 48 : 56;
 const n = items.length;
 ---
 <nav class={`rp rp--${variante}`} aria-label={ariaLabel} data-rp data-rp-paso={paso}>
-{etiqueta && <p class="rp__etiqueta t-meta">{etiqueta}</p>}
 <div class="rp__rail" style={`--rp-h:${(n - 1) * paso}px`}>
 <span class="rp__pista" aria-hidden="true"><span class="rp__relleno"></span></span>
 <ol class="rp__lista">

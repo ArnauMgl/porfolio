@@ -52,8 +52,7 @@
 
 
   /* ---------- Índice con puntos ---------- */
-  .rp__etiqueta{margin:0;font-size:15px;font-weight:500;color:var(--rp-text-secondary)}
-  .rp__rail{position:relative;width:var(--aside-col);height:var(--rp-h);margin-top:calc(var(--space-5) + 24px);margin-bottom:24px}
+  .rp__rail{position:relative;width:var(--aside-col);height:var(--rp-h);margin-top:24px;margin-bottom:24px}
   .rp__pista,.rp__relleno{position:absolute;top:0;width:2px;height:var(--rp-h)}
   .rp__pista{left:23px}
   .rp__relleno{left:0}
