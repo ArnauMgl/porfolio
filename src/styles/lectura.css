@@ -134,3 +134,22 @@
   .rp__item[aria-current] .rp__marca{border-color:Highlight}
   .rp__item:focus-visible .rp__texto{forced-color-adjust:none}
 }
+
+/* ==========================================================================
+   Ancho estrecho (< 1280 px): barra horizontal de 3 px en el borde superior (blog y Lab).
+   La cabecera de esta web no es fija ni se oculta, así que la barra va siempre en top:0.
+   Solo se anima transform (relleno) y opacity (desvanecido); sin JS no se muestra.
+   ========================================================================== */
+.rp-barra{display:none}
+@media (max-width:1279.98px){
+  .rp-barra[data-listo]{display:block;position:fixed;z-index:30;top:0;left:0;right:0;height:3px;background:var(--rp-track);pointer-events:none;opacity:1}
+  .rp-barra__relleno{display:block;height:100%;background:var(--rp-fill);transform-origin:left;transform:scaleX(var(--rp-b,0))}
+  .rp-barra.is-fin{opacity:0}
+}
+@media (max-width:1279.98px) and (prefers-reduced-motion:no-preference){
+  .rp-barra{transition:opacity 200ms ease}
+}
+@media (max-width:1279.98px) and (forced-colors:active){
+  .rp-barra[data-listo]{background:GrayText}
+  .rp-barra__relleno{background:CanvasText}
+}

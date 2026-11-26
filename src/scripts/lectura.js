@@ -75,4 +75,36 @@ function indice(nav) {
   medir();
 }
 
+// ---------- Ancho estrecho: barra superior de 3 px (blog y Lab) ----------
+// Progreso = del inicio del artículo a que el final del cuerpo llegue al borde inferior de la pantalla (sin cabecera, pie ni «Sigue leyendo»).
+function barra(b) {
+  const relleno = el('.rp-barra__relleno', b);
+  const cuerpo = el('[data-rp-cuerpo]');
+  const inicio = el('[data-rp-inicio]') ?? cuerpo;
+  const fin = el('[data-rp-fin]');
+  if (!cuerpo || !inicio) return;
+  let y0 = 0, y1 = 1, pintado = -1;
+
+  function medir() {
+    y0 = absoluto(inicio);
+    y1 = absoluto(cuerpo) + cuerpo.offsetHeight - window.innerHeight;
+    pintar();
+  }
+  function pintar() {
+    if (ESCRITORIO.matches) return;
+    const p = Math.round(acotar((window.scrollY - y0) / Math.max(1, y1 - y0)) * 1000) / 1000;
+    if (p !== pintado) { pintado = p; relleno.style.setProperty('--rp-b', String(p)); }
+  }
+  // Se desvanece (200 ms) cuando el bloque que sigue al artículo entra en la pantalla.
+  if (fin && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => b.classList.toggle('is-fin', e.isIntersecting), { threshold: 0 }).observe(fin);
+  }
+  window.addEventListener('scroll', conCuadro(pintar), { passive: true });
+  ESCRITORIO.addEventListener('change', medir);
+  vigilar(cuerpo, medir);
+  b.setAttribute('data-listo', '');
+  medir();
+}
+
 document.querySelectorAll('[data-rp]').forEach(indice);
+document.querySelectorAll('[data-rp-barra]').forEach(barra);

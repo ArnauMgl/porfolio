@@ -4,6 +4,7 @@
 import Lab from '../../layouts/Lab.astro';
 import CabeceraEntrada from '../../components/lab/CabeceraEntrada.astro';
 import IndiceLectura from '../../components/IndiceLectura.astro';
+import BarraLectura from '../../components/BarraLectura.astro';
 import { entradasLab } from '../../data/lab.js';
 
 export async function getStaticPaths() {
@@ -32,13 +33,14 @@ Volver a la bitácora
 </div>
 </>
 )}
-<article class="lab-entry" id={entrada.slug} data-rp-cuerpo>
+<BarraLectura variante="lab" />
+<article class="lab-entry" id={entrada.slug} data-rp-cuerpo data-rp-inicio>
 <span class="lab-node" aria-hidden="true"></span>
 <CabeceraEntrada entrada={entrada} nivel="h1" />
 <div class="ds-prose t-body" set:html={entrada.html}></div>
 </article>
 {(entrada.anterior || entrada.siguiente) && (
-<nav class="lab-pager" aria-label="Entradas del Lab">
+<nav class="lab-pager" aria-label="Entradas del Lab" data-rp-fin>
 {entrada.anterior ? (
 <a class="ds-link ds-link--touch t-body lab-pager__prev" href={`/lab/${entrada.anterior.slug}/`} rel="prev">
 <svg class="ds-icon" {...flecha}><path d="M20 12H4M11 5l-7 7 7 7"></path></svg>
