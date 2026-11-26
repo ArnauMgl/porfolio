@@ -1,5 +1,5 @@
 ---
-// Casos de estudio en ancho estrecho (< 1280 px): bloque «En este caso» al principio del contenido (enlaces, sin tiempos de lectura)
+// Casos de estudio en ancho estrecho (< 1280 px): lista de secciones al principio del contenido (enlaces, sin rótulo ni tiempos de lectura)
 // y selector sticky «3 / 6 · Decisiones» con barra fina y lista desplegable (disclosure, no diálogo modal).
 // La lista está siempre en el HTML; el selector solo aparece con JS (src/scripts/lectura.js) cuando el bloque inicial sale de la pantalla.
 import '../styles/lectura.css';
@@ -10,7 +10,6 @@ const marca = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'str
 ---
 {parte === 'lista' && (
 <nav class="rp-inicio" aria-label="Secciones del caso de estudio" data-rp-lista>
-<p class="rp-inicio__etiqueta t-meta">En este caso</p>
 <ol class="rp-inicio__lista">
 {items.map((s) => <li><a class="rp-inicio__fila" href={`#${s.id}`}><span class="rp-inicio__titulo">{s.texto}</span></a></li>)}
 </ol>

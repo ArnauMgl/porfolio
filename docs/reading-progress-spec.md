@@ -4,7 +4,7 @@ Versión 1.1 · 26 nov 2026 · Actualizada para que coincida con lo implementado
 
 Referencia visual del diseño original (lienzo de Claude Design, solo para personas): https://claude.ai/artifact/L7CpufULuY7EuHVqtfzy45. Esta especificación es autosuficiente.
 
-Qué cambia respecto a la v1: sin contador «3 / 6», sin números en las etiquetas, sin rótulo («En este caso» / «En este artículo») ni metadato al pie en escritorio, los `h2` del cuerpo no se numeran, y la cabecera de la web no es fija, lo que cambia la barra móvil (§5.1).
+Qué cambia respecto a la v1: sin contador «3 / 6», sin números en las etiquetas, sin rótulo («En este caso» / «En este artículo») ni metadato al pie, ni en escritorio ni en el índice inicial de los casos, los `h2` del cuerpo no se numeran, y la cabecera de la web no es fija, lo que cambia la barra móvil (§5.1).
 
 ---
 
@@ -14,7 +14,7 @@ Un componente de progreso de lectura para tres contextos, cada uno con su versi�
 
 | Contexto | Escritorio (≥ 1280 px) | Ancho estrecho (< 1280 px) |
 |---|---|---|
-| **Casos de estudio** | Índice vertical sticky con puntos y etiquetas siempre visibles | Índice al principio del contenido (rótulo «En este caso») + selector sticky con el título de la sección actual y barra fina |
+| **Casos de estudio** | Índice vertical sticky con puntos y etiquetas siempre visibles | Índice al principio del contenido + selector sticky con el título de la sección actual y barra fina |
 | **Blog (WIP)** | Mismo índice que los casos, con amarillo | Barra horizontal de 3 px en el borde superior |
 | **Lab (bitácora)** | Marcas en el margen + barra vertical verde que se rellena. Si la entrada tiene menos de 3 `h2`, no hay marcas y se usa la barra horizontal de 3 px (verde) | Barra horizontal de 3 px en el borde superior (verde) |
 
@@ -26,7 +26,7 @@ El criterio de «estrecho» es el **ancho disponible**, no el tipo de dispositiv
 - **Sin tiempo de lectura** dentro del componente. El «N min de lectura» de las fichas y los listados del blog no se toca.
 - **Sin contador «3 / 6»**, en escritorio ni en el selector móvil.
 - **Sin números en las etiquetas** del índice (ni en escritorio, ni en el índice inicial y la lista del selector móvil). La sección actual se distingue por forma, tamaño y peso.
-- **Sin rótulo ni metadato al pie** del índice de escritorio (ni «En este caso» / «En este artículo», ni el sector, ni «WIP · Blog»).
+- **Sin rótulo ni metadato al pie** en ningún índice (ni «En este caso» / «En este artículo», ni el sector, ni «WIP · Blog»), tampoco en el índice inicial de los casos en ancho estrecho.
 - **Los `h2` del cuerpo no se numeran.** Blog: punto amarillo en el margen, como ya estaba. Casos: `h2` sin marcador. Los números solo van en listados dentro de una sección.
 - Un punto o marca por cada `h2` del contenido. Se excluye «Referencias» (blog) y «Más proyectos» (casos).
 - Raíl en el **lado izquierdo**, dentro de la columna lateral de 320 px (no sobre el texto).
@@ -142,7 +142,7 @@ Las secciones se generan a partir de los `h2` reales. Hoy ninguna entrada del La
 
 ### 5.2 Casos de estudio: índice + selector
 
-1. **Al principio del caso**, dentro de la ficha, tras Sector, Rol, etc.: un bloque con línea de 2 px `#111` arriba, el rótulo «En este caso» y una lista de secciones. Cada fila: 48 px de alto, línea de 1 px `#E2E2E2` encima y el título en 16 px / 500. Los títulos son enlaces. **Sin números ni tiempos de lectura.**
+1. **Al principio del caso**, dentro de la ficha, tras Sector, Rol, etc.: un bloque con línea de 2 px `#111` arriba y una lista de secciones, sin rótulo. Cada fila (salvo la primera): 48 px de alto, línea de 1 px `#E2E2E2` encima y el título en 16 px / 500. Los títulos son enlaces. **Sin números ni tiempos de lectura.**
 2. **Selector sticky** (`position: fixed; top: 0`): aparece, solo con JS, cuando el bloque inicial sale de la pantalla por arriba y mientras el cuerpo del caso está a la vista. Fila de 48 px con el título de la sección actual en 600 y un chevron a la derecha (sin contador). Es un `<button>` con `aria-expanded` y `aria-controls`. Debajo, la barra de 3 px (relleno negro) con el progreso del cuerpo del caso.
 3. **Lista desplegada**: al pulsar el selector, un panel pegado debajo con las secciones (filas de 48 px). Las vistas muestran un icono de check de 24 px (stroke 2); la actual, su título en 600 y la etiqueta «Estás aquí» (borde 1 px `#111`, 4 px de radio, 15 px / 500); las pendientes, solo el título. El panel lleva línea inferior de 2 px `#111` y se desplaza si no cabe. El contenido bajo el panel se atenúa con un velo `rgba(255,255,255,0.82)`.
 4. Se cierra con Esc, al pulsar fuera o al elegir una sección. Devuelve el foco al selector. Es un desplegable (disclosure), no un diálogo modal.
@@ -190,6 +190,5 @@ Comprobado en Chromium (anchos 320, 390, 1279, 1280 y 1440 px, teclado, `prefers
 
 - Los nombres de secciones salen del contenido real (`h2`).
 - Barra móvil del blog en negro (el amarillo sobre blanco no pasa el contraste en una línea de 3 px).
-- En los casos, el rótulo «En este caso» se mantiene solo en el índice inicial del ancho estrecho.
 - Si más adelante la cabecera pasa a ser fija o a ocultarse al bajar, la barra superior debería colgar de su borde inferior y volver a `top: 0` al ocultarse, y habría que sumar su altura al punto de lectura y a `scroll-padding-top`.
 - El repo no tiene `HANDOFF.md`: el resumen de este componente está en `LEEME.md`, que apunta a este documento.
