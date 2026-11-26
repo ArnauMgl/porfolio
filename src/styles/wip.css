@@ -191,32 +191,6 @@
   .bl-autor__foto{flex:none;width:120px;height:120px}
 }
 
-/* Barra de progreso de lectura (la dibuja src/scripts/blog-lectura.js; sin JavaScript no se muestra) */
-.bl-rail{display:none}
-.bl-progress{position:relative;width:2px;height:100%;background:var(--line)}
-.bl-progress__fill{position:absolute;left:0;top:0;width:2px;height:0;background:var(--text)}
-.bl-marks{list-style:none;margin:0;padding:0}
-.bl-mark{position:absolute;left:1px;width:0;height:0}
-.bl-mark__dot{position:absolute;left:-12px;top:-12px;width:24px;height:24px;display:block;border-radius:var(--radius);text-decoration:none}
-.bl-mark__dot::before{content:"";position:absolute;left:8px;top:8px;width:8px;height:8px;box-sizing:border-box;border:2px solid var(--text-secondary);border-radius:50%;background:var(--bg);transition:background-color var(--duration-base) ease,border-color var(--duration-base) ease}
-.bl-mark__dot:hover::before{border-color:var(--text)}
-.bl-mark__dot.is-passed::before{background:var(--y);border-color:var(--text)}
-.bl-mark__dot:focus-visible{outline:none;box-shadow:var(--ring-focus)}
-/* Móvil y tableta: barra fina de 4 px en el borde derecho de la pantalla */
-.bl-edge{display:none;position:fixed;top:0;bottom:0;right:0;width:4px;background:var(--line);z-index:5;pointer-events:none}
-.bl-edge__fill{position:absolute;left:0;top:0;width:4px;height:0;background:var(--text)}
-.bl-edge[data-listo]{display:block}
-
-@media (min-width:1024px){
-  .bl-articulo{grid-template-columns:minmax(0,1fr) minmax(0,var(--text-max)) minmax(0,1fr)}
-  .bl-cab{grid-column:2;grid-row:1}
-  .bl-body{grid-column:2;grid-row:2}
-  /* La barra arranca a la altura del H1: padding de la cabecera + enlace «Volver al blog» (48 px) + separación (24 px).
-     Es sticky dentro de todo el artículo (cabecera + cuerpo). */
-  .bl-articulo[data-listo] .bl-rail{display:block;grid-column:1;grid-row:1 / 3;align-self:start;position:sticky;top:var(--space-3);height:240px;margin-top:calc(var(--space-12) + var(--touch-min) + var(--space-3));justify-self:end;margin-right:var(--space-5)}
-  .bl-edge,.bl-edge[data-listo]{display:none}
-}
-
 /* Sigue leyendo */
 .bl-mas{display:grid;grid-template-columns:minmax(0,1fr)}
 .bl-mas .bl-post__row{grid-template-columns:minmax(0,1fr) var(--icon-size);grid-template-areas:"main arrow";padding-block:var(--space-4)}
@@ -225,5 +199,5 @@
 .bl-more{margin:var(--space-3) 0 0}
 
 @media (prefers-reduced-motion:reduce){
-  .bl-chip,.bl-trigger,.bl-trigger .ds-icon,.bl-opt,.bl-page,.bl-step,.bl-mark__dot::before{transition:none}
+  .bl-chip,.bl-trigger,.bl-trigger .ds-icon,.bl-opt,.bl-page,.bl-step{transition:none}
 }

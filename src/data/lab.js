@@ -23,6 +23,8 @@ export function entradasLab() {
       resumen: e.data.resumen ?? null,
       descripcion: descripcionDe({ resumen: e.data.resumen, cuerpo: e.body }),
       html: e.rendered?.html ?? '',
+      // Secciones (h2) para el progreso de lectura; solo la página de la entrada las usa (docs/reading-progress-spec.md).
+      secciones: (e.rendered?.metadata?.headings ?? []).filter((h) => h.depth === 2 && h.slug !== 'referencias').map((h) => ({ id: h.slug, texto: h.text })),
     }));
     const listas = ordenar(visibles(entradas, hoy));
     return listas.map((e) => ({ ...e, ...vecinas(listas, e.slug) }));

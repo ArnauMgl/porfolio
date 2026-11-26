@@ -3,6 +3,8 @@
 // Anterior = la entrada inmediatamente más antigua; Siguiente = la inmediatamente más nueva.
 import Lab from '../../layouts/Lab.astro';
 import CabeceraEntrada from '../../components/lab/CabeceraEntrada.astro';
+import IndiceLectura from '../../components/IndiceLectura.astro';
+import BarraLectura from '../../components/BarraLectura.astro';
 import { entradasLab } from '../../data/lab.js';
 
 export async function getStaticPaths() {
@@ -10,23 +12,34 @@ export async function getStaticPaths() {
   return entradas.map((e) => ({ params: { slug: e.slug }, props: { entrada: e } }));
 }
 const { entrada } = Astro.props;
+// Progreso de lectura: marcas en el margen si la entrada tiene 3 o más secciones (h2).
+const conIndice = entrada.secciones.length >= 3;
 const flecha = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true' };
 ---
 <Lab title={`${entrada.titulo}. Lab. · Arnau Larripa`} description={entrada.descripcion} publicadoEn={entrada.fecha}>
 <main id="lab">
 <div class="ds-wrap">
-<div class="lab-page">
+<div class={`lab-page${conIndice ? ' lab-page--indice' : ''}`}>
 <a class="ds-link ds-link--touch t-body" href="/lab/">
 <svg class="ds-icon" {...flecha}><path d="M20 12H4M11 5l-7 7 7 7"></path></svg>
 Volver a la bitácora
 </a>
-<article class="lab-entry" id={entrada.slug}>
+{conIndice && (
+<>
+<IndiceLectura items={entrada.secciones} variante="lab" ariaLabel="Secciones de la entrada" />
+<div class="rp-lab-aside" aria-hidden="true">
+<p class="rp-lab-aside__meta t-meta">{entrada.projectLabel}</p>
+</div>
+</>
+)}
+<BarraLectura variante="lab" siempre={!conIndice} />
+<article class="lab-entry" id={entrada.slug} data-rp-cuerpo data-rp-inicio>
 <span class="lab-node" aria-hidden="true"></span>
 <CabeceraEntrada entrada={entrada} nivel="h1" />
 <div class="ds-prose t-body" set:html={entrada.html}></div>
 </article>
 {(entrada.anterior || entrada.siguiente) && (
-<nav class="lab-pager" aria-label="Entradas del Lab">
+<nav class="lab-pager" aria-label="Entradas del Lab" data-rp-fin>
 {entrada.anterior ? (
 <a class="ds-link ds-link--touch t-body lab-pager__prev" href={`/lab/${entrada.anterior.slug}/`} rel="prev">
 <svg class="ds-icon" {...flecha}><path d="M20 12H4M11 5l-7 7 7 7"></path></svg>

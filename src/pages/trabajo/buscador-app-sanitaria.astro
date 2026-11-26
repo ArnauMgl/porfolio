@@ -3,6 +3,8 @@ import Imagen from '../../components/Imagen.astro';
 // Caso de estudio: Buscador para una app sanitaria. Marcado del artboard «CaseBuscadorMobile» (diseno/CaseBuscadorMobile.dc.html), con rutas reales.
 // La portada se ve en la primera pantalla y no se difiere; el resto de imágenes se cargan al acercarse.
 import Base from '../../layouts/Base.astro';
+import IndiceLectura from '../../components/IndiceLectura.astro';
+import IndiceCasoEstrecho from '../../components/IndiceCasoEstrecho.astro';
 import ListaProyectos from '../../components/ListaProyectos.astro';
 import portada from '../../assets/proyectos/buscador-app-sanitaria.webp';
 import personaMedicacion from '../../assets/buscador-app-sanitaria/persona.webp';
@@ -16,6 +18,16 @@ import movilEscritorio from '../../assets/buscador-app-sanitaria/movil-y-escrito
 import dosMoviles from '../../assets/buscador-app-sanitaria/dos-moviles.webp';
 import pantallasResultados from '../../assets/buscador-app-sanitaria/pantallas-resultados.webp';
 import estados from '../../assets/buscador-app-sanitaria/estados.webp';
+// Índice de secciones del caso (progreso de lectura): un punto por h2, sin «Más proyectos».
+const secciones = [
+  { id: 'resumen', texto: 'Resumen' },
+  { id: 'contexto', texto: 'Contexto' },
+  { id: 'reto', texto: 'El reto' },
+  { id: 'momentos', texto: 'Momentos clave' },
+  { id: 'solucion', texto: 'La solución' },
+  { id: 'validacion', texto: 'Validación y resultados' },
+  { id: 'aprendizajes', texto: 'Aprendizajes' },
+];
 ---
 <Base
   imagen="/og/og-buscador-app-sanitaria.jpg"
@@ -39,12 +51,17 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 <div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="128" cy="96" r="64"></circle><path d="M32,216c19.37-33.47,54.55-56,96-56s76.63,22.53,96,56"></path></svg>Rol</dt><dd class="t-body">Product Designer principal</dd></div>
 <div class="ds-meta__item ds-meta__item--wide"><dt class="t-meta"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="84" cy="108" r="52"></circle><path d="M10.23,200a88,88,0,0,1,147.54,0"></path><path d="M172,160a87.89,87.89,0,0,1,73.77,40"></path><path d="M152.69,59.7A52,52,0,1,1,172,160"></path></svg>Equipo</dt><dd class="t-body">Diseño de apoyo, Lead de diseño y Product Manager</dd></div>
 </dl>
+<IndiceCasoEstrecho items={secciones} parte="lista" />
 </div>
 <figure class="ds-figure ds-cover">
 <Imagen src={portada} alt="Composición de pantallas del buscador: resultados, filtros, búsquedas recientes y sugerencia de corrección" loading="eager" />
 </figure>
 </section>
 
+<IndiceCasoEstrecho items={secciones} parte="selector" />
+<div class="rp-layout">
+<IndiceLectura items={secciones} variante="caso" ariaLabel="Secciones del caso de estudio" />
+<div class="rp-cuerpo" data-rp-cuerpo>
 <section class="ds-wrap ds-case-section" aria-labelledby="resumen">
 <div class="ds-summary">
 <h2 id="resumen" class="ds-summary__title ds-section-title t-section-title-mobile">Resumen</h2>
@@ -190,6 +207,9 @@ import estados from '../../assets/buscador-app-sanitaria/estados.webp';
 </ul>
 </div>
 </section>
+
+</div>
+</div>
 
 <section class="ds-wrap ds-case-section" aria-labelledby="mas">
 <h2 id="mas" class="ds-section-title t-section-title-mobile">Más proyectos</h2>

@@ -1,0 +1,10 @@
+---
+// Barra horizontal de 3 px del progreso de lectura (blog y Lab, ancho < 1280 px). Decorativa (aria-hidden): sin role="progressbar".
+// Mide el cuerpo del artículo (desde el inicio de [data-rp-inicio] hasta el final de [data-rp-cuerpo]) y se desvanece al llegar
+// al bloque [data-rp-fin] («Sigue leyendo» / «Siguiente entrada»). La dibuja src/scripts/lectura.js.
+import '../styles/lectura.css';
+interface Props { variante: 'blog' | 'lab'; siempre?: boolean } // siempre: también en escritorio (entradas sin índice)
+const { variante, siempre = false } = Astro.props;
+---
+<div class={`rp-barra rp-barra--${variante}${siempre ? ' rp-barra--siempre' : ''}`} aria-hidden="true" data-rp-barra><span class="rp-barra__relleno"></span></div>
+<script>import '../scripts/lectura.js';</script>
