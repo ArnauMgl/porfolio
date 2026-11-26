@@ -12,7 +12,7 @@ const marca = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'str
 <nav class="rp-inicio" aria-label="Secciones del caso de estudio" data-rp-lista>
 <p class="rp-inicio__etiqueta t-meta">En este caso</p>
 <ol class="rp-inicio__lista">
-{items.map((s, i) => <li><a class="rp-inicio__fila" href={`#${s.id}`}><span class="rp-inicio__n">{i + 1}</span><span class="rp-inicio__titulo">{s.texto}</span></a></li>)}
+{items.map((s) => <li><a class="rp-inicio__fila" href={`#${s.id}`}><span class="rp-inicio__titulo">{s.texto}</span></a></li>)}
 </ol>
 </nav>
 )}
@@ -29,8 +29,8 @@ const marca = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'str
 </div>
 <nav class="rp-sel__panel" id="rp-sel-panel" aria-label="Secciones del caso de estudio" hidden>
 <ol>
-{items.map((s, i) => (
-<li><a class="rp-sel__item" href={`#${s.id}`} data-titulo={s.texto}><span class="rp-sel__marca"><span class="rp-sel__num">{i + 1}</span><svg class="rp-sel__check" {...marca}><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span><span class="rp-sel__nombre">{s.texto}</span><span class="rp-sel__aqui" aria-hidden="true">Estás aquí</span></a></li>
+{items.map((s) => (
+<li><a class="rp-sel__item" href={`#${s.id}`} data-titulo={s.texto}><span class="rp-sel__marca"><svg class="rp-sel__check" {...marca}><path d="M5 12.5l4.5 4.5L19 7"></path></svg></span><span class="rp-sel__nombre">{s.texto}</span><span class="rp-sel__aqui" aria-hidden="true">Estás aquí</span></a></li>
 ))}
 </ol>
 </nav>

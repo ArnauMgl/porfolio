@@ -66,7 +66,6 @@
   .rp__item{display:flex;align-items:center;height:100%;color:var(--rp-text-secondary);text-decoration:none;font-size:16px;line-height:1.3;font-weight:500}
   .rp__celda{flex:none;width:48px;height:48px;display:flex;align-items:center;justify-content:center}
   .rp__texto{padding:2px 4px;margin-left:-4px}
-  .rp__n{color:var(--rp-text-secondary);margin-right:.2em}
 
   /* Punto: pendiente */
   .rp__marca{display:block;box-sizing:border-box;width:12px;height:12px;border-radius:50%;background:var(--rp-bg);border:2px solid var(--rp-text-secondary)}
@@ -76,7 +75,6 @@
   /* Actual: tamaño, peso y forma, no solo color */
   .rp__item[aria-current]{color:var(--rp-text);font-weight:600}
   .rp__item[aria-current] .rp__marca{width:20px;height:20px;background:var(--rp-bg);border:4px solid var(--rp-accent)}
-  .rp--caso .rp__item[aria-current] .rp__n{color:var(--rp-accent)}
 
   /* Blog: mismas formas y tamaños que en los casos, con amarillo en lugar del acento. Siempre con aro o texto negro (el amarillo solo sobre blanco no llega a 3:1). */
   .rp--blog .rp__item.is-visto .rp__marca{background:var(--rp-yellow);border:2px solid var(--rp-on-yellow)}
@@ -84,9 +82,7 @@
 
   /* Foco de teclado (patrón del sistema): etiqueta amarilla con línea inferior de 4 px, y doble anillo en el punto */
   .rp__item:focus-visible{outline:none}
-  .rp__item:focus-visible .rp__texto,
-  .rp__item:focus-visible .rp__n{background:var(--rp-focus-bg);color:var(--rp-focus-ink);box-shadow:inset 0 -4px 0 var(--rp-focus-ink)}
-  .rp__item:focus-visible .rp__n{box-shadow:none;padding:0}
+  .rp__item:focus-visible .rp__texto{background:var(--rp-focus-bg);color:var(--rp-focus-ink);box-shadow:inset 0 -4px 0 var(--rp-focus-ink)}
   .rp__item:focus-visible .rp__marca{box-shadow:0 0 0 3px #ffdd00,0 0 0 6px #0b0c0c}
 
   /* ---------- Lab: marcas en el margen izquierdo y barra vertical verde ---------- */
@@ -96,7 +92,6 @@
   .rp--lab .rp__marca{width:16px;height:2px;border:0;border-radius:0;background:var(--rp-pending)}
   .rp--lab .rp__item.is-visto .rp__marca{background:var(--rp-green)}
   .rp--lab .rp__item[aria-current] .rp__marca{width:28px;height:4px;border:0;background:var(--rp-green)}
-  .rp--lab .rp__item[aria-current] .rp__n{color:var(--rp-green)}
   /* La etiqueta está siempre en el HTML (nombre accesible = texto visible); se ve en la sección actual, al pasar el ratón y al enfocar */
   .rp--lab .rp__texto{position:absolute;left:56px;top:50%;transform:translateY(-50%);width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;margin:0;padding:0}
   .rp--lab .rp__item[aria-current] .rp__texto,
@@ -164,9 +159,7 @@
   .rp-inicio .rp-inicio__lista li{padding:0}
   .rp-inicio .rp-inicio__lista li::before{content:none} /* quita la viñeta de .ds-prose li */
   .rp-inicio__fila{display:flex;align-items:center;gap:var(--space-2);min-height:var(--touch-min);box-sizing:border-box;border-top:1px solid var(--line);color:var(--text);text-decoration:none;font-size:16px;line-height:1.3;font-weight:500}
-  .rp-inicio__n{flex:none;width:32px;color:var(--text-secondary);font-weight:600}
   .rp-inicio__fila:focus-visible{outline:none;background:var(--rp-focus-bg);color:var(--rp-focus-ink);box-shadow:inset 0 -4px 0 var(--rp-focus-ink)}
-  .rp-inicio__fila:focus-visible .rp-inicio__n{color:var(--rp-focus-ink)}
 
   /* Selector sticky */
   .rp-sel.is-visible{display:block;position:fixed;z-index:25;top:0;left:0;right:0;font-family:var(--font-sans);color:var(--text)}
@@ -190,19 +183,15 @@
   .rp-sel__item{display:flex;align-items:center;gap:var(--space-1);min-height:var(--touch-min);box-sizing:border-box;padding:0 var(--gutter-mobile);border-top:1px solid var(--line);color:var(--text);text-decoration:none;font-size:16px;line-height:1.3;font-weight:500}
   .rp-sel__panel li:first-child .rp-sel__item{border-top:0}
   .rp-sel__marca{flex:none;position:relative;display:flex;align-items:center;justify-content:center;width:var(--icon-size);height:var(--icon-size)}
-  .rp-sel__num{color:var(--text-secondary);font-weight:600}
   .rp-sel__check{display:none;width:var(--icon-size);height:var(--icon-size)}
   .rp-sel__nombre{flex:1;min-width:0;margin-left:var(--space-1)}
   .rp-sel__aqui{display:none;flex:none;padding:2px 8px;border:1px solid var(--line-strong);border-radius:var(--radius);font-size:15px;font-weight:500}
   /* Vistas: check (el número sigue en el HTML, oculto a la vista, para que el nombre accesible lo conserve) */
   .rp-sel__item.is-visto .rp-sel__check{display:block}
-  .rp-sel__item.is-visto .rp-sel__num{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
   /* Actual */
   .rp-sel__item[aria-current]{font-weight:600}
-  .rp-sel__item[aria-current] .rp-sel__num{color:var(--rp-accent)}
   .rp-sel__item[aria-current] .rp-sel__aqui{display:inline-block}
   .rp-sel__item:focus-visible{outline:none;background:var(--rp-focus-bg);color:var(--rp-focus-ink);box-shadow:inset 0 -4px 0 var(--rp-focus-ink)}
-  .rp-sel__item:focus-visible .rp-sel__num{color:var(--rp-focus-ink)}
   .rp-sel__item:focus-visible .rp-sel__aqui{border-color:var(--rp-focus-ink)}
 }
 @media (min-width:640px) and (max-width:1279.98px){
