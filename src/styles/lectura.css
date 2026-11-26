@@ -38,6 +38,11 @@
 .bl-cuerpo h2:not(#referencias){counter-increment:rp}
 .bl-cuerpo h2:not(#referencias)::before{content:counter(rp);position:static;display:inline;width:auto;height:auto;margin:0 .3em 0 0;padding:0;border-radius:0;background:none;color:var(--text)}
 
+/* Casos: números de sección delante de los h2 a cualquier ancho (contador CSS: el texto no cambia), en el color de acento */
+.rp-cuerpo{counter-reset:rp}
+.rp-cuerpo h2{counter-increment:rp}
+.rp-cuerpo h2::before{content:counter(rp);color:var(--rp-accent);margin-right:.25em}
+
 /* El índice de escritorio está oculto por debajo de 1280 px (allí van la barra superior o el índice + selector) */
 .rp{display:none}
 
@@ -49,10 +54,6 @@
   .rp-layout > .rp{grid-column:1;grid-row:1;align-self:start;position:sticky;top:128px;margin-top:var(--space-16)}
   .rp-layout > .rp-cuerpo{grid-column:2;grid-row:1;min-width:0}
   .rp-cuerpo > .ds-wrap{max-width:none;padding-inline:0;margin-inline:0}
-  /* Números de sección delante de los h2 (contador CSS: el texto no cambia) */
-  .rp-cuerpo{counter-reset:rp}
-  .rp-cuerpo h2{counter-increment:rp}
-  .rp-cuerpo h2::before{content:counter(rp);color:var(--rp-accent);margin-right:.25em}
 
   /* ---------- Blog: la misma retícula, con el índice a la izquierda del cuerpo ---------- */
   .bl-articulo--indice{grid-template-columns:var(--aside-col) minmax(0,720px);column-gap:var(--space-10);justify-content:center}
