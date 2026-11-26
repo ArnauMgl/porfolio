@@ -10,7 +10,7 @@ import { hoyMadrid, estaPublicado, formatearFecha } from '../../lib/blog/fechas.
 import { filtrosDe } from '../../lib/blog/etiquetas.js';
 import { procesarCuerpo, leerMarcadores, elegirPortada } from '../../lib/blog/imagenes.js';
 import { UMBRAL_CONTROLES } from '../../lib/blog/config.js';
-import { leerAutor } from '../../lib/blog/autor.js';
+import { leerAutor, AUTOR_POR_DEFECTO } from '../../lib/blog/autor.js';
 
 export const hoy = hoyMadrid(new Date(), process.env.WIP_HOY || undefined);
 const conPruebas = process.env.WIP_PRUEBAS === '1';
@@ -51,7 +51,8 @@ async function prepararArticulo(entrada) {
   const cuerpo = procesarCuerpo(html, (m) => etiquetas.get(m.archivo + m.alt));
   const portada = cuerpo.portada ? { ...cuerpo.portada, meta: imagenDe(cuerpo.portada.archivo) } : null;
   const secciones = (entrada.rendered?.metadata?.headings ?? []).filter((h) => h.depth === 2 && h.slug !== 'referencias');
-  const autor = leerAutor(d);
+  const autorExterno = leerAutor(d);
+  const autor = autorExterno ?? AUTOR_POR_DEFECTO;
   return {
     slug: d.slug,
     titulo: d.title,
@@ -63,7 +64,9 @@ async function prepararArticulo(entrada) {
     tags: d.tags,
     filtros: filtrosDe(d.tags),
     portada,
-    autor: autor && { ...autor, fotoMeta: autor.foto ? imagenDe(autor.foto) : null },
+    // Colaboración = artículo firmado por otra persona (se avisa en el listado y en la ficha)
+    colaboracion: Boolean(autorExterno),
+    autor: { ...autor, fotoMeta: autor.foto ? imagenDe(autor.foto) : null },
     html: cuerpo.html,
     secciones: secciones.map((h, i) => ({ n: i + 1, id: h.slug, texto: h.text })),
     // Imagen para compartir en redes (1200×630, en public/og/). Los artículos sin una propia usan la general del sitio.
