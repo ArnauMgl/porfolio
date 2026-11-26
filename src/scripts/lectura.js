@@ -90,7 +90,6 @@ function selector(sel, seg) {
   const titulo = el('[data-rp-sel-titulo]', sel);
   const enlaces = [...panel.querySelectorAll('a')];
   const inicial = el('[data-rp-lista]');
-  const cuerpo = el('[data-rp-cuerpo]');
   let actual = -2, pintado = -1, listaFuera = false, cuerpoDentro = false;
 
   const abierto = () => boton.getAttribute('aria-expanded') === 'true';
@@ -113,15 +112,14 @@ function selector(sel, seg) {
   // Al elegir una sección el navegador salta al ancla después del clic: el foco vuelve al selector justo después.
   panel.addEventListener('click', (e) => { if (e.target.closest('a')) { cerrar(false); setTimeout(() => boton.focus({ preventScroll: true }), 0); } });
 
-  // Aparece cuando el índice inicial sale de la pantalla por arriba, y mientras el cuerpo del caso está a la vista.
-  if ('IntersectionObserver' in window) {
-    if (inicial) new IntersectionObserver(([e]) => { listaFuera = !e.isIntersecting && e.boundingClientRect.top < 0; visible(); }).observe(inicial);
-    if (cuerpo) new IntersectionObserver(([e]) => { cuerpoDentro = e.isIntersecting; visible(); }).observe(cuerpo);
-  }
-  ESCRITORIO.addEventListener('change', visible);
-
+  // Aparece cuando el índice inicial ha salido de la pantalla por arriba y mientras el cuerpo del caso sigue a la vista.
+  // Se calcula con el scroll (no con IntersectionObserver, que solo avisa al cruzar el borde y no cubre saltos por ancla,
+  // recargas con el scroll recordado ni scrolls rápidos).
   seg.suscribir(({ i, y0, y1 }) => {
-    if (ESCRITORIO.matches) return;
+    if (ESCRITORIO.matches) { visible(); return; }
+    listaFuera = !!inicial && inicial.getBoundingClientRect().bottom < 0;
+    cuerpoDentro = window.scrollY < y1 + window.innerHeight;
+    visible();
     const p = Math.round(acotar((window.scrollY - y0) / Math.max(1, y1 - y0)) * 1000) / 1000;
     if (p !== pintado) { pintado = p; relleno.style.setProperty('--rp-b', String(p)); }
     if (i !== actual) {
