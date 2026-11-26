@@ -32,6 +32,12 @@
   --rp-fill:#3ee08f;
 }
 
+/* Blog: números de sección delante de los h2 (a cualquier ancho y con o sin índice), en texto negro y sin fondo.
+   Sustituyen al punto amarillo colgado en el margen (wip.css). «Referencias» no lleva número. */
+.bl-cuerpo{counter-reset:rp}
+.bl-cuerpo h2:not(#referencias){counter-increment:rp}
+.bl-cuerpo h2:not(#referencias)::before{content:counter(rp);position:static;display:inline;width:auto;height:auto;margin:0 .3em 0 0;padding:0;border-radius:0;background:none;color:var(--text)}
+
 /* El índice de escritorio está oculto por debajo de 1280 px (allí van la barra superior o el índice + selector) */
 .rp{display:none}
 
@@ -53,10 +59,7 @@
   .bl-articulo--indice > .bl-cab{grid-column:2;grid-row:1;max-width:none;margin-inline:0}
   .bl-articulo--indice > .rp{grid-column:1;grid-row:2;align-self:start;position:sticky;top:128px;margin-top:calc(var(--space-4) + var(--space-3))}
   .bl-articulo--indice > .bl-body{grid-column:2;grid-row:2;max-width:none;margin-inline:0}
-  /* Números de sección delante de los h2: texto negro, sin fondo amarillo; sustituyen al punto amarillo del margen */
-  .bl-articulo--indice .bl-cuerpo{counter-reset:rp}
-  .bl-articulo--indice .bl-cuerpo h2:not(#referencias){counter-increment:rp}
-  .bl-articulo--indice .bl-cuerpo h2:not(#referencias)::before{content:counter(rp);position:static;display:inline;width:auto;height:auto;margin:0 .3em 0 0;padding:0;border-radius:0;background:none;color:var(--text)}
+
 
   /* ---------- Índice con puntos ---------- */
   .rp__etiqueta{margin:0;font-size:15px;font-weight:500;color:var(--rp-text-secondary)}
