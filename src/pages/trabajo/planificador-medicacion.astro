@@ -3,6 +3,7 @@ import Imagen from '../../components/Imagen.astro';
 // Caso de estudio: Planificador de medicación imprimible. Marcado del artboard «CasePlanificadorMobile» (diseno/CasePlanificadorMobile.dc.html), con rutas reales.
 // La portada se ve en la primera pantalla y no se difiere; el resto de imágenes se cargan al acercarse.
 import Base from '../../layouts/Base.astro';
+import IndiceLectura from '../../components/IndiceLectura.astro';
 import ListaProyectos from '../../components/ListaProyectos.astro';
 import portada from '../../assets/proyectos/planificador-medicacion.webp';
 import nevera from '../../assets/planificador-medicacion/nevera.webp';
@@ -16,6 +17,16 @@ import alternativaHoja1 from '../../assets/planificador-medicacion/alternativa-h
 import alternativaHoja2 from '../../assets/planificador-medicacion/alternativa-hoja-2.webp';
 import pagina1 from '../../assets/planificador-medicacion/pagina-1.webp';
 import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
+// Índice de secciones del caso (progreso de lectura): un punto por h2, sin «Más proyectos».
+const secciones = [
+  { id: 'resumen', texto: 'Resumen' },
+  { id: 'contexto', texto: 'Contexto' },
+  { id: 'reto', texto: 'El reto' },
+  { id: 'momentos', texto: 'Momentos clave' },
+  { id: 'solucion', texto: 'La solución' },
+  { id: 'validacion', texto: 'Validación y resultados' },
+  { id: 'aprendizajes', texto: 'Aprendizajes' },
+];
 ---
 <Base
   imagen="/og/og-planificador-medicacion.jpg"
@@ -46,6 +57,9 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 </figure>
 </section>
 
+<div class="rp-layout">
+<IndiceLectura items={secciones} variante="caso" ariaLabel="Secciones del caso de estudio" etiqueta="En este caso" pie="Salud pública" />
+<div class="rp-cuerpo" data-rp-cuerpo>
 <section class="ds-wrap ds-case-section" aria-labelledby="resumen">
 <div class="ds-summary">
 <h2 id="resumen" class="ds-summary__title ds-section-title t-section-title-mobile">Resumen</h2>
@@ -200,6 +214,9 @@ import pagina2 from '../../assets/planificador-medicacion/pagina-2.webp';
 </ul>
 </div>
 </section>
+
+</div>
+</div>
 
 <section class="ds-wrap ds-case-section" aria-labelledby="mas">
 <h2 id="mas" class="ds-section-title t-section-title-mobile">Más proyectos</h2>

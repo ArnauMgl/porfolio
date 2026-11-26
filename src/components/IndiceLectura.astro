@@ -1,0 +1,31 @@
+---
+// Índice de secciones con progreso de lectura (docs/reading-progress-spec.md).
+// Se genera en el HTML (enlaces que funcionan sin JavaScript); src/scripts/lectura.js solo marca la sección actual y rellena la pista.
+//   caso: puntos con etiquetas visibles (casos de estudio).  blog: lo mismo con acento amarillo.  lab: marcas en el margen.
+// Solo se ve con ancho ≥ 1280 px (lectura.css); por debajo se usan la barra superior o el índice + selector del patrón estrecho.
+import '../styles/lectura.css';
+interface Props {
+  items: { id: string; texto: string }[];
+  variante: 'caso' | 'blog' | 'lab';
+  ariaLabel: string;
+  etiqueta?: string; // «En este caso» / «En este artículo»
+  pie?: string;      // metadato al pie (sector, «WIP · Blog»)
+}
+const { items, variante, ariaLabel, etiqueta, pie } = Astro.props;
+const paso = variante === 'lab' ? 48 : 56;
+const n = items.length;
+---
+<nav class={`rp rp--${variante}`} aria-label={ariaLabel} data-rp data-rp-paso={paso}>
+{etiqueta && <p class="rp__etiqueta t-meta">{etiqueta}</p>}
+{variante !== 'lab' && <p class="rp__cuenta" aria-hidden="true"><span class="rp__cur" data-rp-cur>–</span><span class="rp__tot"> / {n}</span></p>}
+<div class="rp__rail" style={`--rp-h:${(n - 1) * paso}px`}>
+<span class="rp__pista" aria-hidden="true"><span class="rp__relleno"></span></span>
+<ol class="rp__lista">
+{items.map((s, i) => (
+<li class="rp__li" style={`--i:${i}`}><a class="rp__item" href={`#${s.id}`}><span class="rp__celda" aria-hidden="true"><span class="rp__marca"></span></span><span class="rp__texto"><span class="rp__n">{i + 1}</span> {s.texto}</span></a></li>
+))}
+</ol>
+</div>
+{pie && <p class="rp__pie t-meta">{pie}</p>}
+</nav>
+<script>import '../scripts/lectura.js';</script>

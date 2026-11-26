@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Progreso de lectura (docs/reading-progress-spec.md).
+   Índice con puntos (casos y blog) y marcas en el margen (Lab). Solo desde 1280 px de ancho de pantalla.
+   Este es el ÚNICO sitio donde vive el punto de corte de 1280 px (el repo usa 640 / 760 / 1024); en el JS, src/scripts/lectura.js.
+   Colores: se reutilizan las variables del sistema (--text, --accent…) y aquí solo se añaden las nuevas.
+   ========================================================================== */
+
+:root{
+  --rp-bg:var(--bg);
+  --rp-text:var(--text);
+  --rp-text-secondary:var(--text-secondary);
+  --rp-track:#e2e2e2;
+  --rp-fill:#111111;
+  --rp-accent:var(--accent);
+  --rp-focus-bg:#ffdd00;
+  --rp-focus-ink:#0b0c0c;
+}
+/* Blog (WIP): amarillo solo como relleno con aro negro o texto negro; nunca como texto */
+.tema-wip{
+  --rp-yellow:#f7bd03;
+  --rp-on-yellow:#111111;
+  --rp-accent:#111111;
+}
+/* Lab (oscuro) */
+.lab{
+  --rp-bg:#0a0c0b;
+  --rp-text:#eceeed;
+  --rp-text-secondary:#98a29e;
+  --rp-green:#3ee08f;
+  --rp-track:rgba(255,255,255,.22);
+  --rp-pending:#7b8581;
+  --rp-fill:#3ee08f;
+}
+
+/* El índice de escritorio está oculto por debajo de 1280 px (allí van la barra superior o el índice + selector) */
+.rp{display:none}
+
+@media (min-width:1280px){
+  .rp{display:block;color:var(--rp-text);font-family:var(--font-sans)}
+
+  /* ---------- Retícula: columna lateral 320 + hueco 80 + texto 720 ---------- */
+  .rp-layout{box-sizing:border-box;max-width:calc(var(--content-max) + 2 * var(--gutter-desktop));margin-inline:auto;padding-inline:var(--gutter-desktop);display:grid;grid-template-columns:var(--aside-col) minmax(0,720px);column-gap:var(--space-10)}
+  .rp-layout > .rp{grid-column:1;grid-row:1;align-self:start;position:sticky;top:128px;margin-top:var(--space-16)}
+  .rp-layout > .rp-cuerpo{grid-column:2;grid-row:1;min-width:0}
+  .rp-cuerpo > .ds-wrap{max-width:none;padding-inline:0;margin-inline:0}
+  /* Números de sección delante de los h2 (contador CSS: el texto no cambia) */
+  .rp-cuerpo{counter-reset:rp}
+  .rp-cuerpo h2{counter-increment:rp}
+  .rp-cuerpo h2::before{content:counter(rp);color:var(--rp-accent);margin-right:.25em}
+
+  /* ---------- Índice con puntos ---------- */
+  .rp__etiqueta{margin:0;font-size:15px;font-weight:500;color:var(--rp-text-secondary)}
+  .rp__cuenta{margin:var(--space-1) 0 0;font-size:24px;line-height:1.25;font-weight:600;letter-spacing:-.02em;color:var(--rp-text-secondary)}
+  .rp__cur{color:var(--rp-accent)}
+  .rp__rail{position:relative;width:var(--aside-col);height:var(--rp-h);margin-top:calc(var(--space-5) + 24px);margin-bottom:24px}
+  .rp__pista,.rp__relleno{position:absolute;top:0;width:2px;height:var(--rp-h)}
+  .rp__pista{left:23px}
+  .rp__relleno{left:0}
+  .rp__pista{background:var(--rp-track)}
+  .rp__relleno{background:var(--rp-fill);transform-origin:top;transform:scaleY(var(--rp-p,0))}
+  .rp__lista{list-style:none;margin:0;padding:0}
+  .rp__li{position:absolute;left:0;top:calc(var(--i) * var(--rp-paso, 56px) - 24px);width:var(--aside-col);height:48px}
+  .rp__item{display:flex;align-items:center;height:100%;color:var(--rp-text-secondary);text-decoration:none;font-size:16px;line-height:1.3;font-weight:500}
+  .rp__celda{flex:none;width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+  .rp__texto{padding:2px 4px;margin-left:-4px}
+  .rp__n{color:var(--rp-text-secondary);margin-right:.2em}
+  .rp__pie{margin:72px 0 0;font-size:15px;font-weight:500;color:var(--rp-text-secondary)}
+
+  /* Punto: pendiente */
+  .rp__marca{display:block;box-sizing:border-box;width:12px;height:12px;border-radius:50%;background:var(--rp-bg);border:2px solid var(--rp-text-secondary)}
+  /* Visto */
+  .rp__item.is-visto{color:var(--rp-text)}
+  .rp__item.is-visto .rp__marca{background:var(--rp-text);border:0}
+  /* Actual: tamaño, peso y forma, no solo color */
+  .rp__item[aria-current]{color:var(--rp-text);font-weight:600}
+  .rp__item[aria-current] .rp__marca{width:20px;height:20px;background:var(--rp-bg);border:4px solid var(--rp-accent)}
+  .rp--caso .rp__item[aria-current] .rp__n{color:var(--rp-accent)}
+
+  /* Blog: amarillo con aro negro */
+  .rp--blog .rp__marca{width:14px;height:14px}
+  .rp--blog .rp__item.is-visto .rp__marca{background:var(--rp-yellow);border:2px solid var(--rp-on-yellow)}
+  .rp--blog .rp__item[aria-current] .rp__marca{width:22px;height:22px;background:var(--rp-yellow);border:3px solid var(--rp-on-yellow)}
+  .rp--blog .rp__cur,
+  .rp--blog .rp__item[aria-current] .rp__n{background:var(--rp-yellow);color:var(--rp-on-yellow);padding:0 6px;border-radius:var(--radius)}
+  .rp--blog .rp__cur{margin-right:2px}
+
+  /* Foco de teclado (patrón del sistema): etiqueta amarilla con línea inferior de 4 px, y doble anillo en el punto */
+  .rp__item:focus-visible{outline:none}
+  .rp__item:focus-visible .rp__texto,
+  .rp__item:focus-visible .rp__n{background:var(--rp-focus-bg);color:var(--rp-focus-ink);box-shadow:inset 0 -4px 0 var(--rp-focus-ink)}
+  .rp__item:focus-visible .rp__n{box-shadow:none;padding:0}
+  .rp__item:focus-visible .rp__marca{box-shadow:0 0 0 3px #ffdd00,0 0 0 6px #0b0c0c}
+}
+
+/* Alto contraste: la pista y el relleno no pueden desaparecer */
+@media (min-width:1280px) and (forced-colors:active){
+  .rp__pista{background:GrayText}
+  .rp__relleno{background:CanvasText}
+  .rp__marca{outline:2px solid CanvasText;outline-offset:0;forced-color-adjust:none;background:Canvas;border-color:CanvasText}
+  .rp__item.is-visto .rp__marca{background:CanvasText}
+  .rp__item[aria-current] .rp__marca{border-color:Highlight}
+  .rp__item:focus-visible .rp__texto{forced-color-adjust:none}
+}

@@ -7,20 +7,9 @@ import { Image } from 'astro:assets';
 interface Props { art: any; siguiente: any[]; }
 const { art, siguiente } = Astro.props;
 
-// Barra de progreso de lectura: OCULTA hasta que se diseñe la nueva. Para volver a activarla, poner true
-// (la barra antigua, con sus estilos en wip.css y src/scripts/blog-lectura.js, es la que se activaría).
-const MOSTRAR_PROGRESO = false;
 ---
 <main id="articulo">
-<article class="ds-wrap bl-articulo" data-lectura>
-{MOSTRAR_PROGRESO && art.secciones.length > 0 && (
-<div class="bl-rail">
-<div class="bl-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progreso><div class="bl-progress__fill" data-relleno></div></div>
-<ol class="bl-marks">
-{art.secciones.map((s) => <li class="bl-mark" data-seccion={s.id}><a class="bl-mark__dot" href={`#${s.id}`} aria-label={`Ir a la sección ${s.n}: ${s.texto}`}></a></li>)}
-</ol>
-</div>
-)}
+<article class="ds-wrap bl-articulo">
 <header class="bl-cab ds-case-head">
 <div class="ds-prose">
 <a class="ds-link ds-link--touch t-body bl-volver" href="/blog/"><svg class="ds-icon" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="216" y1="128" x2="40" y2="128"></line><polyline points="112 56 40 128 112 200"></polyline></svg>Volver al blog</a>
@@ -62,7 +51,6 @@ const MOSTRAR_PROGRESO = false;
 </aside>
 )}
 </div>
-{MOSTRAR_PROGRESO && <div class="bl-edge" aria-hidden="true" data-borde><div class="bl-edge__fill" data-borde-relleno></div></div>}
 </article>
 
 {siguiente.length > 0 && (
@@ -75,4 +63,3 @@ const MOSTRAR_PROGRESO = false;
 </section>
 )}
 </main>
-{MOSTRAR_PROGRESO && <script>import '../../scripts/blog-lectura.js';</script>}
